@@ -1,0 +1,354 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php /** @var $block \Magento\Sales\Block\Order\Info */ ?>
+<?php $_order = $block->getOrder() ?>
+<style>
+    ul.items.order-links {
+    display: none;
+}
+
+.accordion .card-header:after {
+    font-family: 'FontAwesome';  
+    content: "\f068";
+    float: right; 
+}
+.accordion {
+    padding-bottom: 10px;
+    margin-top: 10px;
+}
+.accordion .card-header.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "\f067"; 
+}
+.accordion>.card {
+    
+}
+.card {
+    border: none;
+}
+.accordion>.card .card-header {
+    margin-bottom: 10px;
+    background-color: #f5f6fa;
+     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1) !important;
+    border-bottom: 0;
+}
+
+main#maincontent {
+    margin-left: 0 !important; 
+    margin-right: 0 !important;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+    #my-orders-table tbody tr {
+            padding: 5px;
+    width: 100%;
+    font-size: 14px;
+    overflow: hidden;
+    transition: box-shadow .1s linear;
+    background-color: #fff;
+    border: 1px solid #dbdbdb;
+    position: relative;
+    cursor: pointer;
+    display: block;
+     box-shadow: 0 0px 10px rgba(59, 43, 91, 0.3);
+    margin-bottom: 12px;
+    border-radius: 4px;
+        }
+    #my-orders-table > tbody > tr > td {
+        border-top: none;
+    }
+    .account .table-wrapper {
+        margin-right: 20px;
+    }
+    html {
+    font-family: helvetica, arial;
+}
+
+.htimeline {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+}
+
+.htimeline .step {
+    float: left;
+    border-bottom-style: solid;
+    border-bottom-width: 5px;
+    position: relative;
+    margin-bottom: 10px;
+    text-align: left;
+    padding: 0px 0 5px 0px;
+    color: #333;
+    height: 50px;
+    vertical-align: middle;
+    transition: all 0.5s ease;
+    width: 90px;
+}
+
+
+.htimeline .step div {
+    margin: 0 5px;
+    font-size: 14px;
+    vertical-align: top;
+    padding: 0;
+}
+
+.htimeline .step.green {
+    border-bottom-color: #348F50;
+}
+
+.htimeline .step.orange {
+    border-bottom-color: #F09819;
+}
+
+.htimeline .step.red {
+    border-bottom-color: #C04848;
+}
+
+.htimeline .step.blue {
+    border-bottom-color: #49a09d;
+}
+
+.htimeline .step::before {
+    width: 15px;
+    height: 15px;
+    border-radius: 50px;
+    content: ' ';
+    background-color: white;
+    position: absolute;
+    bottom: -10px;
+    left: 0px;
+    border-style: solid;
+    border-width: 3px;
+    transition: all 0.5s ease;
+}
+
+.htimeline .step:hover::before {
+    width: 18px;
+    height: 18px;
+    bottom: -12px;
+}
+
+.htimeline .step.green::before {
+    border-color: #348F50;
+}
+
+.htimeline .step.orange::before {
+    border-color: #F09819;
+}
+
+.htimeline .step.red::before {
+    border-color: #C04848;
+}
+
+.htimeline .step.blue::before {
+    border-color: #49a09d;
+}
+
+.htimeline .step::after {
+    content: attr(data-date);
+    position: absolute;
+    bottom: 0px;
+    left: 17px;
+    font-size: 11px;
+    font-style: italic;
+    color: #888
+}
+.image-row {
+   width: 20%;
+}
+
+.view-more {
+    background: #b272d3 !important;
+    color: #fff !important;
+    font-size: 12px;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1) !important;
+    border-radius: 2px !important;
+    padding: 7px 14px !important;
+}
+.table-wrapper.orders-history {
+    box-shadow: none !important;
+}
+.account .table-wrapper {   
+    border-bottom: none;
+}
+
+.abs-account-blocks .block-title, .account .legend, .form-giftregistry-search .legend, .block-giftregistry-results .block-title, .block-giftregistry-shared-items .block-title, .block-wishlist-search-form .block-title, .block-wishlist-search-results .block-title, .multicheckout .block-title, .multicheckout .block-content .title, .customer-review .review-details .title, .paypal-review .block .block-title, .account .column.main .block:not(.widget) .block-title, .multicheckout .block-title, .magento-rma-guest-returns .column.main .block:not(.widget) .block-title, [class^='sales-guest-'] .column.main .block:not(.widget) .block-title, .sales-guest-view .column.main .block:not(.widget) .block-title {
+    border: none;
+    margin-bottom: 0px;
+}
+
+@media only screen and (max-width: 767px) {
+    .abs-toggling-title-mobile, .block-wishlist-management .wishlist-select .wishlist-name, .block-collapsible-nav .title {
+    border-top: 1px solid #cccccc;
+    cursor: pointer;
+    margin-bottom: 0;
+    position: relative;
+    border-bottom:none;
+    padding: 10px 40px 10px 15px;
+    display: block;
+    text-decoration: none;
+}
+
+}
+
+@media only screen and (max-width: 639px) {
+    .table-wrapper {
+        overflow-x: visible;
+        overflow-y: visible;
+    }
+}
+
+
+
+   </style>
+<div class="block block-order-details-view">
+    <div class="block-title">
+        <strong><?= /* @escapeNotVerified */ __('Order Information') ?></strong>
+    </div>
+    <div class="block-content">
+         <div class="table-wrapper orders-history">
+        <table class="data table table-order-items history" id="my-orders-table">
+            <caption class="table-caption"><?= $block->escapeHtml(__('Orders')) ?></caption>
+            <tbody>
+                 <?php 
+                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                $imageHelper  = $objectManager->get('\Magento\Catalog\Helper\Image'); ?>
+                    <tr>
+                        <?php
+                        $orderItems = $_order->getAllItems();
+                        $produc_id = "";
+                        $first = true;
+foreach($orderItems as $item)
+{
+   if ( $first )
+    {
+        // do something
+        $first = false;
+        $produc_id = $item->getProductId();
+    }
+}
+$_product = $objectManager->get('Magento\Catalog\Model\Product')->load($produc_id);
+$image_url = $imageHelper->init($_product, 'product_page_image_small')->setImageFile($_product->getImage())->resize(100, 100)->getUrl();
+
+
+                         ?>
+                         <td style="display:inline;border-left:0px !important;"  class="col image-row"><img width="100px" class="order_image" src="<?php echo $image_url; ?>"/></td>
+                        <td style="border-left:0px !important;" data-th="<?= $block->escapeHtmlAttr(__('Order #')) ?>" class="col id"><?= /* @escapeNotVerified */ $_order->getRealOrderId() ?>
+                        <div class='container-fluid' style="padding: 10px 0px;"> 
+<ul class='htimeline'>
+    <li data-date='<?= /* @noEscape */ $block->formatDate($_order->getCreatedAt()) ?>' class='step col-xs-4 blue'><div>Ordered</div></li>
+      <?php if($_order->hasShipments()) { ?>
+  <li data-date='<?= $block->formatDate($_order->getShipmentsCollection()->getFirstItem()->getCreatedAt()) ?>' class='step col-xs-4 blue'><div>Shipped</div></li>
+   <?php  } ?>
+    <?php if($_order->getStatus() == 'complete') { ?>
+ <li data-date='<?= /* @noEscape */ $block->formatDate($_order->getUpdatedAt()) ?>' class='step col-xs-4 green'><div>Delivered</div></li>
+   <?php  } ?>
+    <?php if($_order->getStatus() == 'canceled') { ?>
+ <li data-date='<?= /* @noEscape */ $block->formatDate($_order->getUpdatedAt()) ?>' class='step col-xs-4 red'><div>Canceled</div></li>
+   <?php  } ?>
+  </ul>
+</div></td>
+                        <td data-th="<?= $block->escapeHtmlAttr(__('Actions')) ?>" style="display: block; vertical-align: middle;clear:both;padding-top: 20px;border-left:0px !important;" class="col actions">
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+  <div id="accordion" class="accordion">
+        <div class="card mb-0">
+            <div class="card-header collapsed"  data-toggle="collapse" href="#collapseOne">
+                <a class="card-title">
+                    Shipping Information
+                </a>
+            </div>
+            <div id="collapseOne" style="padding: 0;" class="card-body collapse" data-parent="#accordion" >
+                <?php if (!$_order->getIsVirtual()): ?>
+        <div class="box box-order-shipping-address floatclass">
+            <strong class="box-title"><span><?= /* @escapeNotVerified */ __('Delivery Address') ?></span></strong>
+            <div class="box-content">
+                <address><?= /* @escapeNotVerified */ $block->getFormattedAddress($_order->getShippingAddress()) ?></address>
+            </div>
+        </div>
+
+        <div class="box box-order-shipping-method">
+            <strong class="box-title">
+                <span><?= /* @escapeNotVerified */ __('Shipping Method') ?></span>
+            </strong>
+            <div class="box-content">
+            <?php if ($_order->getShippingDescription()): ?>
+                <?= $block->escapeHtml($_order->getShippingDescription()) ?>
+            <?php else: ?>
+                <?= /* @escapeNotVerified */ __('No shipping information available') ?>
+            <?php endif; ?>
+            </div>
+        </div>
+    <?php endif; ?>
+            </div>
+            <div class="card-header collapsed"  data-toggle="collapse" href="#collapseThree">
+                <a class="card-title">
+                    Product Information
+                </a>
+            </div>
+            <div id="collapseThree" style="padding: 0;" class="card-body collapse price-info" data-parent="#accordion" >
+
+            </div>
+
+             <div class="card-header collapsed"  data-toggle="collapse" href="#collapseFour">
+                <a class="card-title">
+                    Payment Method
+                </a>
+            </div>
+            <div id="collapseFour" style="padding: 0;" class="card-body collapse" data-parent="#accordion" >
+                <div class="box box-order-billing-method">
+            <div class="box-content">
+                <?= $block->getPaymentInfoHtml() ?>
+            </div>
+        </div>
+            </div>
+
+             <?php if($_order->getStatus() == 'complete') { 
+
+    $blockObj= $block->getLayout()->createBlock('Magento\Sales\Block\Order\Info\Buttons');?>
+    <div class="card-header collapsed" id="customize_product" data-toggle="collapse" href="#collapseFive">
+                <a class="card-title">
+                   Print Invoice
+                </a>
+            </div>
+            <div id="collapseFive" style="padding: 0;" class="card-body collapse" data-parent="#accordion" >
+                <div class="invoice-btn-link">
+ <strong class="box-title"><span>
+<span><i class="fas fa-file-invoice" style="padding-right: 20px;color: gold;font-size: 26px;"></i>Download Invoice</span>
+
+
+ <a style="padding: 10px;margin-left: 10px;" class="action print send"
+        href="<?= /* @escapeNotVerified */ $blockObj->getPrintUrl($_order) ?>"
+       onclick="this.target='_blank';">
+        <span><?= /* @escapeNotVerified */ __('Print Order') ?></span>
+    </a>
+
+</div>
+            </div>
+
+<?php } ?>
+             
+        </div>
+    </div>
+    </div>
+</div>
+  <script type="text/javascript">
+    
+require(['jquery'], function($){
+    $(document).ready(function(){
+         $('.price-info').append($('.order-details-items.ordered'));
+    });
+});
+ </script>

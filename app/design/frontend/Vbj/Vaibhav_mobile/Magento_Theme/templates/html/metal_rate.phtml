@@ -1,0 +1,47 @@
+<?php  
+
+$objectManager =  \Magento\Framework\App\ObjectManager::getInstance();  
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+
+$store = $storeManager->getStore();
+
+$currency=$store->getCurrentCurrencyCode();
+
+$rate = $store->getCurrentCurrencyRate();
+
+$object_manager = \Magento\Framework\App\ObjectManager::getInstance();
+$resource = $object_manager->get('Magento\Framework\App\ResourceConnection');
+$connection = $resource->getConnection();
+$tableName = $resource->getTableName('pricemanager');
+
+//Select Data from table
+$sql = "Select * FROM  $tableName WHERE id = 1" ;
+$result = $connection->fetchAll($sql);
+
+
+ ?>
+<style type="text/css">
+  span.dropdown-item {
+    font-size: 14px;
+    color: #6e2083;
+}
+</style>
+<div class="dropdown p-2">
+    <button type="button" class="btn dropdown-toggle color-voilet p-0" data-toggle="dropdown">
+        Metal Rate
+    </button>
+   <?php if($currency=='INR'): ?>
+            <div class="dropdown-menu">
+                <span class="dropdown-item">Gold-22k/1g- <?php echo $result[0]['22K']; ?><!-- ₹3,953.00 --></span>
+                <span class="dropdown-item">Gold-18k/1g- <?php echo $result[0]['18K']; ?><!-- ₹3,234.00 --></span>
+                <span class="dropdown-item">Silver-1g- <?php echo $result[0]['hundred']; ?><!-- ₹50.10 --></span>
+            </div>
+             <?php else: ?>
+                 <div class="dropdown-menu">
+                <span class="dropdown-item">Gold-22k/1g- <?php echo $result[0]['22K']*$rate; ?><!-- $58.00 --></span>
+                <span class="dropdown-item">Gold-18k/1g- <?php echo $result[0]['18K']*$rate; ?><!-- $47.00 --></span>
+                <span class="dropdown-item">Silver-1g- <?php echo $result[0]['hundred']*$rate; ?><!-- $1.00 --></span>
+            </div>
+             <?php endif; ?>
+</div>
+</div>

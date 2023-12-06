@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+		<referenceContainer name="main">
+              <container name="home.mobile.container" htmlTag="div" htmlClass="mobile-section d-sm-none d-block">
+             <block class="Magento\Cms\Block\Block" name="mobile-top-categories">
+            <arguments>
+                <argument name="block_id" xsi:type="string">mobile-top-categories</argument>
+            </arguments>
+            </block>
+           <!--  <block class="Magento\Cms\Block\Block" name="mobile-top-categories"/> -->
+            <block class="Magento\Framework\View\Element\Template" name="mobile_banner" template="Magento_Cms::mobile_banner.phtml"/>
+            <block class="Magento\Framework\View\Element\Template" name="collection" template="Magento_Cms::traditional_collections.phtml"/>
+            <block class="Magento\Framework\View\Element\Template" name="alsolove" template="Magento_Cms::recommended.phtml">
+                <block class="Magento\Cms\Block\Block" name="vaibahv_you_love"> 
+        <arguments> 
+            <argument name="block_id" xsi:type="string">vaibahv_you_love</argument> 
+        </arguments> 
+    </block>       
+            </block>
+            <block class="Magento\Framework\View\Element\Template" name="cate_collection" template="Magento_Cms::cate_collection.phtml"/>
+            <block class="Magento\Framework\View\Element\Template" name="vaibhav_advantage" template="Magento_Cms::vaibhav_advantage.phtml"/>
+            <block class="Magento\Framework\View\Element\Template" name="video_gallery" template="Magento_Cms::video_gallery.phtml"/>
+            <block class="Magento\Framework\View\Element\Template" name="education" template="Magento_Cms::education.phtml"/>
+           <!--  <block class="Magento\Framework\View\Element\Template" name="subscribe" template="Magento_Newsletter::subscribe.phtml"/> -->
+            <block class="Magento\Newsletter\Block\Subscribe" name="subscribe" template="Magento_Newsletter::subscribe.phtml"/>
+        </container>
+		</referenceContainer>
+    </body>
+</page>

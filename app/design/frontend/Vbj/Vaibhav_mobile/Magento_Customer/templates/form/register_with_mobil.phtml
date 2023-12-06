@@ -1,0 +1,522 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Customer\Block\Form\Register $block */
+?>
+<?= $block->getChildHtml('form_fields_before') ?>
+<?php /* Extensions placeholder */ ?>
+<?= $block->getChildHtml('customer.form.register.extra') ?>
+<form class="form create account form-create-account" action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>" method="post" id="form-validate" enctype="multipart/form-data" autocomplete="off">
+    <?= /* @noEscape */ $block->getBlockHtml('formkey'); ?>
+    <fieldset class="fieldset create info">
+        <legend class="legend"><span><?= $block->escapeHtml(__('Sign Up On Vaibhav')) ?></span></legend><br>
+        <input type="hidden" name="success_url" value="<?= $block->escapeUrl($block->getSuccessUrl()) ?>">
+        <input type="hidden" name="error_url" value="<?= $block->escapeUrl($block->getErrorUrl()) ?>">
+        <?= $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Name')->setObject($block->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
+        <?php if ($block->isNewsletterEnabled()): ?>
+            <div class="field choice newsletter">
+                <input type="checkbox" name="is_subscribed" title="<?= $block->escapeHtmlAttr(__('Sign Up for Newsletter')) ?>" value="1" id="is_subscribed"<?php if ($block->getFormData()->getIsSubscribed()): ?> checked="checked"<?php endif; ?> class="checkbox">
+                <label for="is_subscribed" class="label"><span><?= $block->escapeHtml(__('Sign Up for Newsletter')) ?></span></label>
+            </div>
+            <?php /* Extensions placeholder */ ?>
+            <?= $block->getChildHtml('customer.form.register.newsletter') ?>
+        <?php endif ?>
+
+        <?php $_dob = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Dob') ?>
+        <?php if ($_dob->isEnabled()): ?>
+            <?= $_dob->setDate($block->getFormData()->getDob())->toHtml() ?>
+        <?php endif ?>
+
+        <?php $_taxvat = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Taxvat') ?>
+        <?php if ($_taxvat->isEnabled()): ?>
+            <?= $_taxvat->setTaxvat($block->getFormData()->getTaxvat())->toHtml() ?>
+        <?php endif ?>
+
+        <?php $_gender = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Gender') ?>
+        <?php if ($_gender->isEnabled()): ?>
+            <?= $_gender->setGender($block->getFormData()->getGender())->toHtml() ?>
+        <?php endif ?>
+    </fieldset>
+    <?php if ($block->getShowAddressFields()): ?>
+        <fieldset class="fieldset address">
+            <legend class="legend"><span><?= $block->escapeHtml(__('Address Information')) ?></span></legend><br>
+            <input type="hidden" name="create_address" value="1" />
+
+            <?php $_company = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Company') ?>
+            <?php if ($_company->isEnabled()): ?>
+                <?= $_company->setCompany($block->getFormData()->getCompany())->toHtml() ?>
+            <?php endif ?>
+
+            <?php $_telephone = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Telephone') ?>
+            <?php if ($_telephone->isEnabled()): ?>
+                <?= $_telephone->setTelephone($block->getFormData()->getTelephone())->toHtml() ?>
+            <?php endif ?>
+
+            <?php $_fax = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Fax') ?>
+            <?php if ($_fax->isEnabled()): ?>
+                <?= $_fax->setFax($block->getFormData()->getFax())->toHtml() ?>
+            <?php endif ?>
+
+            <?php $_streetValidationClass = $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('street'); ?>
+
+            <div class="field street required">
+                <label for="street_1" class="label"><span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('street') ?></span></label>
+                <div class="control">
+                    <input type="text" name="street[]" value="<?= $block->escapeHtmlAttr($block->getFormData()->getStreet(0)) ?>" title="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('street') ?>" id="street_1" class="input-text <?= $block->escapeHtmlAttr($_streetValidationClass) ?>">
+                    <div class="nested">
+                        <?php $_streetValidationClass = trim(str_replace('required-entry', '', $_streetValidationClass)); ?>
+                        <?php for ($_i = 2, $_n = $this->helper('Magento\Customer\Helper\Address')->getStreetLines(); $_i <= $_n; $_i++): ?>
+                            <div class="field additional">
+                                <label class="label" for="street_<?= /* @noEscape */ $_i ?>">
+                                    <span><?= $block->escapeHtml(__('Address')) ?></span>
+                                </label>
+                                <div class="control">
+                                    <input type="text" name="street[]" value="<?= $block->escapeHtml($block->getFormData()->getStreetLine($_i - 1)) ?>" title="<?= $block->escapeHtmlAttr(__('Street Address %1', $_i)) ?>" id="street_<?= /* @noEscape */ $_i ?>" class="input-text <?= $block->escapeHtmlAttr($_streetValidationClass) ?>">
+                                </div>
+                            </div>
+                        <?php endfor; ?>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field required">
+                <label for="city" class="label"><span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('city') ?></span></label>
+                <div class="control">
+                    <input type="text" name="city" value="<?= $block->escapeHtmlAttr($block->getFormData()->getCity()) ?>" title="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('city') ?>" class="input-text <?= $block->escapeHtmlAttr($this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('city')) ?>" id="city">
+                </div>
+            </div>
+
+            <div class="field region required">
+                <label for="region_id" class="label"><span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('region') ?></span></label>
+                <div class="control">
+                    <select id="region_id" name="region_id" title="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('region') ?>" class="validate-select" style="display:none;">
+                        <option value=""><?= $block->escapeHtml(__('Please select a region, state or province.')) ?></option>
+                    </select>
+                    <input type="text" id="region" name="region" value="<?= $block->escapeHtml($block->getRegion()) ?>" title="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('region') ?>" class="input-text <?= $block->escapeHtmlAttr($this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('region')) ?>" style="display:none;">
+                </div>
+            </div>
+
+            <div class="field zip required">
+                <label for="zip" class="label"><span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('postcode') ?></span></label>
+                <div class="control">
+                    <input type="text" name="postcode" value="<?= $block->escapeHtmlAttr($block->getFormData()->getPostcode()) ?>" title="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('postcode') ?>" id="zip" class="input-text validate-zip-international <?= $block->escapeHtmlAttr($this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('postcode')) ?>">
+                </div>
+            </div>
+
+            <div class="field country required">
+                <label for="country" class="label"><span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('country_id') ?></span></label>
+                <div class="control">
+                    <?= $block->getCountryHtmlSelect() ?>
+                </div>
+            </div>
+            <?php $addressAttributes = $block->getChildBlock('customer_form_address_user_attributes');?>
+            <?php if ($addressAttributes): ?>
+                <?php $addressAttributes->setEntityType('customer_address'); ?>
+                <?php $addressAttributes->setFieldIdFormat('address:%1$s')->setFieldNameFormat('address[%1$s]');?>
+                <?php $block->restoreSessionData($addressAttributes->getMetadataForm(), 'address');?>
+                <?= $addressAttributes->setShowContainer(false)->toHtml() ?>
+            <?php endif;?>
+            <input type="hidden" name="default_billing" value="1">
+            <input type="hidden" name="default_shipping" value="1">
+        </fieldset>
+
+    <?php endif; ?>
+    <fieldset class="fieldset create account" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
+        <legend class="legend sl-c"><span><?= $block->escapeHtml(__('Sign-in Information')) ?></span></legend><br>
+            <div class="field required">
+            <label for="email_address" class="label"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+            <div class="control">
+                <input type="email" placeholder="Email" name="email" autocomplete="email" id="email_address" value="<?= $block->escapeHtmlAttr($block->getFormData()->getEmail()) ?>" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" class="input-text" data-validate="{required:true, 'validate-email':true}">
+                <input type="hidden" name="emailverify" class="txt_verify" tabindex="1000" value="0" id="emailverify" data-validate="{required:true, 'validate-custom-emailverify':true}" data-msg-required="Please enter Email" aria-required="true" aria-invalid="true" aria-describedby="verify-error"/>
+            </div>
+            <div class="error-msg" id="emailverifyErr" style="display:none"><?php echo __("Email verification is pending");?></div>
+            <div class="error-msg" id="emailRepeatErr" style="display:none"><?php echo __("Emailid already taken");?></div>
+              <div class="error-msg" id="emailValidErr" style="display:none"><?php echo __("Please Enter Emailid");?></div>
+            <div class="success-msg" id="emailSuccessMsg" style="display:none"><?php echo __("Email verified");?></div>
+            <span id="emailerrmsg" style="color: red;text-align:center;"></span> 
+        </div>
+        <div class="right_user_mobile">
+                <div class="success-msg" id="emailSuccessMsg" style="display:none"></div>
+                <button type="button" id="email-verify-submit"  class="verify btn btn-primary btn-block" >Email Verify</button>
+                <span id="OtpBaseUrlemail" class="OtpBaseUrl" style="display: none"></span>
+        </div>
+        <div class="field required mobile">
+            <div class="control">
+                <input  type="text" name="mobile" autocomplete="mobile" id="mobile_number" class="input-text" placeholder="Mobile" data-validate="{required:true, 'validate-custom-telephone':true}" data-msg-required="Please enter Mobile">
+                <input type="hidden" name="verify" class="txt_verify" tabindex="1000" value="0" id="verify" data-validate="{required:true, 'validate-custom-verify':true}" data-msg-required="Please enter Mobile" aria-required="true" aria-invalid="true" aria-describedby="verify-error"/>
+            </div>
+             <div class="error-msg" id="verifyErr" style="display:none"><?php echo __("Mobile verification is pending");?></div>
+            <div class="error-msg" id="RepeatErr" style="display:none"><?php echo __("Mobile number already taken");?></div>
+              <div class="error-msg" id="ValidErr" style="display:none"><?php echo __("Please Enter Mobile Number");?></div>
+              <div class="error-msg" id="ValidErrt" style="display:none"><?php echo __("Phone Number should be 10 digits");?></div>
+            <div class="success-msg" id="SuccessMsg" style="display:none"><?php echo __("Mobile number verified");?></div>
+            <span id="errmsg" style="color: red;text-align:center;"></span> 
+        </div>
+         <div class="right_user_mobile">
+                <div class="success-msg" id="SuccessMsg" style="display:none"></div>
+                <button type="button" id="otp-verify-submit"  class="verify btn btn-primary btn-block" >Verify</button>
+                <span id="OtpBaseUrl" class="OtpBaseUrl" style="display: none"><?php echo "https://www.vaibhavjewellers.com/";//$block->getUploadFormUrl(); ?></span>
+        </div>
+         <div>
+                                    <div class="field form-group verification" id="user_otp" style="display:none;">
+                                        <label for="verification" class="label col-sm-5 control-label"><span>
+                                <?php
+                                /* @escapeNotVerified */
+                                echo __('Phone Verification')
+                                ?>
+                                            </span></label>
+                                        <div class="control col-sm-10">
+                                            <input type="text" name="otp" id="otp"  class="form-control" placeholder="Enter Code"  data-validate="{required:true}" data-msg-required="Please enter OTP" >
+                                            <button type="button" id="otp-verification"  class="verify" >Verify OTP</button>
+                                        </div>
+
+
+                                    </div>
+                                </div>  
+        <div class="field password required">
+            <div class="control">
+                <input type="password" name="password" id="password"
+                       title="<?= $block->escapeHtmlAttr(__('Password')) ?>"
+                       placeholder="Password"
+                       class="input-text"
+                       data-password-min-length="<?= $block->escapeHtmlAttr($block->getMinimumPasswordLength()) ?>"
+                       data-password-min-character-sets="<?= $block->escapeHtmlAttr($block->getRequiredCharacterClassesNumber()) ?>"
+                       data-validate="{required:true, 'validate-customer-password':true}"
+                       autocomplete="off">
+                <div id="password-strength-meter-container" data-role="password-strength-meter" aria-live="polite">
+                    <div id="password-strength-meter" class="password-strength-meter">
+                        <?= $block->escapeHtml(__('Password Strength')) ?>:
+                        <span id="password-strength-meter-label" data-role="password-strength-meter-label">
+                            <?= $block->escapeHtml(__('No Password')) ?>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="field confirmation required">
+            <div class="control">
+                <input type="password" name="password_confirmation" placeholder="Confirm Password" title="<?= $block->escapeHtmlAttr(__('Confirm Password')) ?>" id="password-confirmation" class="input-text" data-validate="{required:true, equalTo:'#password'}" autocomplete="off">
+            </div>
+        </div>
+        <?= $block->getChildHtml('form_additional_info') ?>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action submit primary" title="<?= $block->escapeHtmlAttr(__('Create an Account')) ?>"><span><?= $block->escapeHtml(__('Create an Account')) ?></span></button>
+        </div>
+        <div class="secondary">
+            <a class="action back" href="<?= $block->escapeUrl($block->getBackUrl()) ?>"><span><?= $block->escapeHtml(__('Back')) ?></span></a>
+        </div>
+    </div>
+</form>
+<script>
+require([
+    'jquery',
+    'mage/mage'
+], function($){
+
+    var dataForm = $('#form-validate');
+    var ignore = <?= /* @noEscape */ $_dob->isEnabled() ? '\'input[id$="full"]\'' : 'null' ?>;
+
+    dataForm.mage('validation', {
+    <?php if ($_dob->isEnabled()): ?>
+        errorPlacement: function(error, element) {
+            if (element.prop('id').search('full') !== -1) {
+                var dobElement = $(element).parents('.customer-dob'),
+                    errorClass = error.prop('class');
+                error.insertAfter(element.parent());
+                dobElement.find('.validate-custom').addClass(errorClass)
+                    .after('<div class="' + errorClass + '"></div>');
+            }
+            else {
+                error.insertAfter(element);
+            }
+        },
+        ignore: ''
+    <?php else: ?>
+        ignore: ignore
+    <?php endif ?>
+    }).find('input:text').attr('autocomplete', 'off');
+
+});
+</script>
+<?php if ($block->getShowAddressFields()): ?>
+<script type="text/x-magento-init">
+    {
+        "#country": {
+            "regionUpdater": {
+                "optionalRegionAllowed": <?= /* @noEscape */ $block->getConfig('general/region/display_all') ? 'true' : 'false' ?>,
+                "regionListId": "#region_id",
+                "regionInputId": "#region",
+                "postcodeId": "#zip",
+                "form": "#form-validate",
+                "regionJson": <?= /* @noEscape */ $this->helper(\Magento\Directory\Helper\Data::class)->getRegionJson() ?>,
+                "defaultRegion": "<?= (int) $block->getFormData()->getRegionId() ?>",
+                "countriesWithOptionalZip": <?= /* @noEscape */ $this->helper(\Magento\Directory\Helper\Data::class)->getCountriesWithOptionalZip(true) ?>
+            }
+        }
+    }
+</script>
+<?php endif; ?>
+
+<script type="text/x-magento-init">
+    {
+        ".field.password": {
+            "passwordStrengthIndicator": {
+                "formSelector": "form.form-create-account"
+            }
+        }
+    }
+</script>
+
+<script type="text/javascript">
+    require([
+                                    'jquery', // jquery Library
+                                    'jquery/ui', // Jquery UI Library
+                                    'jquery/validate', // Jquery Validation Library
+                                    'mage/translate' // Magento text translate (Validation message translte as per language)
+                            ], function($){
+                            jQuery(document).ready(function () {
+                                $.validator.addMethod(
+                                        'validate-custom-verify', function (value) {
+                                        //var teleValid = $("#telephone").valid();
+                                        // if(!(teleValid)) return true;
+                                         //return(teleValid && value=='1')                                                                            
+                                         return (value=='1')                                                                              
+                                        }, $.mage.__('Mobile verification is pending')
+                                );
+                                $.validator.addMethod(
+                                        'validate-custom-emailverify', function (value) {
+                                         return (value=='1')                                                                              
+                                        }, $.mage.__('Email verification is pending')
+                                );
+                                $.validator.addMethod(
+                                        'validate-custom-telephone', function (value) {
+                                         return (value != '' && value.length == 10)
+                                        }, $.mage.__('Please enter 10 digits phone number')
+                                );                                 
+                            });                                                                     
+                            });
+
+</script>
+<script type="text/javascript">
+ require([
+                                    'jquery', // jquery Library
+                                    'jquery/ui', // Jquery UI Library
+                                    'jquery/validate', // Jquery Validation Library
+                                    'mage/translate' // Magento text translate (Validation message translte as per language)
+                            ], function($){ 
+jQuery(document).ready(function () {
+                            // mk validate on for dob field
+                            //jQuery("#dob").attr("data-validate","{required:true, 'validate-customer-dob':true}");
+                            //jQuery("#dob").attr("data-msg-required","Please select date of birth");
+                            //jQuery("#dob").attr("yearRange","1900:2000");
+                            
+                            //jQuery("#dob").attr("class","_has-datepicker input-text");
+                            
+                            
+
+//opt verification 
+                            jQuery(document).on('click', '#otp-verify-submit', function(){
+                                var baseUrl = document.getElementsByClassName('OtpBaseUrl')[0].innerHTML;
+                                baseUrl = baseUrl.trim();
+                                var controllerUrl = 'sociallogin/popup/phoneverify';
+                                var ajxUrl = baseUrl.concat(controllerUrl);
+                                  if (jQuery("#mobile_number").val() == '') {
+                                    jQuery("#ValidErr").show();
+                                    jQuery("#RepeatErr").hide();
+                                    jQuery("#SuccessMsg").hide();
+                                    return false;
+                                } else {
+                                    if (jQuery("#mobile_number").val().length != 10){
+                                        jQuery("#ValidErrt").show();
+                                        jQuery("#ValidErr").hide();
+                                        jQuery("#user_otp").hide();
+                                        jQuery("#RepeatErr").hide();
+                                        jQuery("#SuccessMsg").hide();
+                                        
+                                        return false;
+                                    }
+                                }
+                                var form_data = "telephone="+jQuery("#mobile_number").val();
+                                jQuery.ajax({
+                                    url: ajxUrl, // Upload Script
+                                    showLoader: true,   
+                                    dataType: 'json',
+                                    data: form_data,
+                                    type: 'post',
+                                    success: function(data) {
+                                        if(data) {
+                                            if(jQuery("#mobile_number").valid()) {
+                                                    var baseUrl = document.getElementsByClassName('OtpBaseUrl')[0].innerHTML;
+                                                    baseUrl = baseUrl.trim();
+                                                    var controllerUrl = 'sociallogin/popup/codesend';
+                                                    var ajxUrl = baseUrl.concat(controllerUrl);
+                                                    jQuery("#otp-verify-submit").hide();
+                                                    var form_data = "telephone="+jQuery("#mobile_number").val();//jQuery("#user_mobile :input").serialize();
+                                                    jQuery.ajax({
+                                                    url: ajxUrl, // Upload Script
+                                                                    showLoader: true,   
+                                                                    dataType: 'json',
+                                                                    data: form_data, // Setting the data attribute of ajax with file_data
+                                                                    type: 'post',
+                                                                    success: function(data) {// Do something after Ajax completes 
+                                                               // jQuery("div[id='verifyloading']").hide();
+                                                                    // alert(data['message']);
+                                                                    jQuery('#RepeatErr').hide();
+                                                                    jQuery('#verifyErr').hide();
+                                                                    if (data['success'] == true)
+                                                                    {
+                                                                     jQuery("#RepeatErr").hide();
+                                                                    jQuery("#verify-error").hide();
+                                                                    jQuery("#mobile-error").hide();
+                                                                    jQuery('#RepeatErr').html("");
+                                                                    jQuery('#SuccessMsg').html("");
+                                                                    jQuery('#SuccessMsg').html(data['message']);
+                                                                    jQuery('#SuccessMsg').show();
+                                                                    jQuery("#otp").val('');
+                                                                    jQuery("#user_otp").show();
+                                                                     jQuery("#otp-verify-submit").text('Resend Otp');
+                                                                    jQuery("#ValidErrt").hide();
+                                                                    jQuery("#ValidErr").hide();
+                                                                    } else {
+                                                                    jQuery("#SuccessMsg").hide();
+                                                                    jQuery('#SuccessMsg').html("");
+                                                                    jQuery('#RepeatErr').html("");
+                                                                    //jQuery('#RepeatErr').html(data['message']);
+                                                                    jQuery('#RepeatErr').show();
+                                                                    jQuery("#otp-verify-submit").show();
+                                                                    jQuery("#user_otp").hide();
+                                                                    }
+                                                                }
+                                                    });
+                                        
+                                        } else {
+                                            jQuery("#ValidErr").hide();
+                                            jQuery('#RepeatErr').show();
+                                            jQuery("#ValidErrt").hide();
+                                            //jQuery("#otp-verify-submit").text('Mobile Number alreday taken click to change again');
+                                            jQuery("#ValidErr").hide();
+                                        }
+                                    }else {
+                                    jQuery("#ValidErr").hide();
+                                    jQuery('#RepeatErr').show();
+                                    jQuery("#ValidErrt").hide();
+                                    //jQuery("#otp-verify-submit").text('Mobile Number alreday taken click to change again');
+                                    jQuery("#ValidErr").hide();
+                                }
+                            }
+                                });
+                            });
+                            jQuery(document).on('click', '#otp-verification', function(){
+                            if(jQuery("#otp").valid()) { 
+                                //alert('otp-verification');
+                                var baseUrl = document.getElementsByClassName('OtpBaseUrl')[0].innerHTML;
+                                //alert(baseUrl);
+                                baseUrl = baseUrl.trim();
+                                var controllerUrl = 'sociallogin/popup/codeverify';
+                                var ajxUrl = baseUrl.concat(controllerUrl);
+                                //alert(ajxUrl);
+                                var frm_data = "telephone="+jQuery("#mobile_number").val();
+                                var form_data = frm_data + "&" + "otp="+jQuery("#otp").val();
+                                //alert(form_data);
+                                //if (jQuery("#otp").val() == '')
+    //                            {
+    //                            alert("Please enter OTP");
+    //                            return false;
+    //                            }
+                                jQuery('#verifyErr').hide();
+                                jQuery('#RepeatErr').hide();
+                                jQuery.ajax({
+                                url: ajxUrl, // Upload Script
+                                        showLoader: true,
+                                        dataType: 'json',
+                                        data: form_data, // Setting the data attribute of ajax with file_data
+                                        type: 'post',
+                                        success: function(data) {// Do something after Ajax completes 
+                                        //alert(data['message']);
+                                        //alert('verification success');
+                                        if (data['success'] == true)
+                                        {
+                                        jQuery("#RepeatErr").hide();
+                                        jQuery('#SuccessMsg').html("");
+                                        jQuery("#verify-error").hide();
+                                        jQuery("#telephone-error").hide();
+                                        jQuery('#SuccessMsg').html(data['message']);
+                                        jQuery('#SuccessMsg').show();
+                                        jQuery("#user_otp").hide();
+                                        jQuery('input[name="verify"]').val('1');
+                                        jQuery("#verifyErr").hide();
+                                        jQuery("#otp-verify-submit").hide();
+                                        } else {
+                                        jQuery("#SuccessMsg").hide();
+                                        jQuery('#RepeatErr').html("");
+                                        jQuery('#RepeatErr').html(data['message']);
+                                        jQuery('#RepeatErr').show();
+                                        jQuery("#otp-verify-submit").text('Resend Otp');
+                                        jQuery("#otp-verify-submit").show();
+                                        jQuery("#user_otp").hide();
+                                        jQuery('input[name="verify"]').val('0');
+                                        //                                               jQuery("#verifyErr").show();
+    
+                                        }
+                                        }
+                                });
+                            }
+                            });
+               jQuery("#mobile_number").keypress(function (e) {
+     //if the letter is not digit then display error and don't type anything
+     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        //display error message
+        $("#errmsg").html("Digits Only").show().fadeOut("slow");
+               return false;
+    }
+   });
+     jQuery(document).on('click', '#email-verify-submit', function(){
+                            if(jQuery("#email_address").val()!='') { 
+                                var baseUrl = document.getElementsByClassName('OtpBaseUrl')[0].innerHTML;
+                                //alert(baseUrl);
+                                baseUrl = baseUrl.trim();
+                                var controllerUrl = 'sociallogin/popup/emailverify';
+                                var ajxUrl = baseUrl.concat(controllerUrl);
+                                var form_data = "email="+jQuery("#email_address").val();
+                                jQuery.ajax({
+                                url: ajxUrl, // Upload Script
+                                        showLoader: true,
+                                        dataType: 'json',
+                                        data: form_data, // Setting the data attribute of ajax with file_data
+                                        type: 'post',
+                                        success: function(data) {
+                                            alert(data);// Do something after Ajax completes 
+                                        if (data == true)
+                                        {
+                                        jQuery("#emailSuccessMsg").show();
+                                        jQuery("#emailValidErr").hide();
+                                        jQuery("#emailverify-error").hide();
+                                        jQuery("#emailRepeatErr").hide();
+                                        jQuery('input[name="emailverify"]').val('1');
+                                        
+                                        } else {
+                                        jQuery("#emailRepeatErr").show();
+                                        jQuery("#emailverify-error").hide();
+                                        jQuery("#email_address-error").hide();
+                                        jQuery("#emailSuccessMsg").hide();
+                                        jQuery("#emailValidErr").hide();
+                                        }
+                                        }
+                                });
+                            }else{
+                                jQuery("#emailValidErr").show();
+                                jQuery("#emailverify-error").hide();
+
+                            }
+                            });
+ });                                                                        
+});
+</script>

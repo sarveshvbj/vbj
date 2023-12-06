@@ -1,0 +1,135 @@
+    .text-left{
+        background-color: #f1f0f3;
+        padding-bottom: 4px;
+    }
+    .offer-price {
+        padding: 0 0 0 20px !important;
+    }
+    .price-rating {
+        padding: 0 10px 5px 10px;
+    }
+    .block-static-block.widget, .block-cms-link.widget{
+        margin: 45px;
+        font-size: 14px;
+        text-align: justify;
+        padding-bottom: 20px;
+    } 
+    .vaibhavstaticsec {
+        margin-left: 15px;
+        margin-right: 15px;
+        width: 100%;
+        font-size: 14px;
+        line-height: 1.5rem;
+        letter-spacing: 0.3px;
+    }
+    .widget h2, h3, h4 {
+        font-size: 18px !important;
+        font-weight: 600;
+        padding-bottom: 10px;
+    }
+    .widget h2 {
+        text-align: center;
+    }
+    .vaibhavstaticsec h2, h3, h4 {
+        font-size: 16px !important;
+        font-weight: 600;
+        padding-bottom: 10px;
+    }
+    .vaibhavstaticsec ul>li, ol>li {
+        margin-top: 0;
+        margin-bottom: 6px;
+    }
+    .vaibhavstaticmain {
+        background-color: white !important;
+        margin: 45px;
+        text-align: justify;
+        width: unset;
+    }
+    .product-image-container {
+       /* display: inline-block;
+        width: 100%;
+        height: 100%;*/
+        display: contents !important;
+    }
+    .product-name {
+      padding: 10px 10px 0px 15px!important;
+    }
+    .bread-crumbs {
+        margin: 16px 0;
+        padding-left: 3.5rem;
+    }
+    .sort-items.active {
+        color: #ee853c;
+    }
+    .sorting {
+        padding: 10px 0;
+
+        margin: 10px 0 0;
+        border: 1px solid #e7e7e7;
+        border-width: 1px 0;
+    }
+    .product-image-photo {
+        /*height: 100% !important;*/
+        width: 100% !important;
+        /*top: -36px;*/
+        position: absolute;
+        right: 0;
+        display: block;
+        height: auto;
+        left: 0;
+        margin: auto;
+        bottom:  auto;
+        max-width: unset;
+    }
+     .products {
+        margin-left: 2% !important;
+        height: 100% !important;
+    }
+    .product-image-wrapper {
+        display: block !important;
+        /*height: 0 !important;*/
+        height: 288px;
+        overflow: hidden !important;
+        position: relative !important;
+        z-index: 1 !important;
+        /*padding-bottom: 120% !important;*/
+        text-align: center;
+    }
+    .product_other_icons{
+        display: flex !important;
+        position: absolute !important;
+        /*bottom: 120px !important;*/
+        z-index: 3 !important;
+        align-items: center !important;
+        top: 250px !important;
+        right: 10px !important;
+    }
+    /*p.suggested {
+        display: none;
+    }*/
+    .product-banner{
+        width:50% !important; 
+        height: 381px;
+    }
+    .vaibhav_product_list {
+        margin-left: -2%;
+    }
+    .breadcrumbs .item:not(:last-child):after {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-size: 9px;
+        line-height: 16px;
+        font-family: FontAwesome !important;
+        content: '\f054' !important;
+        margin: 0 10px;
+        vertical-align: top;
+        display: inline-block;
+        font-weight: 400;
+        overflow: hidden;
+        speak: none;
+        text-align: center;
+    }
+    .t-product-img {
+        background-size:cover !important;
+    }
+</style>

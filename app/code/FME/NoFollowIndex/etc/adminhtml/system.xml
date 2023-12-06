@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="fmeextensions" translate="label" sortOrder="1000">
+            <label>FME Extensions</label>
+        </tab>
+        <section id="nofollowindex" translate="label" type="text" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="1">
+          <class>separator-top</class>
+          <label>No Follow Index</label>
+          <tab>fmeextensions</tab>
+          <resource>FME_NoFollowIndex::nofollowindex_config</resource>
+          <group id="nofollowindex_general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+              <label>General</label>
+              <field id="nofollowindex_general_enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                  <label>Enable Extension</label>
+                  <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                  <comment>Select yes or no to enable or disable extension.</comment>
+              </field>
+          </group>
+          <group id="nofollowindex_catprodcms" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+              <label>Enable Categories Products and CMS Pages</label>
+              <field id="nofollowindex_catprodcms_category" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                  <label>Enable For Categories</label>
+                  <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+              </field>
+              <field id="nofollowindex_catprodcms_product" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                  <label>Enable For Products</label>
+                  <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+              </field>
+              <field id="nofollowindex_catprodcms_cms" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                  <label>Enable For CMS</label>
+                  <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                  <comment>Please select yes or no to enable or diable custom meta tags for category, product and cms pages. If selected yes then meta tag values (follow/nofollow and index/noindex) will be used from respective category, product and cms page otherwise Magento default values for these meta tags would be considered. Please go-to respective page to set meta tags values.</comment>
+              </field>
+          </group>
+
+          <group id="nofollowindex_customurl" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>No Follow Index On Custom URL</label>
+            <field id="nofollowindex_customurl_url" translate="label comment tooltip" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+              <label>URL</label>
+              <frontend_model>FME\NoFollowIndex\Block\Adminhtml\System\Config\CustomUrl</frontend_model>
+              <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+              <comment>
+                <![CDATA[Add Custom URL]]>
+              </comment>
+            </field>
+          </group>
+        </section>
+    </system>
+</config>

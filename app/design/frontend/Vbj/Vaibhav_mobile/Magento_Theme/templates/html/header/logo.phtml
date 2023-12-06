@@ -1,0 +1,113 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var \Magento\Theme\Block\Html\Header\Logo $block
+ */
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$request = $objectManager->get('Magento\Framework\App\Action\Context')->getRequest();
+
+?>
+<style>
+  .nav-toggle:before{
+       content: '\f0c9';
+    font-family: 'fontawesome';
+    font-size: 22px;
+    margin-top: 17px;
+  }
+  .minicart-wrapper .action.showcart:before{
+    content: '\f07a';
+    font-family: 'fontawesome';
+    font-size: 16px;
+  }
+  .minicart-wrapper .action.showcart.active:before{
+     content: '\f07a';
+    font-family: 'fontawesome';
+    font-size: 16px;
+  }
+  .minicart-wrapper .action.close:before{
+    content: '\f00d';
+    font-family: 'fontawesome';
+    font-size: 16px;
+  }
+  </style>
+<?php $storeName = $block->getThemeName() ? $block->getThemeName() : $block->getLogoAlt();?>
+<div id="<?php if ($request->getFullActionName() == 'cms_index_index' ) { echo "sticky_header"; }
+?>" class="container-fluid  mt-2" style="display: none;">
+    <div class="align-items-center d-flex">
+        <div class="align-items-center d-flex justify-content-start">
+        <span  class="nav-toggle menu-open"><span><?= /* @escapeNotVerified */ __('Toggle Nav') ?></span></span>
+        <?php if ($block->isHomePage()):?>
+            <strong class="logo">
+        <?php else: ?>
+            <a class="logo" href="<?= $block->getUrl('') ?>" title="<?= /* @escapeNotVerified */ $storeName ?>">
+        <?php endif ?>
+                <img loading="lazy" class="w-65" data-pagespeed-no-transform src="<?= /* @escapeNotVerified */$this->getUrl('pub/media/');?>sticky_vaibhav_logo.png"
+                     title="<?= /* @escapeNotVerified */ $block->getLogoAlt() ?>"
+                     alt="<?= /* @escapeNotVerified */ $block->getLogoAlt() ?>"
+                     width="46" height="46"
+                />
+        <?php if ($block->isHomePage()):?>
+            </strong>
+        <?php else:?>
+            </a>
+        <?php endif?>
+    </div> 
+<div class="align-items-center d-flex justify-content-end">
+    <div id="sticky_search_container">
+    </div>
+     <div id="sticky_switcher_container">
+    </div>
+     <div id="sticky_cart_container">
+    </div>
+</div>
+    </div>
+    </div>
+ <?php if ($block->isHomePage() || $request->getFullActionName() == 'checkout_index_index') { ?>
+
+<div class="container-fluid mt-2" id="main_header">
+<div class="align-items-center d-flex">
+    <div class="align-items-center d-flex justify-content-start">
+        <span  class="nav-toggle menu-open"><span><?= /* @escapeNotVerified */ __('Toggle Nav') ?></span></span>
+        <?php if ($block->isHomePage()):?>
+            <strong class="logo">
+        <?php else: ?>
+            <a class="logo" href="<?= $block->getUrl('') ?>" title="<?= /* @escapeNotVerified */ $storeName ?>">
+        <?php endif ?>
+                <img class="w-65" data-pagespeed-no-transform src="<?= /* @escapeNotVerified */ $block->getLogoSrc() ?>"
+                     title="<?= /* @escapeNotVerified */ $block->getLogoAlt() ?>"
+                     alt="<?= /* @escapeNotVerified */ $block->getLogoAlt() ?>"
+                     <? //= $block->getLogoWidth() ? 'width="' . $block->getLogoWidth() . '"' : '' ?>
+                     <? //= $block->getLogoHeight() ? 'height="' . $block->getLogoHeight() . '"' : '' ?>
+                      width="46" height="46"
+                />
+        <?php if ($block->isHomePage()):?>
+            </strong>
+        <?php else:?>
+            </a>
+        <?php endif ?>
+<?php  } else { ?>
+    <style type="text/css">
+        #sticky_header #minicart_content {
+            margin-top: 25px;
+        }
+    </style>
+<div class="container-fluid align-items-center d-flex mt-2" id="sticky_header">
+<div class="align-items-center d-flex">
+    <div class="align-items-center d-flex justify-content-start">
+        <span  class="nav-toggle menu-open"><span><?= /* @escapeNotVerified */ __('Toggle Nav') ?></span></span>
+            <a class="logo" href="<?= $block->getUrl('') ?>" title="<?= /* @escapeNotVerified */ $storeName ?>">
+               <img loading="lazy" class="w-65" data-pagespeed-no-transform src="<?= /* @escapeNotVerified */$this->getUrl('pub/media/');?>sticky_vaibhav_logo.png"
+                     title="<?= /* @escapeNotVerified */ $block->getLogoAlt() ?>"
+                     alt="<?= /* @escapeNotVerified */ $block->getLogoAlt() ?>"
+                     width="46" height="46"
+                />
+            </a>
+<?php } ?>
+    </div>

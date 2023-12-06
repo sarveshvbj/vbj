@@ -1,0 +1,60 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var \Magento\Theme\Block\Html\Header $block
+ */
+$welcomeMessage = $block->getWelcome();
+?>
+<?php switch ($block->getShowPart()):
+    case 'welcome': ?>
+        <li class="greet welcome" data-bind="scope: 'customer'">
+            <!-- ko if: customer().fullname  -->
+            <span data-bind="text: new String('<?= $block->escapeHtml(__('Welcome, %1!', '%1')) ?>').replace('%1', customer().fullname)">
+            </span>
+            <!-- /ko -->
+            <!-- ko ifnot: customer().fullname  -->
+            <span data-bind='html:"<?= $block->escapeHtml($welcomeMessage) ?>"'></span>
+            <?= $block->getBlockHtml('header.additional') ?>
+            <!-- /ko -->
+        </li>
+        <script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "customer": {
+                            "component": "Magento_Customer/js/view/customer"
+                        }
+                    }
+                }
+            }
+        }
+        </script>
+    <?php break; ?>
+
+    <?php case 'other': ?>
+        <?= $block->getChildHtml() ?>
+    <?php break; ?>
+
+<?php endswitch; ?>
+
+
+<!-- <div class="header desktop-section w-100 d-none d-sm-block position-fixed"> 
+ --> <div class="container-fluid d-flex header-top justify-content-between bg-color-voilet color-white">
+    <a rel="nofollow" target="_blank" href="https://api.whatsapp.com/send?phone=919177403000" style="color: #fff"><span class="d-flex align-items-center">
+            <span class="bg-whatsapp"></span>
+            +91 9177403000
+        </span></a>
+    <span>
+        International Shipping Available
+    </span>
+ </div>   
+<!-- </div> 
+ -->
+<script type="text/javascript">require(['bootstrap']);</script>

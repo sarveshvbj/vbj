@@ -1,0 +1,139 @@
+<div class="search-store" style="display-align:center;float: right;padding-top: 85px;">
+  <!--<label class="label" for="store" style="float: left;
+    padding-left: 95px;
+    font-size: larger;
+    color: white;">
+    <span>Select Store :</span></label>-->
+    <div class="control" style="float:right; padding-top:25px">
+      <!--<input name="store" id="store" title="Store" value="" class="input-text" type="text" data-validate="{required:true, 'validate-email':true}" aria-required="true">-->
+     <select id="store" style="
+    width: 200px;">
+    <option>SELECT STORE</option>
+    <option value="pavanplace"> Pavan Palace - Vizag</option>
+    <option value="visakhapatnam"> V Square - Vizag</option>
+    <option value="kakinada">Kakinada</option>
+    <option value="gajuwaka">Gajuwaka</option>
+    <option value="parvathipuram">Parvathipuram</option>
+    <option value="bobbili">Bobbili</option>
+    <option value="rajahmundry">Rajahmundry</option>
+    <option value="anakapalle">Anakapalli</option>
+    <option value="dilsukhnagar">Dilsukh Nagar-HYD </option>
+    <option value="asraonagar">A.S Rao Nagar - HYD</option>
+    <option value="gopalapatnam">Gopalapatnam</option>
+ </select>
+    <!--<button id="save" title="Search Store" type="button" class="action- scalable save primary ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" onclick="" data-form-role="save" data-ui-id="save-button" role="button" aria-disabled="false"><span class="ui-button-text">
+</span>Search Store</button>-->
+</div>
+    
+</div>
+<script type="text/javascript">
+require(['jquery'],function($){
+    jQuery(function ($) {
+
+        $(document).ready(function () {
+            //alert("sarvesh");
+        
+            $('#store').change(function () {
+                //alert(1);
+                //var fdate = jQuery('#frmDate').val();
+                //var tdate = jQuery('#toDate').val();
+                var value = $('#store').val();
+                //alert(value);
+                var currentid = $('.sstore').first().attr('id');//jQuery(".sstore:first-child").attr("id");
+                //alert(currentid);
+                var un = "undefined";
+                if (value == "pavanplace"){
+                    if(currentid != null){
+                        $("#pavanplace").insertBefore("#"+currentid);
+                    }else{
+                        $("#pavanplace").insertBefore("#firstdiv");
+                    }
+                }
+                  if (value == "visakhapatnam"){
+                    if(currentid != null){
+                        $("#visakhapatnam").insertBefore("#"+currentid);
+                    }
+                    else{
+                        $("#visakhapatnam").insertBefore("#firstdiv");
+                    }
+                }
+                   if (value == "kakinada"){
+                    if(currentid != null){
+                        $("#kakinada").insertBefore("#"+currentid);
+                    }
+                    else{
+                        $("#kakinada").insertBefore("#firstdiv");
+                    }
+                }
+                 if (value == "gajuwaka"){
+                    if(currentid != null){
+                        $("#gajuwaka").insertBefore("#"+currentid);
+                    }
+                    else{
+                        $("#gajuwaka").insertBefore("#firstdiv");
+                    }
+                }
+                 if (value == "parvathipuram"){
+                    if(currentid != null){
+                        $("#parvathipuram").insertBefore("#"+currentid);
+                    }
+                    else{
+                        $("#parvathipuram").insertBefore("#firstdiv");
+                    }
+                }
+                 if (value == "bobbili"){
+                    if(currentid != null){
+                        $("#bobbili").insertBefore("#"+currentid);
+                    }
+                    else{
+                        $("#bobbili").insertBefore("#firstdiv");
+                    }
+                }
+                 if (value == "rajahmundry"){
+                    if(currentid != null){
+                        $("#rajahmundry").insertBefore("#"+currentid);
+                    }
+                    else{
+                        $("#rajahmundry").insertBefore("#firstdiv");
+                    }
+                }
+                 if (value == "anakapalle"){
+                    if(currentid != null){
+                        $("#anakapalle").insertBefore("#"+currentid);
+                    }
+                    else{
+                        $("#anakapalle").insertBefore("#firstdiv");
+                    }
+                }
+                 if (value == "dilsukhnagar"){
+                    if(currentid != null){
+                        $("#dilsukhnagar").insertBefore("#"+currentid);
+                    }
+                    else{
+                        $("#dilsukhnagar").insertBefore("#firstdiv");
+                    }
+                }
+                 if (value == "asraonagar"){
+                    if(currentid != null){
+                        $("#asraonagar").insertBefore("#"+currentid);
+                    }
+                    else{
+                        $("#asraonagar").insertBefore("#firstdiv");
+                    }
+                }
+                 if (value == "gopalapatnam"){
+                    if(currentid != null){
+                        $("#gopalapatnam").insertBefore("#"+currentid);
+                    }
+                    else{
+                        $("#gopalapatnam").insertBefore("#firstdiv");
+                    }
+                }
+
+            });
+
+        });
+    });
+});
+</script>
+

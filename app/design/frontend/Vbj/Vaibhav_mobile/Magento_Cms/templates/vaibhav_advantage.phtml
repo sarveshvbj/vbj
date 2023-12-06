@@ -1,0 +1,12 @@
+<?php 
+$_objectManager = \Magento\Framework\App\ObjectManager::getInstance(); //instance of\Magento\Framework\App\ObjectManager
+$storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+$currentStore = $storeManager->getStore();
+$baseUrl = $currentStore->getBaseUrl();
+$mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$linkUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_LINK);
+
+?>
+<div class="container-fluid section-6 img-container">
+   <img src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/07_advt.jpg" class="w-100" alt="07_advt" width="400" height="200">
+</div>

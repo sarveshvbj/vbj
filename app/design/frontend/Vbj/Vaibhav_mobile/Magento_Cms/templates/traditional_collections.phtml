@@ -1,0 +1,51 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$basemediaurl = $objectManager->get('Magento\Store\Model\StoreManagerInterface')
+                    ->getStore()
+                    ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$imgix_url= $basemediaurl;//'https://mage23vaibhavjewellers.breezesites.io/pub/media/'; 
+ ?>
+<?php 
+   $_objectManager = \Magento\Framework\App\ObjectManager::getInstance(); //instance of\Magento\Framework\App\ObjectManager
+   $storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+   $currentStore = $storeManager->getStore();
+   $baseUrl = $currentStore->getBaseUrl();
+   $mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+   $linkUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_LINK);
+   
+   ?>
+<div class="section-3">
+   <h2 class="mobile-heading1">TRADITIONAL COLLECTION</h2>
+   <div class="loop owl-carousel" id="traditional-collections-slider">
+      <div class="img-container">
+         <a href="<?php echo $linkUrl;?>gold-jewellery/women/bangles.html">
+            <img src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/new_arrivals_nri_mob.jpg" alt="vaibhav-jewellers-gold-bangles-online" width="307" height="193">
+         </a>
+      </div>
+      <div class="img-container">
+         <a href="<?php echo $linkUrl;?>diamond-jewellery/women/earrings.html">
+            <img src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/women_bangles_nri_mob_1.jpg?auto=compress" alt="vaibhav-jewellers-gold-earrings-online" width="307" height="193">
+         </a>
+      </div>
+      <div class="img-container">
+         <a href="<?php echo $linkUrl;?>gold-jewellery/women/harams.html">
+             <img src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/women_bangles_nri_mob_2.jpg?auto=compress" alt="vaibhav-jewellers-gold-harams-online" width="307" height="193">
+         </a>
+      </div>
+      <div class="img-container">
+         <a href="<?php echo $linkUrl;?>diamond-jewellery/women/earrings.html">
+            <img src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/women_earrings_nri_mob_1.jpg?auto=compress" alt="vaibhav-jewellers-gold-mangalsutra-online" width="307" height="193">
+         </a>
+      </div>
+      <div class="img-container">
+         <a href="<?php echo $linkUrl;?>diamond-jewellery/women/earrings.html">
+            <img src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/women_earrings_nri_mob_2.jpg?auto=compress" alt="vaibhav-jewellers-gold-vaddanam-online" width="307" height="193">
+         </a>
+      </div>
+      <div class="img-container">
+         <a href="<?php echo $linkUrl;?>diamond-jewellery/women/earrings.html">
+            <img src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/women_rings_nri_mob.jpg?auto=compress" alt="vaibhav-jewellers-gold-choker-online" width="307" height="193">
+         </a>
+      </div>
+   </div>
+</div>

@@ -1,0 +1,92 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$basemediaurl = $objectManager->get('Magento\Store\Model\StoreManagerInterface')
+                    ->getStore()
+                    ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$imgix_url=$basemediaurl;//'https://mage23vaibhavjewellers.breezesites.io/pub/media/'; 
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$storeUrl = $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB);
+
+?>
+<?php 
+   $_objectManager = \Magento\Framework\App\ObjectManager::getInstance(); //instance of\Magento\Framework\App\ObjectManager
+   $storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+   $currentStore = $storeManager->getStore();
+   $baseUrl = $currentStore->getBaseUrl();
+   $mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+   $linkUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_LINK);
+   
+   ?>
+<!-- 21-12-2021 -->
+<div class="section-2">
+   <div id="mobile" class="carousel mobile-section slide d-sm-none d-block" data-ride="carousel">
+      <ul class="carousel-indicators">
+         <li data-target="#mobile" data-slide-to="0" class="active"></li>
+         <li data-target="#mobile" data-slide-to="1"></li>
+         <li data-target="#mobile" data-slide-to="2"></li>
+         <li data-target="#mobile" data-slide-to="3"></li>
+      </ul>
+      <div class="carousel-inner">
+         <div class="carousel-item img-container active">
+            <a href="<?php echo $storeUrl;?>gold-jewellery/women/harams.html">
+                <img src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/uttamakshanam-mob.jpg" alt="uttamakshanam collections Vaibhav Jewellers" width="360" height="284">
+            </a>
+         </div>
+         <div class="carousel-item img-container ">
+            <a href="<?php echo $storeUrl;?>diamond-jewellery.html">
+                <img src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/myra_mob_2.jpg" alt="Myra Collection" width="360" height="284">
+            </a>
+         </div>
+         <div class="carousel-item img-container ">
+            <a href="<?php echo $storeUrl;?>diamond-jewellery/women/earrings.html">
+                 <img src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/Chandelier_mob.jpg" alt="Chandelier Collection" width="360" height="284">
+            </a>
+         </div>
+         <div class="carousel-item img-container ">
+            <a href="<?php echo $storeUrl;?>diamond-jewellery/women/mangalsutra.html">
+                 <img src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/diamond_mangalsutra_mob.jpg" alt="diamond mangalsutra collection vaibhav jewellers mob banner" width="360" height="284">
+            </a>
+         </div>
+         <div class="carousel-item img-container">
+            <a href="<?php echo $storeUrl;?>gold-jewellery.html">
+                 <img src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/7-advantages-mob.jpg" alt="7-advantages-mob" width="360" height="284">
+            </a>
+         </div>
+      </div>
+      <!----><a class="carousel-control-prev" href="#mobile" data-slide="prev"><span class="carousel-control-prev-icon"><span class="arrow arrow-left"></span></span></a><a class="carousel-control-next" href="#mobile" data-slide="next"><span class="carousel-control-next-icon"><span class="arrow arrow-right"></span></span></a>
+   </div>
+</div>
+<style type="text/css">
+    .mobile-section .carousel-inner .carousel-item{
+        /*display:  unset; !important;*/
+    }
+    .mobile-section .section-1 {border-top: 2px solid #d3c7dc; padding-left: unset !important; padding-right: unset !important;}
+    .mobile-section .section-1 .inner-tile .inner-tile-title {font-size: 12px;}
+    .mobile-section .section-1 .inner-tile img {padding: 0 0 3px 0;}
+    .section-1 .align-baseline .inner-tile {border-radius: 8px;padding: 0px 10px 0px 10px;}
+
+/*---------------------Realted to Search BOX HINT-------------------------*/
+
+    .mst-searchautocomplete__autocomplete .mst-searchautocomplete__index-title {
+        background: #f6f0fa  !important;
+        padding: 8px 10px;
+        text-align: left;
+        font-size: 1.2rem !important;
+        line-height: 1.5rem !important;
+        color: #9779ab !important;
+        text-transform: uppercase;
+        font-weight: 700;}
+
+    .mst-searchautocomplete__autocomplete ul {list-style: none; float: left; margin: 0;}
+    .mst-searchautocomplete__index.popular ul li {
+        float: left; padding: 0.7rem 0 0.7rem 1rem; margin: 0;}
+
+    .mst-searchautocomplete__autocomplete ul li a.title {font-size: 12px;}
+
+/*---------------------Realted to Search BOX HINT END-------------------------*/
+
+/*---------------------Realted to You'll also love slider-------------------------*/
+
+.product-items .slick-list .slick-track {height: 250px !important;}
+
+</style>

@@ -1,0 +1,376 @@
+<?php
+/**
+ * GiaPhuGroup Co., Ltd.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the GiaPhuGroup.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.giaphugroup.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    PHPCuong
+ * @package     PHPCuong_CustomerAccount
+ * @copyright   Copyright (c) 2018-2019 GiaPhuGroup Co., Ltd. All rights reserved. (http://www.giaphugroup.com/)
+ * @license     https://www.giaphugroup.com/LICENSE.txt
+ */
+ /** @var \PHPCuong\CustomerAccount\Block\Form\Register $block */
+?>
+<?php if (!$block->customerIsAlreadyLoggedIn() && $block->getRegistration()->isAllowed() && $block->isCurrentPage('catalog_product_view')): ?>
+    <style>
+        .customer-popup-register {
+            display: none;
+        }
+        .customer-popup .modal-header {
+        	display: block;
+        	text-align: center;
+        	padding-bottom: 0.5rem;
+            padding-top: 1rem;
+
+        }
+        .modal-popup.customer-popup .modal-content {
+            padding-bottom: 1rem;
+        }
+        .customer-popup .customer-popup.modal-slide .modal-content {
+        	padding-bottom: 1rem;
+        	padding-top: 0.5rem;
+
+        }
+        .customer-popup .form-create-account .fieldset.create.account:after{
+	display: none;
+}
+.customer-popup .field.choice.newsletter {
+    display: none;
+}
+.customer-popup .sn-cl {
+    display: none;
+}
+#remember-me-box {
+    display: none;
+}
+.customer-popup .page-title-wrapper {
+    display: none;
+}
+.block.social-login-authentication-channel.account-social-login {
+    display: none;
+}
+
+fieldset.fieldset.create.account {
+    margin-top: -65px;
+}
+.customer-popup .form-create-account .fieldset.create.account:after{
+	display: none;
+}
+.customer-popup .actions-toolbar > .primary .action:last-child, .actions-toolbar > .secondary .action:last-child{
+	
+	font-size: 1.2rem;
+    background: #6e2083;
+    border-radius: 2px;
+    border-color: #6e2083;
+    padding-top: 2px;
+    margin-bottom: 15px;
+    margin-right: 0px;
+}
+.container-fluid.d-flex.justify-content-between.px-5.py-3 {
+    background: #ccc;
+}
+.reg-container, .reg-container .form-create-account {
+    height: 100%;
+}
+
+.customer-popup .actions-toolbar {
+    text-align:center !important;
+    width: 100%;
+    margin-top: 0;
+}
+.customer-popup-login .actions-toolbar {
+	margin-left: 0;
+}
+.customer-popup .actions-toolbar .primary {
+    float: none !important;
+
+}
+
+.customer-popup .fieldset > .field, .fieldset > .fields > .field {
+	margin: 0 0 15px !important;
+}
+
+.vaibhav_img .col-3 img {
+    width:80px;
+}
+.customer-popup-login .fieldset:last-of-type, .customer-popup-register .fieldset:last-of-type {
+    margin-bottom: 25px !important;
+    margin-top: -65px;
+
+}
+        .customer-popup .reg-section {
+    margin-top: 3%;
+margin-bottom: 3%;
+padding-left: 3%;
+}
+.customer-popup .fieldset > .legend {
+    padding: 20px 0 20px;
+    text-align: center;
+}
+.modals-overlay {
+	z-index: 900 !important;
+}
+.modal-popup.customer-popup {
+	z-index: 902;
+}
+.customer-popup .modal-title {
+border-bottom: none;
+    color: #6e2083;
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+input[type="text"], input[type="password"], input[type="url"], input[type="tel"], input[type="search"], input[type="number"], input[type="datetime"], input[type="email"] {
+    /*font-size: 12px;
+    letter-spacing: 1px;*/
+        font-weight: 200;
+    font-size: 16px;
+    padding: 5px 20px;
+    color: #282828;
+    border-color: #dcdcdc;
+    background-color: #fff;
+    font: 500 14px/1.55 Lato,sans-serif;
+    padding: 5px 10px;
+    height: 40px;
+    line-height: 28px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+.verify{
+    float: right;
+    font-weight: 600;
+    color: #6e2083;
+}
+button#email-verify-submit {
+    background: none;
+    color: #6e2182;
+    border: none;
+    float: right;
+    margin: -6px 0 12px;
+    padding: 0;
+    text-transform: none;
+}
+button#otp-verify-submit {
+    background: none;
+    color: #6e2182;
+    border: none;
+    float: right;
+    margin: -6px 0 12px;
+    padding: 0;
+    text-transform: none;
+}
+div#password-strength-meter {
+    text-align: left;
+    display: none;
+}
+#user_otp .control {
+    display: flex;
+}
+
+#user_otp .control .form-control {
+    width: 40%;
+}
+
+#user_otp .control .form-control .verify {
+    margin-left: 10px;
+    height: 40px;
+}
+
+.customer-account-create .form-create-account .fieldset .label {
+    display: none;
+}
+.field.password .control {
+    display: block;
+}
+div.mage-error[generated] {
+    padding-left: 5px;
+    color: #e02b27;
+    padding-right: 5px;
+    font-size: 0.8em;
+}
+
+@media (min-width: 480px) {
+.right_user_mobile {
+    margin-top: 10px;
+    float: right;
+}
+}
+    </style>
+    <div id="customer-popup-register" class="customer-popup-register">
+        <form class="form-create-account" action="<?php /* @escapeNotVerified */ echo $block->getPostActionUrl() ?>" method="post" id="customer-popup-form-register" enctype="multipart/form-data" autocomplete="off" data-mage-init='{"validation":{}}'>
+            <?php echo $block->getBlockHtml('formkey'); ?>
+            <input type="hidden" name="redirect_url" value="<?php echo $block->getUrl('checkout', ['_secure' => true]);?>" />
+            <div class="messages"></div>
+            <fieldset class="fieldset create info">
+                <?php echo $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Name')->setObject($block->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
+                <?php if ($block->isNewsletterEnabled()): ?>
+                    <div class="field choice newsletter">
+                        <input type="checkbox" name="is_subscribed" title="<?php /* @escapeNotVerified */ echo __('Sign Up for Newsletter') ?>" value="1" id="popup-is_subscribed" class="checkbox">
+                        <label for="is_subscribed" class="label"><span><?php /* @escapeNotVerified */ echo __('Sign Up for Newsletter') ?></span></label>
+                    </div>
+                <?php endif ?>
+            </fieldset>
+          <fieldset class="fieldset create account" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
+        <legend class="legend sn-cl"><span><?= $block->escapeHtml(__('Sign-in Information')) ?></span></legend><br>
+            <div class="field required">
+            <div class="control">
+                <input type="email" placeholder="Email*" name="email" autocomplete="email" id="email_address" value="<?= $block->escapeHtmlAttr($block->getFormData()->getEmail()) ?>" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" class="input-text" data-validate="{required:true, 'validate-email':true}">
+                <input type="hidden" name="emailverify" class="txt_verify" tabindex="1000" value="" id="emailverify" data-validate="{required:true, 'validate-custom-emailverify':true}" data-msg-required="Please enter Email" aria-required="true" aria-invalid="true" aria-describedby="verify-error"/>
+            </div>
+            <div class="error-msg" id="emailverifyErr" style="display:none"><?php echo __("Email verification is pending");?></div>
+            <div class="error-msg" id="emailRepeatErr" style="display:none"><?php echo __("Emailid already taken");?></div>
+              <div class="error-msg" id="emailValidErr" style="display:none"><?php echo __("Please Enter Emailid");?></div>
+            <div class="success-msg" id="emailSuccessMsg" style="display:none"><?php echo __("Email verified");?></div>
+            <span id="emailerrmsg" style="color: red;text-align:center;"></span> 
+        </div>
+        <div class="right_user_mobile">
+                <div class="success-msg" id="emailSuccessMsg" style="display:none"></div>
+                <button type="button" id="email-verify-submit"  class="verify btn btn-primary btn-block" >Email Verify</button>
+                <span id="OtpBaseUrlemail" class="OtpBaseUrl" style="display: none"><?php // echo "https://stage2.vaibhavjewellers.com/"; ?></span>
+        </div>
+        <div class="field required mobile">
+            <div class="control">
+                <input  type="text" name="mobile" autocomplete="mobile" id="mobile_number" class="input-text" placeholder="Mobile*" data-validate="{required:true, 'validate-custom-telephone':true}" data-msg-required="Please enter Mobile">
+            </div> 
+        </div>
+        <div class="field password required">
+            <div class="control">
+                <input type="password" name="password" id="password"
+                       title="<?= $block->escapeHtmlAttr(__('Password')) ?>"
+                       placeholder="Password*"
+                       class="input-text"
+                       data-password-min-length="<?= $block->escapeHtmlAttr($block->getMinimumPasswordLength()) ?>"
+                       data-password-min-character-sets="<?= $block->escapeHtmlAttr($block->getRequiredCharacterClassesNumber()) ?>"
+                       data-validate="{required:true, 'validate-customer-password':true}"
+                       autocomplete="off">
+                <div id="password-strength-meter-container" data-role="password-strength-meter" aria-live="polite">
+                    <div id="password-strength-meter" class="password-strength-meter">
+                        <?= $block->escapeHtml(__('Password Strength')) ?>:
+                        <span id="password-strength-meter-label" data-role="password-strength-meter-label">
+                            <?= $block->escapeHtml(__('No Password')) ?>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="field confirmation required">
+            <div class="control">
+                <input type="password" name="password_confirmation" placeholder="Confirm Password*" title="<?= $block->escapeHtmlAttr(__('Confirm Password')) ?>" id="password-confirmation" class="input-text" data-validate="{required:true, equalTo:'#password'}" autocomplete="off">
+            </div>
+        </div>
+        <?= $block->getChildHtml('form_additional_info') ?>
+    </fieldset>
+     <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action submit primary" title="<?= $block->escapeHtmlAttr(__('Create an Account')) ?>"><span><?= $block->escapeHtml(__('Create an Account')) ?></span></button>
+        </div>
+        <div class="secondary">
+            <a class="action back" href="<?= $block->escapeUrl($block->getBackUrl()) ?>"><span><?= $block->escapeHtml(__('Back')) ?></span></a>
+        </div>
+       <!--  <div class="login-section-bottom" style="display: flex;-webkit-box-pack: justify;justify-content: space-between;margin: 16px 0px;">
+        	<div class="css-1mqj8xu"><a color="#de57e5" style="font-size: 0.7rem; color: #6e2083;" href="#" class="css-ld7inj epg3bs00">Forgot Password?</a></div>
+        	<div class="css-1mqj8xu" style="font-size: 0.7rem;color:#000;display: flex;-webkit-box-pack: end;
+justify-content: flex-end;"><p>New to Vaibhav?&nbsp;</p><a style="color:#6e2083;" id="customer-popup-sign-in" href="#">Create an Account</a></div>
+        </div> -->
+        <div class="css-17sxtif" style="color: rgb(35, 21, 53);font-size: 0.8rem;text-align: center;display: flex;-webkit-box-pack: center;justify-content: center;margin:0px 0px 10px 0px;">Already have an account?&nbsp;<a style="color:#6e2083;" id="customer-popup-sign-in" href="#">Log In!</a></div>
+    </div>
+        </form>
+        <script type="text/x-magento-init">
+            {
+                "#customer-popup-register": {
+                    "PHPCuong_CustomerAccount/js/action/customer-authentication-popup": {
+                        "popupTitle": "<?php /* @escapeNotVerified */ echo __('Sign Up On Vaibhav'); ?>",
+                        "innerWidth": "600"
+                    }
+                }
+            }
+        </script>
+  
+    </div>
+          <script type="text/javascript">
+    require([
+                                    'jquery', // jquery Library
+                                    'jquery/ui', // Jquery UI Library
+                                    'jquery/validate', // Jquery Validation Library
+                                    'mage/translate' // Magento text translate (Validation message translte as per language)
+                            ], function($){
+                            jQuery(document).ready(function () {
+                                $.validator.addMethod(
+                                        'validate-custom-emailverify', function (value) {
+                                         return (value=='1')                                                                              
+                                        }, $.mage.__('Email verification is pending')
+                                );                           
+                            });                                                                     
+                            });
+
+</script>
+<script type="text/javascript">
+ require([
+                                    'jquery', // jquery Library
+                                    'jquery/ui', // Jquery UI Library
+                                    'jquery/validate', // Jquery Validation Library
+                                    'mage/translate' // Magento text translate (Validation message translte as per language)
+                            ], function($){ 
+jQuery(document).ready(function () {
+               jQuery("#mobile_number").keypress(function (e) {
+     //if the letter is not digit then display error and don't type anything
+     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        //display error message
+        $("#errmsg").html("Digits Only").show().fadeOut("slow");
+               return false;
+    }
+   });
+     jQuery(document).on('click', '#email-verify-submit', function(){
+                            if(jQuery("#email_address").val()!='') { 
+                                var baseUrl = document.getElementsByClassName('OtpBaseUrl')[0].innerHTML;
+                                //alert(baseUrl);
+                                baseUrl = baseUrl.trim();
+                                var controllerUrl = 'sociallogin/popup/emailverify';
+                                var ajxUrl = baseUrl.concat(controllerUrl);
+                                var form_data = "email="+jQuery("#email_address").val();
+                                jQuery.ajax({
+                                url: ajxUrl, // Upload Script
+                                        showLoader: true,
+                                        dataType: 'json',
+                                        data: form_data, // Setting the data attribute of ajax with file_data
+                                        type: 'post',
+                                        success: function(data) {
+                                            //alert(data);// Do something after Ajax completes 
+                                        if (data == true)
+                                        {
+                                        jQuery("#emailSuccessMsg").show();
+                                        jQuery("#emailValidErr").hide();
+                                        jQuery("#emailverify-error").hide();
+                                        jQuery("#emailRepeatErr").hide();
+                                        jQuery('input[name="emailverify"]').val('1');
+                                        
+                                        } else {
+                                            alert(data);
+                                        jQuery("#emailRepeatErr").show();
+                                        jQuery("#emailverify-error").hide();
+                                        jQuery("#email_address-error").hide();
+                                        jQuery("#emailSuccessMsg").hide();
+                                        jQuery("#emailValidErr").hide();
+                                        }
+                                        }
+                                });
+                            }else{
+                                jQuery("#emailValidErr").show();
+                                jQuery("#emailverify-error").hide();
+
+                            }
+                            });
+ });                                                                        
+});
+</script>
+<?php endif; ?>

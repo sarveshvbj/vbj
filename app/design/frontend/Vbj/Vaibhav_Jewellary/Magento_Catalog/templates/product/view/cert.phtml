@@ -1,0 +1,57 @@
+<?php
+
+/**
+ * Product view template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View
+ */
+
+?>
+
+<div class="product-info-cert">
+    Product is certified by : 
+
+<span class="info-cert">
+<img class="bis-img" src="<?php echo $this->getUrl('pub/media/');?>bureau-of-indian_logo.png" alt="IGL logo"></span>
+
+<span class="info-cert">
+<img class="sgl-img" src="<?php echo $this->getUrl('pub/media/');?>SGL_logo.png" alt="SGL logo"></span>
+
+<span class="info-cert">
+<img class="cert-img" src="<?php echo $this->getUrl('pub/media/');?>IGI_logo.png" alt="SGL logo"></span>
+
+</div>
+
+
+<style type="text/css">
+
+/* edit by prudhviraj radi on 15/03/2023 starts */
+
+.product-info-cert {
+    font-family: avenir !important;
+    font-size: 12px !important;
+    margin-top: 15px !important;
+    border-bottom: 1px solid lightgrey;
+}
+
+.info-cert {
+    display: inline-block; /* change the display type */
+    margin: 10px 0;        /* apply the needed vertical margins */
+}
+
+.bis-img {
+    max-width: 46px;
+    margin-right: 12px!important;
+}
+.sgl-img {
+    max-width: 54px;
+    margin-right: 12px!important;
+}
+.cert-img {
+    max-width: 60px;
+    margin-right: 12px!important;
+}
+
+ /* edit by prudhviraj radi on 15/03/2023 ends */
+
+</style>

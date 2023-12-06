@@ -1,0 +1,44 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Product list toolbar
+ *
+ * @var $block \Magento\Catalog\Block\Product\ProductList\Toolbar
+ */
+use Magento\Catalog\Model\Product\ProductList\Toolbar;
+?>
+<!-- <div class="sorting"> 
+            <ul class="sortby">
+                <li class="sort-items active">Popular</li>
+                <li class="sort-items">What's New</li>
+                <li class="sort-items">Price low to high</li>
+                <li class="sort-items">Price high to low</li>
+            </ul>
+        </div> -->
+<div class="sorting toolbar-sorter" style="display: flex; align-items: center;">
+    <?php $removeoptions=array('metal','purity','occassion','occasion','offer_percentage','emi_controller','brands_name','men_weight','Women Weight'); ?>
+    <?= /* @escapeNotVerified */ __('View By:') ?>
+    <ul id="sorter"  class="sorter-options" >
+        <?php foreach ($block->getAvailableOrders() as $_key => $_order): ?>
+            <?php if(!in_array($_key, $removeoptions)): ?>
+            <li data-role="sorter"  data-value="<?= /* @escapeNotVerified */ $_key ?>"
+                <?php if ($block->isOrderCurrent($_key)): ?>
+                    class="sort-items active"
+                    <?php else: ?>
+                         class="sort-items"
+                <?php endif; ?>
+                >
+                <?= $block->escapeHtml(__($_order)) ?>
+            </li>
+             <?php endif; ?>
+        <?php endforeach; ?>
+    </ul>
+</div>

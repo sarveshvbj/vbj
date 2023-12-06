@@ -1,0 +1,17 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd"> 
+<update handle="customer_account"/>
+<head>
+	<title>Register Complaint</title>
+</head> 
+<body> 
+    <referenceBlock name="page.main.title"> 
+            <action method="setPageTitle"> 
+                <argument translate="true" name="title" xsi:type="string">Register Complaint</argument> 
+            </action> 
+     </referenceBlock> 
+     <referenceContainer name="content"> 
+        <block class="\Iksula\Complaint\Block\Order\Item\Complaint" name="complaint_register" template="Iksula_Complaint::complaintitem.phtml"> 
+        </block> 
+    </referenceContainer> 
+</body> 
+</page>

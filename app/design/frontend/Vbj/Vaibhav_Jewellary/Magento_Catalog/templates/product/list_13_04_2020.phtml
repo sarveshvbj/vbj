@@ -1,0 +1,235 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+use Magento\Framework\App\Action\Action;
+
+// @codingStandardsIgnoreFile
+
+?> 
+<?php
+/**
+ * Product list template
+ *
+ * @var $block \Magento\Catalog\Block\Product\ListProduct
+ */
+?>
+<?php
+$_productCollection = $block->getLoadedProductCollection();
+// $_productCollection=$_productCollection->addAttributeToSelect('*');
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+?>
+<?php if (!$_productCollection->count()): ?>
+    <div class="message info empty"><div><?= /* @escapeNotVerified */ __('We can\'t find products matching the selection.') ?></div></div>
+<?php else: ?> 
+    <div class="bread-crumbs">
+   <?= $this->getChildHtml('breadcrumbs');?>
+</div>
+    <?php
+    if ($block->getMode() == 'grid') {
+        $viewMode = 'grid';
+        $imageDisplayArea = 'category_page_grid';
+        $showDescription = false;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    } else {
+        $viewMode = 'list';
+        $imageDisplayArea = 'category_page_list';
+        $showDescription = true;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::FULL_VIEW;
+    }
+    /**
+     * Position for actions regarding image size changing in vde if needed
+     */
+    $pos = $block->getPositioned();
+    ?>
+
+    <div class="wrapper">
+
+        <div class="category-page-header" id="category.page.header">  
+            <?php 
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');//get current category
+$promo_banners=array();
+$promo_count=0;
+    if($category){ ?>
+
+   <div class="page-title-wrapper">
+    <h1 class="page-title" id="page-title-heading" aria-labelledby="page-title-heading toolbar-amount">
+        <span class="base" data-ui-id="page-title-wrapper"><?= $category->getData('title_h1') ?></span>    </h1>
+    </div> 
+    
+  <?php  }
+?>
+        <?= $block->getToolbarHtml() ?>
+        <?= $block->getAdditionalHtml() ?>
+         <?php if($category) {
+                if($category->getData('promo_banner')) {
+                    array_push($promo_banners, $category->getData('promo_banner'));
+                }
+                if($category->getData('promo_banner_1')) {
+                    array_push($promo_banners, $category->getData('promo_banner_1'));
+                }
+                if($category->getData('promo_banner_2')) {
+                    array_push($promo_banners, $category->getData('promo_banner_2'));
+                }
+                if($category->getData('promo_banner_3')) {
+                    array_push($promo_banners, $category->getData('promo_banner_3'));
+                }
+             if(!empty($promo_banners)) {
+                $promo_count=count($promo_banners);
+             }
+        } ?>
+        </div>
+         <div class="vaibhav_product_list">
+        <div class="flex">
+            <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
+
+            <?php $adbanners=array("products-banner.png","products-banner1.png","products-banner1.png"); ?>
+   <?php if(isset($_GET['p'])) {
+                    $adbannercount=3;
+                } else {
+                   $adbannercount=1;
+                } ?>
+
+            <?php $count=1; 
+
+              ?>
+            <?php foreach ($_productCollection as $_product):?>
+           
+          <?php $productcoll = $objectManager->create('Magento\Catalog\Model\Product')->load($_product->getData('entity_id')); ?>
+          
+
+            <div class="products">
+
+                
+
+                     <?php 
+                
+                //Not there in admin panel
+                // $smart_percentage = $_product->getAttribute('makeing_charge');
+                // $metal_discount_in = $_product->getData('metal_discount_in');
+                // $discount_diamond_in = $_product->getData('discount_diamond_in');
+                $noofdays = $_product->getData('no_of_days');    
+               $gst = round($productcoll->getResource()->getAttribute('tax_amount')->getFrontend()->getValue($productcoll));
+               
+               
+                $discount_making_charge_in = $_product->getData('making_charge');
+                $offer_label = $_product->getData('offer_percentage');
+                   switch (true) {
+                    case (isset($offer_label) && isset($noofdays)): ?>
+                    <div class="sticker"><img class="bs-image" src="<?php echo $this->getUrl('pub/media/');?>bt-star.svg" alt="best-seller-image">
+                  <span class="bs-text"><?php echo __('NEW'); ?></span>
+                   <span class="bs-text"><?php echo __('BEST OFFER'); ?></span>
+                    </div>
+                    <?php break;
+                    case (isset($offer_label)): ?>
+                     <div class="sticker"><img class="bs-image" src="<?php echo $this->getUrl('pub/media/');?>bt-star.svg" alt="best-seller-image">
+                  <span class="bs-text"><?php echo __('BEST OFFER'); ?></span>
+              </div>
+                    <?php break;
+                    case (isset($noofdays)): ?>
+                     <div class="sticker"><img class="bs-image" src="<?php echo $this->getUrl('pub/media/');?>bt-star.svg" alt="best-seller-image">
+                    <span class="bs-text"><?php echo __('NEW'); ?></span>
+               </div>
+                    <?php break;
+                }
+                    ?>
+
+                
+                <a href="#" data-post='<?php echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist"><img class="favourites" src="<?php echo $this->getUrl('pub/media/');?>fav.svg" alt="favourite-icon"></a>
+                 <?php
+                    $productImage = $block->getImage($_product, $imageDisplayArea);
+                    if ($pos != null) {
+                        $position = ' style="left:' . $productImage->getWidth() . 'px;'
+                            . 'top:' . $productImage->getHeight() . 'px;"';
+                    }
+                    ?>
+               <?php  $imageUrl = $_product->getMediaConfig()->getMediaUrl($_product->getImage()); ?>
+                <a href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
+                 <?= $productImage->toHtml() ?>
+             </a>
+                <div class="text-left">
+                    <a href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>">
+                    <div class="product-name">  <?= /* @escapeNotVerified */ $_helper->productAttribute($_product, $_product->getName(), 'name') ?></div></a>
+                    <div class="price-rating clearfix">
+                        <div class="price <?php if($_product->getData('discount_making_charge_in')){ echo 'dis_make_charge_old'; } ?>"><?= /* @escapeNotVerified */ $block->getProductPrice($_product) ?></div>
+                        <div class="rating">
+                            <?= $block->getReviewsSummaryHtml($_product, $templateType) ?>
+                        </div>
+                    </div>
+                    <?php if($_product->getData('discount_making_charge_in')){
+    $discount_making_charge_in = $_product->getData('discount_making_charge_in');
+    ?>
+    <?php 
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$product = $objectManager->create('Magento\Catalog\Model\Product')->load($_product->getData('entity_id'));
+$StockState = $objectManager->get('\Magento\CatalogInventory\Api\StockStateInterface');
+$stockQuantity = $StockState->getStockQty($product->getId(), $product->getStore()->getWebsiteId());
+$conf = $objectManager->create('MageArray\CheckDelivery\Helper\Data')->getStoreConfig('checkDelivery/config/success_message');
+$shippingCode = $product->getResource()->getAttribute('expected_delivery_date')->getFrontend()->getValue($product);
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface'); 
+$currencyCode = $storeManager->getStore()->getCurrentCurrencyCode(); 
+$currency = $objectManager->create('\Magento\Directory\Model\CurrencyFactory')->create()->load($currencyCode); 
+$currencySymbol = $currency->getCurrencySymbol(); 
+    $inr='₹';
+    $usd='$';
+    $inr_price= round($_product->getSpecialPrice()+$gst); ?>
+    <?php $usd_price=round($inr_price * 0.014) ?>
+<?php if($currencyCode =='INR' && $currencySymbol =='₹'){?>
+     <div class="offer-price">Offer Price: <span class="text-orange"><span class="fw-bold dis_make_charge_actual"><?= /* @escapeNotVerified */ $inr.$inr_price; ?></span> <?php if($_product->getDiscountMakingChargeIn() != 0){?>(<?php echo $_product->getDiscountMakingChargeIn();?>% Making off) <?php } ?></span></div>
+
+    <?php
+  } else { ?>
+     <div class="offer-price">Offer Price: <span class="text-orange"><span class="fw-bold dis_make_charge_actual"><?= /* @escapeNotVerified */ $usd.$usd_price; ?></span> <?php if($_product->getDiscountMakingChargeIn() != 0){?>(<?php echo $_product->getDiscountMakingChargeIn();?>% Making off) <?php } ?></span></div>
+
+<?php  }
+}?>
+                   
+                </div>
+            </div>
+             <?php if($count%10==0): ?>
+
+                <?php if(isset($_GET['p'])) {
+                    $currentpage = $_GET['p'];
+                } else {
+                    $currentpage=1;
+                } ?>
+                <?php if($promo_count > 0) { ?>
+               <?php if($currentpage == 1) { ?>
+            <?php if(is_array($promo_banners) && $promo_count >= $adbannercount): ?>
+                
+            <img class="product-banner d-md-block d-none" src="<?php echo $this->getUrl('pub/media/').'catalog/category/'.$promo_banners[$adbannercount-1];?>" alt="product-banner">
+            <?php $adbannercount++; ?>
+            <?php endif; ?>
+             <?php } else if($currentpage == 2) { ?>
+                <?php //$adbannercount=3; ?>
+             <?php if(is_array($promo_banners) && $promo_count >= $adbannercount): ?>
+            <img class="product-banner d-md-block d-none" src="<?php echo $this->getUrl('pub/media/').'catalog/category/'.$promo_banners[$adbannercount-1];?>" alt="product-banner">
+            <?php $adbannercount++; ?>
+            <?php endif; ?>
+
+           <?php  } ?>   
+            <?php } ?>   
+
+        <?php endif; ?>
+            <?php $count++; ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    </div>
+     <div class="category-page-footer" id="category.page.footer">
+    <?= $block->getToolbarHtml() ?>
+</div>
+    <?php if (!$block->isRedirectToCartEnabled()) : ?>
+        <script type="text/x-magento-init">
+        {
+            "[data-role=tocart-form], .form.map.checkout": {
+                "catalogAddToCart": {
+                    "product_sku": "<?= /* @NoEscape */ $_product->getSku() ?>"
+                }
+            }
+        }
+        </script>
+    <?php endif; ?>
+<?php endif; ?>

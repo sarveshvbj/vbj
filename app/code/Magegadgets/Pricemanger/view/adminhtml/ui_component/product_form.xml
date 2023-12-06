@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">   
+     <!--fieldset name="product-details">
+         <field name="note">
+             <argument name="data" xsi:type="array">
+                 <item name="config" xsi:type="array">
+                     <item name="label" xsi:type="string" translate="true">Stone Information:</item>
+                     <item name="formElement" xsi:type="string">textarea</item>
+                     <item name="dataScope" xsi:type="string">stone_information</item>
+                     <item name="sortOrder" xsi:type="number">130</item>
+                 </item>
+             </argument>
+         </field>          
+     </fieldset-->
+</form>

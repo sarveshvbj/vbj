@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+         <link rel="preload" src="css/free-v4-font-face.min.css" />
+         <link rel="preload" src="css/free.min.css" />
+         <css rel="preload" src="css/v_owl.theme.default.min.css" />
+         <css rel="preload" src="css/v_owl.carousel.min.css" />
+         <css rel="preload" src="css/v_bootstrap.min.css" />
+         <css rel="preload" src="css/vbj_custom.css" />
+         <!-- <remove src="fonts/opensans/light/opensans-300.woff2"/>
+         <remove src="fonts/opensans/regular/opensans-400.woff2"/>
+         <remove src="fonts/opensans/semibold/opensans-600.woff2"/>
+         <remove src="fonts/opensans/bold/opensans-700.woff2"/>
+         <remove src="fonts/Blank-Theme-Icons/Blank-Theme-Icons.woff2"/> -->
+    </head>
+    <body>
+        <referenceContainer name="after.body.start">
+            <block class="Magento\Framework\View\Element\Js\Components" name="head.components" as="components" template="Magento_Theme::js/components.phtml" before="-"/>
+        </referenceContainer>
+    </body>
+</page>

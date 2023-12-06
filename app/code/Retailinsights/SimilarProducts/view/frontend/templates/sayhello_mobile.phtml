@@ -1,0 +1,160 @@
+<?php
+
+/**
+ * @var \Mageplaza\HelloWorld\Block\Display $block
+ */
+
+// echo $block->sayHello();
+// echo $block->getBaseUrl();
+$current_category= $block->getCurrentCategory();
+
+/*if($current_category!=''){
+  // echo 'yes';
+}
+else{
+  // echo 'no';
+}*/
+
+$ProductCollection = $block->getProductCollection($current_category);
+
+?>
+<div class="slider_title">VIEW SIMILAR</div>
+
+<style type="text/css">
+    .slideshow-container{
+        width: 70%;
+    }
+    .product_details_slider {
+        background-color: #d3d3d35e;
+        text-align: center;
+        overflow: hidden;
+        padding: 10px 0 10px 0;
+    }
+    .product_name_slider{
+        overflow: hidden;
+        color: gray;
+        font-size: .9em;
+    }
+    .price_slider{
+        font-size: 15px !important;
+        color: #1c1821;
+        font-weight: 800 !important;
+
+    }
+  </style>
+
+
+
+<div class="slideshow-container">
+<?php foreach ($ProductCollection as $key => $value) { 
+        $amount = (int)$value['price'];
+        setlocale(LC_MONETARY, 'en_IN');
+        $amount = number_format($amount);
+    ?>
+
+    <div class="mySlides fadel">
+      <div class="product_container">
+        <a href="<?php echo $block->getBaseUrl().$value['url_key'].'.html'; ?>">
+          <div class="product_img"><img src=" <?php echo $block->getMediaUrl().'catalog/product'.$value['small_image']; ?>"></div>
+          <div class="product_details_slider">
+              <div class="product_name_slider"><?php echo $value['name']; ?></div>
+              <span class="price_slider">₹<?php echo $amount; ?></span>
+          </div>
+          </a>
+      </div>
+    </div>
+   
+<? } ?>
+
+<a class="prev left_chevron" onclick="plusSlides(-1)"><i class="fa fa-chevron-circle-left"></i></a>
+<a class="next right_chevron" onclick="plusSlides(1)"><i class="fa fa-chevron-circle-right"></i></a>
+
+</div>
+<br>
+
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += "active";
+}
+</script>
+<style>
+.mySlides {
+    display: block;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  font-size: 34px !important;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.right_chevron{
+  margin-right: -70px;
+}
+.left_chevron{
+  margin-left: -70px;
+}
+.fa-chevron-circle-right:before {
+    content: "\f138";
+    color: #ccc;
+}
+.fa-chevron-circle-left:before {
+    content: "\f137";
+    color: #ccc;
+}
+.slider_title{
+  padding-bottom: 5%;
+  text-align: center;
+  font-weight: 700;
+  color: #6e2083;
+  text-decoration: underline;
+}
+
+</style>
+

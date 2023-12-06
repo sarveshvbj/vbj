@@ -1,0 +1,531 @@
+<?php 
+
+
+ $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+ $product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');
+
+$productId = $product->getId();
+
+
+
+$productge = $objectManager->get('Magento\Catalog\Model\Product')->load($productId);
+
+$productType = $productge->getTypeID();
+
+
+
+
+
+if($productType != 'simple')
+
+{   
+
+
+
+
+
+$product = $block->getProduct();
+
+$imageHelper = $this->helper('Magento\Catalog\Helper\Image');
+
+
+
+if (!$product->getImage() || $product->getImage() == 'no_selection') {
+
+    $image = $imageHelper->getDefaultPlaceholderUrl('image');
+
+} else {
+
+    $image = $imageHelper->init($product, 'product_page_image_medium')
+
+            ->constrainOnly(true)->keepAspectRatio(true)->keepFrame(false)
+
+            ->setImageFile($product->getImage())
+
+            ->getUrl();
+
+}
+
+?>
+
+<div id="product_slider" class="gallery-placeholder _block-content-loading" data-gallery-role="gallery-placeholder">
+
+    <div data-role="loader" class="loading-mask">
+
+        <div class="loader">
+
+            <img src="<?= /* @escapeNotVerified */ $block->getViewFileUrl('images/loader-1.gif') ?>"
+
+                 alt="<?= /* @escapeNotVerified */ __('Loading...') ?>">
+
+        </div>
+
+    </div>
+
+</div>
+
+<style type="text/css">
+
+    .gallery-placeholder
+
+    {
+
+        width: 100%;
+
+    }
+
+</style>
+
+<!--Fix for jumping content. Loader must be the same size as gallery.-->
+
+<script>
+
+    var config = {
+
+            "width": <?= /* @escapeNotVerified */ $block->getImageAttribute('product_page_image_medium', 'width') ?>,
+
+            "thumbheight": <?php /* @escapeNotVerified */ echo $block->getImageAttribute('product_page_image_small', 'height')
+
+                        ?: $block->getImageAttribute('product_page_image_small', 'width'); ?>,
+
+            "navtype": "<?= /* @escapeNotVerified */ $block->getVar("gallery/navtype") ?>",
+
+            "height": <?= /* @escapeNotVerified */ $block->getImageAttribute('product_page_image_medium', 'height') ?>
+
+        },
+
+        thumbBarHeight = 0,
+
+        loader = document.querySelectorAll('[data-gallery-role="gallery-placeholder"] [data-role="loader"]')[0];
+
+
+
+    if (config.navtype === 'horizontal') {
+
+        thumbBarHeight = config.thumbheight;
+
+    }
+
+
+
+    loader.style.paddingBottom = ( config.height / config.width * 100) + "%";
+
+</script>
+
+<script type="text/x-magento-init">
+
+    {
+
+        "[data-gallery-role=gallery-placeholder]": {
+
+            "mage/gallery/gallery": {
+
+                "mixins":["magnifier/magnify"],
+
+                "magnifierOpts": <?= /* @escapeNotVerified */ $block->getMagnifier() ?>,
+
+                "data": <?= /* @escapeNotVerified */ $block->getGalleryImagesJson() ?>,
+
+                "options": {
+
+                    "nav": "<?= /* @escapeNotVerified */ $block->getVar("gallery/nav") ?>",
+
+                    "loop": <?= /* @escapeNotVerified */ $block->getVar("gallery/loop") ? 'true' : 'false' ?>,
+
+                    "keyboard": <?= /* @escapeNotVerified */ $block->getVar("gallery/keyboard") ? 'true' : 'false' ?>,
+
+                    "arrows": <?= /* @escapeNotVerified */ $block->getVar("gallery/arrows") ? 'true' : 'false' ?>,
+
+                    "allowfullscreen": <?= /* @escapeNotVerified */ $block->getVar("gallery/allowfullscreen") ? 'true' : 'false' ?>,
+
+                    "showCaption": <?= /* @escapeNotVerified */ $block->getVar("gallery/caption") ? 'true' : 'false' ?>,
+
+                    "width": "<?= /* @escapeNotVerified */ $block->getImageAttribute('product_page_image_medium', 'width') ?>",
+
+                    "thumbwidth": "<?= /* @escapeNotVerified */ $block->getImageAttribute('product_page_image_small', 'width') ?>",
+
+                    <?php if ($block->getImageAttribute('product_page_image_small', 'height') || $block->getImageAttribute('product_page_image_small', 'width')): ?>
+
+                        "thumbheight": <?php /* @escapeNotVerified */ echo $block->getImageAttribute('product_page_image_small', 'height')
+
+                        ?: $block->getImageAttribute('product_page_image_small', 'width'); ?>,
+
+                    <?php endif; ?>
+
+                    <?php if ($block->getImageAttribute('product_page_image_medium', 'height') || $block->getImageAttribute('product_page_image_medium', 'width')): ?>
+
+                        "height": <?php /* @escapeNotVerified */ echo $block->getImageAttribute('product_page_image_medium', 'height')
+
+                        ?: $block->getImageAttribute('product_page_image_medium', 'width'); ?>,
+
+                    <?php endif; ?>
+
+                    <?php if ($block->getVar("gallery/transition/duration")): ?>
+
+                        "transitionduration": <?= /* @escapeNotVerified */ $block->getVar("gallery/transition/duration") ?>,
+
+                    <?php endif; ?>
+
+                    "transition": "<?= /* @escapeNotVerified */ $block->getVar("gallery/transition/effect") ?>",
+
+                    "navarrows": <?= /* @escapeNotVerified */ $block->getVar("gallery/navarrows") ? 'true' : 'false' ?>,
+
+                    "navtype": "<?= /* @escapeNotVerified */ $block->getVar("gallery/navtype") ?>",
+
+                    "navdir": "<?= /* @escapeNotVerified */ $block->getVar("gallery/navdir") ?>"
+
+                },
+
+                "fullscreen": {
+
+                    "nav": "<?= /* @escapeNotVerified */ $block->getVar("gallery/fullscreen/nav") ?>",
+
+                    "loop": <?= /* @escapeNotVerified */ $block->getVar("gallery/fullscreen/loop") ? 'true' : 'false' ?>,
+
+                    "navdir": "<?= /* @escapeNotVerified */ $block->getVar("gallery/fullscreen/navdir") ?>",
+
+                    "navarrows": <?= /* @escapeNotVerified */ $block->getVar("gallery/fullscreen/navarrows") ? 'true' : 'false' ?>,
+
+                    "navtype": "<?= /* @escapeNotVerified */ $block->getVar("gallery/fullscreen/navtype") ?>",
+
+                    "arrows": <?= /* @escapeNotVerified */ $block->getVar("gallery/fullscreen/arrows") ? 'true' : 'false' ?>,
+
+                    "showCaption": <?= /* @escapeNotVerified */ $block->getVar("gallery/fullscreen/caption") ? 'true' : 'false' ?>,
+
+                    <?php if ($block->getVar("gallery/fullscreen/transition/duration")): ?>
+
+                        "transitionduration": <?= /* @escapeNotVerified */ $block->getVar("gallery/fullscreen/transition/duration") ?>,
+
+                    <?php endif; ?>
+
+                    "transition": "<?= /* @escapeNotVerified */ $block->getVar("gallery/fullscreen/transition/effect") ?>"
+
+                },
+
+                "breakpoints": <?= /* @escapeNotVerified */ $block->getBreakpoints() ?>
+
+            }
+
+        }
+
+    }
+
+</script>
+
+<?php  
+
+} 
+
+
+
+
+
+else{?>
+
+   
+
+
+
+
+
+
+
+
+
+    <?php
+
+  
+
+
+
+   //get current product
+
+  
+
+  
+
+   
+
+   
+
+   
+
+$helperImport = $objectManager->get('\Magento\Catalog\Helper\Image');
+
+
+
+$imageUrl = $helperImport->init($product, 'swatch_image')
+
+                ->setImageFile($product->getSwatchImage()) // image,small_image,thumbnail
+
+                ->resize(360, 360)
+
+                ->keepFrame(true)
+
+                ->getUrl();
+
+
+
+    
+
+
+
+
+
+
+
+    //$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+    $product = $objectManager->create('Magento\Catalog\Model\Product')->load($product->getId()); 
+
+    
+
+    
+
+    
+
+   $images = $product->getMediaGalleryImages();
+
+    
+
+   // $product = $objectManager->create('Magento\Catalog\Model\Product')->load($_item->getProduct()->getId());
+
+ //echo $product->getThumbnail();
+
+//echo  $product->getProductUrl(); 
+
+   //echo $images;
+
+ ?>
+
+ <style>
+
+   .carousel-indicators .active{
+
+       background-color:orange;
+
+   }  
+
+   .carousel-indicators li{
+
+      background-color:lightgrey; 
+
+   }
+
+   .page-title-wrapper.category-heading {
+
+    margin-top: 18px;
+
+}
+
+.carousel-indicators{
+
+    top:100%;
+
+}
+
+.carousel-control-prev-icon{
+
+        top: 70%;
+
+}
+
+.carousel-control-next-icon{
+
+  top: 70%;  
+
+}
+
+ </style>
+
+ <style>
+
+		/* styles unrelated to zoom */
+
+		* { border:0; margin:0; padding:0; }
+
+		p { position:absolute; top:3px; right:28px; color:#555; font:bold 13px/1 sans-serif;}
+
+
+
+		/* these styles are for the demo, but are not required for the plugin */
+
+		.zoom {
+
+			display:inline-block;
+
+			position: relative;
+
+		}
+
+		
+
+		/* magnifying glass icon */
+
+		.zoom:after {
+
+			content:'';
+
+			display:block; 
+
+			width:33px; 
+
+			height:33px; 
+
+			position:absolute; 
+
+			top:0;
+
+			right:0;
+
+			background:url(icon.png);
+
+		}
+
+
+
+		.zoom img {
+
+			display: block;
+
+		}
+
+
+
+		.zoom img::selection { background-color: transparent; }
+
+
+
+		#ex2 img:hover { cursor: url(grab.cur), default; }
+
+		#ex2 img:active { cursor: url(grabbed.cur), default; }
+        .xzoom-thumbs{
+            margin-top: 10px;
+            display: none;
+        }
+
+	</style>
+
+<div id="mobile" class="carousel mobile-section slide d-sm-none d-block" data-ride="carousel">
+
+        <ul class="carousel-indicators">
+
+            <?php
+
+        $j=0;
+
+        foreach($images as $childget){ ?>
+
+            <li data-target="#mobile" data-slide-to="<?php echo $j;?>" class="<?php if($j==0){?>active <?php }?>"></li>
+
+           
+
+            <?php $j++;
+
+            }?>
+
+        </ul>
+
+        <div class="carousel-inner">
+
+
+
+        <?php
+
+        $i=0;
+
+        $k=1;
+
+        foreach($images as $child){ ?>
+
+    
+
+          <div id='ex<?php echo $i;?>'  class="carousel-item <?php if($i==0){?>active <?php }?> img-container">
+
+               
+
+                    <picture>
+
+                         <source type="image/webp" data-srcset="<?php echo $child->getUrl(); ?>" srcset="<?php echo $child->getUrl(); ?>">
+
+                    <img width="330" height="330" alt="<?php echo $productge->getName().'_'.$k; ?>" loading="lazy" src="<?php echo $child->getUrl(); ?>" data-srcset="<?php echo $child->getUrl(); ?>" srcset="<?php echo $child->getUrl(); ?>" class="lazy-image" data-src="<?php echo $child->getUrl(); ?>">
+
+                    </picture>
+
+                   
+
+            </div>
+
+            
+
+         
+
+           
+
+       
+
+
+
+<?php 
+
+$i++;   
+
+$k++; 
+
+        }
+
+
+
+?>
+
+ </div>
+
+        <a class="carousel-control-prev" href="#mobile" data-slide="prev">
+
+            <span class="carousel-control-prev-icon">
+
+               <span class="arrow arrow-left"></span>
+
+            </span>
+
+        </a>
+
+        <a class="carousel-control-next" href="#mobile" data-slide="next">
+
+            <span class="carousel-control-next-icon">
+
+                 <span class="arrow arrow-right"></span>
+
+            </span>
+
+        </a>
+
+       <div class="xzoom-thumbs">
+        <?php 
+        $j=1;
+        foreach($images as $child){ ?>
+                  <a href="<?php echo $child->getUrl(); ?>">
+
+                    <img loading="lazy" class="xzoom-gallery" width="80" alt="<?php echo $productge->getName().'_'.$j; ?>" src="<?php echo $child->getUrl(); ?>">
+
+                  </a>
+                <?php 
+              $j++;      
+                }
+        ?>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+<?php } ?>

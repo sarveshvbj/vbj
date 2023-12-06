@@ -1,0 +1,364 @@
+<link rel="stylesheet" type="text/css" href="<?php echo $block->getViewFileUrl('css/NewVaibhavs.css')?>">
+<?php 
+ date_default_timezone_set('Asia/Kolkata');
+$curTime=date('Y-m-d H:i:s', time());
+$datetime = new DateTime($curTime);
+$currenDateTime = $datetime->format(DateTime::ATOM);
+$product_url= $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
+
+ ?>
+ <style type="text/css">
+  .modal-inner-wrap{
+         width: 397px !important;
+         margin-top:270px !important;
+ }
+ .modal-content h3{
+     font-size:20px !important;
+ }
+ .modal-footer button {
+    color: purple;
+}
+footer.modal-footer {
+    padding-top: 0px !important;
+}
+.modal-custom .action-close:before, .modal-popup .action-close:before, .modal-slide .action-close:before{
+    font-size:20px !important;
+}
+   #snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: #850505;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  right: 0;
+  bottom: 30px;
+  font-size: 17px;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+#snackbar.show.success {
+  background-color: #6fdc92;
+}
+#snackbar.show.failure {
+  background-color: #850505;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+.overlay_1{
+    top:100px;
+}
+ </style>
+  <div id="popup-modal" style="display:none;">
+    <h3>Your Detail Added Successfully</h3>
+</div>
+<form class="form revo" enctype="multipart/form-data" action="<?php echo $block->getUrl('videoform/index/postnew')?>" id="custom-form" method="POST"
+      data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}' onSubmit="return checkValidcode()">
+      <input name="type" value="product"  type="hidden" />
+       <input name="product" value="<?php echo $product_url; ?>"  type="hidden" />
+        <input name="remarks" value="NaN"  type="hidden" />
+      
+      <div class="form-3">  
+      <div class="tab-content">
+        <div id="signup" style="border-radius: 5px;">   
+          <h1>Book Your Free Slot</h1>
+          
+          </div>
+          
+          <div class="top-row">
+            <div class="field required">
+            <div class="row field-wrap em3" style="height:65px;">
+              <div class="col-md-3 p-0">
+                <label> Name </label>
+              </div> 
+              <div class="col-md-9 p-0">
+                <input name="fullname" type="text" class="input-text required-entry in"  /> 
+              </div>
+            </div>
+          </div>
+        
+            <div class="row field-wrap em2">
+              <div class="col-md-3 p-0">
+                <label>
+                 Phone
+                </label>
+              </div>
+              <div class="col-md-9 p-0">
+              <input name="mobile" type="phone" id="mobile" class="input-text required-entry in" minlength="10" maxlength="12"/>
+              <!-- <span id="errmsg" style="color: red;text-align:center;"></span> -->
+              </div>
+            </div>
+          
+
+          <div class="row field-wrap em">
+          <div class="col-md-3 p-0">
+                <label>  Email </label>
+              </div> 
+              <div class="col-md-9 p-0">
+              <input name="email" type="email" class="input-text required-entry validate-email in"  />
+              </div>
+          </div>
+          
+          <div class="row field-wrap em3">
+          <div class="col-md-3 p-0">
+              <label>
+               Language
+              </label>
+          </div>
+          <div class="col-md-9 p-0">
+              <select name="language" style="width: 100px;">
+              <option value="telgu" selected="selected">Telugu</option>
+              <option value="hindi">Hindi</option>
+              <option value="english">English</option>
+              <option value="odiya">Odiya</option>
+            </select>
+            </div> 
+            </div><br>
+             <div class="row field-wrap em3 required-entry">
+              <div class="col-md-3 p-0">
+                <label>
+                Date
+                </label>
+              </div>
+              <div class="col-md-9 p-0">
+                <input name="takedate" id="datepicker" title="Terminwunsch" value="" type="text" class="input-text required-entry in"/>
+                    <script type="text/javascript">
+                    require([
+                        "jquery",
+                        "mage/calendar"
+                        ], function($){
+                             var dateToday = new Date();
+                             $('#datepicker').datepicker({
+                               prevText: '&#x3c;zurück', prevStatus: '',
+                                prevJumpText: '&#x3c;&#x3c;', prevJumpStatus: '',
+                                nextText: 'Vor&#x3e;', nextStatus: '',
+                                nextJumpText: '&#x3e;&#x3e;', nextJumpStatus: '',
+                                monthNames: ['Januar','Februar','March','April','May','June',
+                                'July','August','September','October','November','December'],
+                                monthNamesShort: ['Jan','Feb','Mar','Apr','May','Jun',
+                                'Jul','Aug','Sep','Oct','Nov','Dec'],
+                                dayNames: ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],
+                                dayNamesShort: ['So','Mo','Tue','Wed','Thu','Fr','Sa'],
+                                dayNamesMin: ['So','Mo','Tue','Wed','Thu','Fr','Sa'],
+                              showMonthAfterYear: false,
+                              dateFormat:'d.m.yy',
+                               minDate: dateToday,
+                              yearRange: '2020:2022',
+                              changeMonth: true,
+                              changeYear: true
+                              
+                            } 
+                          );
+                        });
+                    </script>
+                    </div>
+                  </div>
+ <div class="field-wrap timeShift">
+              <label class="time-vde">
+               Time
+              </label>  
+              <div class="d-flex set-item">
+                <select name="hrs" style="width: 58px;">
+                  <?php 
+
+                  for($hours=1; $hours<=12; $hours++)
+                  {
+                       if($hours == 1) {
+        $selected_text = 'selected';
+    } else {
+        $selected_text = '';
+    }
+                      echo "<option value=".$hours." $selected_text>".$hours."</option>";
+                  }
+                  ?> 
+                  <option name="hrs"> </option>   
+                  </select>
+                
+
+<!--<span>select hours </span>-->
+<select name="min" style="width: 60px;">
+<?php 
+for($mins=0; $mins<=60; $mins+=5)
+{
+    if($mins == 0) {
+        $selected_text = 'selected';
+    } else {
+        $selected_text = '';
+    }
+    echo "<option value=".$mins." $selected_text>".$mins."</option>";
+}                                
+?> 
+<option name="min"> </option>   
+</select>
+<!--<span>select minutes </span>-->
+<select name="meri" style="width: 60px;">
+  <option value="am" selected="selected">am</option>
+  <option value="pm">pm</option>
+</select>
+<!--<span>select am/pm </span>-->
+</div> 
+</div>
+
+          </div>
+     <div class="chk" style="display:none;">
+        <label class="chk_agree">
+        <input type="checkbox" value="">
+        <span class="checkmark"></span>
+        I agree to the <span class="term">Terms of Services</span>
+        
+        </div>
+      <div class="sign_btn">
+          <button type="submit" id="submit" class="button button-block" style="border-radius: 5px;">Submit</button>
+      </div>
+      <div class="chk">
+      <label class="chk_agree">
+      
+      </label>
+     </div>
+          
+      </div><!-- tab-content -->
+      
+ </form>
+  <div id="snackbar">The product does not exist or was not provided</div>
+      </div>
+<script>
+/*require([
+  'jquery',
+  'mage/mage',
+], function($){
+   $( "#submit" ).click(function() { 
+   alert("hjhjkjl");       
+       $('input[name="mobile"]').validation();
+       if(!$('input[name="mobile"]').validation('isValid')){
+           return false;
+       }
+   });
+});*/
+require([
+    'jquery',
+    'mage/mage'
+], function($){
+    /*  jQuery(document).ready(function () {
+    $.validator.addMethod(
+                    'validate-customer-dob',function(v){
+                        if(("#datepicker").val()=='') {
+                            return false;
+                        } /*else {
+                            var test =new Date(v); 
+                          var age = ((Date.now() - test) / (31557600000));
+                          return (age > 18);
+                        }
+                    },$.mage.__('please select date and time!!')
+                ); 
+    });*/
+   var dataForm = $('#custom-form');
+   dataForm.mage('validation', {});
+
+   $("#mobile").keypress(function (e) {
+     //if the letter is not digit then display error and don't type anything
+     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        //display error message
+        $("#errmsg").html("Digits Only").show().fadeOut("slow");
+               return false;
+    }
+   });
+ 
+});
+
+  function checkValidcode() {
+      var deliveryForm = jQuery('#custom-form');
+      if(deliveryForm.valid()) {
+        var time = jQuery('select[name="hrs"]').val() +':'+jQuery('select[name="min"]').val()+':'+jQuery('select[name="meri"]').val();
+        if(typeof dataLayer !== 'undefined') {
+           dataLayer.push({'event':'videoshopping',
+        'name':jQuery('input[name="fullname"]').val(),
+        'mobile':jQuery('input[name="mobile"]').val(),
+        'email':jQuery('input[name="email"]').val(),
+        'language':jQuery('select[name="language"]').val(),
+        'date':jQuery('input[name="takedate"]').val(),
+        'time':time
+    });
+        }
+          var myform = document.getElementById("custom-form");
+          var fd = new FormData(myform)
+         jQuery.ajax({
+            url: '<?php echo $this->getUrl('videoform/index/ajaxpost') ?>',
+            method: 'post',
+            dataType : 'json', // data type
+            data : jQuery("#custom-form").serialize(),
+            showLoader:true,
+            success: function(data){
+                var success = data.result.success;
+                if(success) {
+                  jQuery('#custom-form')[0].reset();
+                        require(
+        [
+            'jquery',
+            'Magento_Ui/js/modal/modal'
+        ],
+        function(
+            $,
+            modal
+        ) {
+            var options = {
+                type: 'popup',
+                responsive: true,
+                innerScroll: true,
+                //title: 'Video Shopping Form',
+                buttons: [{
+                    text: $.mage.__('OK'),
+                    class: '',
+                    click: function () {
+                        this.closeModal();
+                    }
+                }]
+            };
+
+            var popup = modal(options, $('#popup-modal'));
+            
+                $("#popup-modal").modal("openModal");
+           
+
+        }
+    );
+                } else {
+                   var x = document.getElementById("snackbar");
+                             x.className = "show failure";
+                             x.innerHTML = data.result.message;
+                        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 4000);
+                }
+            }
+        });
+       return false;
+      } else {
+        return false;
+      } 
+    }
+
+
+</script>

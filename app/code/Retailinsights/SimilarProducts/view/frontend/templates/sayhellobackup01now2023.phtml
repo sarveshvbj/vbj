@@ -1,0 +1,162 @@
+<?php
+
+/**
+ * @var \Mageplaza\HelloWorld\Block\Display $block
+ */
+
+// echo $block->sayHello();
+// echo $block->getBaseUrl();
+$current_category= $block->getCurrentCategory();
+$objectManager =\Magento\Framework\App\ObjectManager::getInstance();
+$helperImport = $objectManager->get('\Magento\Catalog\Helper\Image');
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$imageUrl = $store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+if($current_category!=''){
+    $ProductCollection = $block->getProductCollection($current_category);
+}
+else{
+    $ProductCollection = $block->getProductCollection($current_category);
+}
+
+?>
+<div class="slider_title">VIEW SIMILAR</div>
+<section>
+<div class="scroll-arrow" id="scroll-left">
+    <i class="fa fa-chevron-circle-left"></i>
+  </div>
+  <ul id="imgList" class="imgList">
+<?php foreach ($ProductCollection as $key => $value) { 
+        $amount = (int)$value['price'];
+        setlocale(LC_MONETARY, 'en_IN');
+        $amount = number_format($amount);
+        
+    ?>
+    <li class="product_main">
+    <div class="product_container">
+        <a href="<?php echo $block->getBaseUrl().$value['url_key'].'.html'; ?>">
+        <div class="product_img"><img src=" <?php echo $block->getUrl('pub/media').'catalog/product'.$value['small_image']; ?>"></div>
+        <div class="product_details_slider">
+            <div class="product_name_slider"><?php echo $value['name']; ?></div>
+            <span class="price_slider">?<?php echo $amount; ?></span>
+        </div>
+        </a>
+    </div>
+    </li>
+<? } ?>
+</ul>
+  <div class="scroll-arrow" id="scroll-right" onclick="scrollRight()">
+    <i class="fa fa-chevron-circle-right"></i>
+  </div>
+</section>
+
+
+<style>
+.section {
+  text-align: center;
+  margin-top: 2.5%;
+}
+.scroll-arrow {
+  width: 2%;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  padding:0;
+  margin:0;
+  opacity: 0.5;
+  font-size:34px;
+  transition: 0.2s;
+}
+.scroll-arrow:hover {
+  transition: 0.2s;
+  opacity:1;
+}
+  .imgList {
+    width: 94%;
+    scroll-behavior: smooth;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    text-align: center;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+    .imgList::-webkit-scrollbar {
+    display: none;
+  }
+
+      .product_main:hover {
+        transition: 0.2s;
+      }
+          
+
+      /*My style*/
+    .product_main{
+
+        /*li*/
+         list-style: none;
+        display: inline-block;
+        position: relative;
+        vertical-align: middle;
+        width: 20%;
+        margin-left: 1.5%;
+        margin-right: 1.5%;
+          transition: 0.2s;
+          width: 300px;
+
+        /*li*/
+
+        width: fit-content;
+        margin-left: 45px;
+        border: #6c757d1f !important;
+        border-style: groove !important;
+        border-width: 1px !important;
+        margin-bottom: 0px !important;
+        padding-bottom: 0px !important;
+        height: fit-content;
+    }  
+    .product_container{
+        width: 225px !important;
+    }
+    .product_img{
+
+    }
+    .product_details_slider{
+        background-color: #d3d3d35e;
+        height: 70px;
+    }  
+    .product_name_slider{
+        overflow: hidden;
+        color: gray;
+        font-size: .9em;
+        margin: 0 10px 0 10px;
+        padding: 10px 0 3px 0;
+    }
+    .price_slider{
+        margin-left: -110px;
+        font-size: 15px !important;
+        color: #1c1821;
+        font-weight: 800 !important;
+
+    }
+
+  </style>
+
+
+  <script type="text/javascript">
+       var imgList = document.getElementById('imgList');
+      var scrollRight = document.getElementById('scroll-right');
+      var scrollLeft = document.getElementById('scroll-left');
+
+        // When a user clicks on the right arrow, the ul will scroll 750px to the right
+          scrollRight.addEventListener('click', (event) => {
+            imgList.scrollBy(750, 0);
+        });
+
+        // When a user clicks on the left arrow, the ul will scroll 750px to the left
+          scrollLeft.addEventListener('click', (event) => {
+            imgList.scrollBy(-750, 0);
+        });
+  </script>

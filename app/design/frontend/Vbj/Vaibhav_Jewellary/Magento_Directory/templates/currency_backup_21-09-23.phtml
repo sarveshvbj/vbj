@@ -1,0 +1,131 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+/**
+ * Currency switcher
+ *
+ * @var \Magento\Directory\Block\Currency $block
+ */
+
+?>
+<style>
+ /*   .page-header .switcher .options .action.toggle:after,
+.page-footer .switcher .options .action.toggle:after {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 10px;
+    line-height: 22px;
+    color: inherit;
+     font-family: FontAwesome !important;
+    content: '\f078' !important;
+    font-display: 'swap';
+    margin: 0;
+    vertical-align: top;
+    display: inline-block;
+    font-weight: 400;
+    overflow: hidden;
+    speak: none;
+    text-align: center
+}
+.page-header .switcher .options .action.toggle.active:after, .page-footer .switcher .options .action.toggle.active:after {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 10px;
+    line-height: 22px;
+    color: inherit;
+     font-family: FontAwesome !important;
+    content: '\f077' !important;
+    margin: 0;
+    vertical-align: top;
+    display: inline-block;
+    font-weight: 400;
+    overflow: hidden;
+    speak: none;
+    text-align: center;
+}*/
+/*.switcher-options {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}*/
+
+.switcher-options {
+  position: relative;
+  display: inline-block;
+}
+
+.switcher-dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.switcher-dropdown a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.switcher-dropdown a:hover { background-color: #f1f1f1;}
+.switcher-options:hover .switcher-dropdown { display: block;}
+.switcher-options:hover .dropbtn { background-color: #3e8e41;}
+</style>
+<script type="text/javascript">
+ require(['jquery'],function($){
+ $(document).ready(function(){
+    $(".switcher-currency").click(function(){
+        $(".switcher-dropdown").toggleClass("open");
+    });
+});   
+});
+</script>
+<?php if ($block->getCurrencyCount() > 1): ?>
+<?php $currencies = $block->getCurrencies(); ?>
+<?php $currentCurrencyCode = $block->getCurrentCurrencyCode(); ?>
+<?php $id = $block->getIdModifier() ? '-' . $block->getIdModifier() : '' ?>
+<div class="switcher currency switcher-currency sarvesh" id="switcher-currency<?= $block->escapeHtmlAttr($id) ?>">
+    <!-- <strong class="label switcher-label"><span><?= $block->escapeHtml(__('Currency')) ?></span></strong> -->
+   <!--  <div class="actions dropdown options switcher-options">
+        <div class="action toggle switcher-trigger"
+             id="switcher-currency-trigger<?= $block->escapeHtmlAttr($id) ?>"
+             data-mage-init='{"dropdown":{}}'
+             data-toggle="dropdown"
+             data-trigger-keypress-button="true">
+            <strong class="language-<?= $block->escapeHtml($block->getCurrentCurrencyCode()) ?>">
+                <span class="currency_text_span">
+                <?= $block->escapeHtml($currentCurrencyCode) ?>
+                </span>
+                <span class="currency_icon_span" style="display: none;">
+                    <i style="font-size:15px;margin-top: 5px;color: #000;" class="fas fa-coins"></i>
+                </span>
+            </strong>
+        </div> -->
+       
+        <div class="dropdown p-2 d-none d-sm-block">
+    <button type="button" class="btn dropdown-toggle color-voilet p-0" data-toggle="dropdown">
+        <?php echo $currentCurrencyCode;?>
+    </button>
+    <div class="dropdown-menu">
+      <?php foreach ($currencies as $_code => $_name): ?>
+                <?php if ($_code != $currentCurrencyCode): ?>
+                        <a class="dropdown-item" href="#" data-post='<?= /* @noEscape */ $block->getSwitchCurrencyPostData($_code) ?>'><?= $block->escapeHtml($_code) ?></a>
+                   
+                <?php endif; ?>
+            <?php endforeach; ?>
+    </div>
+</div>
+    </div>
+</div>
+<?php endif; ?>

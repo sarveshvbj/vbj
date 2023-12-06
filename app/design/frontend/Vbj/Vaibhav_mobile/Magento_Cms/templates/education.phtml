@@ -1,0 +1,48 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$basemediaurl = $objectManager->get('Magento\Store\Model\StoreManagerInterface')
+                    ->getStore()
+                    ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$imgix_url= $basemediaurl;//'https://mage23vaibhavjewellers.breezesites.io/pub/media/'; 
+
+ ?>
+<div class="container-fluid section-8 mt-3">
+    <h4 class="text-right">EDUCATION</h4>
+   <div class="row">
+        <div class="col-3 img-container">
+          
+                    <img src="" class="lazy-image w-100" loading="lazy" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/mobile/diamond-edu.webp" alt="" width="60"
+                    height="111">
+        </div>
+        <div class="col-9 m-auto">
+            <h5 class="color-green"><a href="https://mage23vaibhavjewellers.breezesites.io/diamond-anatomy" style="color:#424242;border-bottom: 1px solid #ccc;">Know Your DIAMOND</a></h5>
+            <p>
+                Diamond to the princess cut, we'll help you choose the shape that cpmplements yoour style.
+            </p>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-3 img-container">            
+             <img src="" class="lazy-image w-100" loading="lazy" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/mobile/know-your.webp" alt="" width="60"
+                    height="111">
+        </div>
+        <div class="col-9 m-auto">
+            <h5 class="color-red"><a href="https://mage23vaibhavjewellers.breezesites.io/gold-color" style="color:#424242;border-bottom: 1px solid #ccc;">Know Your GOLD</a></h5>
+            <p>
+                Gold  Won't tarnish, rust, or corrode, and though it's very strong, it is also the most malleable of all metals.
+            </p>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-3 img-container">            
+             <img src="" class="lazy-image w-100" loading="lazy" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/mobile/platium.webp" alt="" width="60"
+                    height="111">
+        </div>
+        <div class="col-9  m-auto">
+            <h5 class="color-gray4"><a href="https://mage23vaibhavjewellers.breezesites.io/platinum-page" style="color:#424242;border-bottom: 1px solid #ccc;">Know Your PLATINUM</a></h5>
+            <p>
+                Platinum Won't tornish, rust, or corrodem, and though it's very strong, it is also the most malleable of all purity pure metals.
+            </p>
+        </div>
+    </div>
+</div>

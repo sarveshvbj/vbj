@@ -1,0 +1,340 @@
+<form style="margin: 95px auto; background-color: #ffffff;border-style: solid;border-color: #d4af37; box-shadow: 2px 2px 5px 5px #E6E6E6, 0px 0px 0px 0px #E6E6E6, 0px 0px 0px 0px #E6E6E6; border-radius: 4px;" class="form contact"
+      action="<?php echo $this->getUrl('tryathome/index/index'); ?>"
+      id="tryathome"
+      method="post"
+      data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+      data-mage-init='{"validation":{}}'>
+    <fieldset class="fieldset">
+               <legend class="legend"><span><?php echo __('SCHEDULE YOUR FREE TRIAL') ?></span></legend><br>
+       <div class="field required">
+            
+            <div class="control">
+                <input type="text" name="tryname" id="name" placeholder="Full Name" value="" title="<?php echo __('Name') ?>" class="input-text" data-validate="{required:true}">
+            </div>
+        </div>
+        <div class="field required">
+            <label for="area" class="label"><span><?php echo __('Select Area') ?></span></label>
+            <div class="control" style="border: none;display: flex;	flex-direction: row;justify-content: flex-start;break-before: always;margin: 0 0 1em 0;">
+            <div style="width: 50%;line-height: 31px;">
+            <div style="margin: 0 1.81em 0 0">
+            <label>
+            <input type="radio" name="area" value="Kakinada">
+            Kakinada
+            </label>
+            </div>
+            <div style="margin: 0 1.81em 0 0"><label><input type="radio" name="area" value="Rajahmundry">Rajahmundry</label></div>
+            </div>
+            <div style="line-height: 31px;">
+            <div style="margin: 0 1.81em 0 0"><label> <input type="radio" name="area" value="A.S Rao Nagar" >A.S Rao Nagar</label></div>
+            <div style="margin: 0 1.81em 0 0"><label><input type="radio" name="area" value="Dilsukhnagar" >Dilsukhnagar</label></div>
+            </div>
+            </div>
+        </div>
+        <div class="field required">
+            
+            <div class="control">
+                <input type="email" name="tryemail" id="email_address" value=""  placeholder="Email Address" title="<?php echo __('Email') ?>" class="input-text" data-validate="{required:true, 'validate-email':true}">
+            </div>
+        </div>
+        <div class="field telephone required">
+           
+            <div class="control">
+                <input name="mobile" id="telephone"  placeholder="Mobile Number" title="<?= $block->escapeHtmlAttr(__('Phone')) ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('telephone')) ?>" class="input-text" type="text" data-validate="{required:true}" />
+                <input type="hidden" name="verify" class="txt_verify" tabindex="1000" value="0" id="verify" data-validate="{required:true, 'validate-custom-verify':true}" data-msg-required="Please enter Mobile" aria-required="true" aria-invalid="true" aria-describedby="verify-error"/>
+            </div>
+            <div class="error-msg" id="verifyErr" style="display:none"><?php echo __("Mobile verification is pending");?></div>
+            <div class="error-msg" id="RepeatErr" style="display:none"><?php echo __("Mobile number already taken");?></div>
+            <div class="error-msg" id="ValidErr" style="display:none"><?php echo __("Please Enter Mobile Number");?></div>
+            <div class="error-msg" id="ValidErrt" style="display:none"><?php echo __("Phone Number should be 10 digits");?></div>
+            <div class="success-msg" id="SuccessMsg" style="display:none"><?php echo __("Mobile number verified");?></div>
+            <span id="errmsg" style="color: red; text-align:center;"></span>
+        </div>
+         <div class="right_user_mobile">
+                <div class="success-msg" id="SuccessMsg" style="display:none"></div>
+                <button type="button" id="otp-verify-submit"  class="btn btn-primary btn-block" >Verify</button>
+                <span id="OtpBaseUrl" class="OtpBaseUrl" style="display: none"><?php echo "https://www.vaibhavjewellers.com/";//$block->getUploadFormUrl(); ?></span>
+        </div>
+           <div >
+            <div class="field form-group verification" id="user_otp" style="display:none;">
+            <label for="verification" class="label col-sm-5 control-label"><span>
+            <?php
+            /* @escapeNotVerified */
+            echo __('Phone Verification')
+            ?>
+            </span></label>
+            <div class="control col-sm-7">
+            <input type="text" name="otp" id="otp"  class="form-control" placeholder="Enter Code"  data-validate="{required:true}" data-msg-required="Please enter OTP" >
+            <button type="button" id="otp-verification"  class="btn btn-primary btn-block" >Verify OTP</button>
+            </div>
+            </div>
+            </div> 
+        <div class="field required">
+            <label for="date" class="label"><span><?php echo __('Select Date') ?></span></label>
+            <div class="control">
+            <input type="date" style="width: 100%;box-sizing:border-box;height: 37px;margin-bottom: 10px;margin-top: 35px;float: left;" maxlength="120" name="takedate" title="<?php echo __('Select Date') ?>" class="input-text" data-validate="{required:true}">    
+            </div>
+        </div>
+        
+        <?= $block->getChildHtml('form.additional.info') ?>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <input type="hidden" name="hideit" id="hideit" value="" />
+            <button type="submit" id="sub" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
+                <span><?= $block->escapeHtml(__('Submit')) ?></span>
+            </button>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+require([
+    'jquery',
+    'mage/mage'
+], function($){
+ $(document).ready(function(){
+   $("#telephone").keypress(function (e) {
+     //if the letter is not digit then display error and don't type anything
+     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        //display error message
+        $("#errmsg").html("Digits Only").show().fadeOut("slow");
+          return false;
+    }
+   });
+$("#comment").keypress(function (e){
+       var yourInput = $(this).val();
+		re = /[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi;
+		var isSplChar = re.test(yourInput);
+		if(isSplChar)
+		{
+		 /*$(':input[type="submit"]').prop('disabled', true);
+		 $("#spntxt").html("Special Characters are not allow").show().fadeOut("slow");*/
+         //return false;
+         /*var no_spl_char = yourInput.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+	    if(no_spl_char){*/
+	        $(':input[type="submit"]').prop('disabled', true);
+	        $("#spntxt").html("Special Characters are not allow");
+			/*$(this).val(no_spl_char);*/
+			return true;
+		//}
+		}else if(!isSplChar){
+		    $(':input[type="submit"]').prop('disabled', false);
+	        $("#spntxt").html("");
+		}
+   });
+ $("#sub").click(function(){
+        var des = $("#comment").val();
+        //var contact = $("#telephone").val();
+        //var area = $("#area").val();
+		re = /[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi;
+		var isSplCharDes = re.test(des);
+/*		var isSplCharContact = re.test(contact);
+		var isSplCharArea = re.test(area);*/
+		if(isSplCharDes)
+		{
+		 $(':input[type="submit"]').prop('disabled', true);
+		 $("#spntxt").text("Special Characters are not allow in this form");
+         //return false;
+		}else if(!(isSplCharDes)){
+		   $(':input[type="submit"]').prop('disabled', false);
+		   $("#spntxt").text("");
+         return true; 
+		}
+   });
+ }); 
+}); 
+</script>
+<script type="text/javascript">
+ require([
+                                    'jquery', // jquery Library
+                                    'jquery/ui', // Jquery UI Library
+                                    'jquery/validate', // Jquery Validation Library
+                                    'mage/translate' // Magento text translate (Validation message translte as per language)
+                            ], function($){ 
+jQuery(document).ready(function () {
+                            jQuery(document).on('click', '#otp-verify-submit', function(){
+                                //var baseUrl = document.getElementsByClassName('OtpBaseUrl')[0].innerHTML;
+                                //baseUrl = baseUrl.trim();
+                                //var controllerUrl = 'sociallogin/popup/phoneverify';
+                                //var ajxUrl = baseUrl.concat(controllerUrl);
+/*                                  if (jQuery("#telephone").val() == '') {
+                                    jQuery("#ValidErr").show();
+                                    jQuery("#RepeatErr").hide();
+                                    jQuery("#SuccessMsg").hide();
+                                    return false;
+                                } else {
+                                    if (jQuery("#telephone").val().length != 10){
+                                        jQuery("#ValidErrt").show();
+                                        jQuery("#ValidErr").hide();
+                                        jQuery("#user_otp").hide();
+                                        jQuery("#RepeatErr").hide();
+                                        jQuery("#SuccessMsg").hide();
+                                        
+                                        return false;
+                                    }
+                                }*/
+                                //var form_data = "telephone="+jQuery("#telephone").val();
+                               /* jQuery.ajax({
+                                    url: ajxUrl, // Upload Script
+                                    showLoader: true,   
+                                    dataType: 'json',
+                                    data: form_data,
+                                    type: 'post',*/
+                                    //success: function(data) {
+                                        /*if(data) {*/
+                                            //if(jQuery("#telephone").valid()) {
+                                                    var baseUrl = document.getElementsByClassName('OtpBaseUrl')[0].innerHTML;
+                                                    baseUrl = baseUrl.trim();
+                                                    var controllerUrl = 'sociallogin/popup/codesend';
+                                                    var ajxUrl = baseUrl.concat(controllerUrl);
+                                                    if (jQuery("#telephone").val() == '') {
+                                                    jQuery("#ValidErr").show();
+                                                    jQuery("#RepeatErr").hide();
+                                                    jQuery("#SuccessMsg").hide();
+                                                    return false;
+                                                } else {
+                                                    if (jQuery("#telephone").val().length != 10){
+                                                        jQuery("#ValidErrt").show();
+                                                        jQuery("#ValidErr").hide();
+                                                        jQuery("#user_otp").hide();
+                                                        jQuery("#RepeatErr").hide();
+                                                        jQuery("#SuccessMsg").hide();
+                                                        
+                                                        return false;
+                                                    }
+                                                }
+                                                jQuery("#otp-verify-submit").hide();
+                                                var form_data = "telephone="+jQuery("#telephone").val();//jQuery("#user_mobile :input").serialize();
+                                                jQuery.ajax({
+                                                url: ajxUrl, // Upload Script
+                                                showLoader: true,   
+                                                dataType: 'json',
+                                                data: form_data, // Setting the data attribute of ajax with file_data
+                                                type: 'post',
+                                                success: function(data) {  // Do something after Ajax completes 
+                                                               // jQuery("div[id='verifyloading']").hide();
+                                                                    // alert(data['message']);
+                                                    jQuery('#RepeatErr').hide();
+                                                    jQuery('#verifyErr').hide();
+                                                        if (data['success'] == true)
+                                                        {
+                                                        jQuery("#RepeatErr").hide();
+                                                                    jQuery("#verify-error").hide();
+                                                                    jQuery("#mobile-error").hide();
+                                                                    jQuery('#RepeatErr').html("");
+                                                                    jQuery('#SuccessMsg').html("");
+                                                                    jQuery('#SuccessMsg').html(data['message']);
+                                                                    jQuery('#SuccessMsg').show();
+                                                                    jQuery("#otp").val('');
+                                                                    jQuery("#user_otp").show();
+                                                                     jQuery("#otp-verify-submit").text('Resend Otp');
+                                                                    jQuery("#ValidErrt").hide();
+                                                                    jQuery("#ValidErr").hide();
+                                                                    } else {
+                                                                    jQuery("#SuccessMsg").hide();
+                                                                    jQuery('#SuccessMsg').html("");
+                                                                    jQuery('#RepeatErr').html("");
+                                                                    //jQuery('#RepeatErr').html(data['message']);
+                                                                    jQuery('#RepeatErr').show();
+                                                                    jQuery("#otp-verify-submit").show();
+                                                                    jQuery("#user_otp").hide();
+                                                                    }
+                                                                }
+                                                    });
+                                        
+                                      /*  } else {
+                                            jQuery("#ValidErr").hide();
+                                            jQuery('#RepeatErr').show();
+                                            jQuery("#ValidErrt").hide();
+                                            //jQuery("#otp-verify-submit").text('Mobile Number alreday taken click to change again');
+                                            jQuery("#ValidErr").hide();
+                                        }*/
+                               /*     }else {
+                                    jQuery("#ValidErr").hide();
+                                    jQuery('#RepeatErr').show();
+                                    jQuery("#ValidErrt").hide();
+                                    //jQuery("#otp-verify-submit").text('Mobile Number alreday taken click to change again');
+                                    jQuery("#ValidErr").hide();
+                                }*/
+                            //}
+                                //});
+                            });
+                            jQuery(document).on('click', '#otp-verification', function(){
+                            if(jQuery("#otp").valid()) { 
+                                //alert('otp-verification');
+                                var baseUrl = document.getElementsByClassName('OtpBaseUrl')[0].innerHTML;
+                                //alert(baseUrl);
+                                baseUrl = baseUrl.trim();
+                                var controllerUrl = 'sociallogin/popup/codeverify';
+                                var ajxUrl = baseUrl.concat(controllerUrl);
+                                //alert(ajxUrl);
+                                var frm_data = "telephone="+jQuery("#telephone").val();
+                                var form_data = frm_data + "&" + "otp="+jQuery("#otp").val();
+                                //alert(form_data);
+                                //if (jQuery("#otp").val() == '')
+    //                            {
+    //                            alert("Please enter OTP");
+    //                            return false;
+    //                            }
+                                jQuery('#verifyErr').hide();
+                                jQuery('#RepeatErr').hide();
+                                jQuery.ajax({
+                                url: ajxUrl, // Upload Script
+                                        showLoader: true,
+                                        dataType: 'json',
+                                        data: form_data, // Setting the data attribute of ajax with file_data
+                                        type: 'post',
+                                        success: function(data) {// Do something after Ajax completes 
+                                        //alert(data['message']);
+                                        //alert('verification success');
+                                        if (data['success'] == true)
+                                        {
+                                        jQuery("#RepeatErr").hide();
+                                        jQuery('#SuccessMsg').html("");
+                                        jQuery("#verify-error").hide();
+                                        jQuery("#telephone-error").hide();
+                                        jQuery('#SuccessMsg').html(data['message']);
+                                        jQuery('#SuccessMsg').show();
+                                        jQuery("#user_otp").hide();
+                                        jQuery('input[name="verify"]').val('1');
+                                        jQuery("#verifyErr").hide();
+                                        jQuery("#otp-verify-submit").hide();
+                                        } else {
+                                        jQuery("#SuccessMsg").hide();
+                                        jQuery('#RepeatErr').html("");
+                                        jQuery('#RepeatErr').html(data['message']);
+                                        jQuery('#RepeatErr').show();
+                                        jQuery("#otp-verify-submit").text('Resend Otp');
+                                        jQuery("#otp-verify-submit").show();
+                                        jQuery("#user_otp").hide();
+                                        jQuery('input[name="verify"]').val('0');
+                                        }
+                                        }
+                                });
+                            }
+                            });
+ });                                                                        
+});
+</script>
+<script type="text/javascript">
+    require([
+                                    'jquery', // jquery Library
+                                    'jquery/ui', // Jquery UI Library
+                                    'jquery/validate', // Jquery Validation Library
+                                    'mage/translate' // Magento text translate (Validation message translte as per language)
+                            ], function($){
+                            jQuery(document).ready(function () {
+                                $.validator.setDefaults({ ignore: '' });
+                                $.validator.addMethod(
+                                        'validate-custom-verify', function (value) {
+                                       return (value=='1') 
+                                        },$.mage.__('Mobile verification is pending')
+                                );
+                                $.validator.addMethod(
+                                        'validate-custom-verifyip', function (value) {
+                                       return (value=='1') 
+                                        },$.mage.__('IP verification is pending')
+                                );
+                            });
+                            });
+
+</script>

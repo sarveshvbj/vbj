@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+	
+		<add id="Magegadgets_Personalizejewellery::uploadanydesign" title="Upload Any Design" module="Magegadgets_Pricemanger" sortOrder="10" parent="Magegadgets_Pricemanger::personalizejewellery_settings" action="personalizejewellery/personalizejewellery" resource="Magegadgets_Personalizejewellery::uploadanydesign" />
+			
+		<add id="Magegadgets_Personalizejewellery::customizeexistingdesign" title="Customize Existing Design" module="Magegadgets_Pricemanger" sortOrder="20" parent="Magegadgets_Pricemanger::personalizejewellery_settings" action="personalizejewellery/customizeexistingdesign" resource="Magegadgets_Personalizejewellery::customizeexistingdesign"/>
+		
+		<add id="Magegadgets_Personalizejewellery::workwithourdesigners" title="Work With Our Designers" module="Magegadgets_Pricemanger" sortOrder="30" parent="Magegadgets_Pricemanger::personalizejewellery_settings" action="personalizejewellery/workwithourdesigners" resource="Magegadgets_Personalizejewellery::workwithourdesigners"/>
+
+    </menu>
+</config>

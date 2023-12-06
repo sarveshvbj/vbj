@@ -1,0 +1,268 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+
+<?php
+$required = '';
+if ($block->hasRequiredOptions()) {
+    $required = ' data-hasrequired="' . __('* Required Fields') . '"';
+}
+?>
+<style type="text/css">
+	.accordion .card-header:after {
+    font-family: 'FontAwesome';  
+    content: "\f068";
+    float: right; 
+}
+.accordion {
+    padding-bottom: 10px;
+    margin-top: 15px;
+}
+.accordion .card-header.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "\f067"; 
+}
+.accordion>.card {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1) !important;
+}
+.card {
+    border: none;
+}
+.accordion>.card .card-header {
+    margin-bottom: 0px;
+    padding: 15px;
+    background-color: #f5f6fa;
+    border-bottom: 0;
+}
+.custom_product.product-options-wrapper .fieldset {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-flow: wrap;
+	}
+	.custom_product .field.configurable, .field.custom-options.purity  {
+    flex: 0 0 50%;
+	}
+	.custom_product .field.custom-options.diamond-quality{
+		flex: 0 0 100%;
+	}
+	.custom_product .field.custom-options.ring-sizes {
+		flex: 0 0 75%;
+	}
+	.custom_product .field.custom-options .options-list {
+		display: flex;
+		justify-content: center;
+	}
+	.custom_product .purity .options-list .field.choice {
+		margin-right: 10px;
+        margin-bottom: 0px;
+	}
+
+	.custom_product .diamond-quality .options-list .field.choice {
+		margin-right: 0px;
+		margin-bottom: 0px !important;
+	}
+	 .custom_product .swatch-attribute-label{
+        display: block;
+        color: #000;
+        margin: 0 0 3px !important;
+    }
+    .custom_product .swatch-attribute-options {
+    	display: flex;
+       justify-content: center;
+    }
+    .custom_product .swatch-option.selected {
+        outline: none;
+        border: 1.5px solid #6e2083;
+    }
+    .custom_product .swatch-option {
+        max-width: 25px;
+    min-width: 25px;
+    height: 25px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+    border-radius: 25px;
+    }
+    .custom_product .swatch-option.image:not(.disabled):hover, .custom_product .swatch-option.color:not(.disabled):hover {
+    outline: none;
+    border: 1.5px solid #6e2083;
+}
+.custom_product select.product-custom-option {
+    border:0px;
+    border-color: unset;
+    background-color: #f5f6fa !important;
+    outline: 0px;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1) !important;
+
+}
+
+.fieldset > .field, .fieldset > .fields > .field {
+    margin: 0 0 15px;
+}
+.fieldset > .field:first-child, .fieldset > .fields > .field:first-child {
+    margin-bottom:20px;
+}
+.fieldset > .field:last-child, .fieldset > .fields > .field:last-child {
+    margin-bottom:15px;
+}
+
+    .options-list {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  margin-bottom: 1.5em;
+}
+
+.options-list input[type="checkbox"],
+.options-list input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+.field.choice {
+  display: flex;
+  z-index: 0;
+}
+
+.options-list label {
+  position: relative;
+  margin-right: 1em;
+  font-size: 12px;
+  padding-left: 1.5em;
+  padding-right: 0.5em;
+  line-height: 2;
+  cursor: pointer;
+
+}
+.options-list label:before {
+  box-sizing: border-box;
+  content: " ";
+  position: absolute;
+  top: 0.3em;
+  left: 0;
+  display: block;
+  width: 1.2em;
+  height: 1.2em;
+  border: 2px solid #8e44ad;
+  border-radius: .25em;
+  z-index: -1;
+}
+
+.options-list input[type="radio"] + label::before {
+  border-radius: 1em;
+}
+
+/* Checked */
+.options-list input[type="radio"]:checked + label {
+  padding-left: 1em;
+  padding-right: 1em;
+  color: #fff;
+}
+.options-list input[type="checkbox"]:checked + label:before,
+.options-list input[type="radio"]:checked + label:before {
+  top: 0;
+  width: 100%;
+  height: 1.8em;
+  background: #8e44ad;
+}
+
+/* Transition */
+.options-list label,
+.options-list label::before {
+  -webkit-transition: .25s all ease;
+  transition: .25s all ease;
+}
+
+#snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: #850505;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 13px;
+  position: fixed;
+  z-index: 1;
+  right: 0;
+  bottom: 10%;
+  font-size: 12px;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+.offer-price.text-orange span:nth-child(3) {
+  display: block;
+}
+.text-orange {
+  font-size: 12px;
+}
+.offer-price.text-orange #vbjoffer-price {
+  font-size: 16px;
+}
+.offer-head.text-orange {
+  width: 25%;
+}
+.offer-price.text-orange {
+  width: 75%;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+</style>
+<?php
+	$product = $block->getProduct();
+	$productType = $product->getTypeId();
+	$purity_attr= \Retailinsights\ConfigProducts\Helper\Data::PURITY_ATTR;
+	$default_purity = $product->getResource()->getAttribute($purity_attr)->getFrontend()->getValue($product);
+
+if($productType == 'configurable' && $default_purity != '') {	
+ ?>
+
+    <div id="accordion" class="accordion">
+        <div class="card mb-0">
+            <div class="card-header collapsed" id="customize_product" data-toggle="collapse" href="#collapseOne">
+                <a class="card-title">
+                    Customize This Product 
+                </a>
+            </div>
+            <div id="collapseOne" style="padding: 0;" class="card-body collapse" data-parent="#accordion" >
+               <div class="custom_product product-options-wrapper" style="padding: 1.25rem;" id="product-options-wrapper"<?= /* @escapeNotVerified */ $required ?>>
+    <div class="fieldset" tabindex="0">
+        <?= $block->getChildHtml('', true) ?>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+    <div id="snackbar">The product does not exist or was not provided</div>
+<?php  } else { ?>
+ <div class="product-options-wrapper" id="product-options-wrapper"<?= /* @escapeNotVerified */ $required ?>>
+    <div class="fieldset" tabindex="0">
+        <?= $block->getChildHtml('', true) ?>
+    </div>
+</div>
+<?php } ?>
