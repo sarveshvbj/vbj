@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <referenceContainer name="content">
-        <block class="Vaibhav\GoldRate\Block\Goldrateform" name="vaibhav_goldrateform_index_gold" template="Vaibhav_GoldRate::goldrateform.phtml" cacheable="false"/>
-    </referenceContainer>
-</page>

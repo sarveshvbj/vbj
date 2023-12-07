@@ -1,7 +1,0 @@
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd" layout="1column">
-    <body>
-        <referenceContainer name="content">
-            <block class="Retailinsights\ProductGamooga\Block\ProductGamooga" name="ProductGamooga" template="Retailinsights_ProductGamooga::productgamooga.phtml" />
-        </referenceContainer>
-    </body>
-</page>

@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
-    <menu>
-        <!--add id="Magegadgets_Loosediamonds::parent" title="Loosediamonds" module="Magegadgets_Loosediamonds" sortOrder="100" resource="Magegadgets_Loosediamonds::parent"/-->
-		<add id="Magegadgets_Loosediamonds::loosediamonds" title="Loose Diamonds" module="Magegadgets_Loosediamonds" sortOrder="40" parent="Magegadgets_Pricemanger::magegadgets_settings" action="loosediamonds/loosediamonds" resource="Magegadgets_Loosediamonds::loosediamonds"/>
-    </menu>
-</config>

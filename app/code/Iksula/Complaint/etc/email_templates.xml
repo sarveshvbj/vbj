@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
- 
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:Magento:module:Magento_Email:etc/email_templates.xsd">
-    <template id="complaint_email_template" label="Test email" file="complaint_email.html" type="html" module="Iksula_Complaint" area="frontend"/>
-    <template id="order_confirm_template" label="Order Confirm email" file="order_confirmed.html" type="html" module="Iksula_Complaint" area="frontend"/>
-    <template id="account_created" label="customer account create" file="thank_you_registration.html" type="html" module="Iksula_Complaint" area="frontend"/>
-    <template id="forgot_password" label="customer forgot password" file="forgot_password.html" type="html" module="Iksula_Complaint" area="frontend"/>
-    <template id="order_shipment" label="order shipment" file="order_shipment.html" type="html" module="Iksula_Complaint" area="frontend"/>
-</config>

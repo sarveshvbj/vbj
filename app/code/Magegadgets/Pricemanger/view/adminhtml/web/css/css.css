@@ -1,6 +1,0 @@
-.price-manager-page .admin__fieldset > .admin__field > .admin__field-label {
-    width: calc( (100%) * 0.25 - 130px );
-}
-.page-actions-buttons.price-manager-button {
-    float: left;
-}

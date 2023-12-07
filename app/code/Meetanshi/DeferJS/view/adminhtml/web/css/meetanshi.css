@@ -1,9 +1,0 @@
-.meetanshi .title:before {
-    content: "Meetanshi";
-    background-size: 150px 19px;
-    display: inline-block;
-    width: 150px;
-    height: 19px;
-    content: "";
-    background-repeat: no-repeat;
-}

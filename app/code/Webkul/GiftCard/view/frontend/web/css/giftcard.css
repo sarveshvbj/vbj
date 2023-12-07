@@ -1,6 +1,0 @@
-strong:before {
-    content: "foo";
-}
-strong.special:before {
-    content: "bar";
-}
