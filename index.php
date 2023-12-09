@@ -1,6 +1,6 @@
 <?php 
-/*  start adding comment new */
+/*  start adding comment new by SKT */
 phpinfo();
-/* end of comment new */
+/* end of comment new by SKT */
 
 ?>
