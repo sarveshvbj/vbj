@@ -1,0 +1,21 @@
+/*forget password page css start*/
+.form.password.reset, .form.send.confirmation, .form.password.forget, .form.create.account{
+    margin-left: 325px
+}
+.page-title-wrapper {
+    text-align: center;
+    background-image: linear-gradient(to right top, #ecd0f4, #ead8f5, #e9e0f4, #eae7f1, #eeeeee);
+    padding-top: 15px;
+    height: 70px;
+    width: 50%;
+    margin-left: 325px;
+    
+}
+button.action.submit.primary {
+    background-color: #6e2083;
+    border: 1px solid #6e2083;
+    letter-spacing: 1px;
+    font-size: 1.6rem;
+    margin-left: 200px;
+}
+/*forget password page css end*/

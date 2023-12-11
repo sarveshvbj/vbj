@@ -1,0 +1,22 @@
+.pages strong.page{
+	background: #6F2D91;
+	color: #fff;
+}
+
+li.page-item a {
+    color: #fff !important;
+}
+.breadcrumbs{
+	display: block !important;
+}
+.main {
+    margin-top: -60px !important;
+}
+.ft {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 0px 39px;
+}
+.products {
+    margin: 5px 0 !important;
+}

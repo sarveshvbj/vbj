@@ -1,0 +1,49 @@
+<?php
+   $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+   $basemediaurl = $objectManager->get('Magento\Store\Model\StoreManagerInterface')
+                       ->getStore()
+                       ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+   $imgix_url= $basemediaurl;//'https://mage23vaibhavjewellers.breezesites.io/pub/media/';
+   $storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+   $storeUrl = $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB); 
+    ?>
+<?php 
+   $_objectManager = \Magento\Framework\App\ObjectManager::getInstance(); //instance of\Magento\Framework\App\ObjectManager
+   $storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+   $currentStore = $storeManager->getStore();
+   $baseUrl = $currentStore->getBaseUrl();
+   $mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+   $linkUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_LINK);
+   
+   ?>
+<div class="section-3">
+   <h2 class="mobile-heading1">TRADITIONAL COLLECTION</h2>
+   <div class="loop owl-carousel" id="traditional-collections-slider">
+      <div class="img-container">
+         <a href="<?php echo $linkUrl;?>diamond-jewellery.html">
+            <img src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/new_arrivals_mob.jpg" alt="vaibhav-jewellers-gold-new-arival-online" width="307" height="193">
+         </a>
+      </div>
+      <div class="img-container">
+         <a href="<?php echo $linkUrl;?>diamond-jewellery/women/necklace.html">
+            <img src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/women_necklace_mob.jpg" alt="vaibhav-jewellers-women-necklace-online" width="307" height="193">
+         </a>
+      </div>
+      <div class="img-container">
+         <a href="<?php echo $linkUrl;?>diamond-jewellery/women/earrings.html">
+             <img src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/women_earrings_mob.jpg" alt="vaibhav-jewellers-women-earrings-online" width="307" height="193">
+         </a>
+      </div>
+      <div class="img-container">
+         <a href="<?php echo $linkUrl;?>diamond-jewellery/women/bracelet.html">
+            <img src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/women_bracelets_mob.jpg" alt="vaibhav-jewellers-women-bracelets-online" width="307" height="193">
+         </a>
+      </div>
+      <div class="img-container">
+         <a href="<?php echo $linkUrl;?>women-diamond-rings.html">
+            <img src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/women_rings_mob.jpg" alt="vaibhav-jewellers-women-rings-online" width="307" height="193">
+         </a>
+      </div>
+
+   </div>
+</div>

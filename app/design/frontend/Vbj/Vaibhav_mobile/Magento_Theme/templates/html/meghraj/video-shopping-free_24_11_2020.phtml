@@ -1,0 +1,229 @@
+<link rel="stylesheet" type="text/css" href="<?php echo $block->getViewFileUrl('css/NewVaibhavs.css')?>">
+<?php 
+ date_default_timezone_set('Asia/Kolkata');
+$curTime=date('Y-m-d H:i:s', time());
+$datetime = new DateTime($curTime);
+$currenDateTime = $datetime->format(DateTime::ATOM);
+$product_url= $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
+
+ ?>
+<form class="form revo" enctype="multipart/form-data" action="<?php echo $block->getUrl('videoform/index/postnew')?>" id="custom-form" method="POST"
+      data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}' onSubmit="return checkValidcode()">
+       <input name="type" value="product"  type="hidden" />
+       <input name="product" value="<?php echo $product_url; ?>"  type="hidden" />
+        <input name="remarks" value="NaN"  type="hidden" />
+      
+      <div class="form-3">  
+      <div class="tab-content">
+        <div id="signup">   
+          <h1>Book Your Free Slot</h1>
+          
+          </div>
+          
+          <div class="top-row">
+            <div class="field required">
+            <div class="row field-wrap em3">
+              <div class="col-3 p-0">
+                <label> Name </label>
+              </div> 
+              <div class="col-9 p-0">
+                <input name="fullname" type="text" class="input-text required-entry in"  /> 
+              </div>
+            </div>
+          </div>
+        
+          <div class="row field-wrap em2">
+              <div class="col-3 p-0">
+                <label>
+                 Phone
+                </label>
+              </div>
+              <div class="col-9 p-0">
+              <input name="mobile" type="phone" id="mobile" class="input-text required-entry in" minlength="10" maxlength="12"/>
+              <!-- <span id="errmsg" style="color: red;text-align:center;"></span> -->
+              </div>
+            </div>
+          
+
+            <div class="row field-wrap em">
+            <div class="col-3 p-0">
+                  <label>  Email </label>
+                </div> 
+                <div class="col-9 p-0">
+                <input name="email" type="email" class="input-text required-entry validate-email in"  />
+              </div>
+          </div>
+          
+          <div class="row field-wrap em3">
+          <div class="col-3 p-0">
+              <label>
+               Language
+              </label>
+          </div>
+          <div class="col-9 p-0">
+              <select name="language" style="width: 100px;">
+              <option value="telgu">Telugu</option>
+              <option value="hindi">Hindi</option>
+              <option value="english">English</option>
+              <option value="odiya">Odiya</option>
+            </select>
+            </div> 
+            </div><br>
+            <div class="row field-wrap em3 required-entry">
+              <div class="col-3 p-0">
+                <label>
+                Date/ Time
+                </label>
+              </div>
+            <div class="col-9 p-0">
+             <input name="takedate" id="datepicker" title="Terminwunsch" value="" type="text" class="input-text required-entry in"/>
+                    <script type="text/javascript">
+                    require([
+                        "jquery",
+                        "mage/calendar"
+                        ], function($){
+                             var dateToday = new Date();
+                             $('#datepicker').datepicker({
+                               prevText: '&#x3c;zurück', prevStatus: '',
+                                prevJumpText: '&#x3c;&#x3c;', prevJumpStatus: '',
+                                nextText: 'Vor&#x3e;', nextStatus: '',
+                                nextJumpText: '&#x3e;&#x3e;', nextJumpStatus: '',
+                                monthNames: ['Januar','Februar','März','April','Mai','Juni',
+                                'Juli','August','September','October','November','December'],
+                                monthNamesShort: ['Jan','Feb','Mär','Apr','Mai','Jun',
+                                'Jul','Aug','Sep','Oct','Nov','Dec'],
+                                dayNames: ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],
+                                dayNamesShort: ['So','Mo','Tue','Wed','Thu','Fr','Sa'],
+                                dayNamesMin: ['So','Mo','Tue','Wed','Thu','Fr','Sa'],
+                              showMonthAfterYear: false,
+                              dateFormat:'d.m.yy',
+                               minDate: dateToday,
+                              yearRange: '2018:2019',
+                              changeMonth: true,
+                              changeYear: true
+                              
+                            } 
+                          );
+                        });
+                    </script>
+                    </div>
+                  </div>
+ <div class="field-wrap timeShift">
+              <!-- <label>
+               Time
+              </label>      -->
+              <div class="d-flex set-item">
+                <select name="hrs" style="width: 58px;">
+              <?php 
+
+                for($hours=1; $hours<=12; $hours++)
+                {
+
+                    echo "<option value=".$hours.">".$hours."</option>";
+                }
+                ?> 
+<option name="hrs"> </option>   
+</select>
+<!--<span>select hours </span>-->
+<select name="min" style="width: 60px;">
+<?php 
+for($mins=0; $mins<=60; $mins+=5)
+{
+
+    echo "<option value=".$mins.">".$mins."</option>";
+}                                
+?> 
+<option name="min"> </option>   
+</select>
+<!--<span>select minutes </span>-->
+<select name="meri" style="width: 60px;">
+  <option value="am">am</option>
+  <option value="pm">pm</option>
+</select>
+<!--<span>select am/pm </span>-->
+</div>
+</div>
+          </div>
+     <div class="chk" style="display:none;">
+        <label class="chk_agree">
+        <input type="checkbox" value="">
+        <span class="checkmark"></span>
+        I agree to the <span class="term">Terms of Services</span>
+        
+        </div>
+      <div class="sign_btn">
+          <button type="submit" id="submit" class="button button-block"/>Submit</button>
+      </div>
+      <div class="chk">
+      <label class="chk_agree">
+      
+      </label>
+     </div>
+          
+      </div><!-- tab-content -->
+      
+ </form>
+      </div>
+<script>
+/*require([
+  'jquery',
+  'mage/mage',
+], function($){
+   $( "#submit" ).click(function() { 
+   alert("hjhjkjl");       
+       $('input[name="mobile"]').validation();
+       if(!$('input[name="mobile"]').validation('isValid')){
+           return false;
+       }
+   });
+});*/
+require([
+    'jquery',
+    'mage/mage'
+], function($){
+      jQuery(document).ready(function () {
+    function setInputFilter(textbox, inputFilter) {
+  ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+    textbox.addEventListener(event, function() {
+      if (inputFilter(this.value)) {
+        this.oldValue = this.value;
+        this.oldSelectionStart = this.selectionStart;
+        this.oldSelectionEnd = this.selectionEnd;
+      } else if (this.hasOwnProperty("oldValue")) {
+        this.value = this.oldValue;
+        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+      } else {
+        this.value = "";
+      }
+    });
+  });
+}
+setInputFilter(document.getElementById("mobile"), function(value) {
+  return /^-?\d*$/.test(value); });
+    });
+   var dataForm = $('#custom-form');
+   dataForm.mage('validation', {});
+ 
+});
+
+ function checkValidcode() {
+      var deliveryForm = jQuery('#custom-form');
+      if(deliveryForm.valid()) {
+        var time = jQuery('select[name="hrs"]').val() +':'+jQuery('select[name="min"]').val()+':'+jQuery('select[name="meri"]').val();
+        if(typeof dataLayer !== 'undefined') {
+           dataLayer.push({'event':'videoshopping-new',
+        'name':jQuery('input[name="fullname"]').val(),
+        'mobile':jQuery('input[name="mobile"]').val(),
+        'email':jQuery('input[name="email"]').val(),
+        'language':jQuery('select[name="language"]').val(),
+        'date':jQuery('input[name="takedate"]').val(),
+        'time':time
+    });
+        }
+       return true;
+      } else {
+        return false;
+      } 
+    }
+
+</script>

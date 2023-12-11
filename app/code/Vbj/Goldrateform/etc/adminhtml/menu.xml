@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Vbj::top_level" title="VBJ" module="Vbj_Goldrateform" sortOrder="9999" resource="Magento_Backend::content"/>
+		<add id="Vbj_Goldrateform::vbj_goldrateform_vaibhav_goldrate_form" title="Vaibhav Goldrate Form" module="Vbj_Goldrateform" sortOrder="9999" resource="Magento_Backend::content" parent="Vbj::top_level" action="vbj_goldrateform/vaibhavgoldrateform/index"/>
+	</menu>
+</config>

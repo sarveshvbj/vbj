@@ -1,0 +1,114 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$basemediaurl = $objectManager->get('Magento\Store\Model\StoreManagerInterface')
+                    ->getStore()
+                    ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$imgix_url= $basemediaurl;//'https://cdn-media.vaibhavjewellers.com/pub/media/';   
+?>
+ <style>
+     .text-underline{padding-left:0px;}
+     .text-underline:after{width: 25%;height: 2px;}
+     span.sel__placeholder.sel__placeholder--black-panther{line-height:35px;}
+     span.sel__box__options.sel__box__options--black-panther {color: #6e2083;}
+         .sel__box__options:hover {background-image: linear-gradient(to right,#FDD8FB,#E6B5E2);}
+</style>
+<div class="container-fluid">
+<div class="inner-block row d-none d-sm-flex pt-5"><a href="https://www.vaibhavjewellers.com/women-diamond-rings.html" class="col-md-3"><picture><source type="image/webp" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/women-diamond-rings-36.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/women-diamond-rings-36.webp?auto=compress">
+<img loading="lazy" class="w-100" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/women-diamond-rings-36.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/women-diamond-rings-36.webp?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/women-diamond-rings-36.webp?auto=compress" alt="women-diamond-rings-collection" width=""
+height=""></picture></a><!--2starts--><a href="https://www.vaibhavjewellers.com/diamond-jewellery/women/earrings.html" class="col-md-3"><picture><source type="image/webp" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/women-diamond-earrings-37.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/women-diamond-earrings-37.webp?auto=compress">
+<img loading="lazy" class="w-100" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/women-diamond-earrings-37.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/women-diamond-earrings-37.webp?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/women-diamond-earrings-37.webp?auto=compress" alt="women-diamond-earrings-collection" width=""
+height=""></picture></a><!--3starts--><a href="https://www.vaibhavjewellers.com/diamond-jewellery/women/bracelet.html" class="col-md-3"><picture><source type="image/webp" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/women-diamond-bracelets-38.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/women-diamond-bracelets-38.webp?auto=compress">
+<img loading="lazy" class="w-100" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/women-diamond-bracelets-38.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/women-diamond-bracelets-38.webp?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/women-diamond-bracelets-38.webp?auto=compress" alt="women-diamond-bracelets-collection" width=""
+height=""></picture></a><!--4starts--><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/mangalsutra.html" class="col-md-3"><picture><source type="image/webp" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-black-beads.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-black-beads.webp?auto=compress">
+<img loading="lazy" class="w-100" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-black-beads.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-black-beads.webp?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-black-beads.webp?auto=compress" alt="gold-black-beads-collection" width=""
+height=""></picture></a></div><!-----2--------><div class="align-items-center d-sm-flex inner-block d-none d-sm-block pt-5 row">
+<div class="col-md-4"><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/earrings.html?p=2"><picture><source type="image/webp" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/natyam_1.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/natyam_1.webp?auto=compress">
+<img loading="lazy" class="w-100" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/natyam_1.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/natyam_1.webp?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/natyam_1.webp?auto=compress" alt="natyam collection" width=""
+height=""></picture></a></div><!--1--><div class="col-md-4 text-center"><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/earrings.html"><picture><source type="image/webp" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/natyam_2.webp.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/natyam_2.webp?auto=compress">
+<img loading="lazy" class="w-100" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/natyam_2.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/natyam_2.webp?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/natyam_2.webp?auto=compress" alt="natyam  collection" width=""
+height=""></picture></a><!--2--><a href="https://www.vaibhavjewellers.com/gold-jewellery.html"><button class="view-button mt-5">View All Jewellery</button></a></div><!--3--><div class="col-md-4"><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/earrings.html"><picture><source type="image/webp"  data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/natyam_3.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/natyam_3.webp?auto=compress">
+<img loading="lazy" class="w-100" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/natyam_3.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/natyam_3.webp?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/natyam_3.webp?auto=compress" alt="natyam collection" width=""height=""></picture></a></div></div>
+<!------3-------><div class="inner-block pt-5 mb-4">
+<div class="row"><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/bangles.html" class="col-md-3"><picture><source type="image/webp" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-bangles.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-bangles.webp?auto=compress">
+<img loading="lazy" class="w-100" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-bangles.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-bangles.webp?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-bangles.webp?auto=compress" alt="gold_bangles_collection" width=""height=""></picture></a> <!--1-->       
+<a href="https://www.vaibhavjewellers.com/diamond-jewellery/women/earrings.html" class="col-md-3"><picture><source type="image/webp" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/myra-earrings-collection.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/myra-earrings-collection.webp?auto=compress">
+<img loading="lazy" class="w-100" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/myra-earrings-collection.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/myra-earrings-collection.webp?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/myra-earrings-collection.webp?auto=compress" alt="diamond_earrings_collection" width=""height=""></picture></a><!--2-->
+<a href="https://www.vaibhavjewellers.com/gold-jewellery/women/bracelets.html?collection_type=374" class="col-md-3"><picture><source type="image/webp" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/myra-bracelet-collection-1.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/myra-bracelet-collection-1.webp?auto=compress">
+<img loading="lazy" class="w-100" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/myra-bracelet-collection-1.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/myra-bracelet-collection-1.webp?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/myra-bracelet-collection-1.webp?auto=compress" alt="bracelets_collection" width=""height=""></picture></a><!--3-->
+<a href="https://www.vaibhavjewellers.com/women-gold-chains.html" class="col-md-3"><picture><source type="image/webp" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-chains.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-chains.webp?auto=compress">
+<img loading="lazy" class="w-100" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-chains.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-chains.webp?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-chains.webp?auto=compress" alt="gold_chains_collection" width=""height=""></picture></a></div><!--4-->
+<div class="row pt-3"><a href="https://www.vaibhavjewellers.com/diamond-jewellery/women/mangalsutra.html" class="col-md-3"><picture><source type="image/webp" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-mangalsutra.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-mangalsutra.webp?auto=compress">
+<img loading="lazy" class="w-100" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-mangalsutra.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-mangalsutra.webp?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-mangalsutra.webp?auto=compress" alt="diamond_mangalsutra_collection" width=""height=""></picture></a><!--5-->
+<a href="https://www.vaibhavjewellers.com/gold-jewellery/women/harams.html" class="col-md-3"><picture><source type="image/webp" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-harams.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-harams.webp?auto=compress">
+<img loading="lazy" class="w-100" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-harams.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-harams.webp?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-harams.webp?auto=compress" alt="gold_harams_collection" width=""height=""></picture></a><!--6-->
+<a href="https://www.vaibhavjewellers.com/gold-jewellery/women/vaddanam.html" class="col-md-3"> <picture><source type="image/webp" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/vaddanam-8.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/vaddanam-8.webp?auto=compress">
+<img loading="lazy" class="w-100" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/vaddanam-8.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/vaddanam-8.webp?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/vaddanam-8.webp?auto=compress" alt="gold_vaddanams_collection" width=""height=""></picture></a><!--7-->
+<a href="https://www.vaibhavjewellers.com/gold-jewellery/women/choker.html" class="col-md-3"><picture><source type="image/webp" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-choker.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-choker.webp?auto=compress">
+<img loading="lazy" class="w-100" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-choker.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-choker.webp?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/gold-choker.webp?auto=compress" alt="gold_chokers_collection" width=""height=""></picture></a></div><!--8-->
+</div>
+
+<!--<div class="row">
+<a href="https://www.vaibhavjewellers.com/diamond-jewellery/women/rings.html" class="col-md-3"><img loading="lazy" class="w-100" src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/Diamond Rings.webp" alt=""></a>        
+<a href="https://www.vaibhavjewellers.com/diamond-jewellery/women/pendants.html" class="col-md-3"><img loading="lazy" class="w-100" src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/Diamond Pendants.webp" alt=""></a>
+<a href="https://www.vaibhavjewellers.com/diamond-jewellery/women/earrings.html" class="col-md-3"><img loading="lazy" class="w-100" src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/Diamond Earrings.webp" alt=""></a>
+<a href="https://www.vaibhavjewellers.com/diamond-jewellery/women/mangalsutra.html" class="col-md-3"><img loading="lazy" class="w-100" src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/Diamond Mangalsutra.webp" alt=""></a>
+</div><div class="row pt-3"><a href="https://www.vaibhavjewellers.com/gifts/goldcoins.html" class="col-md-3"><img loading="lazy" class="w-100" src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/Gold Necklace.webp" alt=""></a>
+<a href="https://www.vaibhavjewellers.com/gold-jewellery/men/accessories.html" class="col-md-3"><img loading="lazy" class="w-100" src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/Gold Coin.webp" alt=""></a>
+<a href="https://www.vaibhavjewellers.com/gold-jewellery/men/bracelets.html" class="col-md-3"><img loading="lazy" class="w-100" src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/Gold Bangle.webp" alt=""></a>
+<a href="https://www.vaibhavjewellers.com/gold-jewellery/men/chains.html" class="col-md-3"><img loading="lazy" class="w-100" src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/Gold Chains.webp" alt=""></a>
+</div></div>-->
+<div class="inner-block row pt-5 bg-color-grey2">
+<div class="align-items-center col-md-6 d-flex position-relative">
+<picture><source type="image/webp" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/25.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/25.webp?auto=compress">
+<img loading="lazy" class="px-25 w-90 opacity-60" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/25.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/25.webp?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/25.webp?auto=compress" alt="" width=""
+height=""></picture><div class="position-absolute w-40 r-10 img-txt" style="background-color: #F9EFF8;padding: 22px 20px;opacity: 0.9;border-radius: 10px;">
+<h5 class="text-underline">Free Try@Home</h5>
+<p class="pt-4 font-14" style="padding: 0;">Want to try your favourite designs at home, with no obligations to buy? Go ahead book a free appointment today!</p>
+<button class="gradient-button p-2 w-100"><a href="https://www.vaibhavjewellers.com/try-at-home">Know More</a></button>
+</div></div><div class="align-items-center col-md-6 d-flex position-relative">
+<picture><source type="image/webp"   data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/24.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/24.webp?auto=compress">
+<img loading="lazy" class="px-25 w-90 opacity-60" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/24.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/24.webp?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/24.webp?auto=compress" alt="" width=""
+height=""></picture><div class="position-absolute w-40 r-10 img-txt" style="background-color: #F9EFF8;padding:22px 20px;border-radius: 10px;">
+<h5 class="text-underline">Visit the Nearest Store</h5>
+<p class="pt-4 font-14" style="padding: 0;">For latest designs visit our nearest branch, you can also request for a private viewing in case you want to come along with your entire family or for bridal shopping</p>
+<div class="sel sel--black-panther">
+                          <select name="select-profession" id="select-profession">
+                            <option value="" disabled>Select City</option>
+                            <option value="vsp"><a href ="https://www.vaibhavjewellers.com/andhrapradesh-visakhapatnam">Visakhapatnam</a></option>
+                            <option value="gwk">Gajuwaka</option>
+                            <option value="kak">Kakinada</option>
+                            <option value="raj">Rajahmundry</option>
+                            <option value="ana">Anakapalli</option>
+                           <option value="sri">Srikakulam</option>
+                            <option value="par">Parvathipuram</option>
+                            <option value="bob">Bobbili</option>
+                           <option value="gop">Gopalapatnam</option>
+                            <option value="dil">Dilsukhnagar</option>
+                            <option value="asr">A.S Rao Nagar</option>
+                          </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<div class="inner-block row pt-5">
+<div class="col-md-4">
+<a href="https://www.vaibhavjewellers.com/gold-jewellery/women/vanki/22kt-precious-stone-gold-baby-vanki-25vg597.html">
+<picture><source type="image/webp"   data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/peacock-vanki.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/peacock-vanki.webp?auto=compress">
+<img loading="lazy" class="w-100" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/peacock-vanki.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/peacock-vanki.webp?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/peacock-vanki.webp?auto=compress" alt="" width=""
+height=""></picture></a></div>
+<div class="col-md-4">
+<a href="https://www.vaibhavjewellers.com/gold-jewellery/women/necklace/22k-antique-gold-necklace-123vg5325.html">
+<picture><source type="image/webp"   data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/necklace.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/necklace.webp?auto=compress">
+<img loading="lazy" class="w-100" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/necklace.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/necklace.webp?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/necklace.webp?auto=compress" alt="" width=""
+height=""></picture></a></div>
+<div class="col-md-4">
+<a href="https://www.vaibhavjewellers.com/gold-jewellery/women/harams/22k-antique-gold-mango-haram-124vg3037.html">
+<picture><source type="image/webp"   data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/haram.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/haram.webp?auto=compress">
+<img loading="lazy" class="w-100" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/haram.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/haram.webp?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/haram.webp?auto=compress" alt="" width=""
+height=""></picture></a></div></div>
+<div class="inner-block pt-5 text-center">
+ <div class="row"> <!-- w-100 m-0 -->                    
+<picture><source type="image/webp" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/vaibhav-advantage.webp?w=1920" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/vaibhav-advantage.webp?w=1920">
+<img loading="lazy" class="w-100" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/vaibhav-advantage.webp?w=1920" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/vaibhav-advantage.webp?w=1920" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/vaibhav-advantage.webp?w=1920" alt="" width=""
+height=""></picture></div></div>
+</div>

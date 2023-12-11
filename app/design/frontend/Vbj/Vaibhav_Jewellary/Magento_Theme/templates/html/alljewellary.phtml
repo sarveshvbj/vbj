@@ -1,0 +1,173 @@
+<?php
+   $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+   $basemediaurl = $objectManager->get('Magento\Store\Model\StoreManagerInterface')
+                       ->getStore()
+                       ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+   $imgix_url= $basemediaurl;//'https://cdn-media.vaibhavjewellers.com/pub/media/';   
+   ?>
+<?php 
+$_objectManager = \Magento\Framework\App\ObjectManager::getInstance(); //instance of\Magento\Framework\App\ObjectManager
+$storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+$currentStore = $storeManager->getStore();
+$baseUrl = $currentStore->getBaseUrl();
+$mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$linkUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_LINK);
+
+?>
+<style>
+   .text-underline{padding-left:0px;}
+   .text-underline:after{width: 25%;height: 2px;}
+   span.sel__placeholder.sel__placeholder--black-panther{line-height:35px;}
+   span.sel__box__options.sel__box__options--black-panther {color: #6e2083;}
+   .sel__box__options:hover {background-image: linear-gradient(to right,#FDD8FB,#E6B5E2);}
+</style>
+<div class="container-fluid">
+   <div class="inner-block row d-none d-sm-flex pt-5">
+      <a href="<?php echo $linkUrl;?>diamond-jewellery/women/necklace.html" class="col-md-3">
+        <img class="w-100" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/desktop/1_necklace.jpg" alt="women-gold-rings-collection" width="" height="">
+      </a>
+      <!--2starts-->
+      <a href="<?php echo $linkUrl;?>diamond-jewellery/women/earrings.html" class="col-md-3">
+            <img class="w-100" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/desktop/2_earrings.jpg" alt="women-diamond-earrings-collection" width="" height="">
+      </a>
+      <!--3starts-->
+      <a href="<?php echo $linkUrl;?>diamond-jewellery/women/bracelet.html" class="col-md-3">
+         <img class="w-100" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/desktop/3_bracelets.jpg" alt="women-gold-bracelets-collection" width="" height="">
+      </a>
+      <!--4starts-->
+      <a href="<?php echo $linkUrl;?>women-diamond-rings.html" class="col-md-3">
+            <img class="w-100" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/desktop/4_rings.jpg" alt="gold-black-beads-collection" width="" height="">
+      </a>
+   </div>
+   <!-----2-------->
+   <div class="align-items-center d-sm-flex inner-block d-none d-sm-block pt-5 row">
+      <div class="col-md-4">
+         <a href="<?php echo $linkUrl;?>diamond-jewellery.html">
+            <img class="w-100" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/desktop/5_necklace_earrings.jpg" alt="myra-collection-diamond-&-you-necklace" width="462" height="483">
+         </a>
+      </div>
+      <!--1-->
+      <div class="col-md-4 text-center">
+         <a href="<?php echo $linkUrl;?>diamond-jewellery.html">
+             <img class="w-100" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/desktop/6_middle_post.jpg" alt="myra-collection-diamond-&-you-necklace" width="462" height="462">
+         </a>
+         <!--2--><a href="<?php echo $linkUrl;?>gold-jewellery.html"><button class="view-button mt-5">View All Jewellery</button></a>
+      </div>
+      <!--3-->
+      <div class="col-md-4">
+         <a href="<?php echo $linkUrl;?>diamond-jewellery.html">
+            <img class="w-100" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/desktop/7_bracelets_rings.jpg" alt="myra-collection-diamond-&-you-necklace" width="462" height="483">
+         </a>
+      </div>
+   </div>
+   <!------3------->
+   <div class="inner-block pt-5 mb-4">
+      <div class="row">
+         <a href="<?php echo $linkUrl;?>gold-jewellery/women/bangles.html" class="col-md-3">
+             <img class="w-100" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/desktop/pr_antique_bangles-01.jpg" alt="gold_bangles_collection" width="328" height="219">
+         </a>
+ 
+<!--1--> <a href="<?php echo $linkUrl;?>diamond-jewellery/women/earrings.html?product_list_order=latest" class="col-md-3">
+ <img class="w-100" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/desktop/pr_diamond_earrings-01.jpg" alt="diamond_earrings_collection" width="328" height="219"> </a>
+
+<!--2-->
+<a href="<?php echo $linkUrl;?>diamond-jewellery/women/bracelet.html?product_list_order=latest" class="col-md-3">
+ <img class="w-100" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/desktop/pr_diamond_bracelets-01.jpg" alt="bracelets_collection" width="328" height="219">
+ </a>
+
+<!--3-->
+
+
+<a href="<?php echo $linkUrl;?>women-gold-chains.html?product_list_order=latest" class="col-md-3">
+            <img class="w-100" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/desktop/pr_gold_chains-01.jpg" alt="gold_chains_collection" width="328" height="219">
+         </a>
+      </div>
+      <!--4-->
+      <div class="row pt-3">
+         <a href="<?php echo $linkUrl;?>gold-jewellery/women/mangalsutra.html?product_list_order=latest" class="col-md-3">
+             <img class="w-100" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/desktop/pr_gold_mangalsutra-01.jpg" alt="diamond_mangalsutra_collection" width="328" height="219">
+         </a>
+         <!--5-->
+         <a href="<?php echo $linkUrl;?>gold-jewellery/women/harams.html?product_list_order=latest" class="col-md-3">
+            <img class="w-100" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/desktop/pr_antique_necklace_haram-01.jpg" alt="gold_harams_collection" width="328" height="219">
+         </a>
+         <!--6-->
+         <a href="<?php echo $linkUrl;?>gold-jewellery/women/vaddanam.html?product_list_order=latest" class="col-md-3">
+            <img class="w-100" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/desktop/pr_antique_vaddanam-01.jpg" alt="gold_vaddanams_collection" width="328" height="219">
+         </a>
+         <!--7-->
+         <a href="<?php echo $linkUrl;?>gold-jewellery/women/choker.html?product_list_order=latest" class="col-md-3">
+            <img class="w-100" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/desktop/pr_antique_choker-01.jpg" alt="gold_chokers_collection" width="328" height="219">
+         </a>
+      </div>
+      <!--8-->
+   </div>
+   <div class="inner-block row pt-5 bg-color-grey2">
+      <div class="align-items-center col-md-6 d-flex position-relative">
+        <img class="px-25 w-90 opacity-60" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/desktop/23.jpg" alt="25" width="394" height="396">
+         <div class="position-absolute w-40 r-10 img-txt" style="background-color: #F9EFF8;padding: 22px 20px;opacity: 0.9;border-radius: 10px;">
+            <h5 class="text-underline">Free Try@Home</h5>
+            <p class="pt-4 font-14" style="padding: 0;">Want to try your favourite designs at home, with no obligations to buy? Go ahead book a free appointment today!</p>
+            <button class="gradient-button p-2 w-100"><a href="<?php echo $linkUrl;?>try-at-home">Know More</a></button>
+         </div>
+      </div>
+      <div class="align-items-center col-md-6 d-flex position-relative">
+           <img class="px-25 w-90 opacity-60" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/desktop/24.jpg" alt="24" width="394" height="396">
+         <div class="position-absolute w-40 r-10 img-txt" style="background-color: #F9EFF8;padding:22px 20px;border-radius: 10px;">
+            <h5 class="text-underline">Visit the Nearest Store</h5>
+            <p class="pt-4 font-14" style="padding: 0;">For latest designs visit our nearest branch, you can also request for a private viewing in case you want to come along with your entire family or for bridal shopping</p>
+            <div class="sel sel--black-panther" style="cursor: pointer;font: 500 14px/28px Lato,sans-serif;">
+               <select name="select-profession" id="select-profession" style="cursor: pointer;">
+                  <option value="">Select City</option>
+                  <option value="<?php echo $linkUrl;?>andhrapradesh-visakhapatnam">Visakhapatnam</option>
+                  <option value="<?php echo $linkUrl;?>andhrapradesh-gajuwaka">Gajuwaka</option>
+                  <option value="<?php echo $linkUrl;?>andhrapradesh-kakinada">Kakinada</option>
+                  <option value="<?php echo $linkUrl;?>andhrapradesh-rajahmundry">Rajahmundry</option>
+                  <option value="<?php echo $linkUrl;?>andhrapradesh-anakapalle">Anakapalli</option>
+                  <option value="<?php echo $linkUrl;?>andhrapradesh-srikakulam">Srikakulam</option>
+                  <option value="<?php echo $linkUrl;?>andhrapradesh-parvathipuram">Parvathipuram</option>
+                  <option value="<?php echo $linkUrl;?>andhrapradesh-bobbili">Bobbili</option>
+                  <option value="<?php echo $linkUrl;?>andhrapradesh-tuni">Tuni</option>
+                  <option value="<?php echo $linkUrl;?>andhrapradesh-gopalapatnam">Gopalapatnam</option>
+                  <option value="<?php echo $linkUrl;?>telangana-dilsukhnagar">Dilsukhnagar</option>
+                  <option value="<?php echo $linkUrl;?>telangana-asraonagar">A.S Rao Nagar</option>
+               </select>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="inner-block row pt-5">
+      <div class="col-md-4">
+         <a href="<?php echo $linkUrl;?>diamond-jewellery/women/necklace.html?product_list_order=latest">
+            <img class="w-100" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/desktop/pr_diamond_necklace_4.jpg" alt="diamond-jewellery" width="" height="" >
+         </a>
+      </div>
+      <div class="col-md-4">
+         <a href="<?php echo $linkUrl;?>diamond-jewellery/women/necklace.html?product_list_order=latest">
+             <img class="w-100" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/desktop/pr_diamond_necklace_5.jpg" alt="diamond-jewellery" width="" height="" >
+         </a>
+      </div>
+      <div class="col-md-4">
+         <a href="<?php echo $linkUrl;?>diamond-jewellery/women/necklace.html?product_list_order=latest">
+            <img class="w-100" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/desktop/pr_diamond_necklace_6.jpg" alt="diamond-jewellery" width="" height="" >
+         </a>
+      </div>
+   </div>
+   <div class="inner-block pt-5 text-center">
+      <div class="row">
+         <!-- w-100 m-0 --> 
+         <img  class="w-100" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/desktop/7_Advantage.jpg" alt="vaibhav-advantage" width="1431" height="181"> 
+      </div>
+   </div>
+</div>
+<script>
+   var urlMenu = document.getElementById('select-profession');
+   urlMenu.onchange = function()
+   {
+      var useroption = this.options[this.selectedIndex];
+      if (useroption.value != "nothing")
+      {
+         window.open(useroption.value,"HTML CSS JAVASCRIPT","");
+      }
+   }
+</script>

@@ -1,0 +1,117 @@
+ <?php
+  if (isset($_COOKIE['selectCity'])){
+    $post_data = $_COOKIE['selectCity'];
+  }
+  else {
+    $post_data = 'chennai';
+  }
+     $objectManager =   \Magento\Framework\App\ObjectManager::getInstance();
+    $connection = $objectManager->get('Magento\Framework\App\ResourceConnection')->getConnection('\Magento\Framework\App\ResourceConnection::DEFAULT_CONNECTION'); 
+    $sql = "SELECT * FROM vaibhav_goldrate_goldrate where city ='$post_data'";
+    $result = $connection->fetchAll($sql);
+    //echo $collections->getSelect()->__toString();
+/** Apply filters here */
+foreach ($result as $value) {
+  $twentyTwo =  $value['twentytwo_rate'];
+  $twentyFour = $value['twentyfour_rate'];
+  $date = $value['updated_at'];
+  $updatedAt =  date('d-m-Y',strtotime($date));
+  $place = $value['city'];
+}
+if ($result) {
+?>
+<div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5>Gold Rate in <span class="place"></span> | 22K</h5>
+                  <p style="font-size: 12px;">Latest Update on <span class="currentDate"></span></p>
+                  <table class="table table-reponsive table-striped">
+                    <tr>
+                        <td>1 Gram</td>
+                        <td class="oneGramPrice22k"></td>
+                    </tr>
+                    <tr>
+                        <td>8 Gram</td>
+                        <td class="eightGramPrice22K"></td>
+                    </tr>
+                    <tr>
+                        <td>10 Gram</td>
+                        <td class="tenGramPrice22K"></td>
+                    </tr>
+                    <tr>
+                        <td>100 Gram</td>
+                        <td class="hundreedGramPrice22K"></td>
+                    </tr>
+                </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-body">
+                <h5>Gold Rate in <span class="place"></span> | 24K</h5>
+                  <p style="font-size: 12px;">Latest Update on <span class="currentDate"></span></p>
+                  <table class="table table-reponsive table-striped">
+                      <tr>
+                          <td>1 Gram</td>
+                          <td class="oneGramPrice24k"></td>
+                      </tr>
+                      <tr>
+                          <td>8 Gram</td>
+                          <td class="eightGramPrice24K"></td>
+                      </tr>
+                      <tr>
+                          <td>10 Gram</td>
+                          <td class="tenGramPrice24K"></td>
+                      </tr>
+                      <tr>
+                          <td>100 Gram</td>
+                          <td class="hundreedGramPrice24K"></td>
+                      </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+       </div>
+<?php
+  }
+?>
+<script type="text/javascript">
+  require([ 'jquery', 'jquery/ui'], function($){ 
+  var updatedAt = '<?php echo $updatedAt;?>';
+  var place = '<?php echo $place;?>';
+
+  var twentyTwo = <?php echo  $twentyTwo ;?>;
+  
+  var twentyFour = <?php echo $twentyFour;?>;
+
+  var twentyTwo8 = <?php echo $twentyTwo * 8;?>;
+  var twentyTwo10 = <?php echo $twentyTwo * 10;?>;
+  var twentyTwo100 = <?php echo $twentyTwo *100;?>;
+
+  var twentyFour8 = <?php echo $twentyFour * 8;?>;
+  var twentyFour10 = <?php echo $twentyFour * 10;?>;
+  var twentyFour100 = <?php echo $twentyFour * 100;?>;
+
+  $('.oneGramPrice24k').text('₹'+ twentyFour);
+  $('.eightGramPrice24K').text('₹'+twentyFour8);
+  $('.tenGramPrice24K').text('₹'+twentyFour10);
+  $('.hundreedGramPrice24K').text('₹'+twentyFour100);
+
+  $('.oneGramPrice22k').text('₹'+twentyTwo);
+  $('.eightGramPrice22K').text('₹'+twentyTwo8);
+  $('.tenGramPrice22K').text('₹'+twentyTwo10);
+  $('.hundreedGramPrice22K').text('₹'+twentyTwo100);
+
+  $('.place').text(place);
+  $('.currentDate').text(updatedAt);
+  $('.todayGoldPrice').text('₹'+twentyTwo);
+  });
+</script>

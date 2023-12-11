@@ -1,0 +1,54 @@
+<div id="ln_slider_container" class="ln_slider_container row">
+<div class="col-md-3" id="def">DEF</div>
+<div class="col-md-3" id="ghi">GHI</div>
+<div class="col-md-3" id="klm">KLM</div>
+<div class="col-md-3" id="nz">N-Z</div>
+<div id="ln_slider_text"></div>
+</div>
+<script type="text/javascript">
+require(['jquery'],function($){
+  $(document).ready(function () {
+  	//alert("Welcome! Vaibhav Jewellers");
+    $('#def').click(function(){
+    	//alert("click success");
+    	$("#defclr").show();
+    	$("#ghiclr").hide();
+    	$("#klmclr").hide();
+    	$("#nzclr").hide();
+    	//$("#defa").animate({float: "300px"});
+
+
+     
+    });
+     $('#ghi').click(function(){
+    	//alert("click success");
+    	$("#defclr").hide();
+    	$("#ghiclr").show();
+    	$("#klmclr").hide();
+    	$("#nzclr").hide();
+    	$("#defa").insertBefore("#ghia");
+    	
+    });
+       $('#klm').click(function(){
+    	//alert("click success");
+    	$("#defclr").hide();
+    	$("#ghiclr").hide();
+    	$("#klmclr").show();
+    	$("#nzclr").hide();
+
+  
+     
+    });
+         $('#nz').click(function(){
+    	alert("click success");
+    	$("#defclr").hide();
+    	$("#ghiclr").hide();
+    	$("#klmclr").hide();
+    	$("#nzclr").show();
+    	//$("#defa").appendTo("#nza");
+    	
+     
+    });
+    }); 
+});
+</script>

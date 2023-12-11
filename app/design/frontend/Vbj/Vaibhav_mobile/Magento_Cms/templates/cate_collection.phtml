@@ -1,0 +1,56 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$basemediaurl = $objectManager->get('Magento\Store\Model\StoreManagerInterface')
+                    ->getStore()
+                    ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$imgix_url= $basemediaurl;//'https://cdn-media.vaibhavjewellers.com/pub/media/';                   
+?>
+<?php 
+   $_objectManager = \Magento\Framework\App\ObjectManager::getInstance(); //instance of\Magento\Framework\App\ObjectManager
+   $storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+   $currentStore = $storeManager->getStore();
+   $baseUrl = $currentStore->getBaseUrl();
+   $mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+   $linkUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_LINK);
+   
+?>
+<div class="container-fluid section-5">
+    <div class="d-flex flex-wrap">
+        <div class="w-50 p-1 img-container">
+            <a href="<?php echo $linkUrl;?>floral-collection.html">
+                <img class="w-100" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/floral-block-1.jpg" alt="vaibhav-freedom-sale" width="160" height="160">
+            </a>
+        </div>
+        <div class="w-50 p-1 img-container">
+            <a href="<?php echo $linkUrl;?>butterfly-collection.html">              
+                <img class="w-100" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/PriceFrom-Block-1.jpg" alt="floral collection" width="160" height="160">
+            </a>
+        </div>
+        <div class="w-50 p-1 img-container">
+            <a href="<?php echo $linkUrl;?>diamond-jewellery/women/earrings.html?product_list_order=latest">               
+                <img class="w-100" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/pr_myra_diamond_earrings.jpg" alt="butterfly collection" width="160" height="160">
+            </a>
+        </div>
+        <div class="w-50 p-1 img-container">
+            <a href="<?php echo $linkUrl;?>gold-jewellery/kids/bracelets.html?product_list_order=latest">                
+                <img class="w-100" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/pr_tara_butterfly_bracelets.jpg" alt="price-starts-from" width="160" height="160">
+            </a>
+        </div>
+        <div class="w-100 p-1 img-container">
+            <a href="<?php echo $linkUrl;?>personalize-your-jewellery">              
+                <img class="w-100" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/pr_finger_print_vaibhav.jpg" alt="Diamond rings" width="160" height="160">
+            </a>
+        </div>
+        <!--
+        <div class="w-50 p-1 img-container">
+            <a href="<?php echo $linkUrl;?>personalize-your-jewellery">
+                <img class="w-100" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/drawing-jewelery-vbj.jpg" alt="Personalzed your jewellery" width="160" height="160">
+            </a>
+        </div> -->
+        <div class="w-100 p-1 img-container">
+            <a href="<?php echo $linkUrl;?>video-shopping-page/">               
+                <img src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/pr_live_video_shopping.jpg" class="w-100" alt="Live Video Shopping" width="325" height="325">
+            </a>
+        </div>
+    </div>
+</div>

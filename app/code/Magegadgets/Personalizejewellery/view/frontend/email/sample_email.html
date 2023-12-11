@@ -1,0 +1,32 @@
+{{template config_path="design/email/header_template"}}
+
+<table class="message-details">
+    <tr>
+        <td><b>{{trans "Product Name"}}</b></td>
+        <td>{{var data.productname}}</td>
+    </tr>
+   <tr>
+        <td><b>{{trans "Product Name"}}</b></td>
+        <td>{{var data.productcode}}</td>
+    </tr>
+   <tr>
+        <td><b>{{trans "Product Url"}}</b></td>
+        <td>{{var data.producturl}}</td>
+    </tr>
+    <tr>
+        <td><b>{{trans "Name"}}</b></td>
+        <td>{{var data.fname}}</td>
+    </tr>
+    <tr>
+        <td><b>{{trans "Email"}}</b></td>
+        <td>{{var data.email}}</td>
+    </tr>
+    <tr>
+        <td><b>{{trans "Phone"}}</b></td>
+        <td>{{var data.contact}}</td>
+    </tr>
+</table>
+<p><b>{{trans "Message"}}</b></p>
+<p>{{var data.details}}</p>
+
+{{template config_path="design/email/footer_template"}}

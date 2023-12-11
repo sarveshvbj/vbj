@@ -1,0 +1,313 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php
+$required = '';
+if ($block->hasRequiredOptions()) {
+    $required = ' data-hasrequired="' . __('* Required Fields') . '"';
+}
+?>
+
+<style type="text/css">
+
+	.accordion .card-header:after {
+    font-family: 'FontAwesome';  
+    content: "\f068";
+    float: right; 
+}
+.accordion {
+    padding-bottom: 10px;
+    margin-top: 10px;
+}
+.accordion .card-header.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "\f067"; 
+}
+.accordion>.card {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1) !important;
+}
+.card {
+    border: none;
+}
+.accordion>.card .card-header {
+    margin-bottom: 0px;
+    background-color: #f5f6fa;
+    border-bottom: 0;
+}
+#check_delivery_view #checkDelivery-form {
+    padding: 15px 0px 10px 15px;
+}
+#check_delivery_view .pincode-check #delivery_postcode-error {
+    position: absolute;
+}
+#check_delivery_view .message.success {
+    margin-top: 10px;
+    margin-left:0px;
+}
+#check_delivery_view #international-button {
+    padding: 0px 0px 10px 15px;
+}
+ .custom_product.product-options-wrapper .fieldset {
+        display: flex;
+        flex-flow: wrap;
+    }
+    .custom_product .field.configurable {
+        flex: 0 0 25%;
+    }
+    .custom_product .field.custom-options.purity, .custom_product .field.custom-options.ring-sizes  {
+    flex: 0 0 50%;
+    }
+    .custom_product .field.custom-options.diamond-quality {
+        flex: 0 0 75%;
+    }
+    .custom_product .field.custom-options .options-list {
+        display: flex;
+    }
+    .custom_product .options-list .field.choice {
+        margin-bottom: 0px !important;
+    }
+    .custom_product .swatch-attribute-label{
+        display: block;
+        color: #000;
+        font: 500 14px/1.55 avenir;
+        margin: 0 0 3px !important;
+    }
+    .custom_product .swatch-option.selected {
+        outline: none;
+        border: 1.5px solid #6e2083;
+    }
+    .custom_product .swatch-option {
+        max-width: 30px;
+    min-width: 30px;
+    height: 30px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+    border-radius: 25px;
+    }
+    .custom_product .swatch-option.image:not(.disabled):hover, .custom_product .swatch-option.color:not(.disabled):hover {
+    outline: none;
+    border: 1.5px solid #6e2083;
+}
+
+.custom_product select.product-custom-option {
+    border:0px;
+    border-color: unset;
+    background-color: #f5f6fa !important;
+    outline: 0px;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1) !important;
+
+}
+
+    .options-list {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  margin-bottom: 1.5em;
+}
+
+.options-list input[type="checkbox"],
+.options-list input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+.field.choice {
+  display: flex;
+  z-index: 0;
+}
+
+.options-list label {
+  position: relative;
+  margin-right: 1em;
+  font-size: 14px;
+  padding-left: 1.5em;
+  padding-right: 0.5em;
+  line-height: 2;
+  cursor: pointer;
+
+}
+.options-list label:before {
+  box-sizing: border-box;
+  content: " ";
+  position: absolute;
+  top: 0.3em;
+  left: 0;
+  display: block;
+  width: 1.2em;
+  height: 1.2em;
+  border: 2px solid #8e44ad;
+  border-radius: .25em;
+  z-index: -1;
+}
+
+.options-list input[type="radio"] + label::before {
+  border-radius: 1em;
+}
+
+/* Checked */
+.options-list input[type="radio"]:checked + label {
+  padding-left: 1em;
+  padding-right: 1em;
+  color: #fff;
+}
+.options-list input[type="checkbox"]:checked + label:before,
+.options-list input[type="radio"]:checked + label:before {
+  top: 0;
+  width: 100%;
+  height: 1.8em;
+  background: #8e44ad;
+}
+
+/* Transition */
+.options-list label,
+.options-list label::before {
+  -webkit-transition: .25s all ease;
+  transition: .25s all ease;
+}
+
+#snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: #850505;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  right: 0;
+  bottom: 30px;
+  font-size: 17px;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+.add-to-cart {
+  width: 200px;
+}
+.disabled-loader {
+  pointer-events: none;
+}
+.disabled-loader .add-to-cart-text {
+  display: none;
+}
+.lds-ellipsis {
+  display: none;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 0;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #fff;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+.disabled-loader .lds-ellipsis {
+  display: inline-block;
+}
+
+</style>
+<?php
+	$product = $block->getProduct();
+	$productType = $product->getTypeId();
+	$purity_attr= \Retailinsights\ConfigProducts\Helper\Data::PURITY_ATTR;
+	$default_purity = $product->getResource()->getAttribute($purity_attr)->getFrontend()->getValue($product);
+	$attribute_set_id = $product->getAttributeSetId();
+
+if($productType == 'configurable' && $attribute_set_id != 11 ) {	
+ ?>
+
+    <div id="accordion" class="accordion">
+        <div class="card mb-0">
+            <div class="card-header collapsed" id="customize_product" data-toggle="collapse" href="#collapseOne">
+                <a class="card-title">
+                    Customize This Product 
+                </a>
+            </div>
+            <div id="collapseOne" style="padding: 0;" class="card-body collapse" data-parent="#accordion" >
+               <div class="custom_product product-options-wrapper" style="padding: 1.25rem;" id="product-options-wrapper"<?= /* @escapeNotVerified */ $required ?>>
+    <div class="fieldset" tabindex="0">
+        <?= $block->getChildHtml('', true) ?>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+    <div id="snackbar">The product does not exist or was not provided</div>
+<?php  } else { ?>
+ <div class="product-options-wrapper" id="product-options-wrapper"<?= /* @escapeNotVerified */ $required ?>>
+    <div class="fieldset" tabindex="0">
+        <?= $block->getChildHtml('', true) ?>
+    </div>
+</div>
+<?php } ?>

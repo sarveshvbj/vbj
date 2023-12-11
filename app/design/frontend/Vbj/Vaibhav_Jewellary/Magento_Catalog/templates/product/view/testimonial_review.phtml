@@ -1,0 +1,31 @@
+	<!-- Nav tabs -->
+	<script type="text/javascript">
+		require([
+    'jquery',
+    'mage/mage'
+], function($){
+$(document).ready(function(){
+	$(document).on("click", ".askques", function(){
+    $("#askform").trigger("click");
+});
+
+	$(document).on("click", ".removeadd", function(){
+    $("#reviwform").trigger("click");
+});
+});
+
+});
+	</script>
+	<?php echo $this->getChildHtml('product_page_testimonial'); ?>
+	<div class="col review-faq" id="askquestion" style="content-visibility: auto; contain-intrinsic-size: 600px; ">
+				<div class="head2 text-uppercase text-violet">write review</div>
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs text-center border-0">
+				  <li class="nav-item col p-0 m-0">
+				    <a class="nav-link border-0 active" id="reviwform" data-toggle="tab" href="#review">Write a review</a>
+				  </li>
+				  <li class="nav-item col p-0 m-0">
+				    <a class="nav-link border-0" id="askform" data-toggle="tab" href="#faq">Ask a question?</a>
+				  </li>
+				</ul>
+

@@ -1,0 +1,85 @@
+<!-- <div class="container-fluid banner-images">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card_header-card">
+                <div class="card-body">
+                    <div class="message"></div>
+                    <h5 class="card-title bannercard">Subscribe Now!</h5>
+                    <p>For Our Daily Gold Rate Updates.</p>
+                    <form method="POST" action="">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="customerName" id="exampleName"
+                                aria-describedby="emailHelp" placeholder="Enter Customer Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" name="email" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" placeholder="Enter Customer email">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="area" id="exampleInputArea"
+                                aria-describedby="emailHelp" placeholder="Enter Customer Area">
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" class="form-control mobile" name="mobilenumber" id="exampleInputMobile"
+                                aria-describedby="emailHelp" placeholder="Enter Customer Mobile number">
+                        </div>
+                        <button type="submit" name="submit" class="btn btn-primary submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<?php
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $storeManager = $objectManager->create('\Magento\Store\Model\StoreManagerInterface');
+    $baseUrl  = $storeManager->getStore()->getBaseUrl();
+?>
+<div class="container-fluid banner-images">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card_header-card">
+                <div class="card-body required">
+                    <div class="message"></div>
+                    <h5 class="card-title bannercard">Subscribe Now!</h5>
+                    <p>For Our Daily Gold Rate Updates.</p>
+                    <form id="gold-form" method="POST" action="<?php /* @escapeNotVerified */ echo $baseUrl . 'vaibhav_goldrate/index/goldrateform' ?>" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>" data-mage-init='{"validation":{}}'>
+                        <div class="form-group required">
+                            <input type="text" class="form-control" name="customerName" id="exampleName" aria-describedby="emailHelp" placeholder="Enter Customer Name" data-validate="{required:true, 'validate-text':true}">
+                        </div>
+                        <div class="form-group required">
+                            <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Customer email" data-validate="{required:true, 'validate-email':true}">
+                        </div>
+                        <div class="form-group required">
+                            <input type="text" class="form-control" name="area" id="exampleInputArea" aria-describedby="emailHelp" placeholder="Enter Customer Area" data-validate="{required:true, 'validate-text':true}">
+                        </div>
+                        <div class="form-group required">
+                            <input type="tel" class="form-control mobile" name="mobilenumber" id="exampleInputMobile" aria-describedby="emailHelp" placeholder="Enter Customer Mobile number" data-validate="{required:true}">
+                        </div>
+                        <span id="errmsg"></span>
+                     <button type="submit" name="submit" class="btn btn-primary submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+require([
+    'jquery',
+    'mage/mage'
+], function($){
+   var dataForm = $('#gold-form');
+   dataForm.mage('validation', {});
+
+   $("#exampleInputMobile").keypress(function (e) {
+     //if the letter is not digit then display error and don't type anything
+     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        //display error message
+        $("#errmsg").html("Please enter Digits Only").show().fadeOut("slow");
+               return false;
+    }
+   });
+ 
+});
+</script>

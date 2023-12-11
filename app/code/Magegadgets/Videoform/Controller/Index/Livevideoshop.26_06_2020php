@@ -1,0 +1,124 @@
+<?php
+
+namespace Magegadgets\Videoform\Controller\Index;
+
+use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\App\Filesystem\DirectoryList;
+use Zend\Log\Filter\Timestamp;
+ob_start();
+
+class Livevideoshop extends \Magento\Framework\App\Action\Action
+{
+	const XML_PATH_EMAIL_RECIPIENT_NAME = 'trans_email/ident_support/name';
+    const XML_PATH_EMAIL_RECIPIENT_EMAIL = 'trans_email/ident_support/email';
+     
+    protected $_inlineTranslation;
+    protected $_transportBuilder;
+    protected $_scopeConfig;
+    protected $_logLoggerInterface;
+    protected $_helper;
+    //protected $url;
+     
+    public function __construct(
+        \Magento\Framework\App\Action\Context $context,
+        \Magento\Framework\Translate\Inline\StateInterface $inlineTranslation,
+        \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder,
+        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
+        \Psr\Log\LoggerInterface $loggerInterface,
+        \Iksula\Complaint\Helper\Data $_helper,
+        //\Magento\Framework\UrlInterface $url,
+        array $data = []
+         
+        )
+    {
+        $this->_inlineTranslation = $inlineTranslation;
+        $this->_transportBuilder = $transportBuilder;
+        $this->_scopeConfig = $scopeConfig;
+        $this->_logLoggerInterface = $loggerInterface;
+        $this->messageManager = $context->getMessageManager();
+        $this->_helper=$_helper;
+        //$this->url = $url;
+         
+         
+        parent::__construct($context);
+         
+          
+    }
+	public function execute()
+    {
+		$data = $this->getRequest()->getPostValue();
+        $post = $this->getRequest()->getPostValue();
+
+        $formtype= $data['type'];
+         if($formtype=='product') {
+            $form_remarks= $data['remarks'];
+            $form_product= $data['product'];
+        } else {
+        $form_remarks='';
+        $form_product ='';
+        }
+
+        $hrs = $data['hrs'];
+        $min = $data['min'];
+        $meri = $data['meri'];
+        $time = $hrs.':'.$min.':'.$meri;
+        $datavalue['type'] = $data['type'];
+        $datavalue['name'] = $data['fullname'];
+        $datavalue['mobile'] = $data['mobile'];
+        $datavalue['email'] = $data['email'];
+        $datavalue['language'] = $data['language'];
+        $datavalue['takedate'] = $data['takedate'];
+        $datavalue['remarks'] = $form_remarks;
+        $datavalue['product'] = $form_product;
+        $datavalue['time'] = $time;
+        $email = $data['email'];
+        $name = $data['fullname'];
+        $mobile = $data['mobile'];
+        $language = $data['language'];
+        $date = $data['takedate'];
+        $remarks = $form_remarks;
+        $product = $form_product;
+		if ($data) {
+			$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+			$model = $objectManager->create('Magegadgets\Videoform\Model\Videoform');
+			$model->setData($datavalue);
+			try {
+				$model->save();
+				} catch (\Magento\Framework\Exception\LocalizedException $e) {
+                    echo $e->getMessage();
+				} catch (\RuntimeException $e) {
+					echo $e->getMessage();
+				} catch (\Exception $e) {
+                    echo 'Something went wrong while saving the Purposedata.';
+                }
+		try
+        {
+             /* for sms template*/
+           $name = $data['fullname'];
+		   $type = 'Video Shopping';
+		   $language = $data['language'];
+		   $email = $data['email'];
+		   $mobile = $data['mobile'];
+		   $time = $data['takedate'];
+            $message = "Mr. {{*name*}} has requested for {{*type*}} {{*product*}} and for {{*language*}} language at {{*time*}} to contact this customer please call on {{*mobile*}} or send an email on {{*email*}}.";
+           $template = str_replace("{{*name*}}", $name, $message);
+           $template = str_replace("{{*language*}}", $language, $template); 
+           $template = str_replace("{{*type*}}", $type, $template);
+           $template = str_replace("{{*mobile*}}", $mobile, $template);
+           $template = str_replace("{{*email*}}", $email, $template);
+           $template = str_replace("{{*time*}}", $time, $template); 
+           $template = str_replace("{{*product*}}", $product, $template);
+		   $telephone = '9177403012';
+		   $this->_helper->send_sms($telephone,$template);
+            echo "success"; 
+        } catch(\Exception $e){
+			echo $e->getMessage();
+        }
+			
+		}else{
+				
+			echo "Please fill all fields";
+		}
+	}
+	
+}

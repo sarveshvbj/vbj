@@ -1,0 +1,92 @@
+{
+    "name": "magento/project-community-edition",
+    "description": "eCommerce Platform for Growth (Community Edition)",
+    "type": "project",
+    "version": "2.2.2",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "require": {
+        "magento/product-community-edition": "2.4.4",
+        "magento/composer-dependency-version-audit-plugin": "~0.1",
+        "magento/composer-root-update-plugin": "~2.0",
+        "composer/composer": "@alpha",
+        "harriswebworks/module-productslider": "^1.0",
+        "meetanshi/magento-2-smtp": "^1.0",
+        "magento/quality-patches": "^1.1",
+        "jajuma/module-webpimages": "^2.1",
+        "amasty/module-page-speed-optimizer-subscription-package-pro": "^3.1",
+        "miniorange_inc/google-one-tap-login": "^1.0"
+    },
+    "require-dev": {
+        "allure-framework/allure-phpunit": "~1.5.0",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+        "friendsofphp/php-cs-fixer": "~3.3.0",
+        "lusitanian/oauth": "~0.8.10",
+        "magento/magento-coding-standard": "*",
+        "magento/magento2-functional-testing-framework": "^3.7",
+        "pdepend/pdepend": "~2.10.0",
+        "phpmd/phpmd": "^2.9.1",
+        "phpstan/phpstan": "~1.2.0",
+        "phpunit/phpunit": "~9.5.0",
+        "sebastian/phpcpd": "^6.0.3",
+        "squizlabs/php_codesniffer": "~3.6.0",
+        "symfony/finder": "^5.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Magento\\Framework\\": "lib/internal/Magento/Framework/",
+            "Magento\\Setup\\": "setup/src/Magento/Setup/",
+            "Magento\\": "app/code/Magento/"
+        },
+        "psr-0": {
+            "": [
+                "app/code/"
+            ]
+        },
+        "files": [
+            "app/etc/NonComposerComponentRegistration.php"
+        ],
+        "exclude-from-classmap": [
+            "**/dev/**",
+            "**/update/**",
+            "**/Test/**"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Magento\\Sniffs\\": "dev/tests/static/framework/Magento/Sniffs/",
+            "Magento\\Tools\\": "dev/tools/Magento/Tools/",
+            "Magento\\Tools\\Sanity\\": "dev/build/publication/sanity/Magento/Tools/Sanity/",
+            "Magento\\TestFramework\\Inspection\\": "dev/tests/static/framework/Magento/TestFramework/Inspection/",
+            "Magento\\TestFramework\\Utility\\": "dev/tests/static/framework/Magento/TestFramework/Utility/",
+            "Zend\\Mvc\\Controller\\": "setup/src/Zend/Mvc/Controller/"
+        }
+    },
+    "minimum-stability": "stable",
+    "repositories": {
+        "amasty": {
+            "type": "composer",
+            "url": "https://composer.amasty.com/community/"
+        },
+        "0": {
+            "type": "composer",
+            "url": "https://repo.magento.com/",
+            "canonical": false
+        }
+    },
+    "extra": {
+        "magento-force": "override"
+    },
+    "config": {
+        "allow-plugins": {
+            "magento/magento-composer-installer": false,
+            "magento/inventory-composer-installer": false,
+            "laminas/laminas-dependency-plugin": false,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "magento/composer-dependency-version-audit-plugin": true,
+            "magento/composer-root-update-plugin": true
+        }
+    }
+}

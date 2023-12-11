@@ -1,0 +1,61 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$basemediaurl = $objectManager->get('Magento\Store\Model\StoreManagerInterface')
+                    ->getStore()
+                    ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$imgix_url= $basemediaurl;//'https://mage23vaibhavjewellers.breezesites.io/pub/media/'; 
+ ?>
+<?php 
+$_objectManager = \Magento\Framework\App\ObjectManager::getInstance(); //instance of\Magento\Framework\App\ObjectManager
+$storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+$currentStore = $storeManager->getStore();
+$baseUrl = $currentStore->getBaseUrl();
+$mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$linkUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_LINK);
+?>
+<div class="mobile-section d-sm-none d-block ms-t">
+    <div class="px-2 section-1">
+        <div class="align-baseline d-flex scroll">
+            <div class="d-flex flex-column inner-tile m-2 py-1 text-center img-container">
+                <img src="<?php echo $mediaUrl;?>Home Page (61).jpg" class="mst" alt="" width="" height="">
+                <span class="inner-tile-title">Ring</span>
+            </div>
+            <div class="d-flex flex-column inner-tile m-2 py-1 text-center img-container">
+                <img src="<?php echo $mediaUrl;?>Home Page (63).jpg" class="mst" alt="" width="" height="">
+                <span class="inner-tile-title">Ring</span>
+            </div>
+            <div class="d-flex flex-column inner-tile m-2 py-1 text-center img-container">
+                <img src="<?php echo $mediaUrl;?>Home Page (64).jpg" class="mst" alt="" width="" height="">
+                <span class="inner-tile-title">Ring</span>
+            </div>
+            <div class="d-flex flex-column inner-tile m-2 py-1 text-center img-container">
+                <img src="<?php echo $mediaUrl;?>Home Page (65).jpg" class="mst" alt="" width="" height="">
+                <span class="inner-tile-title">Ring</span>
+            </div>
+            <div class="d-flex flex-column inner-tile m-2 py-1 text-center img-container">
+                <img src="<?php echo $mediaUrl;?>Home Page (66).jpg" class="mst" alt="" width="" height="">
+                <span class="inner-tile-title">Ring</span>
+            </div>
+            <div class="d-flex flex-column inner-tile m-2 py-1 text-center img-container">
+                <img src="<?php echo $mediaUrl;?>Home Page (67).jpg" class="mst" alt="" width="" height="">
+                <span class="inner-tile-title">Ring</span>
+            </div>
+            <div class="d-flex flex-column inner-tile m-2 py-1 text-center img-container">
+                <img src="<?php echo $mediaUrl;?>Home Page (68).jpg" class="mst" alt="" width="" height="">
+                <span class="inner-tile-title">Ring</span>
+            </div>
+            <div class="d-flex flex-column inner-tile m-2 py-1 text-center img-container">
+                <img src="<?php echo $mediaUrl;?>Home Page (69).jpg" class="mst" alt="" width="" height="">
+                <span class="inner-tile-title">Ring</span>
+            </div>
+            <div class="d-flex flex-column inner-tile m-2 py-1 text-center img-container">
+                <img src="<?php echo $mediaUrl;?>Home Page (70).jpg" class="mst" alt="" width="" height="">
+                <span class="inner-tile-title">Ring</span>
+            </div>
+            <div class="d-flex flex-column inner-tile m-2 py-1 text-center img-container">
+                <img src="<?php echo $mediaUrl;?>Home Page (71).jpg" class="mst" alt="" width="" height="">
+                <span class="inner-tile-title">Ring</span>
+            </div>
+        </div>
+
+    </div>

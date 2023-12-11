@@ -1,0 +1,32 @@
+
+.replacebreadcrumbs {
+    font-size: 13px;
+    padding-left: 15px;
+}
+span.breadcrumbsseparator {
+    margin: 0px 6px;
+    vertical-align: middle;
+    font-family: FontAwesome;
+    color: #858585;
+    font-size: 13px;
+    font-weight: 400;
+    text-align: left;
+    padding-top: 3px;
+}
+.breadcrumbsseparator:before {
+    content: "\f0da";
+}
+
+@media screen and (max-width: 767px) {
+  .replacebreadcrumbs {
+    font-size: 8px;
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis!important;
+    width: 100% !important;
+    overflow: hidden !important;
+  }
+  span.breadcrumbsseparator {
+    font-size: 8px;
+  }
+}

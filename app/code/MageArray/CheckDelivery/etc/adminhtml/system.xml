@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Config/etc/system_file.xsd">
+    <system>
+		<section id="checkDelivery" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Check Delivery</label>
+            <tab>magegadgets</tab>
+            <resource>MageArray_CheckDelivery::checkdelivery_config</resource>
+            <group id="config" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Check delivery postcode</label>
+                <field id="postcodes" translate="label" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Postcodes</label>
+					<comment>Comma-separated</comment>
+                </field>
+				<field id="success_message" translate="label" type="text" sortOrder="21" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Success message</label>
+                </field>
+				<field id="error_message" translate="label" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Error message</label>
+                </field>
+            </group>
+        </section>
+ 
+    </system>
+</config>

@@ -1,0 +1,53 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Product list toolbar
+ *
+ * @var $block \Magento\Catalog\Block\Product\ProductList\Toolbar
+ */
+use Magento\Catalog\Model\Product\ProductList\Toolbar;
+?>
+<!-- mobile html sorting code  start-->
+
+       <!-- <div class="show_fli">
+            <span class="close_fli">&times;</span>
+           <h3 class="sorthead">Sort BY</h3>
+           <span class="details_pop">Popularity</span>
+            <span class="details_pop">Discount</span>
+
+           <span class="details_pop">Price low to high</span>
+
+           <span class="details_pop">Price high to low</span>
+
+       </div> -->
+
+<!-- mobile html sorting code  end-->
+<!-- <div class="show_fli"> -->
+    
+    <div class="sorting show_fli toolbar-sorter" style="align-items: center;">
+        <span class="close_fli">&times;</span>
+        <?php $removeoptions=array('metal','purity','occassion','occasion','offer_percentage','emi_controller','brands_name','men_weight','Women Weight'); ?>
+        <h3 class="sorthead"><?= /* @escapeNotVerified */ __('Sort BY') ?></h3>
+            <?php foreach ($block->getAvailableOrders() as $_key => $_order): ?>
+                <?php if(!in_array($_key, $removeoptions)): ?>
+                <span data-role="sorter"  data-value="<?= /* @escapeNotVerified */ $_key ?>"
+                    <?php if ($block->isOrderCurrent($_key)): ?>
+                        class="sort-items active"
+                        <?php else: ?>
+                             class="sort-items details_pop"
+                    <?php endif; ?>
+                    >
+                    <?= $block->escapeHtml(__($_order)) ?>
+                </span>
+                 <?php endif; ?>
+            <?php endforeach; ?>
+    </div>
+<!-- </div> -->

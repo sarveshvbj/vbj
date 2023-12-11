@@ -1,0 +1,24 @@
+<!--@subject Price Notifications @-->
+ 
+{{template config_path="design/email/header_template"}}
+
+Dear {{trans "%customer_name" customer_name=$data.customer_name}},
+<table>
+		<tr class="email-intro">
+			<td>
+			<b>Product SKU:</b> {{trans "%product_sku" product_sku=$data.product_sku}}
+			</td>
+		</tr>
+		<tr class="email-intro">
+			<td>
+			<b>Product Name:</b> {{trans "%product_name" product_name=$data.product_name}}
+			</td>
+		</tr>
+		<tr class="email-intro">
+			<td>
+			<b>Product Price:</b> {{trans "%product_price" product_price=$data.product_price}}
+			</td>
+		</tr>
+ </table>
+ 
+{{template config_path="design/email/footer_template"}}

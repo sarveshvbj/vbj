@@ -1,0 +1,705 @@
+<?php 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$attributeCode = 'style';
+$entityType = 'catalog_product';
+$attributeInfo = $objectManager->get(\Magento\Eav\Model\Entity\Attribute::class)
+                               ->loadByCode($entityType, $attributeCode);
+$attributeId = $attributeInfo->getAttributeId();
+$attributeOptionAll = $objectManager->get(\Magento\Eav\Model\ResourceModel\Entity\Attribute\Option\Collection::class)
+                                    ->setPositionOrder('asc')
+                                    ->setAttributeFilter($attributeId) 
+                                    ->setStoreFilter()
+                                    ->load();
+$styles = $attributeOptionAll->getData();
+?>
+<style type="text/css">
+    /* COLORS
+========================================== */
+/* MIXINS
+========================================== */
+/* KEYFRAMES
+========================================== */
+@-webkit-keyframes float {
+  0% {
+    transform: translatey(0px);
+    transform: translatex(0px);
+  }
+  50% {
+    transform: translatey(-30px);
+    transform: translatex(20px);
+  }
+  100% {
+    transform: translatey(0px);
+    transform: translatex(0px);
+  }
+}
+@-moz-keyframes float {
+  0% {
+    transform: translatey(0px);
+    transform: translatex(0px);
+  }
+  50% {
+    transform: translatey(-30px);
+    transform: translatex(20px);
+  }
+  100% {
+    transform: translatey(0px);
+    transform: translatex(0px);
+  }
+}
+@-o-keyframes float {
+  0% {
+    transform: translatey(0px);
+    transform: translatex(0px);
+  }
+  50% {
+    transform: translatey(-30px);
+    transform: translatex(20px);
+  }
+  100% {
+    transform: translatey(0px);
+    transform: translatex(0px);
+  }
+}
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+    transform: translatex(0px);
+  }
+  50% {
+    transform: translatey(-30px);
+    transform: translatex(20px);
+  }
+  100% {
+    transform: translatey(0px);
+    transform: translatex(0px);
+  }
+}
+/* RESET
+========================================== */
+
+
+/* BUTTON
+========================================== */
+
+/* POP-UP
+========================================== */
+.pop-up {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 999 !important;
+  -webkit-transform: translate(-50%, -50%) scale(0.9);
+  -moz-transform: translate(-50%, -50%) scale(0.9);
+  -ms-transform: translate(-50%, -50%) scale(0.9);
+  -o-transform: translate(-50%, -50%) scale(0.9);
+  transform: translate(-50%, -50%) scale(0.9);
+  overflow-y: auto;
+  box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.4);
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+  z-index: 10;
+  background-color: #ffffff;
+  width: 100%;
+  height: 100%;
+}
+@media (min-width: 768px) {
+  .pop-up {
+    width: calc(100% - 40px);
+    height: auto;
+    z-index: 999;
+    max-width: 900px;
+  }
+}
+.pop-up .content {
+  width: 100%;
+  max-width: 900px;
+  padding-top: 0;
+  overflow: hidden;
+  text-align: center;
+  position: relative;
+  min-height: 100vh;
+}
+@media (min-width: 768px) {
+  .pop-up .content {
+    min-height: inherit;
+  }
+}
+.pop-up .content .container {
+  padding: 100px 20px 140px;
+}
+@media (min-width: 568px) {
+  .pop-up .content .container {
+    padding: 50px 20px 80px;
+  }
+}
+@media (min-width: 768px) {
+  .pop-up .content .container {
+    padding: 70px 0px 90px;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+}
+.pop-up .content .close {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  color: #3e4146;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  transition: all 0.4s;
+}
+.pop-up .content .close:hover {
+  cursor: pointer;
+  color: #f66867;
+}
+.pop-up .content .dots .dot {
+  position: absolute;
+  border-radius: 100%;
+  z-index: 11;
+}
+.pop-up .content .dots .dot:nth-of-type(1) {
+  top: -80px;
+  right: -80px;
+  width: 160px;
+  height: 160px;
+ /*background-color: #689bf6;*/
+   background-color: #b272d3;
+  -webkit-animation: float 6s ease-in-out infinite;
+  -moz-animation: float 6s ease-in-out infinite;
+  -o-animation: float 6s ease-in-out infinite;
+  animation: float 6s ease-in-out infinite;
+}
+@media (min-width: 768px) {
+  .pop-up .content .dots .dot:nth-of-type(1) {
+    top: -190px;
+    right: -190px;
+    width: 380px;
+    height: 380px;
+  }
+}
+.pop-up .content .dots .dot:nth-of-type(2) {
+  bottom: -120px;
+  left: -120px;
+  width: 240px;
+  height: 240px;
+  background-color: #ea7d3d;
+  /*background-color: #ef9c6b; */
+  -webkit-animation: float 8s ease-in-out infinite;
+  -moz-animation: float 8s ease-in-out infinite;
+  -o-animation: float 8s ease-in-out infinite;
+  animation: float 8s ease-in-out infinite;
+}
+.pop-up .content .dots .dot:nth-of-type(3) {
+  bottom: -50px;
+  right: -50px;
+  width: 100px;
+  height: 100px;
+  background-color: #ffd84c;
+  -webkit-animation: float 4s ease-in-out infinite;
+  -moz-animation: float 4s ease-in-out infinite;
+  -o-animation: float 4s ease-in-out infinite;
+  animation: float 4s ease-in-out infinite;
+}
+.pop-up .content .title h1 {
+  text-align: center;
+  color: #f66867;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 2.8rem;
+  letter-spacing: 0.05rem;
+}
+.pop-up .content img {
+  width: 100%;
+  max-width: 220px;
+  display: inline-block;
+  margin: 30px 0 40px 0;
+  opacity: 0;
+  -webkit-transform: translateX(60px);
+  -moz-transform: translateX(60px);
+  -ms-transform: translateX(60px);
+  -o-transform: translateX(60px);
+  transform: translateX(60px);
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
+  -webkit-backface-visibility: hidden;
+}
+@media (min-width: 768px) {
+  .pop-up .content img {
+    max-width: 300px;
+  }
+}
+.pop-up .content .subscribe h1 {
+  font-size: 1.5rem;
+  color: #3e4146;
+  font-weight: 600;
+  line-height: 130%;
+  letter-spacing: 0.07rem;
+  margin-bottom: 30px;
+}
+@media (max-width: 768px) {
+ .pop-up .content .subscribe h1 {
+    font-size: 2rem;
+  }
+}
+.pop-up .content .subscribe h1 span {
+  color: #f66867;
+}
+.pop-up .content .subscribe form {
+  overflow: hidden;
+}
+.pop-up .content .subscribe form input {
+  width: 100%;
+  float: left;
+  line-height: unset;
+  font-size: 0.9rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  height: auto;
+  padding: 15px 20px;
+  text-align: center;
+  font-family: inherit;
+  letter-spacing: 0.05rem;
+  outline: 0;
+}
+.pop-up .content .subscribe form input[type=text] {
+  margin-bottom: 15px;
+  border: 1px solid #bec1c5;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  transition: all 0.4s;
+}
+@media (min-width: 768px) {
+  .pop-up .content .subscribe form input[type=text] {
+    margin-bottom: 0px;
+    width: 75%;
+    border-right-width: 0px;
+  }
+}
+.pop-up .content .subscribe form input[type=text]:focus {
+  border-color: #3e4146;
+}
+.pop-up .content .subscribe form input[type=submit] {
+  background-color: #8e6ac1;
+  color: #ffffff;
+  border: 1px solid #8e6ac1;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  transition: all 0.4s;
+}
+@media (min-width: 768px) {
+  .pop-up .content .subscribe form input[type=submit] {
+    width: 25%;
+  }
+}
+.pop-up .content .subscribe form input[type=submit]:hover {
+  cursor: pointer;
+  background-color: #7349af;
+  border-color: #7349af;
+}
+.pop-up.open {
+  visibility: visible;
+  opacity: 1;
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  -o-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
+}
+</style>
+<div class="pop-up">
+  <div class="content">
+    <div class="container">
+      <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      
+      <span class="close">close</span>
+      <div class="subscribe">
+        <h1>Please Enter Phone number to Go <span>Try-on</span>.</h1>  
+        <form id="mobile-form">
+          <input type="text" id="mobile" maxlength="10" minlength="10" placeholder="Enter Phone number" required>
+          <input type="submit" value="Go">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<span id="OtpBaseUrlemail" class="OtpBaseUrl" style="display: none"><?php echo "https://vaibhavjewellers.com/";//$block->getUploadFormUrl(); ?></span>
+<div class="filter option filter_opt_web" style="background-color: #6e2083;"> <!-- padding-left: 30px; -->
+<div class="category-option">
+    <select name="category" id="category" style="background-color: #fff">
+    <option value="138"> Earrings</option>
+    <option value="20">Harams</option>
+    <option value="126">Necklaces </option>
+    </select>
+  
+</div>
+<div class="style-option">
+    <select name="style" id="style" style="background-color: #fff" disabled>
+    <option value=""> Product Category type</option>
+<?php foreach($styles as $style){?>
+    <option value="<?php echo $style['option_id'];?>"><?php echo $style['value'];     ?></option>
+   <?php }?>
+</select>   
+</div>
+<div class="weight-option" style="display: none"> 
+  <select name="weight" id="weight" style="background-color: palegoldenrod" disabled>
+    <option value=""> Select Weight...</option>
+    <option value="26">0-2 gms</option>
+    <option value="27">2-5 gms</option>
+    <option value="28">5-10 gms</option>
+    <option value="29">10-20 gms</option>
+    <option value="30">20-30 gms</option>
+    <option value="31">30-50 gms</option>
+    <option value="107">50-70 gms</option>
+    <option value="108">70-90 gms</option>
+    <option value="109">Above 90 Grams</option>
+</select>
+</div>
+<div class="try-option">
+<div class="box-tocart addbuybtn deskdiv" id="vt_on__" >
+<div class="rcb" id="vt_on" title="Try On">
+    <a id="tryonButton"  style="width: 80%;border-radius: 30px;background-color: #DCB764;color: black; border: 2px solid #eee8aa;" href="#" class="action primary buynow" >
+        <span class="rcb_btn" style="margin-left: 32px;text-align:center">
+         
+        Let's do Try-On
+        </span>
+    </a>
+</div>
+</div>
+<div class="box-tocart addbuybtn phonediv" id="vt_on__" >
+<div class="rcb" id="vt_on" title="Try On" >
+       <a id="tryonButton"  style="margin: 5px 10px 15px 10px; width: 95%;text-align: center;" href="#" class="action primary buynow">
+        <span class="rcb_btn">
+        Let's do Try-On
+        </span>
+    </a>
+</div>
+</div>
+</div>
+</div>
+<?php
+/*$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+$connection = $resource->getConnection();
+    $camwearaTable = $resource->getTableName('camweara_table');
+    $skuTryon = "SELECT sku FROM camweara_table";
+    $skuTryonresults = $connection->fetchAll($skuTryon);
+    foreach($skuTryonresults as $skuTryonresult){
+        $skus[] = $skuTryonresult['sku'];
+    }
+    $productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\Collection');
+    $collection = $productCollection->addAttributeToSelect('*')
+                ->addFieldToFilter('sku', array('in' => $skus))
+                ;*/
+    $collection = $block->getTestCollection();
+?>
+   <?php if (!count($collection)>0){?>
+    <div class="message info empty"><div><?php /* @escapeNotVerified */ echo __("We can\'t find products matching the selection.") ?></div></div>
+  <?php } else { ?>
+  <!--<div class="message info empty"><div></div></div>--><?php /* @escapeNotVerified */ echo __('We find products matching the selection.') ?>
+  <div class="error-message" style="display:none">Product Not Found ......</div>
+
+  <div class="products wrapper grid products-grid">
+    <div id="em-grid-mode" class="emcatalog-desktop-5">
+  <!-- <div class="toolbar top" style="margin-left: 10px;">
+         <?php echo $block->getPagerHtml(); ?>
+    </div> -->
+    <ol class="products list items product-items vinay" id="myList">
+  <?php 
+    foreach ($collection as $product){ 
+        $i=0;
+    $productUrl =  $product->getProductUrl(); 
+    $productName = $product->getName();
+    $productImage = $product->getSmallImage();
+    $productprice = $product->getPrice();
+    $productId = $product->getId();
+    $product       = $objectManager->get('Magento\Catalog\Model\Product')->load($productId);
+    $store         = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+    $imageUrl      = $store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'catalog/product' . $product->getImage();
+    $mediaUrl      =      $store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+    ?>
+    <li class="item product product-item" id="<?php echo $product->getSku();     ?>">
+        <span id="<?php echo $i++;     ?>"></span>
+    <div class="product-item-info" data-container="product-grid">
+    <input type="hidden" id="style" class="style att" name="styleatt" value="<?php echo $style['option_id'];     ?>" />
+    <input type="hidden" id="weight" name="weightatt" value="" />
+    <input type="hidden" id="categories" name="categories" value="" />
+    <div class="product-shop-top">
+    <a href="#" class="product photo product-item-photo" tabindex="-1">
+    <span class="product-image-container em-alt-hover" style="width:280px;">
+    <span class="product-image-wrapper" style="padding-bottom: 100%;">
+    <img class="product-image-photo" src="<?php echo $imageUrl;?>" width="280" height="280" alt="<?php echo $productName;?>"></span>
+    </span>
+    <span class="product-image-container em-alt-org" style="width:280px;">
+   <a href="<?php echo $productUrl;?>"> <span class="product-image-wrapper" style="padding-bottom: 100%;">
+    <img class="product-image-photo" src="<?php echo $imageUrl;?>" width="280" height="280" alt="<?php echo $productName;?>"></span></a>
+    </span>
+    </a>
+    <div class="em-element-display-hover bottom">
+    </div>
+    </div>
+<div class="product details product-item-details" style="min-height: 102px;">
+<strong class="product name product-item-name">
+    <a class="product-item-link" href="<?php echo $productUrl;?>">
+        <?php echo $productName;?>  </a>
+    </strong>                              
+    <div class="price-box price-final_price" data-role="priceBox" data-product-id="<?php echo $productId;?>">
+<span class="price-container price-final_price tax weee">
+        <span id="product-price-<?php echo $productId;?>" data-price-amount="<?php echo $productprice;?>" data-price-type="finalPrice" class="price-wrapper ">
+        ₹<?php echo round($productprice);?>   </span>
+        </span>
+</div>                        
+    </div>
+    </div>
+    </li>
+    <?php } ?>
+  
+  </ol>
+  <!--<div id="loadMore">Load more</div>
+  <div id="showLess">Show less</div>-->
+  </div>
+  </div>
+  <?php } ?>
+<script>
+               require([
+                    'jquery'
+                ], function ($) {
+                    var sdata ;
+                    $(document).ready(function(){
+                    $("#category").change(function () {
+                    var val = $(this).val();
+                    if(val == "20" || val == "126" || val == "138"){
+                        jQuery("#tryonButton").removeAttr("disabled");
+                        jQuery(".buynow").removeAttr("disabled");
+                    }
+                   /* if (val == "20") {
+                        $("#style").html("<option value=''>-- Select Style --</option><option value='110'>Antique</option><option value='111'>Pachi</option><option value='114'>Precious</option><option value='115'>Polki</option><option value='139'>Emerald</option><option value='140'>Ruby</option>");    
+                        /*$("#weight").html("<option value=''>--Select Weight --</option><option value='30'>20-30 gms</option><option value='31'>30-50 gms</option><option value='107'>50-70 gms</option><option value='108'>70-90 gms</option><option value='109'>above 90 gms</option>");
+                    } else*/ 
+                    if (val == "126") {
+                         $("#style").html("<option value=''>-- Product Category type --</option><option value='110'>Antique</option><option value='111'>Pachi</option><option value='138'>Plain</option><option value='114'>Precious</option><option value='115'>Polki</option><option value='137'>Semi Precious</option><option value='155'>Signity</option><option value='162'>Temple</option>");
+                        /*$("#style").html("<option value=''>-- Select Style --</option><option value='110'>Antique</option><option value='111'>Pachi</option><option value='114'>Precious</option><option value='115'>Polki</option><option value='139'>Emerald</option><option value='140'>Ruby</option><option value='141'>Pearls</option><option value='154'>Studded</option>");*/
+                        /*$("#weight").html("<option value=''>--Select Weight --</option><option value='29'>10-20 gms</option><option value='30'>20-30 gms</option><option value='31'>30-50 gms</option><option value='107'>50-70 gms</option><option value='108'>70-90 gms</option><option value='109'>above 90 gms</option>");*/
+                    } else if (val == "138") {
+                        $("#style").html("<option value=''>-- Product Category type --</option> <option value='110'>Antique</option><option value='114'>Precious</option><option value='155'>Signity</option><option value='138'>Plain</option><option value='137'>Semi Precious</option><option value='156'>Diamond</option>");
+                        /*$("#weight").html("<option value=''>--Select Weight --</option><option value='26'>0-2 gms</option><option value='27'>2-5 gms</option><option value='28'>5-10 gms</option><option value='29'>10-20 gms</option><option value='30'>20-30 gms</option><option value='31'>30-50 gms</option><option value='107'>50-70 gms</option>");*/
+                    }else if (val == "56") {
+                        $("#style").html("<option value=''>-- Product Category type --</option> <option value='156'>Diamond</option>");
+                        /*$("#weight").html("<option value=''>--Select Weight --</option><option value='26'>0-2 gms</option><option value='27'>2-5 gms</option><option value='28'>5-10 gms</option><option value='29'>10-20 gms</option><option value='30'>20-30 gms</option><option value='31'>30-50 gms</option><option value='107'>50-70 gms</option>");*/
+                    } else if (val == "") {
+                        $("#category").html("<option value=''>--Product Type --</option><option value='20'>Gold - Harams</option><option value='126'>Gold - Necklaces </option><option value='138'>Gold -  Earrings</option>");
+                        $("#style").html("<option value=''>--Product Category type --</option>");
+                        /*$("#weight").html("<option value=''>--Select Weight --</option>");*/
+                    }
+                });
+/*                $("#style").change(function () {
+                    var val = $("#category").val();
+                    var valstyle = $("#style").val(); 
+                    if (val == "20" && valstyle="110") {
+                        $("#style").html("<option value=''>-- Select Style --</option><option value='110'>Antique</option><option value='111'>Pachi</option><option value='114'>Precious</option><option value='115'>Polki</option><option value='139'>Emerald</option><option value='140'>Ruby</option>");    
+                        $("#weight").html("<option value=''>--Select Weight --</option><option value='30'>20-30 gms</option><option value='31'>30-50 gms</option><option value='107'>50-70 gms</option><option value='108'>70-90 gms</option><option value='109'>above 90 gms</option>");
+                    } else if (val == "126") {
+                        $("#style").html("<option value=''>-- Select Style --</option><option value='110'>Antique</option><option value='111'>Pachi</option><option value='114'>Precious</option><option value='115'>Polki</option><option value='139'>Emerald</option><option value='140'>Ruby</option><option value='141'>Pearls</option><option value='154'>Studded</option>");
+                        $("#weight").html("<option value=''>--Select Weight --</option><option value='29'>10-20 gms</option><option value='30'>20-30 gms</option><option value='31'>30-50 gms</option><option value='107'>50-70 gms</option><option value='108'>70-90 gms</option><option value='109'>above 90 gms</option>");
+                    } else if (val == "138") {
+                        $("#style").html("<option value=''>-- Select Style --</option> <option value='110'>Antique</option><option value='114'>Precious</option><option value='155'>Signity</option><option value='138'>Plain</option><option value='137'>Semi Precious</option><option value='156'>Diamond</option>");
+                        $("#weight").html("<option value=''>--Select Weight --</option><option value='26'>0-2 gms</option><option value='27'>2-5 gms</option><option value='28'>5-10 gms</option><option value='29'>10-20 gms</option><option value='30'>20-30 gms</option><option value='31'>30-50 gms</option><option value='107'>50-70 gms</option>");
+                    } else if (val == "") {
+                        $("#category").html("<option value=''>--Select Category --</option><option value='20'>Gold - Harams</option><option value='126'>Gold - Necklaces </option><option value='138'>Gold -  Earrings</option>");
+                        $("#style").html("<option value=''>--Select Style --</option>");
+                        $("#weight").html("<option value=''>--Select Weight --</option>");
+                    }
+                });*/
+         $('select').on('change', function() {
+                           if(jQuery("#category").val() !='') {
+                                $('#style').prop('disabled', false);
+                                /*$('#weight').prop('disabled', false);*/
+                                jQuery("#tryonButton").removeAttr("disabled");
+                                jQuery(".buynow").removeAttr("disabled");
+                                
+                            }else{
+                                $('#style').prop('disabled', true);
+                                /*$('#weight').prop('disabled', true);*/
+                                /*$('#tryonButton').addAttr('disabled');*/
+                            }
+                            if(jQuery("#style").val()!='' || jQuery("#category").val()!='') { 
+                                var baseUrl = document.getElementsByClassName('OtpBaseUrl')[0].innerHTML;
+                                baseUrl = baseUrl.trim();
+                                var controllerUrl = 'videoform/index/tryit';
+                                var ajxUrl = baseUrl.concat(controllerUrl);
+                                var frm_data = "category="+jQuery("#category").val();
+                                var frm_datas = frm_data + "&" +"style="+jQuery("#style").val();
+                                /*var form_data = frm_datas + "&" + "weight="+jQuery("#weight").val();*/
+                                jQuery.ajax({
+                                url: ajxUrl, // Upload Script
+                                        showLoader: true,
+                                        dataType: 'html',
+                                        data: frm_datas, // Setting the data attribute of ajax with file_data
+                                        type: 'post',
+                                        success: function(data) {
+                                     $(".product-items").html(data);
+                                    }
+                                });
+                            }else{
+                                jQuery(".message info empty").html('Please Product Category type Option...');
+
+                            }
+                            });
+   });
+    jQuery(document).on('click', '#tryonButton', function($e){
+         $e.preventDefault();
+    var li_id = new Array();
+    $('ol li').each(function(){
+    li_id.push($(this).attr('id'));
+    });
+     $('.pop-up').addClass('open');
+    var url = "https://cdn.camweara.com/camweara_jewelry_client/index.php?company_name=vaibhavjewellers&latest=true";
+    if(screen.width > 480){
+    //window.open(url,'_blank');
+    }else{
+   // window.location.href = url;
+   //window.open(url,'_blank');
+    }
+ });
+ $(document).ready(function() {
+        $('.pop-up .close').click(function(){
+  $('.pop-up').removeClass('open');
+});
+     $('#mobile-form').on('submit', function(e){
+        e.preventDefault();
+        var len = $('#mobile').val().length;
+        if (len == 10) {
+           var li_id = new Array();
+    $('ol li').each(function(){
+    li_id.push($(this).attr('id'));
+    });
+    var newArray = $.map( li_id, function(v){
+  return v === "" ? null : v;
+});
+    if(typeof window.dataLayer !== 'undefined') {
+                            dataLayer.push({'event':'tryon',
+                            'phone':$('#mobile').val(),
+                            'sku':newArray
+                        });  
+
+                         }
+     var url = "https://cdn.camweara.com/camweara_jewelry_client/index.php?company_name=vaibhavjewellers&latest=true";
+     $('#mobile-form')[0].reset();
+     $('.pop-up').removeClass('open');
+       window.open(url,'_blank');
+       return false;
+        //this.submit();
+        }
+        return false;
+    });
+    $("#message").fadeIn("slow");
+    $("#message a.close-notify").click(function() {
+        $("#message").fadeOut("slow");
+        return false;
+    });
+});
+  /* ----------------------------- */
+/* size_li = $("#myList li").size();
+    x=20;
+    if(x == 20){
+     $('#showLess').hide();
+     $('#loadMore').show();
+    }
+    $('#myList li:lt('+x+')').show();
+    $('#loadMore').click(function () {
+        x= (x+10 <= size_li) ? x+10 : size_li;
+        $('#myList li:lt('+x+')').show();
+         $('#showLess').show();
+        if(x == size_li){
+            $('#loadMore').hide();
+        }
+    });
+    $('#showLess').click(function () {
+        $('html, body').animate({scrollTop: $(".products-grid").offset().top}, 300);
+        x=(x-10<0) ? 20 : x-10;
+        $('#myList li').not(':lt('+x+')').hide();
+        $('#loadMore').show();
+         $('#showLess').show();
+        if(x == 20){
+            $('#showLess').hide();
+        }
+    });*/
+    /* -------------------------*/
+ });
+
+</script>
+<script type="text/javascript">
+  function setInputFilter(textbox, inputFilter) {
+  ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+    textbox.addEventListener(event, function() {
+      if (inputFilter(this.value)) {
+        this.oldValue = this.value;
+        this.oldSelectionStart = this.selectionStart;
+        this.oldSelectionEnd = this.selectionEnd;
+      } else if (this.hasOwnProperty("oldValue")) {
+        this.value = this.oldValue;
+        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+      } else {
+        this.value = "";
+      }
+    });
+  });
+}
+setInputFilter(document.getElementById("mobile"), function(value) {
+  return /^-?\d*$/.test(value); });
+
+</script>
+<style>
+#message {
+    font-family:Arial,Helvetica,sans-serif;
+    position:fixed;
+    /*top:0px;*/
+    left:0px;
+    width:100%;
+    z-index:105;
+    text-align:center;
+    font-weight:bold;
+    font-size:100%;
+    color:white;
+    padding:10px 0px 10px 0px;
+    background-color:#6d1f82;
+}
+
+#message span {
+    text-align: center;
+    width: 95%;
+    float:left;
+}
+.close-notify {
+    white-space: nowrap;
+    float:right;
+    margin-right:10px;
+    color:#fff;
+    text-decoration:none;
+    border:2px #fff solid;
+    padding-left:3px;
+    padding-right:3px
+}
+.close-notify a {
+    color: #fff;
+}
+.toolbar-number{
+    display: none;
+}
+</style>

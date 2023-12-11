@@ -1,0 +1,23 @@
+<button class="quick_view" type="button" id="quick_view_button<?php echo $block->getProduct()->getId() ?>"
+        data-mage-init='{ "Vbj_Quickview/js/product/productlist/item/quickview": { } }'
+        data-id="<?php echo $block->getProduct()->getId() ?>"
+        data-url="<?php  echo $block->getProductUrl($block->getProduct()) ?>">
+    <?php echo __('Quick View') ?>
+</button>
+<div class="row">
+    <div id="quick_view_container<?php echo $block->getProduct()->getId() ?>">
+    <picture>
+        <source media="(min-width:650px)" srcset="<?php echo $this->getViewFileUrl('Vbj_Quickview::images/img_pink_flowers.jpg'); ?>">
+        <source media="(min-width:465px)" srcset="<?php echo $this->getViewFileUrl('Vbj_Quickview::images/img_pink_flowers.jpg'); ?>">
+        <img src="<?php echo $this->getViewFileUrl('Vbj_Quickview::images/img_pink_flowers.jpg'); ?>" alt="Flowers" style="width:auto;">
+    </picture>
+    </div>
+</div>
+<style>
+    #quick_view_container<?php echo $block->getProduct()->getId() ?> > #frame_product<?php echo $block->getProduct()->getId() ?>
+    {
+        width: 100%;
+        height:100%;
+    }
+    .modal-slide.my-custom-class { left: calc(100% - 1000px); }
+</style>

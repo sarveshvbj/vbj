@@ -1,0 +1,117 @@
+<?php
+//$orderId = $block->getCurrentOrderId();
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$observer_session = $objectManager->get('Magento\Framework\Session\SessionManager');
+$orderId = $observer_session->getMessage();
+$order = $objectManager->create('Magento\Sales\Model\Order')->loadByIncrementId($orderId);
+$orderGrandTotal = round($order->getGrandTotal());
+$order->getIncrementId();
+$order->getEntityId();
+$orderItems = $order->getAllItems();
+?>
+<?php if($orderItems):
+foreach ($orderItems as $orderItem):
+    $item_name = $orderItem->getName();
+    $item_id = $orderItem->getId();
+    $item_qty = round($orderItem->getQtyOrdered(),2);
+    $item_weight = $orderItem->getWeight();
+    //echo '<pre>';
+    //print_r($orderItem->getData());
+    $product = $objectManager->get('Magento\Catalog\Model\Product')->load($orderItem->getProductId());
+    $purityoptionid=  $product->getData('purity');
+    //echo $product->getResource()->getAttribute($attribute_code)->getFrontend()->getValue($product);
+    $attr = $product->getResource()->getAttribute('purity');
+ if ($attr->usesSource()) {
+    $purity = $attr->getSource()->getOptionText($purityoptionid);
+ }
+    $diamondClarity = $product->getData('diamond_clarity');
+    $diamondCaratWeight =  $product->getData('diamond_carat_cts');
+    $totalCost = round($orderItem->getRowTotalInclTax());
+
+$imagewidth = 450;
+$imageheight= 250;
+$imageHelper  = $objectManager->get('\Magento\Catalog\Helper\Image');
+$image_url = $imageHelper->init($product, 'product_page_image_small')->setImageFile($product->getFile())->resize($imagewidth, $imageheight)->getUrl();
+ //echo $image_url;
+?>
+<tr>
+
+        <td align="center" valign="top" bgcolor="#fcebd7" style="background-color:#fcebd7;">
+
+            <div>
+                <!--[if mso 15]>
+                <table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+                <tr>
+                <![endif]-->
+                
+                <!--[if mso 15]>
+                <td valign="top" width="590" style="width:590px;">
+                <![endif]-->
+            <table class="rnb-del-min-width" width="100%" cellpadding="0" border="0" cellspacing="0" bgcolor="#fcebd7" style="min-width:100%; background-color:#fcebd7;" name="Layout_10" id="Layout_10">
+                <tbody><tr>
+                    <td class="rnb-del-min-width" align="center" valign="top" bgcolor="#fcebd7" style="background-color: #fcebd7;">
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="rnb-container" bgcolor="#ffffff" style="max-width: 100%; min-width: 100%; table-layout: fixed; background-color: rgb(255, 255, 255); border-radius: 1px; border-collapse: separate; padding-left: 20px; padding-right: 20px;">
+                    <tbody>
+                    <tr>
+                    <td height="20" style="font-size:1px; line-height:1px;">&nbsp;</td>
+                            </tr>
+                            <tr>
+                    <td valign="top" class="rnb-container-padding" bgcolor="#ffffff" style="background-color: #ffffff;" align="left">
+
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="rnb-columns-container">
+                                <tbody>
+                            <tr>
+
+                        <td class="rnb-force-col img-block-center" valign="top" width="180" style="padding-right: 20px;">
+
+                        <table border="0" valign="top" cellspacing="0" cellpadding="0" align="left" class="rnb-col-2-noborder-onright" width="180">
+                                <tbody>
+                                    <tr>
+                <td width="100%" class="img-block-center" valign="top" align="left">
+        <div style="border-top:0px none #000;border-right:0px None #000;border-bottom:0px None #000;border-left:0px None #000;display:inline-block;">
+            <div>
+                <img alt="" border="0" hspace="0" vspace="0" width="180" style="vertical-align:top; float: left; width:180px;max-width:900px !important; " class="rnb-col-2-img-side-xl" src="<?php echo $image_url;?>">
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+    </td>
+                                                    </tr>
+                                    
+                                                    </tbody>
+                                                </table>
+                                                </td><td class="rnb-force-col" valign="top">
+
+                                                <table border="0" valign="top" cellspacing="0" cellpadding="0" width="350" align="left" class="rnb-last-col-2">
+
+                                                    <tbody>
+            <tr>
+                      
+            <td class="rnb-mbl-float-none" style="font-size:14px; font-family:AvenirNext-Regular;color:#ccb8d3;float:right;width:350px;  border-width:2px; line-height: 21px;">
+        <div style="padding-right: 20px; color: black">Product Name: <?php echo $item_name; ?><br>
+                                                Product ID: <?php echo $item_id; ?><br>
+                                                Quantity:<?php echo $item_qty; ?><br>
+                                                Metal Weight: <?php echo $item_weight; ?><br>
+                                                Metal Purity: <?php echo $purity; ?><br>
+                                                Diamond Weight: <?php echo $diamondCaratWeight;?><br>
+                                                Diamond Clarity: <?php echo $diamondClarity;?><br>
+                                                Total Cost: <?php echo $totalCost;?> </div>
+                                                </td>
+                                                    </tr>
+                                                    </tbody></table>
+                                                </td>
+
+                                            </tr></tbody></table></td>
+                            </tr>
+                            <tr>
+                                <td height="20" style="font-size:1px; line-height:1px;">&nbsp;</td>
+                            </tr>
+                        </tbody></table>
+
+                    </td>
+                </tr>
+            </tbody></table>
+            
+        </div></td>
+    </tr>
+<?php endforeach; ?>
+<?php endif; ?>

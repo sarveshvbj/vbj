@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @var \Mageplaza\HelloWorld\Block\Display $block
+ */
+
+// echo $block->sayHello();
+// echo $block->getBaseUrl();
+$current_category= $block->getCurrentCategory();
+$ProductCollection = $block->getProductCollection($current_category);
+?>
+
+

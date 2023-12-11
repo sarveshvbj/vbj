@@ -1,0 +1,65 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+?>
+<?php
+/** @var $block \Magento\Framework\View\Element\Template */
+/** @var $helper \Magento\Search\Helper\Data */
+$helper = $this->helper(\Magento\Search\Helper\Data::class);
+?>
+
+                        <button type="button" id="cust_search" class="btn search-button color-voilet p-0" aria-label="search">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <div id="search-suggestion" class="position-absolute search-dropdown" style="display: none;">
+                          <form class="form minisearch" id="search_mini_form" action="<?= /* @escapeNotVerified */ $helper->getResultUrl() ?>" method="get">
+                            <div class="control">
+                    <input id="search"
+                           data-mage-init='{"quickSearch":{
+                                "formSelector":"#search_mini_form",
+                                "url":"<?= /* @escapeNotVerified */ $helper->getSuggestUrl()?>",
+                                "destinationSelector":"#search_autocomplete"}
+                           }'
+                           type="text"
+                           name="<?= /* @escapeNotVerified */ $helper->getQueryParamName() ?>"
+                           value="<?= /* @escapeNotVerified */ $helper->getEscapedQueryText() ?>"
+                           placeholder="<?= /* @escapeNotVerified */ __('Search entire store here...') ?>"
+                           class="input-text"
+                           maxlength="<?= /* @escapeNotVerified */ $helper->getMaxQueryLength() ?>"
+                           role="combobox"
+                           aria-haspopup="false"
+                           aria-autocomplete="both"
+                           autocomplete="off"/>
+                    <div id="search_autocomplete" class="search-suggestion p-3 position-relative search-autocomplete"></div>
+                   
+                    <?= $block->getChildHtml() ?>
+                </div>
+                            <button type="submit"
+                        title="<?= $block->escapeHtml(__('SEARCH')) ?>"
+                        class="action search">
+                    <span><?= /* @escapeNotVerified */ __('SEARCH') ?></span></button>
+
+                          </form>
+                        </div>
+                   
+
+
+<!-- <script type="text/javascript">
+        window.addEventListener('load', function () {
+        var btn = document.getElementById("cust_search");  
+        btn.onclick = function() {
+  var x = document.getElementById("search-suggestion");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }     
+        }    
+
+    }, false);
+            
+</script> -->

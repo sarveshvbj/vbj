@@ -1,0 +1,55 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$basemediaurl = $objectManager->get('Magento\Store\Model\StoreManagerInterface')
+                    ->getStore()
+                    ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$imgix_url= $basemediaurl;//'https://mage23vaibhavjewellers.breezesites.io/pub/media/'; 
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$storeUrl = $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB);
+
+ ?>
+ <?php 
+$_objectManager = \Magento\Framework\App\ObjectManager::getInstance(); //instance of\Magento\Framework\App\ObjectManager
+$storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+$currentStore = $storeManager->getStore();
+$baseUrl = $currentStore->getBaseUrl();
+$mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$linkUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_LINK);
+
+?>
+<div class="container-fluid section-8 mt-3">
+    <h4 class="text-right">EDUCATION</h4>
+   <div class="row">
+        <div class="col-3 img-container">
+            <img src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/diamond-edu.png" class="w-100" alt="diamond-ed" width="60" height="111">
+        </div>
+        <div class="col-9 m-auto">
+            <h5 class="color-green"><a href="<?php echo $linkUrl;?>diamond-anatomy" style="color:#424242;border-bottom: 1px solid #ccc;">Know Your DIAMOND</a></h5>
+            <p>
+                Diamond to the princess cut, we'll help you choose the shape that complements your style.
+            </p>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-3 img-container">            
+             <img src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/know-your.png" class="w-100" alt="kno-your" width="60" height="111">
+        </div>
+        <div class="col-9 m-auto">
+            <h5 class="color-red"><a href="<?php echo $linkUrl;?>gold-color" style="color:#424242;border-bottom: 1px solid #ccc;">Know Your GOLD</a></h5>
+            <p>
+                Gold  Won't tarnish, rust, or corrode, and though it's very strong, it is also the most malleable of all metals.
+            </p>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-3 img-container">            
+             <img src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/platium.png" class="w-100" alt="platinum-page" width="60" height="111">
+        </div>
+        <div class="col-9  m-auto">
+            <h5 class="color-gray4"><a href="<?php echo $linkUrl;?>platinum-page" style="color:#424242;border-bottom: 1px solid #ccc;">Know Your PLATINUM</a></h5>
+            <p>
+                Platinum Won't tornish, rust, or corrodem, and though it's very strong, it is also the most malleable of all purity pure metals.
+            </p>
+        </div>
+    </div>
+</div>

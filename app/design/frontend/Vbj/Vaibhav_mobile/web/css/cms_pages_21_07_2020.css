@@ -1,0 +1,1662 @@
+
+/*About us css start*/
+
+.abt-header h2 {
+    text-align: center;
+    position: relative;
+    /*top: -85px;*/
+    font-size: 35px;
+    font-weight: bold;
+    color: white;
+}
+.cms-about-us .em-maxwidth-content {
+    max-width: 100%;
+    padding: 15px;
+}
+.em-maxwidth-content {
+    margin-top: -90px;
+    overflow: scroll;
+}
+
+.about-container{
+	    /*margin-top: -128px;*/
+    padding: 10px 15px 30px 15px;
+    background: #fbfaf8;
+}
+
+.company-profile-content {
+    position: relative;
+    padding-bottom: 10px;
+}
+.company-profile-content h2{
+	margin-bottom: 15px;
+    margin-top: 30px;
+    font-size: 25px;
+    text-align: center;
+    color: #732282;
+}
+
+.company-profile-content p{
+	font-size: 15px;
+    font-weight: normal;
+    line-height: 30px;
+    text-align: justify;
+}
+
+.abt-history {
+    position: relative;
+    padding-bottom: 10px;
+}
+.abt-history h2 {
+    margin-bottom: 0px;
+    font-size: 25px;
+    text-align: center;
+    margin-top: 30px;
+    color: #732282;
+}
+.abt-history-data{
+	display: block;
+	margin: 15px 0px;
+    border-bottom: 1px dashed #dcdcdc;
+    padding-bottom: 15px;
+}
+.abt-history-data .history-year {
+    width: 100%;
+    text-align: center;
+        font-size: 16px;
+    font-weight: bold;
+    line-height: 38px;
+    color: #ae53c5;
+}
+.abt-history-data .history-content {
+    width: 100%;
+    font-size: 15px;
+    font-weight: normal;
+    line-height: 30px;
+    text-align: justify;
+}
+.abt-mission-vision h2 {
+    margin-bottom: 10px;
+    font-size: 25px;
+    text-align: center;
+    margin-top: 30px;
+    color: #732282;
+}
+.abt-mission-vision-content {
+    display: block;
+}
+.abt-mission {
+    width: 100%;
+    display: block;
+}
+.mission-heading {
+    width: 100%;
+}
+.mission-heading h3 {
+    color: #ae53c5;
+    line-height: 30px;
+}
+.mission-content {
+    width: 100%;
+}
+.mission-content p {
+    font-size: 15px;
+    font-weight: normal;
+    line-height: 30px;
+    text-align: justify;
+}
+
+.mission-content ol {
+    padding-left: 17px;
+}
+.mission-content li {
+    font-size: 15px;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+.abt-vision {
+    width: 100%;
+    display: block;
+}
+.vision-heading {
+    width: 100%;
+}
+.vision-heading h3 {
+    color: #ae53c5;
+    line-height: 30px;
+}
+.vision-content {
+    width: 100%;
+}
+.vision-content p {
+    font-size: 15px;
+    font-weight: normal;
+    line-height: 30px;
+    text-align: justify;
+}
+
+/*About us css end*/
+
+
+/*Founder css start */
+.abt-header {
+    height: 270px;
+    background: #6f2d91;
+    margin-top: -39px;
+}
+
+.cms-founder .abt-box {
+    width: 90%;
+    padding: 30px 30px 20px;
+    float: none;
+    margin: -130px 20px 0;
+    background: #fbfaf8;
+    display: inline-table;
+    min-height: 719px;
+}
+.abt-box{
+	height: 290px;
+}
+.cms-founder .abt-box .profile {
+    width: 100%;
+    margin: 0;
+    height: auto;
+    float: left;
+    text-align: center;
+    padding: 0;
+}
+.cms-founder .abt-box > h1 {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+    float: left;
+    height: 60px;
+    font-size: 25px;
+    font-weight: 900;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 2.4;
+    letter-spacing: -0.6px;
+    color: #732282;
+}
+.cms-founder .abt-box > p {
+    width: 100%;
+    float: left;
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 24px;
+    letter-spacing: normal;
+    text-align: justify;
+    color: #6d6d6d;
+
+}
+.cms-founder .abt-box p.btmsec {
+    width: 100%;
+    margin: 0px 0px;
+    text-align: justify;
+    line-height: 24px;
+}
+/*Founder css end */
+
+
+/*management-team css start*/
+.cms-management-team .left-blk-content:first-child, .cms-our-branches .left-blk-content:first-child, .cms-vaibhav- advantage .left-blk-content:first-child{
+	width: 90%;
+    margin: -120px auto 0px;
+    float: none;
+}
+.cms-management-team .left-blk-content:first-child{
+	display: block;
+}
+.cms-about-us .left-blk-content .imgleft, .cms-csr .left-blk-content .imgleft, .cms-events .left-blk-content .imgleft, .cms-management-team .left-blk-content .imgleft, .cms-our-branches .left-blk-content .imgleft, .cms-vaibhav-advantage .left-blk-content .imgleft {
+    width: 100%;
+}
+.cms-about-us .left-blk-content .imgleft, .cms-csr .left-blk-content .imgleft, .cms-management-team .left-blk-content .imgleft, .cms-vaibhav-advantage .left-blk-content .imgleft, .cms-events .left-blk-content .imgleft {
+    min-height: 390px;
+}
+.cms-management-team .left-blk-content .imgleft, .cms-management-team .right-blk-content .imgleft, .cms-our-branches .left-blk-content .imgleft, .cms-our-branches .right-blk-content .imgleft {
+    background: transparent;
+}
+.cms-about-us-demo .left-blk-content .imgleft, .cms-csr .left-blk-content .imgleft, .cms-management-team .left-blk-content .imgleft, .cms-vaibhav-advantage .left-blk-content .imgleft, .cms-events .left-blk-content .imgleft, .cms-our-branches .left-blk-content .imgleft {
+    /*width: 445px;*/
+    float: left;
+}
+.cms-about-us .left-blk-content .text-right, .cms-csr .left-blk-content .text-right, .cms-events .left-blk-content .text-right, .cms-management-team .left-blk-content .text-right, .cms-our-branches .left-blk-content .text-right, .cms-vaibhav-advantage .left-blk-content .text-right{
+	width: 100%;
+    padding: 20px 30px 20px 30px;
+}
+.cms-about-us-demo .left-blk-content .text-right, .cms-csr .left-blk-content .text-right, .cms-management-team .left-blk-content .text-right, .cms-vaibhav-advantage .left-blk-content .text-right, .cms-events .left-blk-content .text-right, .cms-our-branches .left-blk-content .text-right{
+	float: left;
+	text-align: justify;
+    letter-spacing: 1px;
+    line-height: 27px;
+    background-color: #fffbf7;
+    border: 1px solid #efefef;
+}
+.cms-management-team .left-blk-content .text-right > h2{
+	line-height: 40px;
+}
+.cms-management-team .text-right > h2, .cms-events .text-right > h2{
+	height: 40px;
+    margin-bottom: 10px;
+}
+.text-right > h2{
+	font-size: 21px;
+	font-weight: 900;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: -0.6px;
+    text-align: left;
+    color: #732282;
+}
+.cms-management-team .text-right > h6{
+	color: #c68be4;
+    font-size: 18px;
+    font-weight: normal;
+    letter-spacing: 0.4px;
+
+}
+.cms-about-us-demo .left-blk-content .text-right > p, .cms-csr .left-blk-content .text-right > p, .cms-management-team .left-blk-content .text-right > p, .cms-vaibhav-advantage .left-blk-content .text-right > p, .cms-events .left-blk-content .text-right > p, .cms-our-branches .left-blk-content .text-right > p{
+	font-size: 14px;
+	line-height: 24px;
+	text-align: justify;
+}
+.cms-management-team .right-blk-content, .cms-management-team .left-blk-content, .cms-vaibhav-advantage .right-blk-content, .cms-vaibhav-advantage .left-blk-content, .cms-events .right-blk-content, .cms-events .left-blk-content{
+	width: 89%;
+    margin: 20px 20px 0;
+}
+.cms-management-team .right-blk-content{
+	display: block;
+    float: right;
+}
+.cms-about-us .right-blk-content .imgleft, .cms-csr .right-blk-content .imgleft, .cms-events .right-blk-content .imgleft, .cms-management-team .right-blk-content .imgleft, .cms-our-branches .right-blk-content .imgleft, .cms-vaibhav-advantage .right-blk-content .imgleft{
+	    width: 100%;
+}
+.cms-about-us .right-blk-content .imgleft, .cms-csr .right-blk-content .imgleft, .cms-management-team .right-blk-content .imgleft, .cms-vaibhav-advantage .right-blk-content .imgleft, .cms-events .right-blk-content .imgleft{
+	min-height: 390px;
+}
+.cms-management-team .left-blk-content .imgleft, .cms-management-team .right-blk-content .imgleft, .cms-our-branches .left-blk-content .imgleft, .cms-our-branches .right-blk-content .imgleft{
+	background: transparent;
+}
+.cms-about-us-demo .right-blk-content .imgleft, .cms-csr .right-blk-content .imgleft, .cms-management-team .right-blk-content .imgleft, .cms-vaibhav-advantage .right-blk-content .imgleft, .cms-events .right-blk-content .imgleft, .cms-our-branches .right-blk-content .imgleft{
+	float: right;
+}
+.cms-about-us .right-blk-content .text-right, .cms-csr .right-blk-content .text-right, .cms-events .right-blk-content .text-right, .cms-management-team .right-blk-content .text-right, .cms-our-branches .right-blk-content .text-right, .cms-vaibhav-advantage .right-blk-content .text-right{
+	width: 100%;
+    padding: 20px 30px 20px 30px;
+}
+.cms-about-us-demo .right-blk-content .text-right, .cms-csr .right-blk-content .text-right, .cms-management-team .right-blk-content .text-right, .cms-vaibhav-advantage .right-blk-content .text-right, .cms-events .right-blk-content .text-right, .cms-our-branches .right-blk-content .text-right{
+	float: right;
+	text-align: justify !important;
+    letter-spacing: 1px;
+    line-height: 27px;
+    background-color: #fffbf7;
+    border: 1px solid #efefef;
+}
+.cms-management-team .text-right > h2, .cms-events .text-right > h2{
+	height: 40px;
+    margin-bottom: 10px;
+}
+/*management-team css end*/
+
+
+/* Vaibhav work with us css start*/
+
+.cms-page-view .abt-box-text {
+    padding: 30px 40px 10px;
+    margin-top: 60px;
+}
+.abt-box-text{
+	display: block;
+	text-align: justify;
+    letter-spacing: 1px;
+}
+.abt-box-text > p{
+	letter-spacing: 0.5px;
+    font-size: 15px;
+    line-height: 30px;
+    text-align: justify;
+}
+h2.current{
+	text-align: center;
+    margin-bottom: 20px;
+    height: 60px;
+    font-size: 25px;
+    font-weight: 900;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 60px;
+    letter-spacing: -0.6px;
+    color: #732282;
+}
+/* Vaibhav work with us css start*/
+
+
+/*CSR Page css  start*/
+.gold-clr-banner {
+    z-index: 10;
+    position: relative;
+}
+.gold-clr-banner img {
+    width: 100%;
+}
+.clr-page-links{
+	margin-top: -7px;
+    z-index: 0;
+    position: relative;
+}
+.clr-page-links ul {
+    padding-left: 0px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+.clr-page-links ul li {
+    line-height: 30px;
+    font-size: 13px;
+    height: 30px;
+    list-style-type: none;
+    background-color: #f6f6f6;
+    text-align: center;
+    font-weight: normal;
+    width: 100%;
+    cursor: pointer;
+    margin-right: 32px;
+}
+li.silver-clr-link {
+    position: relative;
+}
+li.gold-clr-link {
+    position: relative;
+}
+li.platinum-clr-link {
+    position: relative;
+}
+.clr-page-links ul li a {
+    display: block;
+    font-family: 'avenir-medium' !important;
+}
+.clr-page-links ul li.active {
+    background-color: #732282;
+    color: #ffffff;
+}
+.clr-page-links ul li.active a {
+    color: #ffffff;
+}
+.clr-page-links ul li:last-child {
+    margin-right: 0px;
+}
+.platinum-page-container{
+	width: 100%;
+    margin: 15px auto;
+    padding: 15px;
+}
+.platinum-page-container p {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 26px;
+    text-align: justify;
+    margin-bottom: 0px;
+}
+.clr-page-links ul li.gold-clr-link:before {
+    width: 30px;
+    height: 30px;
+}
+.clr-page-links ul li.gold-clr-link:before {
+    width: 30px;
+    height: 30px;
+}
+.clr-page-links ul li.gold-clr-link:before {
+    content: '';
+    position: absolute;
+    /*width: 40px;
+    height: 40px;
+    background-color: #f6f6f6;*/
+    left: -15px;
+    transform: skew(-30deg);
+    top: 0;
+}
+/*CSR Page css  end*/
+
+/*privacy-policy css start*/
+.em-maxwidth-content.privacypolicy {
+    margin-top: -80px;
+    background-color: white;
+    padding: 10px 10px;
+}
+.block-static-block.widget, .block-cms-link.widget {
+    margin-bottom: 0;
+}
+.policyslider .em-wrapper-brands {
+    margin: 30px 0 0;
+    border-bottom: 4px solid #6f2d91;
+    padding-bottom: 40px;
+}
+
+.em-wrapper-brands{
+	padding: 0 0 20px;
+}
+.owl-carousel.owl-loaded{
+    width: 107%;
+    display: block;
+}
+.city {
+    padding: 10px 0;
+    color: #cd90ec;
+    display: flex;
+}
+.em-slider.city .owl-item.active {
+    color: #ffa518;
+}
+.em-slider.city .owl-item {
+    padding: 0;
+}
+.em-slider.city a:last-child {
+    padding-left: 0px;
+}
+.em-slider.city a {
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+.em-slider.city img {
+    display: inline-block;
+    float: left;
+    /* line-height: 100px; */
+    padding-right: 10px;
+}
+.em-slider.city .owl-dots {
+    margin: 30px auto 0;
+    text-align: center;
+}
+.em-maxwidth-content > p:nth-child(3) {
+    margin-bottom: 0;
+    border: 2px solid #6f2d91;
+    display: none;
+}
+.cms-page-view .abt-box-text {
+    padding: 30px 40px 10px;
+}
+
+/*privacy-policy css end*/
+
+
+/*Contanct css start*/
+
+.contactCustService h2 {
+    text-transform: uppercase;
+    font-size: 20px;
+    font-family: 'avenir-medium' !important;
+    font-weight: normal;
+    color: #732282;
+    margin-bottom: 15px;
+}
+
+.contact-details ul {
+    padding-left: 0px;
+}
+.contact-details ul li {
+    font-size: 14px;
+    line-height: 22px;
+    list-style-type: none;
+    font-family: 'avenir-book' !important;
+}
+.contact-details ul li img {
+    width: 19px;
+    top: 5px;
+    margin-right: 20px;
+    position: relative;
+}
+.corporateOff h2{
+    font-size: 20px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    font-family: 'avenir-medium' !important;
+    font-weight: normal;
+    color: #732282;
+}
+
+/*Contanct css end*/
+
+/* ========================EMI PAGE CSS=========================== */
+
+.cms-emi main#maincontent {
+    padding-top: 0;
+}
+.cms-emi .outerRow {
+    display: block;
+    padding: 5px 15px;
+    text-align: center;
+}
+.tabDiv,.tabDivSec {
+    width: 100%;
+    background-color: transparent;
+    text-align: center;
+  }
+  button.cardEmi{
+    background-color: #e0c6eb;
+    border: none;
+    color: #ae53c5;
+    line-height: 26px;
+    font-size: 16px;
+    font-weight: 600;
+    width: 80%;
+    cursor: pointer;
+    margin: 10px 0;
+}
+button.cardEmi.cardEmiActive {
+    background-color: #552d69;
+    border: none;
+    color: white;
+    line-height: 26px;
+    font-size: 16px;
+    font-weight: 600;
+    width: 80%;
+    cursor: pointer;
+    margin: 10px 0;
+}
+.contentEmi h5 {
+    font-size: 19px;
+    font-weight: 400;
+    color: #732282;
+    margin: 2rem 0;
+    padding-top: 1rem;
+}
+button.emiCalci {
+    background-color: #6d1f82;
+    border: 1px solid #6d1f82;
+    color: white;
+    padding: 2px 20px;
+    margin: 1rem 0 2rem 0;
+    cursor: pointer;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+button.cardEmi.cardEmiActive:hover {
+    background-color: #552d69;
+    color: #d9a460;
+}
+/* button.cardEmi:hover {
+    background-color: #e0c6eb;
+    color: #d9a460;
+}
+button.emiCalci:hover{
+    color: #d9a460;
+} */
+.termsConditions {
+    padding: 10px 25px;
+    text-align: justify;
+}
+.termsConditions h2 {
+    font-size: 17px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+.termsConditions ul li:before {
+    content: '\2022';
+    padding-right: 10px;
+}
+.termsConditions ul li {
+    display: flex;
+    font-size: 12px;
+    line-height: 20px;
+}
+.imag{
+    width:100%;
+    /* background-color: green; */
+    display:none;
+    height:100%;
+  }
+  .imag1{
+    width:100%;
+    /* background-color: gold; */
+    height:100%;
+  }
+
+
+  .banner-image {
+    background-image: url(https://www.vgoldjewellers.com/pub/media/wysiwyg/3-women-banner.jpg);
+    height: 95vh;
+    background-position: center;
+    position: relative;
+}
+.metal-table {
+    text-align: center;
+    background-color: white;
+    /* width: 32%; */
+    position: absolute;
+    bottom: 0;
+    right: 3rem;
+    left: 3rem;
+    border-radius: 10% 10% 0 0;
+    margin: 0 auto;
+}
+h4.table-heading {
+    padding: 30px 0 10px 0;
+    font-size: 1.15rem;
+    letter-spacing: 1px;
+    color: #6e2083;
+    font-weight: 700;
+}
+.metal-table .table thead th {
+    background-color: #6e2083;
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+}
+table {
+    border: none;
+    border-collapse: collapse;
+  }
+  tbody:before {
+      content: "-";
+      display: block;
+      line-height: 10px;
+      color: transparent;
+  }
+  table td:first-child {
+    border-left: none !important;
+  }
+  .table td, .table th {
+      border-top: none !important;
+  }
+  
+  table td {
+      border-left: 1.5px solid #6e2083 !important;
+    }
+  .table{
+      text-align: center;
+  }
+  button.subscription {
+    background-color: #6e2083;
+    color: white;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.25rem;
+    line-height: 20px;
+    margin: 20px 0;
+}
+.row.w-100.m-0.first-row {
+    padding: 3rem 2rem;
+}
+.gold-carousel {
+    padding: 10px 0 20px;
+}
+.gold-descp p {
+    text-align: justify;
+    font-size: 1.2rem;
+    color: gray;
+    line-height: 1.75rem;
+}
+.gold-descp h4 {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 3.5rem;
+}
+.enquiry-card {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #f1eeee;
+    /* box-shadow: 0px 0px 15px 0 lightgrey; */
+    margin-top: 2rem;
+}
+h4.enquiry-heading {
+    font-size: 1.5rem;
+    line-height: 18px;
+    margin: 1.25rem 0;
+    font-weight: 700;
+    white-space: nowrap;
+}
+.col.enquiry .row {
+    width: 100%;
+    margin: 1.5rem auto;
+}
+button.btn.btn-verify {
+    background-color: #fcba66;
+    border-radius: 0 .25rem .25rem 0;
+    color: white !important;
+    height: 32px;
+}
+.enquiry input.form-control {
+    border-radius: 3px;
+    height: 32px;
+}
+.enquiry input.form-control::placeholder {
+    font-size: 1.25rem;
+}
+button.btn.update-submit {
+    color: white !important;
+    background-color: #6e2083;
+    padding: 10px 45px;
+    margin: .5rem 0 1.5rem;
+}
+.live-shopn-img {
+    border-radius: 0 90px 0 0;
+    position: relative;
+    background-image: url(https://www.vgoldjewellers.com/pub/media/Live-video-Website-Block.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 300px;
+}
+.live-shopn-img button.btn.btn-secondary {
+    position: absolute;
+    right: 1rem;
+    top: 70px;
+    color: white !important;
+    border-radius: 20px;
+    background-color: #915191;
+    border: none;
+    padding: 5px 15px;
+}
+button.btn.btn-outline-warning.submit {
+    margin-left: 3rem;
+    padding: 8px 15px;
+    border-radius: 20px;
+    line-height: 1.25;
+}
+.live-shopn-descp {
+    padding: 20px 15px;
+}
+.live-shopn-descp h4 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 3rem;
+}
+.inner-content ul li span {
+    padding-right: 15px;
+    font-size: 1.5rem;
+    color: #d9a460;
+}
+.inner-content ul li h6 {
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+.inner-content ul li p {
+    font-size: 1.1rem;
+    text-align: justify;
+    line-height: 1.5rem;
+}
+button.btn.btn-outline-warning.submit {
+    margin-left: 3rem;
+    padding: 8px 15px;
+    border-radius: 20px;
+    line-height: 1.25;
+}
+.outer-descp-div {
+    padding: 10px 20px;
+}
+.outer-descp-div h5 {
+    font-weight: 700;
+    color: #6d1f82;
+}
+.description p {
+    line-height: 1.75rem;
+    color: #6d1f82;
+    text-align: justify;
+}
+.row.w-100.m-0.sec-row {
+    background-color: #ebeff1;
+    padding-top: 20px;
+}
+
+/* subscribe for news letter css start*/
+.inner-block-newsletter {
+   background: #6e2083!important;
+   margin-top: 0!important;
+   height: 110px;
+}
+.news_letter button.action.subscribe.primary.p-2.subsri {
+   background: #ff9947;
+   border: none;
+   height: 37px;
+}
+.news_letter input#newsletter {
+   width: 100%;
+   height: 37px;
+}
+.news_letter label.label {
+   display: none;
+}
+.news_letter .field.newsletter {
+   float: left;
+   width: 73%;
+}
+.news_letter .form.subscribe {
+   display: table;
+   width: 100%;
+}
+.news_letter .content {
+   width: 100%;
+   float: left;
+}
+.news_letter .title {
+   display: none;
+}
+/*.text-center {
+   color: #000 !important;
+}*/
+/* subscribe for news letter css end*/
+
+.gradient-title span{
+    color: #000;
+}
+.gradient-title:before{
+        width: 25%;
+}
+.gradient-title:after{
+    width: 25%;
+}
+
+/* pop up css for in minicart and checkout page while deleting the product  css start */
+.modal-popup.confirm .modal-inner-wrap {
+   width: 100%;
+}
+.modal-inner-wrap .modal-content {
+    border: none;
+   text-align: center;
+   padding: 0;
+   font-weight: bold;
+}
+.modal-inner-wrap .modal-footer {
+   border: none;
+   text-align: center;
+   width: 100%;
+   padding-right: 0;
+   padding-left: 0;
+   display: block;
+}
+.action-secondary {
+   background: #6F2D91;
+   color: #fff;
+   border: none;
+}
+.action-secondary:focus {
+   background: #6F2D91;
+   border: none;
+   color: #fff;
+   outline: none!important;
+}
+
+.action-secondary:hover {
+   background: #6F2D91 !important;
+   color: #fff;
+}
+.action-primary {
+   background: #6F2D91;
+   color: #fff;
+   border: none;
+}
+.action-primary:focus {
+   background: #6F2D91;
+   border: none;
+   color: #fff;
+   outline: none!important;
+}
+
+.action-primary:hover {
+   background: #6F2D91 !important;
+   color: #fff;
+}
+.modal-inner-wrap button.action-close {
+   background: none!important;
+}
+.modal-custom .action-close:before, .modal-popup .action-close:before, .modal-slide .action-close:before {
+   color: #757575 !important;
+} 
+.modal-inner-wrap header.modal-header {
+border: none!important;
+}
+
+.modal-inner-wrap .modal-footer {
+   height: auto!important;
+}
+.modal-popup.confirm .modal-inner-wrap {
+   width: 100%!important;
+}
+/* pop up css for in minicart and checkout page while deleting the product  css end*/
+
+
+
+
+/*personal - your - jewellary css start*/
+.em-maxwidth-content {
+    max-width: 1110px;
+    margin: 0 auto;
+}
+.cms-personalize-your-jewellery .bespoke-slider .em-slider.city li > span {
+    display: none;
+}
+.em-slider.city img {
+    float: initial!important;
+}
+.em-banners-item {
+    float: left;
+    width: 19%;
+    text-align: center;
+}
+}
+.cms-personalize-your-jewellery .bespoke-slider .em-slider.city a {
+    display: block;
+    color: #282828;
+    font-family: 'AvenirNext-Regular' !important;
+    font-size: 14px;
+    text-align: center;
+    align-items: center;
+}
+.personalize-sec {
+    margin-bottom: 3em;
+}
+.personalize-send-tabpanel > h2, div#custdes > h3, div#uplddes > h3, div#workdes > h3 {
+    padding: 50px;
+    float: left;
+    width: 100%;
+}
+.personalize-sec > h2, .personalize-send-tabpanel > h2, div#custdes h3, div#uplddes h3, div#workdes h3 {
+    font-size: 35px;
+    font-weight: 900;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.49;
+    letter-spacing: -1.2px;
+    text-align: center;
+    color: #6f2d91;
+    margin: 0;
+    padding: 40px; 
+    clear: both;
+}
+.personalize-sec h1 {
+    text-align: center;
+    color: #141414;
+    font-weight: bold;
+    font-size: 30px;
+}
+#uplddes .form-4 .left-sec {
+    float: left;
+    width: 27%;
+}
+#uplddes .form-4 .inputfile {
+    position: relative;
+}
+#uplddes .form-4 input#imgupload_1 {
+    color: #f1e5e6;
+    transition: all 0.5s;
+    width: 270px;
+    height: 220px;
+    margin: 0;
+    line-height: 246px;
+    cursor: pointer;
+    z-index: 1;
+    position: relative;
+    opacity: 0;
+}
+#uplddes .form-4 .inputfile > img {
+    position: absolute;
+    left: 0;
+    width: 90%;
+}
+#uplddes input#imgbtnupload_1 {
+    width: 270px;
+    line-height: 50px;
+    z-index: 11;
+    position: relative;
+    opacity: 0;
+    cursor: pointer;
+}
+#uplddes .form-4 .inputfile p {
+    height: 50px;
+    margin: 0;
+    width: 270px;
+    background: #ae53c5;
+    float: left;
+    line-height: 50px;
+    font-family: Avenir-Heavy;
+    font-size: 14px;
+    font-weight: 900;
+    font-style: normal;
+    font-stretch: normal;
+    text-align: center;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: absolute;
+    bottom: 26px;
+}
+#uplddes .form-4 .right-sec {
+    float: left;
+    width: 73%;
+}
+input[type="text"], input[type="password"], input[type="url"], input[type="tel"], input[type="search"], input[type="number"], input[type="datetime"], input[type="email"] {
+    background: #ffffff;
+    background-clip: padding-box;
+    border: 1px solid #dcdcdc;
+    border-radius: 3px;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    height: 40px;
+    line-height: 1.42857143;
+    padding: 4px 10px;
+    vertical-align: baseline;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+div#uplddes .form-4 .inputbox > textarea {
+    height: 160px;
+    margin-top: 20px;
+}
+div#uplddes .form-4 .inputbox > input, div#uplddes .form-4 .inputbox > textarea {
+    background-color: #fcfcfc;
+    box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.1);
+}
+div#uplddes .form-4 input.checkterm {
+    height: 20px;
+    width: 20px;
+    margin: 10px 0;
+    line-height: 50px;
+    float: left;
+}
+div#uplddes .form-4 .inputbox > p, div#custdes .form-2 .inputbox > p {
+    margin: 0;
+    line-height: 42px;
+    padding: 0 30px;
+    font-family: Avenir-Medium;
+    font-size: 15px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #6f6f6f;
+}
+div#uplddes .form-4 .submitbtn, div#custdes .form-2 .submitbtn {
+    text-align: center;
+}
+div#uplddes .form-4 .submitbtn > input, div#workdes .form-5 .submitbtn > input, div#custdes .form-2 .submitbtn > input {
+    width: 187px;
+    height: 40px;
+    border: 0;
+    background-color: #ae53c5;
+    font-family: Avenir-Heavy;
+    font-size: 14px;
+    font-weight: 900;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+.right-sec .col-md-12 {
+    flex: 0 0 50%!important;
+    width: 50%;
+}
+
+/*second one*/
+#custdes .form-2 .left-sec {
+    float: left;
+    width: 27%;
+}
+#custdes .form-2 .inputfile {
+    position: relative;
+}
+#custdes .form-2 input#imgupload_2 {
+    color: #f1e5e6;
+    transition: all 0.5s;
+    width: 270px;
+    height: 220px;
+    margin: 0;
+    line-height: 246px;
+    cursor: pointer;
+    z-index: 1;
+    position: relative;
+    opacity: 0;
+}
+#custdes .form-2 .inputfile > img {
+    position: absolute;
+    left: 0;
+    width: 90%;
+}
+#custdes input#imgbtnupload_2 {
+    width: 270px;
+    line-height: 50px;
+    z-index: 11;
+    position: relative;
+    opacity: 0;
+    cursor: pointer;
+}
+#custdes .form-2 .inputfile p {
+    height: 50px;
+    margin: 0;
+    width: 270px;
+    background: #ae53c5;
+    float: left;
+    line-height: 50px;
+    font-family: Avenir-Heavy;
+    font-size: 14px;
+    font-weight: 900;
+    font-style: normal;
+    font-stretch: normal;
+    text-align: center;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: absolute;
+    bottom: 26px;
+}
+#custdes .form-2 .right-sec {
+    float: left;
+    width: 73%;
+}
+
+
+div#custdes .form-2 textarea {
+    height: 160px;
+    margin-top: 20px;
+}
+div#custdes .form-2 .inputbox > input, div#custdes .form-2 textarea {
+    background-color: #fcfcfc;
+    box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.1);
+}
+div#custdes .form-2 input.checkterm {
+    height: 20px;
+    width: 20px;
+    margin: 10px 0;
+    line-height: 50px;
+    float: left;
+}
+div#custdes .form-2 .inputbox > p, div#custdes .form-2 .inputbox > p {
+    margin: 0;
+    line-height: 42px;
+    padding: 0 30px;
+    font-family: Avenir-Medium;
+    font-size: 15px;
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    letter-spacing: normal;
+    text-align: left;
+    color: #6f6f6f;
+}
+div#custdes .form-2 .submitbtn, div#custdes .form-2 .submitbtn {
+    text-align: center;
+}
+div#custdes .form-2 .submitbtn > input, div#workdes .form-5 .submitbtn > input, div#custdes .form-2 .submitbtn > input {
+    width: 187px;
+    height: 40px;
+    border: 0;
+    background-color: #ae53c5;
+    font-family: Avenir-Heavy;
+    font-size: 14px;
+    font-weight: 900;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+.left-txtcode {
+    width: 90%;
+}
+.right-imgbtn {
+    width: 90%;
+}
+#findimages {
+    width: 100%;
+}
+#workdes .inputbox {
+    width: 32%;
+    float: left;
+    margin-right: 3%;
+    margin-bottom: 2%;
+}
+#workdes .inputbox:nth-child(3) {
+    margin-right: 0;
+}
+div#workdes .form-5 textarea {
+    height: 160px;
+    margin-top: 20px;
+}
+div#workdes .form-5 .inputbox > input, div#workdes .form-5 textarea {
+    background-color: #fcfcfc;
+    box-shadow: inset 0 0 5px 0 rgba(0, 0, 0, 0.1);
+}
+div#workdes .form-5 .submitbtn, div#workdes .form-5 .submitbtn {
+    text-align: center;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+#findimages {
+    width: 100%;
+    background: #ae53c5;
+    color: #ffff;
+    font-weight: 900;
+    font-family: Avenir-Heavy;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    height: 50px;
+    border: none;
+}
+div#opendesign-slider {
+   display: block;
+}
+button.senddesign:focus, .tab button.senddesign:active, .tab button.senddesign.active {
+   background: #6f2d91;
+   border: 1px solid #6f2d91;
+   color: #ffffff;
+}
+.tab .senddesign {
+   width: 351px;
+   font-weight: 900;
+   font-style: normal;
+   font-stretch: normal;
+   line-height: 25px;
+   letter-spacing: 1.4px;
+   text-align: center;
+   text-transform: none;
+   border-radius: 0;
+   margin-right: 19px;
+}
+
+.senddesign {
+   background-image: none;
+   background: #fcba66;
+   border: 1px solid #fcba66;
+   cursor: pointer;
+   display: inline-block;
+   margin: 0;
+   box-sizing: border-box;
+   vertical-align: middle;
+   color: #fff;
+}
+.tabdesigncontent {
+   display: none;
+}
+.submitbtn {
+   margin-bottom: 2em;
+}
+.senddesign:hover {
+background: #fcba66;
+color: #fff;
+}
+
+.abt-header {
+   height: auto!important;
+}
+.em-slider.city.em-slider-navigation-icon {
+   display: block!important;
+}
+.em-slider.city a {
+   justify-content: center;
+   font-size: 15px;
+}
+.em-banners-item {
+   width: 100%;
+}
+.personalize-sec > h2, .personalize-send-tabpanel > h2, div#custdes h3, div#uplddes h3, div#workdes h3 {
+   font-size: 26px;
+}
+div#uplddes .form-4 .left-sec, div#uplddes .form-4 .right-sec {
+   width: 100%;
+}
+div#custdes .form-2 .left-sec, div#custdes .form-2 .right-sec {
+   width: 100%;
+}
+
+
+/*.control input[type="text"], input.input-text {
+   width: 100%;
+   margin: 0 auto;
+   float: none;
+}*/
+div#uplddes .form-4 .submitbtn, div#custdes .form-2 .submitbtn {
+   width: 100%;
+   float: left;
+   text-align: center;
+   margin: 50px 0 0;
+}
+div#uplddes .form-4 .submitbtn > input, div#workdes .form-5 .submitbtn > input, div#custdes .form-2 .submitbtn > input {
+   width: 100%;
+   height: 55px;
+}
+div#uplddes .form-4 .inputfile p {
+   width: 100%;
+   margin: 0;
+}
+div#uplddes .form-2 .inputfile p {
+   width: 100%;
+   margin: 0;
+}
+div#uplddes input#imgbtnupload_1 {
+   width: 100%!important;
+}
+div#uplddes .form-4 .inputfile, div#custdes .form-2 .inputfile {
+   width: 100%;
+   float: left;
+   position: relative;
+   margin: 0 auto;
+}
+div#uplddes .form-4 input#imgupload_1,  div#uplddes .form-2 input#imgupload_2{
+   width: 334px;
+   height: auto;
+   margin: 0;
+}
+.right-sec .col-md-12 {
+   flex: 0 0 100%!important;
+   width: 100%!important;
+}
+.em-maxwidth-content {
+   overflow-x: hidden;
+}
+div#custdes .form-2 input#imgupload_2{
+   width: 334px;
+   height: auto;
+   margin: 0;
+}
+.right-imgbtn {
+   width: 100%;
+}
+.left-txtcode {
+   width: 100%;
+}
+#uplddes .form-4 .inputfile > img, #custdes .form-2 .inputfile > img {
+   width: 100%;
+}
+#custdes .form-2 .inputfile > img {
+   height: 282px;
+}
+div#uplddes .form-4 .submitbtn, div#custdes .form-2 .submitbtn {
+   margin-bottom: 30px;
+}
+#workdes .inputbox {
+   width: 100%!important;
+}
+.inputbox .control input[type="text"], .inputbox input.input-text {
+   width: 100%;
+   margin: 0 auto;
+   float: none;
+}
+/* personal - your - jewellary css end */
+
+/* try on page css start */
+
+
+@media (min-width: 480px){
+.phonediv {
+    display: none;
+}
+.category-option {
+    width: 250px;
+    height: 100px;
+    vertical-align: top;
+    display: inline-block;
+    zoom: 1;
+    margin-right: 50px;
+    margin-top: 20px;
+    margin-bottom: -20px;
+}
+.style-option {
+    width: 250px;
+    height: 100px;
+    vertical-align: top;
+    display: inline-block;
+    zoom: 1;
+    margin-right: 50px;
+    margin-top: 20px;
+    margin-bottom: -20px;
+}
+.try-option {
+    width: 250px;
+    height: 100px;
+    vertical-align: top;
+    display: inline-block;
+    zoom: 1;
+    margin-right: 50px;
+    margin-top: 20px;
+    margin-bottom: -20px;
+}
+}
+@media (min-width: 768px){
+
+.products-grid .emcatalog-desktop-5 .product-items:not(.owl-carousel)>.product-item {
+    width: 19.5%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+}
+
+
+input[type=text], input[type=password], input[type=url], input[type=tel], input[type=search], input[type=number], input[type=datetime], input[type=email], input.input-text, select, textarea {
+    color: #282828;
+    border-color: #dcdcdc;
+    font: 500 14px/1.55 Lato,sans-serif;
+    padding: 5px 10px;
+    height: 40px;
+    line-height: 28px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+a#tryonButton {
+    text-transform: uppercase;
+    font-size: 14px;
+}
+.products-grid .product-item-info .product-shop-top .product-item-photo img {
+    /* -webkit-border-radius: 5px 5px 0 0; */
+    -moz-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+}
+.products-list .item a.product-item-photo .em-alt-hover, .products-grid.isotope .item a.product-item-photo .em-alt-hover, .product-item a.product-item-photo .em-alt-hover {
+    position: absolute;
+    top: 0;
+    -moz-transition: all .7s ease;
+    -webkit-transition: all .7s ease;
+    -o-transition: all .7s ease;
+    transition: all .7s ease;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    /* backface-visibility: hidden; */
+    -webkit-opacity: 0;
+    -moz-opacity: 0;
+    opacity: 0;
+}
+.product-item .product-shop-top {
+    position: relative;
+    overflow: hidden;
+}
+.products.wrapper.grid.products-grid {
+    width: 100%!important;
+    margin: 10px 0!important;
+}
+#myList {
+    width: 100%;
+}
+.product-item-info {
+    max-width: 100%;
+    width: 100%;
+    /*border: 1px solid #fcba66;*/
+    border-radius: 5px;
+    /* margin-top: 0em; */
+}
+.products-grid .product-item-info:hover, .products-grid .product-item-info.active {
+    box-shadow: 0 0 10px #fcba66;
+    -moz-box-shadow: 0 0 10px #fcba66;
+    -webkit-box-shadow: 0 0 10px #fcba66;
+    -o-box-shadow: 0 0 10px #fcba66;
+    -ms-box-shadow: 0 0 10px #fcba66;
+}
+.product.details.product-item-details {
+    text-align: center;
+}
+.product-item .price-box {
+    text-align: center;
+    display: inline-block;
+}
+/*ul.pagination {
+    display: inline-block!important;
+}*/
+.page-item {
+    padding: 0.3rem 0.8rem!important;
+}
+.page-item span {
+    color: #fff;
+}
+.limiter {
+    display: none;
+}
+.products.wrapper.grid.products-grid {
+border: none!important;
+}
+#myList {
+border: none;
+}
+#message {
+top: 370px;
+background-color: #6f2d91!important;  }
+
+.columns .column.main {
+   order: initial!important;
+}
+p.deskdiv {
+   display: none;
+}
+
+.category-option {
+   float: left;
+   display: block;
+   width: 45%;
+   margin-left: 5px;
+   margin-top: 15px;
+}
+.style-option {
+   float: right;
+   display: block;
+   width: 45%;
+   margin-right: 5px;
+   margin-top: 15px;
+}
+.deskdiv {
+   display: none;
+}
+.box-tocart.addbuybtn .buynow.action.primary {
+   border: none;
+   background: #ae53c5;
+}
+.products.wrapper.grid.products-grid {
+   display: none;
+}
+.products .item.product {
+   width: 49%;
+   float: left;
+   padding-left: 10px;
+   padding-right: 10px;
+   padding-bottom: 15px;
+}
+.pages strong.page {
+   background: none;
+}
+.pages-item-next {
+   top: auto!important;
+}
+a.close-notify {
+color: #fff;
+}
+main#maincontent {
+padding-top: 20px;
+}
+/* try on page css end */
+
+/* css for our Branch pages start*/
+
+.em-maxwidth-content {
+   padding-top: 0!important;
+}
+.left-blk-content.sstore {
+   width: 100%;
+   float: left;
+}
+.local-left {
+   float: left;
+   width: 30%;
+   background: #e2dede;
+}
+.local-left h2 {
+   font-size: 20px;
+   font-weight: bold;
+   padding-left: 10px;
+   padding-top: 10px;
+}
+.local-left p {
+   padding-left: 10px;
+}
+.local-right {
+   width: 70%;
+   float: left;
+   background: #73217f;
+   padding-left: 3%;
+   border-top: 2px solid #ccc;
+   padding-top: 15px;
+   color: #fff;
+}
+.local-right p a {
+    color: wheat;
+}
+.local-right h2 {
+   font-size: 20px;
+   font-weight: bold;
+}
+.cms-page-view footer.page-footer {
+   width: 100%;
+   float: left;
+}
+.local-map iframe {
+   width: 100%!important;
+}
+.local-map {
+   width: 30%;
+   float: left;
+}
+.local-right h1 {
+   font-size: 20px;
+   font-weight: bold;
+}
+
+.local-left {
+width: 100%!important;
+}
+.local-right {
+width: 100%!important;
+}
+.local-map {
+width: 100%!important;
+}
+/* css for our branch pages end */
+
+
+/* css form in video shopping page start*/
+
+.form-3 .tab-content {
+border: 2px solid #d9a460;
+}
+.top-row {
+width: 90%;
+float: left;
+padding-left: 8% !important;
+}
+#custom-form .top-row input {
+background: #ccc!important;
+}
+.d-flex.set-item {
+margin-top: 1em;
+width: 70%!important;
+}
+
+/* css form in video shopping page start*/

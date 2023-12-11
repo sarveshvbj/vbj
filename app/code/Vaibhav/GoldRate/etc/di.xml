@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Vaibhav\GoldRate\Api\GoldrateRepositoryInterface" type="Vaibhav\GoldRate\Model\GoldrateRepository"/>
+	<preference for="Vaibhav\GoldRate\Api\Data\GoldrateInterface" type="Vaibhav\GoldRate\Model\Goldrate"/>
+	<preference for="Vaibhav\GoldRate\Api\Data\GoldrateSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Vaibhav\GoldRate\Model\ResourceModel\Goldrate\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">vaibhav_goldrate_goldrate</argument>
+			<argument name="resourceModel" xsi:type="string">Vaibhav\GoldRate\Model\ResourceModel\Goldrate\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="vaibhav_goldrate_goldrate_listing_data_source" xsi:type="string">Vaibhav\GoldRate\Model\ResourceModel\Goldrate\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+</config>

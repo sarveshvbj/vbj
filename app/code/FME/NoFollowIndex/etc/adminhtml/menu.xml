@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+  <menu>
+    <update id="FME_Extensions::fmeextensions" title="FME Extensions" module="Magento_Backend" sortOrder="300" resource="FME_Extensions::fmeextensions"/>
+    <add id="FME_NoFollowIndex::main_menu" title="No Follow Index"
+      module="FME_NoFollowIndex" sortOrder="10" parent="FME_Extensions::fmeextensions"
+      resource="FME_NoFollowIndex::main_menu"/>
+    <add id="FME_NoFollowIndex::nofollowindex_configuration"
+      title="Configurations"
+      module="FME_NoFollowIndex" sortOrder="30"
+      parent="FME_NoFollowIndex::main_menu"
+      action="adminhtml/system_config/edit/section/nofollowindex"
+      resource="FME_NoFollowIndex::nofollowindex_config" />
+  </menu>
+</config>

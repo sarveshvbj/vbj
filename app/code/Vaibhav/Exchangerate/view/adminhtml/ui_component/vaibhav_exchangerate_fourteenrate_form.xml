@@ -1,0 +1,104 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">vaibhav_exchangerate_fourteenrate_form.fourteenrate_form_data_source</item>
+		</item>
+		<item name="label" xsi:type="string" translate="true">General Information</item>
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+	</argument>
+	<settings>
+		<buttons>
+			<button name="back" class="Vaibhav\Exchangerate\Block\Adminhtml\Fourteenrate\Edit\BackButton"/>
+			<button name="delete" class="Vaibhav\Exchangerate\Block\Adminhtml\Fourteenrate\Edit\DeleteButton"/>
+			<button name="save" class="Vaibhav\Exchangerate\Block\Adminhtml\Fourteenrate\Edit\SaveButton"/>
+			<button name="save_and_continue" class="Vaibhav\Exchangerate\Block\Adminhtml\Fourteenrate\Edit\SaveAndContinueButton"/>
+		</buttons>
+		<namespace>vaibhav_exchangerate_fourteenrate_form</namespace>
+		<dataScope>data</dataScope>
+		<deps>
+			<dep>vaibhav_exchangerate_fourteenrate_form.fourteenrate_form_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="fourteenrate_form_data_source">
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+			</item>
+		</argument>
+		<settings>
+			<submitUrl path="*/*/save"/>
+		</settings>
+		<dataProvider name="fourteenrate_form_data_source" class="Vaibhav\Exchangerate\Model\Fourteenrate\DataProvider">
+			<settings>
+				<requestFieldName>fourteenrate_id</requestFieldName>
+				<primaryFieldName>fourteenrate_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<fieldset name="general">
+		<settings>
+			<label>General</label>
+		</settings>
+		<field name="fourteen_rate" formElement="input" sortOrder="10">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">fourteenrate</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Fourteen Rate</label>
+				<dataScope>fourteen_rate</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="eighteen_rate" formElement="input" sortOrder="20">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">fourteenrate</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Eighteen Rate</label>
+				<dataScope>eighteen_rate</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="twentytwo_rate" formElement="input" sortOrder="30">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">fourteenrate</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Twentytwo Rate</label>
+				<dataScope>twentytwo_rate</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="twentyfour_rate" formElement="input" sortOrder="40">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">fourteenrate</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Twentyfour Rate</label>
+				<dataScope>twentyfour_rate</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+	</fieldset>
+</form>

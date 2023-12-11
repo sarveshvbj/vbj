@@ -1,0 +1,88 @@
+<?php
+  $objectManager =   \Magento\Framework\App\ObjectManager::getInstance();
+  $connection = $objectManager->get('Magento\Framework\App\ResourceConnection')->getConnection('\Magento\Framework\App\ResourceConnection::DEFAULT_CONNECTION'); 
+  $result = $connection->fetchAll("SELECT * FROM vaibhav_goldrate_goldrate");
+  $varTodayprice = json_encode($result);
+?>
+
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+    crossorigin="anonymous"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+<script>
+$(document).ready(function() {
+    var width = $(window).width();
+    if (width <= 768) {
+        $('.columns').css('display', 'flow');
+    }
+
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
+
+
+    var place = document.querySelector('.place');
+    if (place) {
+        var USDollar = new Intl.NumberFormat('en-IN', {
+            style: 'currency',
+            currency: 'INR',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+        });
+        var todayPrice = <?php echo $varTodayprice; ?>;
+
+        var url = window.location.pathname;
+        var currentUrl = window.location.href;
+        var currenturlSplit = currentUrl.split('/');
+        currenturlSplit.pop();
+        var finalresult2Url = currenturlSplit.join('/');
+        var arrayTest = url.split('/');
+        var lastValue = arrayTest[arrayTest.length - 1];
+        var resultUrl = lastValue.replace('gold-rate-', '');
+        var selectedValue = resultUrl;
+        var y = selectedValue.replace(/-/g, ' ');
+        var cities = [];
+        for (var i = 0; i < todayPrice.length; i++) {
+            if (todayPrice[i].city == selectedValue) {
+                $('.todayGoldPrice').html(`${USDollar.format(todayPrice[i].twentytwo_rate)}`);
+                var d = new Date(todayPrice[i].updated_at);
+                var todaydates = d.getDate() + " " + monthNames[d.getMonth()] + " " + d.getFullYear();
+                $('.currentDate').html(todaydates);
+                var place = todayPrice[i].city;
+                var y = place.replace(/-/g, ' ');
+                $('.place').html(y);
+                goldPrices(todayPrice[i].p22k, todayPrice[i].twentyfour_rate);
+            }
+            cities.push(todayPrice[i].city);
+        }
+        $.each(cities, function(i, p) {
+            var y = p.replace(/-/g, ' ');
+            $(".selectPlace").append(jQuery('<option></option>').val(p).html(y));
+        });
+        $('.selectPlace').prop('value', selectedValue);
+        $('.selectPlace option:selected').css('text-align', 'center');
+    }
+    var slectedPlace = document.querySelector('.selectPlace');
+    slectedPlace.addEventListener('change', function() {
+        var selectedValue = jQuery('.selectPlace').val();
+        window.location.href = finalresult2Url + "/" + "gold-rate-" + selectedValue;
+    });
+
+    function goldPrices(twentytwo_rate, twentyfour_rate) {
+        $('.oneGramPrice24k').html(`${USDollar.format(todayPrice[i].twentyfour_rate)}`);
+        $('.eightGramPrice24K').html(`${USDollar.format(8 * todayPrice[i].twentyfour_rate)}`);
+        $('.tenGramPrice24K').html(`${USDollar.format(10 * todayPrice[i].twentyfour_rate)}`);
+        $('.hundreedGramPrice24K').html(`${USDollar.format(100 * todayPrice[i].twentyfour_rate)}`);
+
+        $('.oneGramPrice22k').html(`${USDollar.format(todayPrice[i].twentytwo_rate)}`);
+        $('.eightGramPrice22K').html(`${USDollar.format(8 * todayPrice[i].twentytwo_rate)}`);
+        $('.tenGramPrice22K').html(`${USDollar.format(10 * todayPrice[i].twentytwo_rate)}`);
+        $('.hundreedGramPrice22K').html(`${USDollar.format(100 * todayPrice[i].twentytwo_rate)}`);
+    }
+});
+</script>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<?php
+
+/**
+ * @var \Mageplaza\HelloWorld\Block\Display $block
+ */
+
+$current_category= $block->getCurrentCategory();
+
+$objectManager =\Magento\Framework\App\ObjectManager::getInstance();
+
+$abstractProductBlock = $block->getLayout()->createBlock('\Magento\Catalog\Block\Product\AbstractProduct');
+
+$storeManager = $objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+$currentStore = $storeManager->getStore();
+$baseUrl = $currentStore->getBaseUrl();
+$mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$linkUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_LINK);
+
+$cateid = '140';
+$productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory');
+
+$collection = $productCollection->create();
+$collection->addAttributeToSelect('*');
+$collection->addCategoriesFilter(['in' => $cateid]);
+$collection->addAttributeToFilter('visibility', \Magento\Catalog\Model\Product\Visibility::VISIBILITY_BOTH);
+$collection->addAttributeToFilter('status',\Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED);
+$collection->addAttributeToSort('created_at', 'DESC');
+$collection->setPageSize(10); // fetching only 9 products
+foreach ($collection as  $value) {
+    $productUrl = $value->getProductUrl();
+    $productName =  $value->getName();
+    /*$productImage = $abstractProductBlock->getImage($value, 'product_small_image')->getImageUrl();
+    $productPrice =  $abstractProductBlock->getProductPrice($value);*/
+    //echo 'Image URL - '. $value->getId(). ' - '. $value->getImage();
+}
+
+
+?>
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="text-align: center;"><strong>Invest in gold coins</strong></h4>
+            <section class="customer_sliders">
+                <div class="scroll-arrow" id="scroll-left1">
+                    <i class="fa fa-chevron-circle-left"></i>
+                </div>
+                <div id="imgList1" class="imgList">
+                    <?php foreach ($collection as $value) {  ?>
+                    <div class="product_main">
+                        <div class="product_container">
+                            <a href="<?php echo $value->getProductUrl(); ?>">
+                                <div class="product_img"><img
+                                        src=" <?php echo $abstractProductBlock->getImage($value, 'product_base_image')->getImageUrl(); ?>"
+                                        class="img img-responsive">
+                                </div>
+                                <div class="product_details_slider">
+                                    <div class="product_name_slider"><?php echo $value->getName(); ?></div>
+                                    <span
+                                        class="price_slider"><?php echo $abstractProductBlock->getProductPrice($value); ?></span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <? } ?>
+                </div>
+                <div class="scroll-arrow" id="scroll-right1">
+                    <i class="fa fa-chevron-circle-right"></i>
+                </div>
+            </section>
+            <p></p>
+            <br />
+            <button class="btn btn-primary submit align_explore"
+                onclick="window.location.href='<?php echo $linkUrl;?>gold-coins.html'">Explore</button>
+            <p></p>
+            <br />
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+var imgListi = document.getElementById('imgList1');
+var scrollRightr = document.getElementById('scroll-right1');
+var scrollLeftr = document.getElementById('scroll-left1');
+
+// When a user clicks on the right arrow, the ul will scroll 750px to the right
+scrollRightr.addEventListener('click', (event) => {
+    imgListi.scrollBy(750, 0);
+});
+
+// When a user clicks on the left arrow, the ul will scroll 750px to the left
+scrollLeftr.addEventListener('click', (event) => {
+    imgListi.scrollBy(-750, 0);
+});
+</script>

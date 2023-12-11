@@ -1,0 +1,231 @@
+<?php
+/**
+ * Category sidebar
+ *
+ * @var $block Sebwite\Sidebar\Block\Sidebar
+ */
+$categories = $block->getCategories();
+$brands     = $block->getBrands();
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$storeUrl = $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB);
+?>
+
+<ul class="o-list term-list">
+
+    <?php
+    /*
+    // Loop through categories
+    foreach ( $categories as $category ) : ?>      
+        <li class="level0<?php echo($block->isActive($category) ? ' active' : ''); ?>">
+             <?php if($category->getId() != 2){ ?>
+            <a href="<?php echo $block->getCategoryUrl($category); ?>" title="<?php echo $category->getName(); ?>" class="<?php echo($block->isActive($category) ? ' active' : ''); ?>">
+                <?php echo $category->getName(); ?>
+            </a>
+            <?php } ?>
+            <?php if ( $category->hasChildren() ) : ?>
+                 <?php if($category->getId() != 2){ ?>
+                    <span class="expand"><?php echo $block->isActive($category) ? '<i class="fa fa-minus-circle"></i>' : '<i class="fa fa-plus-circle"></i>'; ?></span>
+                <?php } ?>
+            <?php endif; ?>
+
+            <?php echo $block->getChildCategoryView($category); ?>
+        </li>
+        
+    <?php //} ?>
+    <?php endforeach; */?>
+    <li class="level0">
+        <a href="<?php echo $storeUrl;?>gold-jewellery.html" title="Gold" class=""> Gold </a> <span class="expand"><i class="fa fa-plus-circle"></i></span>
+        <ul class="o-list o-list--unstyled" style="">
+            <li class="level1"><a href="<?php echo $storeUrl;?>gold-jewellery/women.html" title="Women" class="">Women</a><span class="expand"><i class="fa fa-plus-circle"></i></span>
+                <ul class="o-list o-list--unstyled" style="">
+                    <li class="level2"><a href="<?php echo $storeUrl;?>gold-jewellery/women/earrings.html" title="Earrings" class="">Earrings</a><span class="expand"><i class="fa fa-plus-circle"></i></span>
+                        <ul class="o-list o-list--unstyled" style="">
+                            <li class="level3"><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/earrings/suidhaga-earrings.html" title="SuiDhaga" class="">SuiDhaga</a></li>
+                            <li class="level3"><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/earrings/huggie-earrings.html" title="huggies" class="">huggies</a></li>
+                            <li class="level3"><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/earrings/chandbali-earrings.html" title="Chandbali" class="">Chandbali</a></li>
+                            <li class="level3"><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/earrings/hanging-earrings.html" title="Hangings" class="">Hangings</a></li>
+                            <li class="level3"><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/earrings/hoop-earrings.html" title="Hoops" class="">Hoops</a></li>
+                            <li class="level3"><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/earrings/dangle-earrings.html" title="Dangles" class="">Dangles</a></li>
+                            <li class="level3"><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/earrings/stud-earrings.html" title="Studs" class="">Studs</a></li>
+                            <li class="level3"><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/earrings/drop-earrings.html" title="Drops" class="">Drops</a></li>
+                            <li class="level3"><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/earrings/jhumka-earrings.html" title="Jhumkas" class="">Jhumkas</a></li></ul></li>
+                            <li class="level2"><a href="<?php echo $storeUrl;?>gold-jewellery/women/bangles.html" title="Bangles" class="">Bangles</a><span class="expand"><i class="fa fa-plus-circle"></i></span> 
+                                <ul class="o-list o-list--unstyled" style="">
+                                    <li class="level3"><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/bangles/antique.html" title="Antique" class="">Antique</a></li>
+                                    <li class="level3"><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/bangles/precious.html" title="Precious" class="">Precious</a></li></ul>
+                            </li>
+                                    <li class="level2"><a href="<?php echo $storeUrl;?>gold-jewellery/women/harams.html" title="Harams" class="">Harams</a><span class="expand"><i class="fa fa-plus-circle"></i></span>
+                                        <ul class="o-list o-list--unstyled" style="">
+                                            <li class="level3"><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/harams/antique.html" title="Antique" class="">Antique</a></li>
+                                            <li class="level3"><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/harams/precious.html" title="Precious" class="">Precious</a></li>
+                                            <li class="level3"><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/harams/polkey.html" title="Polki" class="">Polki</a></li>
+                                            <li class="level3"><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/harams/temple.html" title="Temple" class="">Temple</a></li></ul></li>
+                                            <li class="level2"><a href="<?php echo $storeUrl;?>gold-jewellery/women/vaddanam.html" title="Vaddanam" class="">Vaddanam</a></li>
+                                            <li class="level2"><a href="<?php echo $storeUrl;?>gold-jewellery/women/lockets.html" title="Lockets" class="">Lockets</a></li>
+                                            <li class="level2"><a href="<?php echo $storeUrl;?>gold-jewellery/women/accessories.html" title="Accessories" class="">Accessories</a></li>
+                                            <li class="level2"><a href="<?php echo $storeUrl;?>gold-jewellery/women/vanki.html" title="Vanki" class="">Vanki</a></li>
+                                            <li class="level2"><a href="<?php echo $storeUrl;?>gold-jewellery/women/necklace.html" title="Necklace" class="">Necklace</a><span class="expand"><i class="fa fa-plus-circle"></i></span>
+                                                <ul class="o-list o-list--unstyled" style="">
+                                                    <li class="level3"><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/necklace/antique.html" title="Antique" class="">Antique</a></li>
+                                                    <li class="level3"><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/necklace/pachi.html" title="Pachi" class="">Pachi</a></li>
+                                                    <li class="level3"><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/necklace/temple.html" title="Temple" class="">Temple</a></li></ul></li>
+                                                    <li class="level2"><a href="<?php echo $storeUrl;?>gold-jewellery/women/rings.html" title="Rings" class="">Rings</a><span class="expand"><i class="fa fa-plus-circle"></i></span>
+                                                    <ul class="o-list o-list--unstyled" style="">
+                                                    <li class="level3"><a href="https://www.vaibhavjewellers.com/women-gold-rings/engagement-rings.html" title="Engagement Rings" class="">Engagement Rings</a></li>
+                                                    <li class="level3"><a href="https://www.vaibhavjewellers.com/women-gold-rings/plain-rings.html" title="Plain Rings" class="">Plain Rings</a></li>
+                                                    <li class="level3"><a href="https://www.vaibhavjewellers.com/women-gold-rings/gemstone-rings.html" title="Gemstone" class="">Gemstone</a></li>
+                                                    <li class="level3"><a href="https://www.vaibhavjewellers.com/women-gold-rings/floral-rings.html" title="Floral Rings" class="">Floral Rings</a></li>
+                                                    <li class="level3"><a href="https://www.vaibhavjewellers.com/women-gold-rings/butterfly-rings.html" title="Butterfly Rings" class="">Butterfly Rings</a></li>
+                                                    <li class="level3"><a href="https://www.vaibhavjewellers.com/women-gold-rings/couple-rings.html" title="couple rings" class="">Couple Rings</a></li>
+                                                    <li class="level3"><a href="https://www.vaibhavjewellers.com/women-gold-rings/solitaire-rings.html" title="Solitaire Rings" class="">Solitaire Rings</a></li>
+                                                    <li class="level3"><a href="https://www.vaibhavjewellers.com/women-gold-rings/fancy-rings.html" title="Fancy Rings" class="">Fancy Rings</a></li>
+                                                    </ul>
+                                                    </li>
+                                                    <li class="level2"><a href="<?php echo $storeUrl;?>gold-jewellery/women/pendants.html" title="Pendants" class="">Pendants</a></li>
+                                                    <li class="level2"><a href="<?php echo $storeUrl;?>gold-jewellery/women/choker.html" title="Choker" class="">Choker</a></li>
+                                                    <li class="level2"><a href="<?php echo $storeUrl;?>gold-jewellery/women/mangalsutra.html" title="Mangalsutra" class="">Mangalsutra</a></li>
+                                                <li class="level2"><a href="<?php echo $storeUrl;?>gold-jewellery/women/bracelets.html" title="Bracelets" class="">Bracelets</a></li>
+                                                    <li class="level2"><a href="https://www.vaibhavjewellers.com/women-gold-chains.html" title="Chains" class="">Chains</a><span class="expand"><i class="fa fa-plus-circle"></i></span>
+                                                      <ul class="o-list o-list--unstyled" style="">
+                                                      <li class="level3"><a href="https://www.vaibhavjewellers.com/women-gold-chains/simple-chains.html" title="Antique" class="">Simple Chains</a></li>
+                                                    <li class="level3"><a href="https://www.vaibhavjewellers.com/women-gold-chains/rope-chains.html" title="Pachi" class="">Rope Chains</a></li>
+                                                    <li class="level3"><a href="https://www.vaibhavjewellers.com/women-gold-chains/thali-chains.html" title="Temple" class="">Thali Chains</a></li>
+                                                     <li class="level3"><a href="https://www.vaibhavjewellers.com/women-gold-chains/fancy-chains.html" title="Antique" class="">Fancy Chains</a></li>
+                                                    <li class="level3"><a href="https://www.vaibhavjewellers.com/women-gold-chains/dailywear-chains.html" title="Pachi" class="">Dailywear Chains</a></li>                                                   
+                                                     </ul>
+                                                    </li>
+                                                    <li class="level2"><a href="<?php echo $storeUrl;?>gold-jewellery/women/maang-tikka.html" title="MaangTikka" class="">MaangTikka</a></li></ul></li>
+                                                    <li class="level1"><a href="h<?php echo $storeUrl;?>gold-jewellery/men.html" title="Men" class="">Men</a><span class="expand"><i class="fa fa-plus-circle"></i></span>
+                                                        <ul class="o-list o-list--unstyled" style="">
+                                                            <li class="level2"><a href="<?php echo $storeUrl;?>gold-jewellery/men/accessories.html" title="Accessories" class="">Accessories</a></li>
+                                                            <li class="level2"><a href="<?php echo $storeUrl;?>gold-jewellery/men/bracelets.html" title="Bracelets" class="">Bracelets</a></li>
+                                                            <li class="level2"><a href="<?php echo $storeUrl;?>gold-jewellery/men/chains.html" title="Chains" class="">Chains</a></li><li class="level2"><a href="<?php echo $storeUrl;?>men-gold-rings.html" title="Rings" class="">Rings</a></li></ul></li>
+                                                            <li class="level1"><a href="<?php echo $storeUrl;?>gold-jewellery/kids.html" title="Kids" class="">Kids</a><span class="expand"><i class="fa fa-plus-circle"></i></span>
+                                                                <ul class="o-list o-list--unstyled" style="">
+                                                                    <li class="level2"><a href="<?php echo $storeUrl;?>gold-jewellery/kids/bracelets.html" title="Bracelets" class="">Bracelets</a></li>
+                                                                    <li class="level2"><a href="<?php echo $storeUrl;?>gold-jewellery/kids/maangtikka.html" title="Maang Tikka" class="">Maang Tikka</a></li>
+                                                                    <li class="level2"><a href="<?php echo $storeUrl;?>gold-jewellery/kids/bangles.html" title="Bangles" class="">Bangles</a></li>
+                                                                    <li class="level2"><a href="<?php echo $storeUrl;?>gold-jewellery/kids/rings.html" title="Rings" class="">Rings</a></li>
+                                                                    <li class="level2"><a href="<?php echo $storeUrl;?>gold-jewellery/kids/accessories.html" title="Accessories" class="">Accessories</a></li>
+                                                                    <li class="level2"><a href="<?php echo $storeUrl;?>gold-jewellery/kids/earrings.html" title="Earrings" class="">Earrings</a></li>
+                                                                    <li class="level2"><a href="<?php echo $storeUrl;?>gold-jewellery/kids/pendants.html" title="Pendants" class="">Pendants</a></li></ul></li></ul></li>
+
+<li class="level0"> <a href="<?php echo $storeUrl;?>diamond-jewellery.html" title="Diamond" class=""> Diamond </a> <span class="expand"><i class="fa fa-plus-circle"></i></span>
+    <ul class="o-list o-list--unstyled">
+        <li class="level1"><a href="<?php echo $storeUrl;?>diamond-jewellery/women.html" title="Women" class="">Women</a><span class="expand"><i class="fa fa-plus-circle"></i></span>
+            <ul class="o-list o-list--unstyled">
+                <li class="level2"><a href="<?php echo $storeUrl;?>diamond-jewellery/women/earrings.html" title="Earrings" class="">Earrings</a><span class="expand"><i class="fa fa-plus-circle"></i></span>
+                    <ul class="o-list o-list--unstyled">
+                        <li class="level3"><a href="https://www.vaibhavjewellers.com/diamond-jewellery/women/earrings/hangings.html" title="Hangings" class="">Hangings</a></li>
+                        <li class="level3"><a href="https://www.vaibhavjewellers.com/diamond-jewellery/women/earrings/studs.html" title="Studs" class="">Studs</a></li>
+                        <li class="level3"><a href="https://www.vaibhavjewellers.com/diamond-jewellery/women/earrings/jhumkas.html" title="Jhumkas" class="">Jhumkas</a></li>
+                        <li class="level3 active"><a href="https://www.vaibhavjewellers.com/diamond-jewellery/women/earrings/suidhaga.html" title="SuiDhaga" class="is-active">SuiDhaga</a></li>
+                        <!-- <li class="level3"><a href="https://www.vaibhavjewellers.com/diamond-jewellery/women/earrings/huggies-3.html" title="Huggies" class="">Huggies</a></li> --></ul></li>
+                        <li class="level2"><a href="<?php echo $storeUrl;?>diamond-jewellery/women/necklace.html" title="Necklace" class="">Necklace</a></li>
+                        <li class="level2"><a href="<?php echo $storeUrl;?>diamond-jewellery/women/pendants.html" title="Pendants" class="">Pendants</a></li>
+                        <li class="level2"><a href="<?php echo $storeUrl;?>diamond-jewellery/women/mangalsutra.html" title="Mangalsutra" class="">Mangalsutra</a></li>
+                        <li class="level2"><a href="<?php echo $storeUrl;?>diamond-jewellery/women/pendantsets.html" title="Pendant Sets" class="">Pendant Sets</a></li>
+                        <li class="level2"><a href="<?php echo $storeUrl;?>diamond-jewellery/women/bracelet.html" title="Bracelet" class="">Bracelet</a></li>
+                        <li class="level2"><a href="<?php echo $storeUrl;?>diamond-jewellery/women/vaddanam.html" title="Vaddanam" class="">Vaddanam</a></li>
+                        <li class="level2"><a href="<?php echo $storeUrl;?>diamond-jewellery/women/bangles.html" title="Bangles" class="">Bangles</a></li>
+                        <li class="level2"><a href="<?php echo $storeUrl;?>diamond-jewellery/women/rings.html" title="Rings" class="">Rings</a><span class="expand"><i class="fa fa-plus-circle"></i></span>
+                        <ul class="o-list o-list--unstyled" style="">
+
+                        <li class="level3"><a href="https://www.vaibhavjewellers.com/women-diamond-rings/engagement-rings.html" title="Engagement Rings" class="">Engagement Rings</a></li>
+
+                        <li class="level3"><a href="https://www.vaibhavjewellers.com/women-diamond-rings/fancy-rings.html" title="Fancy Rings" class="">Fancy Rings</a></li>
+
+                        <li class="level3"><a href="https://www.vaibhavjewellers.com/women-diamond-rings/switch-rings.html" title="Switch Rings" class="">Switch Rings</a></li>
+
+                        <li class="level3"><a href="https://www.vaibhavjewellers.com/women-diamond-rings/navratna-rings.html" title="Navratna Rings" class="">Navratna Rings</a></li>
+
+                        <li class="level3"><a href="https://www.vaibhavjewellers.com/women-diamond-rings/stackable-rings.html" title="Stackable Rings" class="">Stackable Rings</a></li>
+
+                        <li class="level3"><a href="https://www.vaibhavjewellers.com/women-diamond-rings/silvigo-collections.html" title="Silvigo Collections" class="">Silvigo Collections</a></li>
+
+                        <li class="level3"><a href="https://www.vaibhavjewellers.com/women-diamond-rings/solitaire-rings.html" title="Solitaire Rings" class="">Solitaire Rings</a></li>
+
+                        <li class="level3"><a href="https://www.vaibhavjewellers.com/women-diamond-rings/couple-rings.html" title="Couple Rings" class="">Couple Rings</a></li>
+                        </ul>
+                        </li>
+                        <li class="level2"><a href="<?php echo $storeUrl;?>diamond-jewellery/women/nose-pin.html" title="Nosepin" class="">Nosepin</a></li></ul></li>
+                        <li class="level1"><a href="<?php echo $storeUrl;?>diamond-jewellery/men.html" title="Men" class="">Men</a><span class="expand"><i class="fa fa-plus-circle"></i></span>
+                            <ul class="o-list o-list--unstyled">
+                                <li class="level2"><a href="<?php echo $storeUrl;?>diamond-jewellery/men/bracelet.html" title="Bracelet" class="">Bracelet</a></li></ul></li></ul></li>
+
+
+
+  <li class="level0"> <a href="<?php echo $storeUrl;?>silver.html" title="Silver" class=""> Silver </a> <span class="expand"><i class="fa fa-plus-circle"></i></span>
+  <ul class="o-list o-list--unstyled">
+    <li class="level1"><a href="<?php echo $storeUrl;?>silver/silver-articles.html" title="Silver Articles" class="">Silver Articles</a></li>
+    <li class="level1"><a href="<?php echo $storeUrl;?>silver/pooja-items.html" title="Pooja Articles" class="">Pooja Articles</a></li>
+    <li class="level1"><a href="<?php echo $storeUrl;?>silver/tumblers.html" title="Glasses &amp; Tumblers" class="">Glasses &amp; Tumblers</a></li>
+    <li class="level1"><a href="<?php echo $storeUrl;?>silver/dinner-sets.html" title="Dinner Sets" class="">Dinner Sets</a></li>
+    <li class="level1"><a href="<?php echo $storeUrl;?>silver/silverjewellery.html" title="Silver Jewellery" class="">Silver Jewellery</a></li>
+    <li class="level1"><a href="<?php echo $storeUrl;?>silver/gifts.html" title="Gifts" class="">Gifts</a></li>
+    <li class="level1"><a href="<?php echo $storeUrl;?>silver/god-idols.html" title="God Idols" class="">God Idols</a></li>
+</ul></li>         
+
+
+<li class="level0"> <a href="<?php echo $storeUrl;?>solitaires-collection.html" title="Solitaires" class=""> Solitaires </a> <span class="expand"><i class="fa fa-plus-circle"></i></span>
+    <ul class="o-list o-list--unstyled">
+        <li class="level1"><a href="<?php echo $storeUrl;?>solitaires-collection/solitaire-bangles.html" title="Solitaire Bangles" class="">Solitaire Bangles</a></li>
+        <li class="level1"><a href="<?php echo $storeUrl;?>solitaires-collection/solitaires-earrings.html" title="Solitaire Earwear" class="">Solitaire Earwear</a></li>
+    </ul></li>  
+
+
+ <li class="level0"> <a href="<?php echo $storeUrl;?>gifts.html" title="Gifts &amp; Coins" class=""> Gifts &amp; Coins </a> <span class="expand"><i class="fa fa-plus-circle"></i></span>
+ <ul class="o-list o-list--unstyled">
+    <li class="level1"><a href="<?php echo $storeUrl;?>gold-coins.html" title="Gold Coins" class="">Gold Coins</a></li>
+    <li class="level1"><a href="<?php echo $storeUrl;?>gifts/gift-cards.html" title="Gift Cards" class="">Gift Cards</a></li>
+</ul></li>   
+
+<li class="level0"> <a href="<?php echo $storeUrl;?>occasion.html" title="Occasion" class=""> Occasion </a> <span class="expand"><i class="fa fa-plus-circle"></i></span>
+    <ul class="o-list o-list--unstyled">
+        <li class="level1"><a href="<?php echo $storeUrl;?>occasion/anniversary.html" title="Anniversary" class="">Anniversary</a></li>
+        <li class="level1"><a href="<?php echo $storeUrl;?>occasion/birthday.html" title="Birthday" class="">Birthday</a></li>
+        <li class="level1"><a href="<?php echo $storeUrl;?>occasion/wedding.html" title="Wedding" class="">Wedding</a></li>
+        <li class="level1"><a href="<?php echo $storeUrl;?>occasion/engagement.html" title="Engagement" class="">Engagement</a></li>
+    </ul></li>    
+
+
+ <li class="level0"> <a href="<?php echo $storeUrl;?>glam-glitz.html" title="Glam &amp; Glitz" class=""> Glam &amp; Glitz </a></li>
+ 
+ <li class="level0"> <a href="<?php echo $storeUrl;?>butterfly-collection.html" title="Butterfly Collection" class=""> Butterfly Collection </a></li>
+
+ <li class="level0"> <a href="<?php echo $storeUrl;?>tara-collection.html" title="Tara Collection" class=""> Tara Collection </a></li>
+
+ <li class="level0"> <a href="<?php echo $storeUrl;?>silvigo.html" title="Silvigo" class=""> Silvigo </a></li>                  
+<li class="level0"> <a href="<?php echo $storeUrl;?>trinity-collection.html" title="Trinity Collection" class=""> Trinity Collection </a></li>
+
+<li class="level0"> <a href="<?php echo $storeUrl;?>floral-collection.html" title="Floral Collection" class=""> Floral Collection </a></li>
+
+<li class="level0"> <a href="<?php echo $storeUrl;?>new-arrivals.html" title="New Arrivals" class=""> New Arrivals </a></li>
+<li class="level0"> <a href="<?php echo $storeUrl;?>silvigo-collections.html" title="Silvigo Collections" class=""> Silvigo Collections </a></li>
+
+    <li class="level0"> <a href="<?php echo $storeUrl;?>video-shopping-page">Video Shopping</a></li>
+    <li class="level0"> <a href="<?php echo $storeUrl;?>try-on">Try On</a></li>
+</ul>
+
+<script type="text/javascript">
+    /* Simply invoke iffe of sidebarmodule */
+/*    require(['jquery','sidebarmodule'], function ($) {
+        jQuery('ul.term-list li > ul.o-list--unstyled').each(function(){
+            var LiN = jQuery(this).nextAll().find('li').length;
+            //console.log('this'+ LiN);
+            if( LiN >= 4){ 
+                jQuery('li', this).eq(4).nextAll().hide().addClass('toggleable');
+                jQuery(this).append('<li class="more" id="viewMore">View More</li>');  
+            }
+        });
+        jQuery('ul.term-list li').on('click','.more', function(){
+            if( jQuery(this).hasClass('less') ){    
+                jQuery(this).text('View More').removeClass('less');    
+            }else{
+                jQuery(this).text('View Less').addClass('less'); 
+            }
+            jQuery(this).siblings('li.toggleable').slideToggle();
+        });
+    }); */
+</script>

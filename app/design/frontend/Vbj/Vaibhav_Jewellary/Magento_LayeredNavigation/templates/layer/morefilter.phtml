@@ -1,0 +1,69 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_LayeredNavigation
+ * @copyright   Copyright (c) 2017 Mageplaza (http://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+?>
+<?php
+/** @type \Mageplaza\LayeredNavigation\Model\Layer\Filter\Attribute $filter */
+$filter = $this->getFilter();
+$attributeCode = $filter->getRequestVar();
+
+$pric_in=false;
+/** @type \Mageplaza\Layerednavigation\Model\Layer\Filter $filterModel */
+//$filterModel = $this->helper('\Mageplaza\LayeredNavigation\Helper\Data')->getFilterModel();
+?>
+    <?php /** @type  $filterItem */ foreach ($filterItems as $filterItem): ?> 
+       <div class ="select_tick">
+           
+
+                <?php if(!$pric_in): ?>
+                  <?php $pric_in=true; ?>
+                <div id="ln_slider_container_<?php echo $attributeCode ?>" class="ln_slider_container">
+                    <div id="ln_slider_<?php echo $attributeCode ?>"></div>
+                    <div id="ln_slider_text_<?php echo $attributeCode ?>"></div>
+                </div>
+
+            <?php endif; ?>
+         
+                <a href="<?= $block->escapeUrl($filterItem->getUrl()) ?>">
+                     <label class="tick_mark"><?php echo $filterItem->getLabel() ?>
+                    <?php if ($filterItem->getCount() > 0): ?>
+                        <input type="" />
+                    <?php else: ?>
+                        <input type="checkbox" disabled="disabled" />
+                    <?php endif; ?>
+                    <span class="checkmark"></span>
+                   </label>
+                   
+                        <span class="count_num"><?php echo $filterItem->getCount()?><span class="filter-count-label"><?php echo ($filterItem->getCount() == 1) ? '' : ''; ?></span></span>
+                  
+                </a>
+            <?php endif; ?> 
+        </div>
+	<?php endforeach ?> 
+
+ <!-- <div class="price-range">
+     <div class="input-box control">
+         <input type="text" class="input-form" placeholder="&#8377;4000" />
+    </div>
+    <span class="range-text"><?php echo __('to'); ?></span>
+    <div class="input-box control">
+         <input type="text" class="input-form" placeholder="&#8377;5000" />
+    </div>
+</div> -->

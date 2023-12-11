@@ -1,0 +1,515 @@
+<?php 
+$_objectManager = \Magento\Framework\App\ObjectManager::getInstance(); //instance of\Magento\Framework\App\ObjectManager
+$storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+$currentStore = $storeManager->getStore();
+$baseUrl = $currentStore->getBaseUrl();
+$mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$linkUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_LINK);
+
+?>
+<style>
+ @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Noto+Serif:ital@1&family=Prata&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+ 
+ .wedding-name{
+    font-size: 20px;
+    letter-spacing: 0px;
+    color: #a56363;
+    text-align: center;
+    padding: 10px 0 2px 0;
+    font-weight: 500;
+    font-family: 'Prata', serif!important;
+}
+.view-collection{
+  text-align: center!important;
+  font-size: 14px!important;
+  color: #7a7979!important;
+  float: unset!important;
+  font-weight: 500!important;
+  padding-bottom: 8px;
+}
+a:hover{
+  text-decoration: none;
+}
+
+.heading-bg{
+  background-color: #fdf4eb;
+}
+.wedding-image-block {
+    width: 23%;
+    height: 100%!important;
+    margin-left: 2%;
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+    text-align: center;
+    position: relative;
+    border: 1px solid #eee;
+    transition: all .4s ease 0s;
+}
+.wedding-image{
+  background: transparent;
+}
+.wedding-image img{
+  /*height: 300px;*/
+  opacity: 1;
+}
+
+.wedding-text{
+  color: #a23549;
+      text-align: center;
+      font-weight: 400!important;
+      font-family: 'Prata', serif!important;
+      letter-spacing: 0.3px;
+      font-size: 17px;
+      line-height: 32px;
+}
+
+  .d-dis-none{
+    display: none;
+  }
+ .mv-dis-none{
+    display:none;
+  }
+  .page-wrapper {
+    min-width: 100%;
+}
+.youtube {
+    /*height: 100vh;*/
+}
+.block-static-block.widget, .block-cms-link.widget {
+    margin: 30px;
+    font-size: 14px;
+    text-align: justify;
+}
+
+/********************* Mobile CSS */
+@media only screen and (max-width: 480px) {
+  .m-dis-none{
+    display: none;
+  }
+  .mv-dis-none{
+    display: block;
+  }
+  .wedding-image-block {
+    text-align: center;
+    position: relative;
+    border: 1px solid #eee;
+    transition: all .4s ease 0s;
+    margin: 30px;
+    width: 100%;
+  }
+  .wedding-image img {
+    /* height: 300px; */
+    opacity: 1;
+}
+.youtube {
+    height: 200px;
+}
+
+.block-static-block.widget, .block-cms-link.widget {
+    /* margin: 30px; */
+    font-size: 14px;
+    text-align: justify;
+}
+.inner-block-newsletter {
+    background: #6e2083!important;
+    margin-top: 0!important;
+    height: 110px;
+}
+.inner-block-newsletter h2 {
+    color: #fff;
+    font-size: 16px;
+}
+.inner-block-newsletter button {
+    width: 40% !important;
+    padding: 7px 0 7px 0 !important;
+    color: #fff;
+    background-color: #6f2d91;
+    border: 0;
+    border-radius: 0 3px 3px 0;
+    font-weight: 500;
+}
+.flex {
+    background: none;
+}
+.wedding-text {
+    color: #a23549;
+    text-align: center;
+    font-weight: 400!important;
+    font-family: 'Prata', serif!important;
+    letter-spacing: 0.3px;
+    font-size: 17px;
+    line-height: 32px;
+}
+.content .block-static-block div {
+    margin: 0px;
+    text-align: justify;
+}
+
+}
+</style>
+
+<div class="page-wrapper img-width">
+
+<!--  <div class="row">
+    <img class="m-dis-none" src="images/wedding_landing_page_banner.jpg";>
+    <img class="mv-dis-none" src="images/wedding-bridal-collection-mob-banner.jpg";> 
+  </div> -->
+
+<div class="container-fluid">
+<!-- heading block start All around India -->
+<div class="row" style=" margin-right: 0px; margin-left: 0px;">
+    <div class="inner-block d-none d-sm-flex pt-5">
+        <a href="https://www.vaibhavjewellers.com/diamond-jewellery/women/earrings.html" class="col-md-3"><picture><source type="image/webp" data-srcset="https://cdn-media.vaibhavjewellers.com/pub/media/wysiwyg/01-bridal-wedding-slider-banner.jpg?auto=compress" srcset="https://cdn-media.vaibhavjewellers.com/pub/media/wysiwyg/01-bridal-wedding-slider-banner.jpg?auto=compress"> <img loading="lazy" class="w-100" data-srcset="https://cdn-media.vaibhavjewellers.com/pub/media/wysiwyg/01-bridal-wedding-slider-banner.jpg?auto=compress" srcset="https://cdn-media.vaibhavjewellers.com/pub/media/wysiwyg/01-bridal-wedding-slider-banner.jpg?auto=compress" data-src="https://cdn-media.vaibhavjewellers.com/pub/media/wysiwyg/01-bridal-wedding-slider-banner.jpg?auto=compress" alt="bridal wedding collection" width="" height=""></picture></a>
+        <a href="https://www.vaibhavjewellers.com/diamond-jewellery/women/earrings.html" class="col-md-3"><picture><source type="image/webp" data-srcset="https://cdn-media.vaibhavjewellers.com/pub/media/wysiwyg/02-bridal-wedding-slider-banner.jpg?auto=compress" srcset="https://cdn-media.vaibhavjewellers.com/pub/media/wysiwyg/02-bridal-wedding-slider-banner.jpg?auto=compress"> <img loading="lazy" class="w-100" data-srcset="https://cdn-media.vaibhavjewellers.com/pub/media/wysiwyg/02-bridal-wedding-slider-banner.jpg?auto=compress" srcset="https://cdn-media.vaibhavjewellers.com/pub/media/wysiwyg/02-bridal-wedding-slider-banner.jpg?auto=compress" data-src="https://cdn-media.vaibhavjewellers.com/pub/media/wysiwyg/02-bridal-wedding-slider-banner.jpg?auto=compress" alt="bridal wedding collection" width="" height=""></picture></a>
+        <a href="https://www.vaibhavjewellers.com/diamond-jewellery/women/bracelet.html" class="col-md-3"><picture><source type="image/webp" data-srcset="https://cdn-media.vaibhavjewellers.com/pub/media/wysiwyg/03-bridal-wedding-slider-banner.jpg?auto=compress" srcset="https://cdn-media.vaibhavjewellers.com/pub/media/wysiwyg/03-bridal-wedding-slider-banner.jpg?auto=compress"> <img loading="lazy" class="w-100" data-srcset="https://cdn-media.vaibhavjewellers.com/pub/media/wysiwyg/03-bridal-wedding-slider-banner.jpg?auto=compress" srcset="https://cdn-media.vaibhavjewellers.com/pub/media/wysiwyg/03-bridal-wedding-slider-banner.jpg?auto=compress" data-src="https://cdn-media.vaibhavjewellers.com/pub/media/wysiwyg/03-bridal-wedding-slider-banner.jpg?auto=compress" alt="bridal wedding collection" width="" height=""></picture></a>
+        <a href="https://www.vaibhavjewellers.com/gold-jewellery/women/mangalsutra.html" class="col-md-3"><picture><source type="image/webp" data-srcset="https://cdn-media.vaibhavjewellers.com/pub/media/wysiwyg/04-bridal-wedding-slider-banner.jpg?auto=compress" srcset="https://cdn-media.vaibhavjewellers.com/pub/media/wysiwyg/04-bridal-wedding-slider-banner.jpg?auto=compress"> <img loading="lazy" class="w-100" data-srcset="https://cdn-media.vaibhavjewellers.com/pub/media/wysiwyg/04-bridal-wedding-slider-banner.jpg?auto=compress" srcset="https://cdn-media.vaibhavjewellers.com/pub/media/wysiwyg/04-bridal-wedding-slider-banner.jpg?auto=compress" data-src="https://cdn-media.vaibhavjewellers.com/pub/media/wysiwyg/04-bridal-wedding-slider-banner.jpg?auto=compress" alt="bridal wedding collection" width="" height=""></picture></a>
+    </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="wedding-text mt-5">
+      Every girl's dream is to look stunning on her espousal day. She can ace it by adorning her with unerring jewellery complementing that stunning bridal outfit.
+      Begin your journey by browsing Vaibhav Jewellers' handpicked bridal collection. From bold antique pieces to chic trendy designs, there is a piece for every bride-to-be. <br>
+      <img style="width: 60%;" src="https://cdnmedia-breeze.vaibhavjewellers.com/pub/media/wysiwyg/homepage_images/desktop/border.png">
+    </div>
+  </div>
+</div>
+<!-- heading block ends All around India -->
+
+
+<!-- heading block start Design-Rich Wedding Jewellery For All Kinds Of Traditions -->
+<div class="row mt-5">
+  <div class="col-md-12">
+    <div style="
+      text-transform: uppercase;
+      color: #a23549;
+      text-align: center;
+      font-weight: 600;
+      font-family: 'Merriweather', serif;
+      margin-bottom: 30px;
+      margin-top: 20px;
+      font-size: 18px;
+      ">
+       <span> <img style="width: 12%;margin-bottom: 16px;" src="https://cdnmedia-breeze.vaibhavjewellers.com/pub/media/wysiwyg/homepage_images/desktop/border_left.png"> </span>  
+            Design-Rich Wedding Jewellery For All Kinds Of Traditions
+       <span> <img style="width: 12%;margin-bottom: 16px;" src="https://cdnmedia-breeze.vaibhavjewellers.com/pub/media/wysiwyg/homepage_images/desktop/border-right.png"> </span>
+       <br> 
+    </div>
+  </div>
+</div>
+<!-- heading block ends Design-Rich Wedding Jewellery For All Kinds Of Traditions-->
+
+<!--vaibhav_product_list STARTS -->
+<div class="vaibhav_product_list">
+    <div class="flex amscroll-page" amscroll-page="1">
+
+      <div class="wedding-image-block">
+        <div class="wedding-image" data-imgsrc="https://cdnmedia-breeze.vaibhavjewellers.com/pub/media/wysiwyg/homepage_images/desktop/vaibhav_jewellers_engagement_2.jpg">
+         <a href="https://www.vaibhavjewellers.com/women-gold-necklace/short-necklace.html?product_list_order=latest"> 
+          <img class="w-100" src="https://cdnmedia-breeze.vaibhavjewellers.com/pub/media/wysiwyg/homepage_images/desktop/vaibhav_jewellers_engagement_2.jpg" alt="image">
+         </a>
+        </div>
+
+      <a href="https://www.vaibhavjewellers.com/gold-jewellery/women/necklace/vaibhav-jewellers-22k-antique-gold-necklace-123vg6593.html">
+        <div class="heading-bg"> 
+          <div class="wedding-name"> Engagement </div> 
+          <div class="view-collection"> View Collection</div>
+        </div>
+      </a>
+      </div>
+
+       <!-- wedding-image-block ENDS 01 -->
+
+
+
+      <div class="wedding-image-block">
+        <div class="wedding-image" data-imgsrc="https://cdnmedia-breeze.vaibhavjewellers.com/pub/media/wysiwyg/homepage_images/desktop/vaibhav_jewellers_haldi_2.jpg">
+         <a href="https://www.vaibhavjewellers.com/women-gold-necklace/ruby-necklace.html?product_list_order=latest"> 
+          <img class="w-100" src="https://cdnmedia-breeze.vaibhavjewellers.com/pub/media/wysiwyg/homepage_images/desktop/vaibhav_jewellers_haldi_2.jpg" alt="image">
+         </a>
+        </div>
+
+      <a href="https://www.vaibhavjewellers.com/gold-jewellery/women/necklace/vaibhav-jewellers-22k-antique-gold-necklace-123vg6593.html">
+        <div class="heading-bg"> 
+          <div class="wedding-name"> Haldi </div> 
+          <div class="view-collection"> View Collection</div>
+        </div>
+      </a>
+      </div>
+
+      <!-- wedding-image-block ENDS --02  -->
+
+
+
+      <div class="wedding-image-block">
+        <div class="wedding-image" data-imgsrc="https://cdnmedia-breeze.vaibhavjewellers.com/pub/media/wysiwyg/homepage_images/desktop/vaibhav_jewellers_pellikuthuru_2.jpg">
+         <a href="https://www.vaibhavjewellers.com/gold-jewellery/women/choker.html?product_list_order=latest"> 
+          <img class="w-100" src="https://cdnmedia-breeze.vaibhavjewellers.com/pub/media/wysiwyg/homepage_images/desktop/vaibhav_jewellers_pellikuthuru_2.jpg" alt="image">
+         </a>
+        </div>
+
+      <a href="https://www.vaibhavjewellers.com/gold-jewellery/women/necklace/vaibhav-jewellers-22k-antique-gold-necklace-123vg6593.html">
+        <div class="heading-bg"> 
+          <div class="wedding-name"> Pellikuthuru </div> 
+          <div class="view-collection"> View Collection</div>
+        </div>
+      </a>
+      </div>
+
+      <!-- wedding-image-block ENDS --03  -->
+
+
+
+      <div class="wedding-image-block">
+        <div class="wedding-image" data-imgsrc="https://cdnmedia-breeze.vaibhavjewellers.com/pub/media/wysiwyg/homepage_images/desktop/vaibhav_jewellers_mehandi_2.jpg">
+         <a href="https://www.vaibhavjewellers.com/gold-jewellery/women/harams/precious.html?product_list_order=latest"> 
+          <img class="w-100" src="https://cdnmedia-breeze.vaibhavjewellers.com/pub/media/wysiwyg/homepage_images/desktop/vaibhav_jewellers_mehandi_2.jpg" alt="image">
+         </a>
+        </div>
+
+      <a href="https://www.vaibhavjewellers.com/gold-jewellery/women/necklace/vaibhav-jewellers-22k-antique-gold-necklace-123vg6593.html">
+        <div class="heading-bg"> 
+          <div class="wedding-name"> Mehandi </div> 
+          <div class="view-collection"> View Collection</div>
+        </div>
+      </a>
+      </div>
+
+      <!-- wedding-image-block ENDS --04  -->
+
+
+      <div class="wedding-image-block">
+        <div class="wedding-image" data-imgsrc="https://cdnmedia-breeze.vaibhavjewellers.com/pub/media/wysiwyg/homepage_images/desktop/vaibhav_jewellers_sangeeth_2.jpg">
+         <a href="https://www.vaibhavjewellers.com/women-gold-necklace/ruby-necklace.html?product_list_order=latest"> 
+          <img class="w-100" src="https://cdnmedia-breeze.vaibhavjewellers.com/pub/media/wysiwyg/homepage_images/desktop/vaibhav_jewellers_sangeeth_2.jpg" alt="image">
+         </a>
+        </div>
+
+      <a href="https://www.vaibhavjewellers.com/gold-jewellery/women/necklace/vaibhav-jewellers-22k-antique-gold-necklace-123vg6593.html">
+        <div class="heading-bg"> 
+          <div class="wedding-name"> Sangeeth </div> 
+          <div class="view-collection"> View Collection</div>
+      </div>
+      </a>
+      </div>
+
+      <!-- wedding-image-block ENDS 05 -->
+
+
+      <div class="wedding-image-block">
+        <div class="wedding-image" data-imgsrc="https://cdnmedia-breeze.vaibhavjewellers.com/pub/media/wysiwyg/homepage_images/desktop/vaibhav_jewellers_wedding_2.jpg">
+         <a href="https://www.vaibhavjewellers.com/women-gold-necklace/long-necklace.html?product_list_order=latest"> 
+          <img class="w-100" src="https://cdnmedia-breeze.vaibhavjewellers.com/pub/media/wysiwyg/homepage_images/desktop/vaibhav_jewellers_wedding_2.jpg" alt="image">
+         </a>
+        </div>
+
+      <a href="https://www.vaibhavjewellers.com/gold-jewellery/women/necklace/vaibhav-jewellers-22k-antique-gold-necklace-123vg6593.html">
+        <div class="heading-bg"> 
+          <div class="wedding-name"> Wedding </div> 
+          <div class="view-collection"> View Collection</div>
+        </div>
+      </a>
+      </div>
+
+      <!-- wedding-image-block ENDS --06  -->
+
+
+      <div class="wedding-image-block">
+        <div class="wedding-image" data-imgsrc="https://cdnmedia-breeze.vaibhavjewellers.com/pub/media/wysiwyg/homepage_images/desktop/vaibhav_jewellers_vartham_2.jpg">
+         <a href="https://www.vaibhavjewellers.com/gold-jewellery/women/harams/antique.html?product_list_order=latest"> 
+          <img class="w-100" src="https://cdnmedia-breeze.vaibhavjewellers.com/pub/media/wysiwyg/homepage_images/desktop/vaibhav_jewellers_vartham_2.jpg" alt="image">
+         </a>
+        </div>
+
+      <a href="https://www.vaibhavjewellers.com/gold-jewellery/women/necklace/vaibhav-jewellers-22k-antique-gold-necklace-123vg6593.html">
+        <div class="heading-bg"> 
+          <div class="wedding-name"> Vartham </div> 
+          <div class="view-collection"> View Collection</div>
+        </div>
+      </a>
+      </div>
+
+      <!-- wedding-image-block ENDS --07  -->
+
+
+
+      <div class="wedding-image-block">
+        <div class="wedding-image" data-imgsrc="https://cdnmedia-breeze.vaibhavjewellers.com/pub/media/wysiwyg/homepage_images/desktop/vaibhav_jewellers_reception_2.jpg">
+         <a href="https://www.vaibhavjewellers.com/diamond-jewellery/women/necklace.html?product_list_order=latest"> 
+          <img class="w-100" src="https://cdnmedia-breeze.vaibhavjewellers.com/pub/media/wysiwyg/homepage_images/desktop/vaibhav_jewellers_reception_2.jpg" alt="image">
+         </a>
+        </div>
+
+      <a href="https://www.vaibhavjewellers.com/gold-jewellery/women/necklace/vaibhav-jewellers-22k-antique-gold-necklace-123vg6593.html">
+        <div class="heading-bg"> 
+          <div class="wedding-name"> Reception </div> 
+         <div class="view-collection"> View Collection</div>
+      </div>
+      </a>
+      </div>
+
+     <!-- wedding-image-block ENDS --08  -->
+
+
+</div> <!--flex amscroll-page ENDS -->
+</div><!--vaibhav_product_list END -->
+
+<!-- heading block start Videos -->
+<div class="row mt-5">
+  <div class="col-md-12">
+    <div style="text-transform: uppercase;
+      color: #a23549;
+      text-align: center;
+      font-weight: 600;
+      font-family: avenir;
+      margin-bottom: 25px;
+      font-size: 20px;">
+       <span style="font-weight: 500;color: #b7b5b5;">------ </span>  
+       Videos
+        <span style="font-weight: 500;color: #b7b5b5;">------ </span>
+    </div>
+  </div>
+</div>
+<!-- heading block ends Videos -->
+
+
+<div class="container">
+<div class="row my-3">
+<div class="col-md-6" style="
+">
+<iframe width="" height="" src="https://www.youtube.com/embed/Y-ilYagklKE" title="Three generations of Vaibhav Jewellery - With All Its Glory" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" style="height: auto;">
+</iframe><div style="color: #a23549; text-align: center; font-family: avenir; margin-top: 20px; font-size: 16px;"> Wedding and Bridal Collection <br> <span style="color: #878383;font-size: 13px;"> Follow us in facebook/ Instagram for our latest collection </span></div>
+</div>
+
+<div class="col-md-6">
+<iframe width="" height="" src="https://www.youtube.com/embed/sUeTcnz8QMo?rel=0&amp;showinfo=0&amp;autoplay=1" title="Vaibhav Jewellery photoshoot - With All Its Glory" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" style="/* margin: 30px; *//* width: 90%; *//* height: 100%; */">
+</iframe><div style="color: #a23549; text-align: center; font-family: avenir; margin-top: 20px; font-size: 16px;"> Wedding and Bridal Collection <br> <span style="color: #878383;font-size: 13px;"> Follow us in facebook/ Instagram for our latest collection </span></div>
+</div>
+</div>
+</div>
+<!-- 3 blocks END -->
+
+</div>  <!-- until videos -->
+
+
+
+
+
+<!-- newsletter section -->
+<div class="container"><div class="inner-block-newsletter p-3" style="content-visibility: auto;contain-intrinsic-size: 80px;background-color: #f1e4f2 !important;"><form class="" novalidate="novalidate" action="https://www.vaibhavjewellers.com/newsletter/subscriber/new/" method="post" id="newsletter-validate-detail"><div class="container-fluid d-flex justify-content-center px-5 py-3" style="
+"><h2 class="signUp-txt" style="
+    color: #6e2083 !important;
+    text-align: center !important;
+    line-height: 24px;
+    font-weight: 600;
+">Sign Up for Our Newsletter:</h2></div> 
+<div class="align-items-center d-flex " style="
+"> <input class="p-2" name="email" type="email" id="newsletter" placeholder="Email" data-validate="{required:true, 'validate-email':true}"> <input name="form_key" type="hidden" value="hDs1fvHlA61Xh3iQ"> <button id="subs-button" class="p-2" title="Subscribe" type="submit" style="
+"> SUBSCRIBE </button></div>
+</form></div></div>
+<!-- newsletter section ENDS -->
+
+
+
+<div class="page-bottom">
+  <div class="content">
+    <div class="widget block block-static-block">
+      <div class="deskdiv" style="text-align: justify;">
+        <div><h2 style="text-align: center;"><strong>Indulge in the Beguiling Brilliance of Bridal Jewellery</strong></h2>
+<p><span style="font-weight: 400;">One of a bride's fondest dreams is to look absolutely stunning in her wedding gown. You can achieve this by selecting wedding jewellery that goes well with your lehenga or gown. The bride takes excellent care in selecting her head coverings, as well as her cosmetics,&nbsp;</span>bridal jewellery<span style="font-weight: 400;">, and wedding attire, as she wants to appear her absolute best on this particular day.</span></p>
+<p><span style="font-weight: 400;">Indian&nbsp;</span><strong>bridal wedding jewellery</strong><span style="font-weight: 400;">&nbsp;list varies in different ethnic and traditional territories of India. Religion also plays a role in this disparity.&nbsp;</span></p>
+<p><span style="font-weight: 400;">If you're a bride-to-be getting ready to exchange those all-important vows with the man of your dreams, you should stop by Vaibhav Jewellers to check out our exquisite selection of bridal jewellery. Any&nbsp;</span>gold bridal set&nbsp;from us is a miniature masterpiece. These items are also carved in age-old craftsmanship, such as Temple, Pachi, Polki, and Kundan. The best part is now you can try and buy bridal jewellery set online&nbsp;on our website. Our&nbsp;bridal jewellery design&nbsp;<span style="font-weight: 400;">catalogue has everything from maang tikka and vanki to <a href="https://www.vaibhavjewellers.com/gold-jewellery/women/necklace.html">gold necklaces</a>, <a href="https://www.vaibhavjewellers.com/diamond-jewellery/women/vaddanam.html">vaddanam</a> and jadalu. We have jewellery that will suit your every want, whether it be a penchant for minimalism or extravagance.</span></p>
+<p><span style="font-weight: 400;">We also have a 'Marriage cell team' ready to come to your house and help if you have queries about wedding jewellery. Our service will cater to your specific needs by providing one-on-one assistance in selecting&nbsp;</span>bridal jewellery design<span style="font-weight: 400;">, guidance and recommendations on jewellery appropriate for other special occasions, and a wide range of options to choose from.</span></p>
+<p>&nbsp;</p>
+<h2 style="text-align: center;"><strong>Explore Exclusive and Latest Bridal Jewellery Designs Online</strong></h2>
+<p><span style="font-weight: 400;">When it comes to a bride's trousseau, jewellery always gets the most attention. On your D-day, you'll be the centre of attention. It's likely to be the time when you're shot at the most. All of your guests will use their smartphones to "like" you. There is a lot of pressure to appear well in every photo. They will look at the bride from head to toe, and your exquisite&nbsp;</span>bridal jewellery design<span style="font-weight: 400;">&nbsp;will be the centre of attention. We've made it easy by curating a range of gold bridal jewellery styles popular in India. While some, like the polkis, rubies, pearls, and emeralds, are surefire attention-getters, the remainder is set in ornate styles like jadau, Kundan, and Meenakari. Have a look at our catalogue if you're the type who wouldn't mind treating themselves to a bit of bling every once in a while. Gold haram for women, gold bangles, <a href="https://www.vaibhavjewellers.com/gold-jewellery/women/maang-tikka.html">gold maang tikka</a>, gold vanki, and more await you to fill your jewellery box on the big day.</span></p>
+<h3><span style="font-weight: 400;"><strong>Modern Bridal Jewellery Designs</strong></span></h3>
+<p><span style="font-weight: 400;">Today's bride picks her wedding jewellery differently than brides before did. It's not the item you pull out once or twice, feel great in, and then put away in a drawer. The modern bride is fashion-forward and shops around for&nbsp;</span>modern bridal gold jewellery. So we have created collections that reflect the latest bridal jewellery trends. A few pieces also feature a contemporary twist to a conventional design. For example,&nbsp;modern Kundan bridal jewellery&nbsp;is as beautiful as its predecessors but way lighter. For maximalists, we do have&nbsp;heavy modern bridal jewellery.&nbsp;If you have anything in your mind that is not available in our&nbsp;modern bridal jewellery designs&nbsp;collection, reach out to us. We will customise that for you.</p>
+<h3><span style="font-weight: 400;"><strong>Traditional Bridal Jewellery Designs</strong></span></h3>
+<p><span style="font-weight: 400;">All brides, whether they're from Tamil Nadu, Andhra, Bengal, Bihar, or Gujarat, want&nbsp;</span>traditional bridal jewellery set&nbsp;for their nuptials. From the engagement ring given by the groom's family to the haar given by the bride's family to the nath given by the bride's ancestors, these brides look absolutely divine wearing them. We have therefore compiled a collection of&nbsp;traditional jewellery set for a wedding&nbsp;fit for passing down through the generations. Now you can check such&nbsp;traditional bridal jewellery sets online&nbsp;<span style="font-weight: 400;">on our website with a few clicks.</span></p>
+<h3><span style="font-weight: 400;"><strong>Antique Bridal Jewellery Designs</strong></span></h3>
+<p>Bridal antique wedding jewellery designs&nbsp;take their cues from the past and are revered for their classic beauty and one-of-a-kind styles. In other words, Indian&nbsp;antique bridal jewellery designs<span style="font-weight: 400;">&nbsp;are a classic style that will never go out of style and will help every bride feel special on her big day. You can wear an outstanding artwork of timeless fashion, connect yourself to an incredible regal history, or stand out from the crowd on your D-day by opting for one of these stunning pieces.</span></p>
+<p><span style="font-weight: 400;"><strong>South Indian Bridal Jewellery Design</strong></span></p>
+<p><span style="font-weight: 400;">Simply put, the jewellery from the southern part of India is ornate. That’s why&nbsp;</span>traditional south Indian bridal jewellery sets&nbsp;are a top pick for many Indian brides when their weddings carry a royal theme. The beauty of South Indian&nbsp;bridal jewellery sets&nbsp;is undeniable, from the classic hair jewellery and matha pattis to the ageless patterns of temple jewellery, vaddanam or Kamar bandh, and <a href="https://www.vaibhavjewellers.com/gold-jewellery/women/vanki.html">vanki</a> or bajubandh. Due to elaborate work, these pieces are expensive.&nbsp;South Indian bridal gold jewellery sets with prices can be checked below&nbsp;South Indian bridal jewellery sets online<span style="font-weight: 400;">&nbsp;on our website.</span></p>
+<p>&nbsp;</p>
+<h2 style="text-align: center;"><span style="font-weight: 400;"><strong>Check Out Jewellery for Every Occasion of your Wedding</strong></span></h2>
+<p><span style="font-weight: 400;">Choosing a piece of perfect&nbsp;</span>jewellery&nbsp;set for wedding&nbsp;is a challenging field. Every tiny detail must be attended to, from matching jewellery with your personality and the theme of the wedding. A sari or bridal lehenga can be transformed into a show-stopping ensemble when accessorised with the correct&nbsp;wedding jewellery.</p>
+<p>Besides the big day, you also need to consider jewellery for the Engagement, Mehendi, Sangeet, and Reception.</p>
+<p>Therefore, we provide occasion-specific jewellery from&nbsp;Dulhan haldi jewellery&nbsp;to&nbsp;reception jewellery set for a bride&nbsp;that can be used to set you out from the crowd. Check them out!</p>
+<h3><strong>Bridal Engagement Jewellery&nbsp;</strong></h3>
+<p><span style="font-weight: 400;">After the wedding itself, an engagement is the next most significant milestone. Every girl has this heartfelt moment. Even though you'll all be busy with wedding planning, it's essential to make an extra effort to ensure that the engagement is one to remember. That's where trendy&nbsp;</span>engagement jewellery set for the bride&nbsp;<span style="font-weight: 400;">comes in handy. Try accessorising like a classic pearl necklace and a set of diamond stud earrings to complement your stunning engagement ring. It's the perfect touch of glitz for a fancy evening out. We have the appropriate&nbsp;</span>engagement jewellery for an Indian bride&nbsp;<span style="font-weight: 400;">to help you make spectacular appearances.</span></p>
+<h3><span style="font-weight: 400;"><strong>Bridal Haldi Jewellery&nbsp;</strong></span></h3>
+<p><span style="font-weight: 400;">The bright</span>&nbsp;wedding haldi jewellery<span style="font-weight: 400;">&nbsp;marks the beginning of a new journey for a soon-to-be bride.</span>&nbsp;<span style="font-weight: 400;">The haldi ceremony is one of the most joyous, vivid, and colourful parts of the wedding traditions, and it usually occurs right at the start. The bride and groom's faces, arms, and feet are painted with a turmeric paste called ubbtan (also called Haldi paste for the wedding). Don't put on any bulky jewellery, especially earrings, as they may get in the way of spreading the haldi paste.</span>&nbsp;<span style="font-weight: 400;">Alternatively, you can feel at ease and look stunning by donning a large necklace and maang tikka. Our&nbsp;</span>haldi jewellery set for bride&nbsp;<span style="font-weight: 400;">range comprises light yet sturdy pieces for you to enjoy the day. On our website, you can check&nbsp;</span>haldi jewellery for brides online.</p>
+<h3 style="text-align: left;"><strong>Bridal Pelli Kuthuru Jewellery</strong></h3>
+<p><span style="font-weight: 400;">An extremely happy occasion is the Pelli Kuthuru celebration. On this day, the bride is slathered with turmeric and oil in preparation for the wedding, and the festivities take place at the bride's home in the presence of her immediate family and closest friends. The next step is to give her lots of attention, compliments, and affection and to spoil her with jewellery, new clothes, and other forms of adoration.&nbsp;For this sacred occasion, we've meticulously created&nbsp;</span>Pelli Kuthuru jewellery for brides.</p>
+<h3><strong>Bridal Mehendi Jewellery</strong></h3>
+<p><span style="font-weight: 400;">The mehendi ceremony calls for a light and delicate jewellery ensemble to complement the outfit. We recommend avoiding heavy jewellery if you plan on dancing with mehendi on your hands. Your traditional mehendi costume is only complete with&nbsp;</span>bridal mehendi jewellery<span style="font-weight: 400;">&nbsp;that includes a beautiful necklace consisting of Jadtar, diamond tops, and maang tikka.</span><strong>&nbsp;</strong></p>
+<h3><strong>Bridal Sangeet Jewellery&nbsp;</strong></h3>
+<p><span style="font-weight: 400;">The day of the sangeet performance has finally arrived. A high glamour factor is a prerequisite at any Indian wedding. It is recommended that you wear comfortable clothing and&nbsp;</span>sangeet jewellery for the bride&nbsp;<span style="font-weight: 400;">on this day so that you can enjoy dancing without distractions.&nbsp;On stage, where many eyes will be upon you, you must dress to impress by donning something flashy and dazzling like a diamond necklace or <a href="https://www.vaibhavjewellers.com/diamond-jewellery/women/earrings.html">diamond earrings</a>. The classic chandbalis or a stunning diamond necklace can lend a touch of elegance to your outfit, assuming they are not too cumbersome. Find a lovely hairstyle that will bring out their natural beauty.</span></p>
+<h3><strong>Bridal wedding Jewellery</strong></h3>
+<p><span style="font-weight: 400;">Gold jewellery is a must-have for the bride on her big day. It is because gold jewellery is a symbol of a culture's values. A classic diamond necklace can work wonders for the bride's family and friends, especially when paired with elaborate gowns like a sari or lehenga. You can pull off an authentic Indian style with just a few accessories—a little bindi, a pair of coordinating earrings, and a necklace.&nbsp;If you don't want to spend a fortune on a wedding dress but want to appear like a million bucks, try accessorising with some of this season's most on-trend lightweight&nbsp;</span>wedding jewellery set for the bride. Wearing a sparkling array of Kundan, diamond, and gemstone&nbsp;jewellery for bride on a wedding day&nbsp;is the perfect way to top off your D-day look.</p>
+<h3><strong>Bridal Reception Jewellery&nbsp;</strong></h3>
+<p><span style="font-weight: 400;">You will be introduced as the newlywed bride at the reception, making it a pivotal event in the wedding's aftermath. Therefore, it is imperative that you feel and look your absolute best on the day of your wedding reception. And jewellery plays a significant role in it. We've created an exquisite collection of&nbsp;</span><strong>bridal jewellery sets for the reception</strong><span style="font-weight: 400;">&nbsp;to help you choose the perfect jewellery for your wedding reception. Unlike wedding pieces, these baubles are less ornamented and lighter.</span></p>
+<h3><span style="font-weight: 400;"><strong>Bridal Vartham Jewellery</strong></span></h3>
+<p><span style="font-weight: 400;">Jewellery is an integral part of the Vratham puja, as it is in any Indian festival. On this particular occasion, women don their most elaborate traditional garb, adorn their hair with jasmine, and wear the finest gold and diamond jewellery. That's why we have created a collection of&nbsp;</span>bridal vartham jewellery<span style="font-weight: 400;"> for the newlyweds</span>.&nbsp;<span style="font-weight: 400;">This range consists of the Ashtalakshmi-inspired ornaments, typically embellished with rubies, diamonds, emeralds, and pearls. Even the gold 'Jada billai' hair ornaments are decorated with elaborate Lakshmi motifs. South Indian brides also often wear traditional temple jewellery such as the Astalakshmi gold haram, a long gold necklace with a Lakshmi pendant and Vaddanam. Accessories like earrings and bracelets adorned with Lakshmi designs are a must here.</span></p>
+<h2 style="text-align: center;"><strong>Different Jewellery for a Wedding!</strong></h2>
+<p><span style="font-weight: 400;">It's essential to ensure that your wedding is one to remember in every detail, starting with the theme. Undoubtedly, the stunning bride is the main focus at any wedding. Every attention is on her as she walks down the aisle, dressed to the nines and shining with gold and&nbsp;diamonds. The following is a list of must-have accessories for the upcoming bride who will soon exchange wedding vows with her soul mate.</span></p>
+<h3 style="text-align: left;"><span style="font-weight: 400;"><strong>Gold Necklace for Brides</strong></span></h3>
+<p><span style="font-weight: 400;">The necklace is a required piece of jewellery for any Indian bride. Putting on a beautifully made vintage&nbsp;</span>wedding gold necklace design<span style="font-weight: 400;">&nbsp;can do wonders for your style. In addition to drawing attention to your neck, a swanky&nbsp;</span>gold necklace for a wedding<span style="font-weight: 400;">&nbsp;can also accentuate your entire look. Depending on your jewellery preference and outfit style, you can select various neck adornments from our bridal range. Among these are mangalsutras, choker necklaces, satlada haars, mango harams, attigais, and other ornamental pieces. Add these to your must-have&nbsp;</span>marriage bridal gold necklace designs<span style="font-weight: 400;">, giving your look a touch of ethereal magic.</span></p>
+<h3><strong>Gold Earring for Brides</strong></h3>
+<p><span style="font-weight: 400;">It is unacceptable to go without&nbsp;</span>gold bridal earrings&nbsp;<span style="font-weight: 400;">when sporting an exquisite necklace or majestic rani haar. Earrings should be manageable, but they should complement the neckpiece and other jewellery you want to wear. Given the constant presence of an earring, it's crucial to pick one that won't weigh you down after hours of wear. Once you've determined your safety zone, you can start playing around with the various layouts. Every bride needs a pair of stunning&nbsp;</span>gold earrings designs for the wedding&nbsp;<span style="font-weight: 400;">because they will steal the show despite how tiny you may think they are.</span></p>
+<h3><span style="font-weight: 400;"><strong>Gold Chain for Brides</strong></span></h3>
+<p><span style="font-weight: 400;">Many brides prefer to wear <a href="https://www.vaibhavjewellers.com/women-gold-chains.html">gold chains</a> and a heavy neckpiece to balance their overall look. However, a&nbsp;</span>gold chain for a bride <span style="font-weight: 400;">is usually thicker and features a more intricate design than those regular ones. We have chains in various lengths and styles to match your fancy.</span></p>
+<h3><span style="font-weight: 400;"><strong>Gold Bangle for Brides</strong></span></h3>
+<p><span style="font-weight: 400;">The bride's bangles are one of the most important and unique accessories. The wearing of bangles is a sign of good fortune in marriage in our culture. Several names, including Kadas, valayal, gajju, and bale know the bangles worn by brides in the Southern Indian states. You've come to the right place if you're searching for an ideal&nbsp;</span>bridal <a href="https://www.vaibhavjewellers.com/gold-jewellery/women/bangles.html">gold bangles design</a><span style="font-weight: 400;">&nbsp;to complement your wedding day ensemble. We have compiled a vast range of wedding bangles that you might like to consider while gathering your wedding accessories. From a dainty to heavily embellished&nbsp;</span>bangles bridal set<span style="font-weight: 400;">, we have everything to offer your wrist that perfect shine on your D-day. Check all your favourites and mark the ones you like best. There are also&nbsp;</span>reception Indian wedding bangles set<span style="font-weight: 400;">&nbsp;if you want to wear something different at your reception from the wedding.&nbsp;</span></p>
+<h2 style="text-align: center;"><span style="font-weight: 400;"><strong>Explore jewellery for brides with p</strong>rice and weight</span></h2>
+<p><span style="font-weight: 400;">She is the quintessential contemporary bride: understated, beautiful, and as enduring as the heirlooms she covets. Her dazzling bridal&nbsp;jewellery reflects her way of life, her interests, and her means of self-expression, letting her stand out in any crowd. As she is the queen of her time, she knows what she wants. Keeping these things in mind, we have created the best bridal range for her and categorised&nbsp;</span>bridal jewellery sets with price<span style="font-weight: 400;">, weight and purity. While traditional ornaments are typically expensive,&nbsp;</span>modern wedding gold jewellery sets with price<span style="font-weight: 400;">s&nbsp;are affordable. These days many brides choose&nbsp;</span>lightweight bridal jewellery&nbsp;<span style="font-weight: 400;">instead of bulky pieces. Our light&nbsp;</span>bridal gold set with weight&nbsp;<span style="font-weight: 400;">starts from 5-10 grams. Even such&nbsp;</span>Dulhan jewellery set price<span style="font-weight: 400;">&nbsp;is reasonable. Vaibhav Jewellers'&nbsp;</span>latest gold jewellery designs for wedding with price&nbsp;<span style="font-weight: 400;">has many slabs. It starts at Rs 0 to Rs 1,000,000. For heavier ornaments, the cost goes up to Rs 2,000,000 and above. Regarding purity, our bridal collection has baubles in 18, 22 and 24k. Using filters, you can also specifically check&nbsp;</span>bridal diamond jewellery sets with price&nbsp;<span style="font-weight: 400;">or&nbsp;</span>bridal gold jewellery with price<span style="font-weight: 400;">.&nbsp;</span></p>
+<p>&nbsp;</p>
+<h2 style="text-align: center;"><span style="font-weight: 400;"><strong>Why Shop at Vaibhav Jewellers?</strong></span></h2>
+<p><span style="font-weight: 400;">Buying bridal jewellery has never been simpler than with the help of Vaibhav Jewellers, where we stock everything you require. Our entire collection is BIS-hallmarked, so you don't need to worry about the quality. Besides, you will get some fantastic benefits through shopping with us.</span></p>
+<p><span style="font-weight: 400;">They are:</span></p>
+<h3><strong>Shop Online</strong></h3>
+<p><span style="font-weight: 400;">Our eCommerce portal allows you to shop from the comfort of your home. Given its round-the-clock availability, you can shop whenever it's most convenient for you. It facilitates product acquisition and reduces shopping-related efforts.</span></p>
+<h3><span style="font-weight: 400;"><strong>Virtual Try-On</strong></span></h3>
+<p><span style="font-weight: 400;">Have you been curious about how something would look on you yet hesitant to try it? Try it on virtually with our site's Virtual and Augmented Try-On feature!</span></p>
+<p><span style="font-weight: 400;"><strong>State of the art Live video shopping</strong></span></p>
+<p><span style="font-weight: 400;">Need some guidance while shopping for wedding jewellery on the web? You must check out our new ‘Live Video Shopping’ feature. It gives a fantastic opportunity to examine the desired jewellery up close. In addition, our skilled staff is always ready to help answer your questions and address your concerns about the items we offer.</span></p>
+<h3><span style="font-weight: 400;"><strong>Good Exchange Policy</strong></span></h3>
+<p><span style="font-weight: 400;">Our&nbsp;</span>exchange policy<span style="font-weight: 400;">&nbsp;is a lifesaver for those who don't want or need an old jewellery.&nbsp;</span><span style="font-weight: 400;">If you have a piece of jewellery, you can come to us and easily exchange it for newer, more fashionable pieces, irrespective of the brand you purchased it from!</span></p>
+<h3><strong>EMI Facility&nbsp; &nbsp;&nbsp;</strong></h3>
+<p><span style="font-weight: 400;">If you're on a limited budget or have a financial emergency,&nbsp;</span>EMI&nbsp;<span style="font-weight: 400;">is a great choice. It helps you to pay in monthly instalments to pay off your jewellery.</span></p>
+<p>&nbsp;</p>
+<h3 style="text-align: center;"><strong>FAQs on Bridal Jewllery</strong></h3>
+<h4><strong>What kind of jewellery to wear with the lehenga?</strong></h4>
+<p><span style="font-weight: 400;">Some examples of jewellery that go well with a lehenga include large dangling earrings, a large ear cuff, simple diamond or CZ stone bangles, a choker, a stone necklace, and a bold maang&nbsp;tikka.</span></p>
+<h4><strong>What are some of the best bridal Jewellery collections?</strong></h4>
+<p><span style="font-weight: 400;">Some of the best bridal&nbsp;jewellery collections are&nbsp;the Punjabi, South Indian Traditional Temple inspired, Gemstone studded Kundan and Polki bridal jewellery sets. Multiplicity is a growing trend in bridal jewellery, so you can buy pieces from several collections to create your own.</span></p>
+<h4><strong>What are South Indian earrings called?</strong></h4>
+<p><span style="font-weight: 400;">Jhumkas are a type of traditional earring popular in South India.</span></p>
+<h4><strong>How do I pick the right bridal jewellery?</strong></h4>
+<p><span style="font-weight: 400;">Buy bridal jewellery before the dress. Many brides buy dresses before jewellery, which is a mistake. Go for a wedding theme-based selection. Buy pieces that will last. Choose comfort over looks.</span></p>
+<h4><strong>What jewellery to buy for a bride?</strong></h4>
+<p><span style="font-weight: 400;">Pieces of jewellery must-haves for any Indian bride Maang Tikka, Statement Necklace, Rani Haar, Earrings, Bangles, Kamarbandh, Anklet and toe rings, Hand Harness/ Hathphool, Nose Ring or Nath.</span></p>
+<h4><strong>What are the different types of jewellery that Indian brides wear?</strong></h4>
+<p><span style="font-weight: 400;">Mangalsutra, Maang Tikka, Statement Necklace, Rani Haar, Earrings, Bangles, Kamarbandh, Armlet, Anklet and toe rings, Hand Harness/ Hathphool, Nose Ring, Nose stud&nbsp;are just some of the many pieces of jewellery that Indian brides wear.</span></p>
+<h4><strong>Which things are included as part of Indian bridal jewellery?</strong></h4>
+<p><span style="font-weight: 400;">The maang tikka, jadalu, rakodi, earrings, nose ring, bangles, Kadas, armlet, Kamar bandh, and Payal are just a few of the many pieces of jewellery that are included as part of Indian bridal jewellery.</span></p>
+<p>&nbsp;</p>
+<p style="text-align: center;"><strong>Jewellery Popular Searches:</strong></p>
+<p><a href="https://www.vaibhavjewellers.com/gold-jewellery.html"><strong><strong>Gold Jewellery</strong></strong></a><strong><strong>&nbsp;-</strong></strong></p>
+<p><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/bangles.html"><strong><strong>Gold Bangles</strong></strong></a><strong><strong>&nbsp;|&nbsp;</strong></strong><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/harams.html"><strong><strong>Gold Haram</strong></strong></a><strong><strong>&nbsp;|&nbsp;</strong></strong><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/vaddanam.html"><strong><strong>Gold Vaddanam</strong></strong></a><strong><strong>&nbsp;|&nbsp;</strong></strong><a href="https://www.vaibhavjewellers.com/women-gold-chains.html"><strong><strong>Gold Chain for Women</strong></strong></a><strong><strong>&nbsp;|&nbsp;</strong></strong><a href="https://www.vaibhavjewellers.com/women-gold-rings.html"><strong><strong>Gold Ring for Women</strong></strong></a><strong><strong>&nbsp;|&nbsp;</strong></strong><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/bracelets.html"><strong><strong>Gold Bracelet</strong></strong></a><strong><strong>&nbsp;|&nbsp;</strong></strong><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/earrings.html"><strong><strong>Gold Earrings</strong></strong></a><strong><strong>&nbsp;|&nbsp;</strong></strong><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/mangalsutra.html"><strong><strong>Gold Mangalsutra</strong></strong></a><strong><strong>&nbsp;|&nbsp;</strong></strong><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/choker.html"><strong><strong>Gold Choker</strong></strong></a><strong><strong>&nbsp;|&nbsp;</strong></strong><a href="https://www.vaibhavjewellers.com/gold-jewellery/women/bracelets.html"><strong><strong>Gold Bracelets for Women</strong></strong></a><strong><strong>&nbsp;|&nbsp;</strong></strong><a href="https://www.vaibhavjewellers.com/men-gold-rings.html"><strong><strong>Gold Ring for Men</strong></strong></a><strong><strong>&nbsp;|&nbsp;</strong></strong><a href="https://www.vaibhavjewellers.com/gold-jewellery/men/bracelets.html"><strong><strong>Gold Bracelets for Men</strong></strong></a><strong><strong>&nbsp;|&nbsp;</strong></strong><a href="https://www.vaibhavjewellers.com/men-gold-chains.html"><strong><strong>Gold Chains for Men</strong></strong></a><strong><strong>&nbsp;</strong></strong></p>
+<p><a href="https://www.vaibhavjewellers.com/diamond-jewellery.html"><strong><strong>Diamond Jewellery</strong></strong></a><strong><strong>&nbsp;-</strong></strong></p>
+<p><a href="https://www.vaibhavjewellers.com/diamond-jewellery/women/bangles.html"><strong><strong>Diamond Bangles</strong></strong></a><strong><strong>&nbsp;|&nbsp;</strong></strong><a href="https://www.vaibhavjewellers.com/diamond-jewellery/women/earrings.html"><strong><strong>Diamond Earrings</strong></strong></a><strong><strong>&nbsp;|&nbsp;</strong></strong><a href="https://www.vaibhavjewellers.com/diamond-jewellery/women/necklace.html"><strong><strong>Diamond Necklace</strong></strong></a><strong><strong>&nbsp;|&nbsp;</strong></strong><a href="https://www.vaibhavjewellers.com/women-diamond-rings.html"><strong><strong>Diamond Rings</strong></strong></a><strong><strong>&nbsp;|&nbsp;</strong></strong><a href="https://www.vaibhavjewellers.com/diamond-jewellery/women/vaddanam.html"><strong><strong>Diamond Vaddanam</strong></strong></a><strong><strong>&nbsp;|&nbsp;</strong></strong><a href="https://www.vaibhavjewellers.com/diamond-jewellery/women/bracelet.html"><strong><strong>Diamond Bracelets</strong></strong></a><strong><strong>&nbsp;|&nbsp;</strong></strong><a href="https://www.vaibhavjewellers.com/diamond-jewellery/women/mangalsutra.html"><strong><strong>Diamond Mangalsutra</strong></strong></a><strong><strong>&nbsp;</strong></strong></p>
+<p><a href="https://www.vaibhavjewellers.com/silver.html"><strong><strong>Silver Category</strong></strong></a><strong><strong>&nbsp;-</strong></strong></p>
+<p><a href="https://www.vaibhavjewellers.com/silver/gifts.html"><strong><strong>Silver Gifts</strong></strong></a><strong><strong>&nbsp;|&nbsp;</strong></strong><a href="https://www.vaibhavjewellers.com/silver/dinner-sets.html"><strong><strong>Silver Dinner Sets</strong></strong></a><strong><strong>&nbsp;|&nbsp;</strong></strong><a href="https://www.vaibhavjewellers.com/silver/pooja-items.html"><strong><strong>Silver Pooja Articles</strong></strong></a><strong><strong>&nbsp;|&nbsp;</strong></strong><a href="https://www.vaibhavjewellers.com/silver/silverjewellery.html"><strong><strong>Silver Jewellery</strong></strong></a><strong><strong>&nbsp;|&nbsp;</strong></strong><a href="https://www.vaibhavjewellers.com/silver/silver-coins.html"><strong><strong>Silver Coins</strong></strong></a></p>
+<p><span style="font-weight: 400;">&nbsp;</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ 
+</div> <!-- page-wrapper -->

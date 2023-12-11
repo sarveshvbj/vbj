@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+       <meta name="description" content="Connect to Vaibhai Jewellers Online Store to Buy Gold and Diamond jewellery At Best Prices. Our Stores are Explore in Visakhapatnam and Telangana. Call us or Whatsapp at +919177403000"/>
+    </head>
+</page>

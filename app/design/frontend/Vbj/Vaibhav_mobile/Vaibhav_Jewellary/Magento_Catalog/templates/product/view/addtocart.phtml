@@ -1,0 +1,95 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php $_product = $block->getProduct(); ?>
+
+
+<?php //echo "here"; print_r($_product->getId()); ?>
+<?php if($_product->getTypeId() == 'configurable' && $_product->getAttributeSetId() != 11 ) { ?>
+<?php $buttonTitle = __('Add To Cart'); ?>
+<?php } else { ?>
+<?php $buttonTitle = __('Add To Cart'); } ?>
+<?php $tryButtonTitle = __('Try On'); ?>
+<?php $baseUrl = 'https://mage24stage.vaibhavjewellers.com/'; ?>
+<?php if ($_product->isSaleable()): ?>
+        
+<input type="hidden" name="return_url" value="<?= $baseUrl."checkout"; ?>" >
+<div class="box-tocart">
+    <div class="fieldset">
+        <?php if ($block->shouldRenderQuantity()): ?>
+        <div class="field qty">
+            <label class="label" for="qty"><span><?= /* @escapeNotVerified */ __('Qty') ?></span></label>
+            <div class="control">
+                <input type="number"
+                       name="qty"
+                       id="qty"
+                       value="<?= /* @escapeNotVerified */ $block->getProductDefaultQty() * 1 ?>"
+                       title="<?= /* @escapeNotVerified */ __('Qty') ?>"
+                       class="input-text qty"
+                       data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                       />
+            </div>
+        </div>
+        <?php endif; ?>
+        <div class="actions">
+         <!--  <button type="button"
+                    title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
+                    class="p-3 try-on"
+                    id=""><img class="shop-img" src="camera.svg" alt="">
+                <span><?= /* @escapeNotVerified */ $tryButtonTitle ?></span>
+            </button> -->
+            <button style="display:inline-block;" type="submit"
+                    title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
+                    class="add-to-cart disabled-loader"
+                    id="product-addtocart-button">
+                    <span class="add-to-cart-text"><img class="shop-img" src="<?php echo $this->getUrl('pub/media/');?>add-to-cart.svg" alt="">
+                <span><?= /* @escapeNotVerified */ $buttonTitle ?></span></span>
+                 <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+            </button>
+            <?= $block->getChildHtml('', true) ?>
+        </div>
+
+    </div>
+</div>
+ <!-- <a class="customize" target="_blank" href="<?php //echo $this->getUrl('personalize-your-jewellery'); ?>">For personalize &amp; customized jewellery click here</a>
+ <hr> -->
+ 
+ <div class="setting_my_dimonds" style="">
+    <input type="hidden" name="product_id" class="product_id" value="<?php echo $_product->getId(); ?>">
+    <!-- <input type="button" name="settings" class="settings" value="Settings"> -->
+    <span type="button" name="settings" class="settings">Settings</span>
+ </div>
+<?php endif; ?>
+<a class="customize" target="_blank" href="https://www.vaibhavjewellers.com/personalize-your-jewellery">For personalize &amp; customized jewellery click</a>
+<hr>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+        "Magento_Catalog/js/validate-product": {
+            "bindSubmit": true
+        }
+    }
+    }
+</script>
+<script>
+require(['jquery'], function($){
+    'use strict';
+    $('.settings').click(function(){
+        var product_id = $('.product_id').val();
+        if(product_id == ''){
+            return;
+        }
+        var base_url = document.location.origin+"/settings/index/display?product_id="+product_id;
+
+        window.location.href=base_url;
+    });
+});
+
+</script>

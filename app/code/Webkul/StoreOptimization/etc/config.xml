@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!-- /**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_StoreOptimization
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <wkoptimization>
+            <image_optimization>
+                <active>0</active>
+                <type>jpeg</type>
+                <enable_src_set>0</enable_src_set>
+                <pixels>2,3</pixels>
+            </image_optimization>
+            <defer_js>
+                <active>0</active>
+            </defer_js>
+            <infinite_scroll>
+                <active>0</active>
+            </infinite_scroll>
+            <lazyload>
+                <active>0</active>
+            </lazyload>
+        </wkoptimization>
+    </default>
+</config>
