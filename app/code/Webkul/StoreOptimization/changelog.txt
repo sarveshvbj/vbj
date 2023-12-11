@@ -1,0 +1,17 @@
+Legend
+
++ Features
+- Bugs
+
+-------------------------------- Version 3.0.1 --------------------------------------
+    + jpeg compression added
+    + image lazy loading added
+    + infinite scroller added
+
+-------------------------------- Version 3.0.0 --------------------------------------
+    + compatible with Magento 2.3.x
+    + makes website performance and rating better
+    + admin can enable webp image format on frontend for compressed image loading
+    + enbling webp image format will improve frontend product and category page performance
+    + admin can enable srcset attribute of image tag for responsive image loading
+    + admin can enable defer js loading for non blocking js

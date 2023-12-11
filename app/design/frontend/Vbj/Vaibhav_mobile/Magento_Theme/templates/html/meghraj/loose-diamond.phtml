@@ -1,0 +1,780 @@
+<?php 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance(); // Instance of Object Manager
+$productRepository = $objectManager->get('\Magento\Catalog\Model\ProductRepository');
+$CategoryLinkRepository =  $objectManager->get('Magento\Catalog\Api\CategoryLinkRepositoryInterface');
+
+$StonemanagerFactory = $objectManager->get('Magegadgets\Loosediamonds\Model\LoosediamondsFactory');		
+$collection = $StonemanagerFactory->create()->getCollection()->addFieldToSelect('*');
+$totdiamondcount = count($collection);
+$collection->setPageSize(20);
+/*echo "<pre>";
+print_r($collection->getData());
+echo "</pre>"; */
+//$_product = $productRepository->get($productSku);
+//$_product->getProductUrl();
+	
+/*=============== Shape Array ===============*/
+
+$Shap_array=array(); 
+$Shap_array[0]='Round';
+$Shap_array[1]='Cushion';
+$Shap_array[2]='Emerald';
+$Shap_array[3]='Heart';
+$Shap_array[4]='Oval';
+$Shap_array[5]='Perl';
+$Shap_array[6]='Marquise';
+$Shap_array[7]='Pear';
+$Shap_array[8]='Radiant';
+$Shap_array[9]='Triangle';
+$Shap_array[10]='Princess';
+
+/*=============== Color Array ===============*/
+$Color_array=array(); 
+$Color_array[0]='D';
+$Color_array[1]='E';
+$Color_array[2]='F';
+$Color_array[3]='FY';
+$Color_array[4]='G';
+$Color_array[5]='H';
+$Color_array[6]='I';
+$Color_array[7]='J';
+$Color_array[8]='K';
+$Color_array[9]='L';
+$Color_array[10]='M';
+$Color_array[11]='N';
+$Color_array[12]='Y-Z';
+
+/*=============== Clarity Array ===============*/
+$Clarity_array=array(); 
+$Clarity_array[0]='FL';
+$Clarity_array[1]='I1';
+$Clarity_array[2]='IF';
+$Clarity_array[3]='SI';
+$Clarity_array[4]='SI1';
+$Clarity_array[5]='SI2';
+$Clarity_array[6]='VS';
+$Clarity_array[7]='VS1';
+$Clarity_array[8]='VS2';
+$Clarity_array[9]='VVS1';
+$Clarity_array[10]='VVS2';
+
+/*=============== CuT Polish Symmetry Array ===============*/
+$Global_array=array(); 
+$Global_array[0]='Excellent';
+$Global_array[1]='Good';
+$Global_array[2]='Very Good';
+
+/*=============== Fluroscent Array ===============*/
+
+$Fluro_array=array(); 
+$Fluro_array[0]='None';
+$Fluro_array[1]='Excellent';
+$Fluro_array[2]='Faint';
+$Fluro_array[3]='Fluorescence';
+$Fluro_array[4]='Good';
+$Fluro_array[5]='Medium';
+$Fluro_array[6]='Slight';
+$Fluro_array[7]='Strong';
+$Fluro_array[8]='Very Good';
+$Fluro_array[9]='Very Slight';
+
+?>
+
+<div class="em-maxwidth-content">
+	<div class="personalize-sec">
+		<div class="loose-section">
+			<!--div class="loose-head">
+				<h3>Filter Diamonds</h3>
+				<input type="button" name="allfilter" value="allfilter"/>
+			</div-->
+			<div class="firstthree firstblock">
+				<div class="toolshape">
+					<h4 class="toolpolish">Shape<span class="tooltip-custom"><img src="<?php echo $block->getViewFileUrl('images/tooltip.svg'); ?>"/><p class="tooltext2">The shape of a diamond is its geometrical appearance. <a href="javascript:void(0)">Read More...</a></p></span></h4>
+					<div id ="diamonds" class="diamond-images">
+						<a href="javascript:void(0)" id="0"><span class="icon-round" ></span><span>Round</span></a>
+						<a href="javascript:void(0)" id="10"><span class="icon-princess" ></span><span>Princess</span></a>
+						<a href="javascript:void(0)" id="7"><span class="icon-pear" ></span><span>Pear</span></a>
+						<a href="javascript:void(0)" id="3"><span class="icon-heart" ></span><span>Heart</span></a>
+						<a href="javascript:void(0)" id="11"><span class="icon-asscher" ></span><span>Asscher</span></a>
+						<a href="javascript:void(0)" id="1"><span class="icon-cushion" ></span><span>Cushion</span></a>
+						<a href="javascript:void(0)" id="8"><span class="icon-radiant" ></span><span>Radiant</span></a>
+						<a href="javascript:void(0)" id="4"><span class="icon-oval" ></span><span>Oval</span></a>
+						<a href="javascript:void(0)" id="6"><span class="icon-marquise" ></span><span>Marquise</span></a>
+						<a href="javascript:void(0)" id="2"><span class="icon-emerald" ></span><span>Emarald</span></a>
+					</div>
+				</div>
+				<div class="firstthree btmblock">
+					<div class="toolpolishmain">
+						<h4 class="toolpolish">Polish<span class="tooltip-custom"><img src="<?php echo $block->getViewFileUrl('images/tooltip.svg'); ?>"/>
+						<p class="tooltext2">The shape of a diamond is its geometrical appearance. <a href="javascript:void(0)">Read More...</a></p></span>
+						</h4>
+						<div class="box2">
+							<a href="javascript:void(0)" id="fair">Fair</a>
+							<a href="javascript:void(0)" id="1">Good</a>
+							<a href="javascript:void(0)" id="2">Very Good</a>
+							<a href="javascript:void(0)" id="0">Excellent</a>
+						</div>
+					</div>
+					<div class="toolcertifi">
+						<h4 class="toolpolish">Certification<span class="tooltip-custom"><img src="<?php echo $block->getViewFileUrl('images/tooltip.svg'); ?>"/><p class="tooltext2">The shape of a diamond is its geometrical appearance.<a href="javascript:void(0)">Read More...</a></p></span></h4>
+						<div class="box2">
+							<a href="javascript:void(0)" id="GIA">GIA</a>
+							<a href="javascript:void(0)" id="IGI">IGI</a>
+							<a href="javascript:void(0)" id="AGS">AGS</a>
+							<a href="javascript:void(0)" id="HRD">HRD</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="firstthree secondblock">
+				<div class="toolclarity">
+					<h4 class="toolpolish">Clarity<span class="tooltip-custom"><img src="<?php echo $block->getViewFileUrl('images/tooltip.svg'); ?>"/>
+					<p class="tooltext2">The shape of a diamond is its geometrical appearance. <a href="javascript:void(0)">Read More...</a></p></span>
+					</h4>
+					<div class="box1">
+						<a href="javascript:void(0)" id="2">IF</a>
+						<a href="javascript:void(0)" id="9">VVS1</a>
+						<a href="javascript:void(0)" id="10">VVS2</a>
+						<a href="javascript:void(0)" id="7">VS1</a>
+						<a href="javascript:void(0)" id="8">VS2</a>
+						<a href="javascript:void(0)" id="4">SI1</a>
+						<a href="javascript:void(0)" id="5">SI2</a>
+					</div>
+				</div>
+				<div class="toolcolor">
+					<h4 class="toolpolish ">Color<span class="tooltip-custom"><img src="<?php echo $block->getViewFileUrl('images/tooltip.svg'); ?>"/><p class="tooltext2">The shape of a diamond is its geometrical appearance. <a href="javascript:void(0)">Read More...</a></p></span></h4>
+					<div class="box1">
+						<a href="javascript:void(0)" id="0">D</a>
+						<a href="javascript:void(0)" id="1">E</a>
+						<a href="javascript:void(0)" id="2">F</a>
+						<a href="javascript:void(0)" id="4">G</a>
+						<a href="javascript:void(0)" id="5">H</a>
+						<a href="javascript:void(0)" id="6">I</a>
+						<a href="javascript:void(0)" id="7">J</a>
+						<a href="javascript:void(0)" id="8">K</a>
+					</div>
+				</div>
+				<div class="toolcut">
+					<h4 class="toolpolish">Cut<span class="tooltip-custom"><img src="<?php echo $block->getViewFileUrl('images/tooltip.svg'); ?>"/><p class="tooltext2">The shape of a diamond is its geometrical appearance. <a href="javascript:void(0)">Read More...</a></p></span></h4>
+					<div class="box1">
+						<a href="javascript:void(0)" id="ha">H&A</a>
+						<a href="javascript:void(0)" id="1">Good</a>
+						<a href="javascript:void(0)" id="2">Very Good</a>
+						<a href="javascript:void(0)" id="0">Excellent</a>
+					</div>
+				</div>
+				<div class="toolsymmetry">
+					<h4 class="toolpolish">Symmetry<span class="tooltip-custom"><img src="<?php echo $block->getViewFileUrl('images/tooltip.svg'); ?>"/><p class="tooltext2">The shape of a diamond is its geometrical appearance. <a href="javascript:void(0)">Read More...</a></p></span></h4>
+					<div class="box1">
+						<a href="javascript:void(0)" id="fair">Fair</a>
+						<a href="javascript:void(0)" id="1">Good</a>
+						<a href="javascript:void(0)" id="2">Very Good</a>
+						<a href="javascript:void(0)" id="0">Excellent</a>
+					</div>
+				</div>
+				<div id="toolfluorescences" class="toolfluorescence">
+					<h4 class="toolpolish">Fluorescence<span id="fluorescencenew" class="tooltip-custom"><img src="<?php echo $block->getViewFileUrl('images/tooltip.svg'); ?>"/><p class="tooltext2">The shape of a diamond is its geometrical appearance. <a href="javascript:void(0)">Read More...</a></p></span></h4>
+					<div id="boxes" class="box1">
+						<a href="javascript:void(0)" id="0">None</a>
+						<a href="javascript:void(0)" id="2">Faint</a>
+						<a href="javascript:void(0)" id="5">Medium</a>
+						<a href="javascript:void(0)" id="7">Strong</a>
+						<a href="javascript:void(0)" id="8">Very Strong</a>
+					</div>
+				</div>
+			</div>
+			<div class="firstthree thirdblock">
+				<div class="range-sec">
+					<div class="caret1 toolcaret">
+						<h3 class="toolpolish">Carat<span class="tooltip-custom"><img src="<?php echo $block->getViewFileUrl('images/tooltip.svg'); ?>"/><p class="tooltext2">The shape of a diamond is its geometrical appearance. <a href="javascript:void(0)">Read More...</a></p></span></h3>
+						<input type="text" id="caret_min" name="min" value="0.1" readonly />
+						<label>to</label>
+						<input type="text" id="caret_max" name="max" value="26.2" readonly />
+					</div>
+					<div class="caretrange">
+						<section id="caretslidernew" class="caret-range-slider">
+							<!--span class="rangeValues"></span-->
+							<input value="0.1" min="0.1" max="26.2" step="0.1" type="range"  id="caretmin">
+							<input value="26.2" min="0.1" max="26.2" step="0.1" type="range"  id="caretmax">
+						</section>
+					</div>
+					
+					
+					<div class="caret1 toolprice">
+						<h3 class="toolpolish">Price<span class="tooltip-custom"><img src="<?php echo $block->getViewFileUrl('images/tooltip.svg'); ?>"/><p class="tooltext2">The shape of a diamond is its geometrical appearance. <a href="javascript:void(0)">Read More...</a></p></span></h3>
+						<input type="text" id="price_min" name="min" value="0" readonly />
+						<label>to</label>
+						<input type="text" id="price_max" name="max" value="4300000" readonly />
+					</div>
+					<div class="caretrange">
+						<section  id="priceslidernew" class="price-range-slider">
+							<!--span class="rangeValues"></span-->
+							<input value="0" min="0" max="4300000" step="1" type="range" id="price1">
+							<input value="4300000" min="0" max="4300000" step="1" type="range" id="price2">
+						</section>
+					</div>
+					
+
+					<div class="caret1 tooldepth">
+						<h3 class="toolpolish">Depth<span class="tooltip-custom"><img src="<?php echo $block->getViewFileUrl('images/tooltip.svg'); ?>"/><p class="tooltext2">The shape of a diamond is its geometrical appearance. <a href="javascript:void(0)">Read More...</a></p></span></h3>
+						<input type="text" id="depth_min" name="min" value="0" readonly />
+						<label>to</label>
+						<input type="text" id="depth_max" name="max" value="88" readonly />
+					</div>
+					<div class="caretrange">
+						<section  id="depthslidernew" class="depth-range-slider">
+							<!--span class="rangeValues"></span-->
+							<input value="0" min="0" max="88" step="1" type="range" id="depthmin">
+							<input value="88" min="0" max="88" step="1" type="range" id="depthmax">
+						</section>
+					</div>
+					
+					
+					<div class="caret1 tooltable">
+						<h3 class="toolpolish">Table<span class="tooltip-custom"><img src="<?php echo $block->getViewFileUrl('images/tooltip.svg'); ?>"/><p class="tooltext2">The shape of a diamond is its geometrical appearance. <a href="javascript:void(0)">Read More...</a></p></span></h3>
+						<input type="text" id="table_min" name="min" value="1" readonly />
+						<label>to</label>
+						<input type="text" id="table_max" name="max" value="84" readonly />
+					</div>
+					<div class="caretrange">
+						<section id="tableslidernew" class="table-range-slider">
+							<!--span class="rangeValues"></span-->
+							<input value="1" min="1" max="84" step="1" type="range" id="tablemin">
+							<input value="84" min="1" max="84" step="1" type="range" id="tablemax">
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="data-table-header">
+			<h2 id="totalcounts"><?php echo $totdiamondcount; ?> Diamonds</h2>
+			<input type="button" id="resetbutton" name="reset" value="Reset Filter" />
+			<div style="overflow-x:auto;width: 100%;" >
+			<table id="example" class="display" style="width:100%">
+				<thead>
+					<tr>
+						<th>Price</th>
+						<th>Shape</th>
+						<th>Carat</th>
+						<th>Color</th>
+						<th>Clarity</th>
+						<th>Cut</th>
+						<th>Polish</th>
+						<th>Symmetry</th>
+						<th>Cert.</th>
+						<th>Fluor.</th>
+						<th>Table</th>
+						<th>Depth</th>
+						<th>Measurements</th>
+						<!--th>Ratio</th-->
+						<th>Cert. No.</th>
+						<th>Item ID</th>
+						<th>Details</th>
+					</tr>
+				</thead>
+				<tbody>					
+					<?php // echo $_product->getProductUrl(); ?>
+					<?php foreach($collection->getData() as $diamondInfo ) : ?>
+					<?php $_product = $productRepository->get($diamondInfo['item_id']); ?>
+					
+						<tr>
+							<td><?php echo $diamondInfo['price']; ?></td>
+							<td><?php $shape = $diamondInfo['shape']; echo $Shap_array[$shape];	 ?></td>
+							<td><?php echo $diamondInfo['carats']; ?></td>
+							<td><?php $color = $diamondInfo['color']; echo $Color_array[$color]; ?></td>
+							<td><?php $clarity = $diamondInfo['clarity']; echo $Clarity_array[$clarity]; ?></td>
+							<td><?php $global = $diamondInfo['cut']; echo $Global_array[$global]; ?></td>
+							<td><?php $globals = $diamondInfo['polish']; echo $Global_array[$globals];?></td>
+							<td><?php $globalss = $diamondInfo['symmetry']; echo $Global_array[$globalss]; ?></td>
+							<td><a href="<?php echo $diamondInfo['certificate_link']; ?>" target ="_blank"><?php echo $diamondInfo['certificate']; ?></a></td>
+							<td><?php $fluro = $diamondInfo['fluorescence']; echo $Fluro_array[$fluro]; ?></td>
+							<td><?php echo $diamondInfo['table']; ?></td>
+							<td><?php echo $diamondInfo['depth']; ?></td>
+							<td><?php echo $diamondInfo['measurement']; ?></td>
+							<td><?php echo $diamondInfo['certificate_no']; ?></td>
+							<td><?php echo $diamondInfo['item_id']; ?></td>
+							<!--td><a href="javascript:void(0)">view</a></td-->
+							<td><a href="<?php echo $_product->getProductUrl(); ?>" target="_blank" >view</a></td>
+						</tr>
+						<?php endforeach ; ?>
+	
+				</tbody>
+			</table>
+			</div>
+			<button type="button" id="viewmore" name="viewmore" class="viewmore"/>
+			View More Diamonds <i class="fa fa-spinner fa-spin buttonload" style="display:none;"></i>
+			</button>  
+		</div>
+		<span id="errormsg"></span>
+	</div>
+</div>
+<script type="text/javascript">
+
+require(['jquery', 'domReady!'], function($) {
+	
+	var minprice = 0;
+	var maxprice = 4300000;
+	var caretmin = 0.1;
+	var caretmax = 26.2;
+	var depthmin = 0;
+	var depthmax = 88.5;
+	var tablemin = 1;
+	var tablemax = 84;
+	var fluro = [];
+	var color = [];
+	var cut = [];
+	var symmetry = [];
+	var clarity = [];
+	var polish = [];
+	var certifi = [];
+	var polishmain = [];
+	var shape = [];
+	
+	
+	$('.box2 a').click(function(){
+		//$('.box2 a').removeClass("active");
+		//$(this).addClass("active");
+		if ($(this).hasClass('active')) {
+		   	 $(this).removeClass('active');
+		 } else {
+		  	 //$(".box2 a").removeClass('active');
+		     $(this).addClass('active');
+		 }
+		
+	});
+	$('.box1 a').click(function(){
+		//$('.box1 a').removeClass("active");
+		//$(this).addClass("active");
+		if ($(this).hasClass('active')) {
+		   	 $(this).removeClass('active');
+		 } else {
+		  	 //$(".box2 a").removeClass('active');
+		     $(this).addClass('active');
+		 }
+	});
+		
+	$('.diamond-images a').click(function(){
+		//$('.diamond-images a').removeClass("active");
+		//$(this).addClass("active");
+		if ($(this).hasClass('active')) {
+		   	 $(this).removeClass('active');
+		 } else {
+		  	 //$(".box2 a").removeClass('active');
+		     $(this).addClass('active');
+		 }
+	});
+	
+	/*$(document).ready(function() {
+		$('#example').DataTable();
+	});*/
+	
+/*For Caret Slider start*/
+	function getCaretVals(){
+  // Get slider values
+	  var parent = this.parentNode;
+	  var slides = parent.getElementsByTagName("input");
+		var slide1 = parseFloat( slides[0].value );
+		var slide2 = parseFloat( slides[1].value );
+	  // Neither slider will clip the other, so make sure we determine which is larger
+	  if( slide1 > slide2 ){ var tmp = slide2; slide2 = slide1; slide1 = tmp; }
+	  
+	  //var displayElement = parent.getElementsByClassName("rangeValues")[0];
+		  //displayElement.innerHTML = slide1 + " - " + slide2 ;
+		  $('#caret_min').val(slide1);
+		  $('#caret_max').val(slide2);
+	}
+/*For Caret Slider end*/
+
+
+/*For price Slider start*/
+	function getPriceVals(){
+	// Get slider values
+	  var parent = this.parentNode;
+	  var slides = parent.getElementsByTagName("input");
+		var slide1 = parseFloat( slides[0].value );
+		var slide2 = parseFloat( slides[1].value );
+	  // Neither slider will clip the other, so make sure we determine which is larger
+		if( slide1 > slide2 ){ var tmp = slide2; slide2 = slide1; slide1 = tmp; }
+	//var displayElement = parent.getElementsByClassName("rangeValues")[0];
+	//displayElement.innerHTML = slide1 + " - " + slide2 ;
+		$('#price_min').val(slide1);
+		$('#price_max').val(slide2);
+	}
+/*For price Slider end*/
+
+
+/*For Depth Slider start*/
+	function getDepthVals(){
+  // Get slider values
+	  var parent = this.parentNode;
+	  var slides = parent.getElementsByTagName("input");
+		var slide1 = parseFloat( slides[0].value );
+		var slide2 = parseFloat( slides[1].value );
+	  // Neither slider will clip the other, so make sure we determine which is larger
+	  if( slide1 > slide2 ){ var tmp = slide2; slide2 = slide1; slide1 = tmp; }
+	  
+	  //var displayElement = parent.getElementsByClassName("rangeValues")[0];
+		  //displayElement.innerHTML = slide1 + " - " + slide2 ;
+		  $('#depth_min').val(slide1);
+		  $('#depth_max').val(slide2);
+	}
+/*For Depth Slider end*/
+
+
+/*For table Slider start*/
+	function getTableVals(){
+	// Get slider values
+	  var parent = this.parentNode;
+	  var slides = parent.getElementsByTagName("input");
+		var slide1 = parseInt( slides[0].value );
+		var slide2 = parseInt( slides[1].value );
+	  // Neither slider will clip the other, so make sure we determine which is larger
+		if( slide1 > slide2 ){ var tmp = slide2; slide2 = slide1; slide1 = tmp; }
+	//var displayElement = parent.getElementsByClassName("rangeValues")[0];
+	//displayElement.innerHTML = slide1 + " - " + slide2 ;
+		$('#table_min').val(slide1);
+		$('#table_max').val(slide2);
+	}
+/*For table Slider end*/
+
+	
+window.onload = function(){
+  // Initialize Sliders
+/*For caret Slider start*/
+  var caretsliderSections = document.getElementsByClassName("caret-range-slider");
+      for( var x = 0; x < caretsliderSections.length; x++ ){
+        var sliders = caretsliderSections[x].getElementsByTagName("input");
+        for( var y = 0; y < sliders.length; y++ ){
+          if( sliders[y].type ==="range" ){
+            sliders[y].oninput = getCaretVals;
+            // Manually trigger event first time to display values
+            sliders[y].oninput();
+          }
+        }
+      }
+/*For caret Slider end*/
+/*For price Slider start*/
+	var pricesliderSections = document.getElementsByClassName("price-range-slider");
+      for( var x = 0; x < pricesliderSections.length; x++ ){
+        var sliders = pricesliderSections[x].getElementsByTagName("input");
+        for( var y = 0; y < sliders.length; y++ ){
+          if( sliders[y].type ==="range" ){
+            sliders[y].oninput = getPriceVals;
+            // Manually trigger event first time to display values
+            sliders[y].oninput();
+          }
+        }
+      }  
+/*For price Slider end*/
+/*For depth Slider start*/
+  var depthsliderSections = document.getElementsByClassName("depth-range-slider");
+      for( var x = 0; x < depthsliderSections.length; x++ ){
+        var sliders = depthsliderSections[x].getElementsByTagName("input");
+        for( var y = 0; y < sliders.length; y++ ){
+          if( sliders[y].type ==="range" ){
+            sliders[y].oninput = getDepthVals;
+            // Manually trigger event first time to display values
+            sliders[y].oninput();
+          }
+        }
+      }
+/*For caret Slider end*/
+/*For table Slider start*/ 
+  var tablesliderSections = document.getElementsByClassName("table-range-slider");
+      for( var x = 0; x < tablesliderSections.length; x++ ){
+        var sliders = tablesliderSections[x].getElementsByTagName("input");
+        for( var y = 0; y < sliders.length; y++ ){
+          if( sliders[y].type ==="range" ){
+            sliders[y].oninput = getTableVals;
+            // Manually trigger event first time to display values
+            sliders[y].oninput();
+          }
+        }
+      } 
+/* For table Slider end */ 
+}
+
+////////////////---------  priceslidernew start     -----------/////////////////////
+/*$(".toolfluorescence .box1 a,.toolclarity .box1 a,.toolcolor .box1 a,.toolcut .box1 a,.toolsymmetry .box1 a").click(function (){ 
+	fluro = $(this).attr('id');
+allfilter();
+});*/
+
+/*$(".toolfluorescence .box1 a").click(function (){
+	fluro = $(this).attr('id');
+    //clarity = color = cut = symmetry = '';
+    allfilter();
+}); */
+
+$(".toolfluorescence .box1 a").click(function (){
+	  if ($(this).hasClass('active')){
+        fluro.push($(this).attr('id'));
+      } else {
+        var x = fluro.indexOf($(this).attr('id'));
+        fluro.splice(x, 1);
+      } 
+    allfilter();
+});
+	
+$(".toolclarity .box1 a").click(function (){
+	//clarity = $(this).attr('id');
+     if ($(this).hasClass('active')){
+        clarity.push($(this).attr('id'));
+      } else {
+        var x = clarity.indexOf($(this).attr('id'));
+        clarity.splice(x, 1);
+      } 
+    allfilter();
+});
+	
+$(".toolcolor .box1 a").click(function (){ 
+	//color = $(this).attr('id');
+    if ($(this).hasClass('active')){
+        color.push($(this).attr('id'));
+      } else {
+        var x = color.indexOf($(this).attr('id'));
+        color.splice(x, 1);
+      } 
+    allfilter();
+});
+
+$(".toolcut .box1 a").click(function (){ 
+	//cut = $(this).attr('id');
+    if ($(this).hasClass('active')){
+        cut.push($(this).attr('id'));
+      } else {
+        var x = cut.indexOf($(this).attr('id'));
+        cut.splice(x, 1);
+      } 
+    allfilter();
+});
+	
+$(".toolsymmetry .box1 a").click(function (){ 
+	//symmetry = $(this).attr('id');
+	if ($(this).hasClass('active')){
+        symmetry.push($(this).attr('id'));
+      } else {
+        var x = symmetry.indexOf($(this).attr('id'));
+        symmetry.splice(x, 1);
+      } 
+    allfilter();
+});
+
+$(".toolcertifi .box2 a").click(function (){ 
+	//certifi = $(this).attr('id');
+	if ($(this).hasClass('active')){
+        certifi.push($(this).attr('id'));
+      } else {
+        var x = certifi.indexOf($(this).attr('id'));
+        certifi.splice(x, 1);
+      } 
+    allfilter();
+});
+	
+$(".toolpolishmain .box2 a").click(function (){ 
+	//polishmain = $(this).attr('id');
+	if ($(this).hasClass('active')){
+        polishmain.push($(this).attr('id'));
+      } else {
+        var x = polishmain.indexOf($(this).attr('id'));
+        polishmain.splice(x, 1);
+      } 
+    allfilter();
+});
+	
+$(".toolshape #diamonds a").click(function (){ 
+	//shape = $(this).attr('id');
+	if ($(this).hasClass('active')){
+        shape.push($(this).attr('id'));
+      } else {
+        var x = shape.indexOf($(this).attr('id'));
+        shape.splice(x, 1);
+      } 
+    allfilter();
+});
+	
+$('#priceslidernew, #tableslidernew, #depthslidernew, #caretslidernew').change(function(){
+    allfilter();
+})
+
+	$('#resetbutton').click(function(){
+		//alert('hey');
+		//$("#price_min").slider("value", $("#price_min").slider("option", "min") );
+		//$("#caretmin").val(0).slider("refresh");
+		//$("#caret_max").val(100).slider("refresh");
+		
+		$("#caretmin , #caret_min").val($("#caretmin").attr("min"));
+		$("#caretmax , #caret_max").val($("#caretmax").attr("max"));
+		
+		$("#depthmin , #depth_min").val($("#depthmin").attr("min"));
+		$("#depthmax , #depth_max").val($("#depthmax").attr("max"));
+		
+		$("#price1 , #price_min").val($("#price1").attr("min"));
+		$("#price2 , #price_max").val($("#price2").attr("max"));
+		
+		$("#tablemin , #table_min").val($("#tablemin").attr("min"));
+		$("#tablemax , #table_max").val($("#tablemax").attr("max"));
+		
+			if($('.box1 a,.box2 a,.diamond-images a').hasClass('active')){
+			$('.box1 a,.box2 a,.diamond-images a').removeClass("active");
+				shape =[];
+				polishmain =[];
+				fluro =[];
+				clarity =[];
+				cut =[];
+				color = [];
+				symmetry =[];
+				certifi = [];
+				allfilter();	
+			} 
+		else 
+			{
+				allfilter();
+			}
+		
+	})
+var abcde = 37;
+function allfilter(){
+//var curpage = 1;
+		minprice = document.getElementById('price1').value;
+		maxprice = document.getElementById('price2').value;
+		tablemin = document.getElementById('tablemin').value;
+		tablemax = document.getElementById('tablemax').value;
+		caretmin = document.getElementById('caretmin').value;
+		caretmax = document.getElementById('caretmax').value;
+		depthmin = document.getElementById('depthmin').value;
+		depthmax = document.getElementById('depthmax').value;
+			$.ajax({ 
+				type: 'POST',
+				url : "<?php echo $this->getUrl('loosediamonds/index/pricefilter', ['_secure' => true]); ?>", 
+				data: {'price1':minprice,'price2':maxprice,'tablemin':tablemin,
+					   'tablemax':tablemax,'caretmin':caretmin,'caretmax':caretmax,'depthmin':depthmin,'depthmax':depthmax,
+					   'fluro':fluro,'color':color,'cut':cut,'clarity':clarity,'symmetry':symmetry,
+					   'certifi':certifi,'polishmain':polishmain,'shape':shape},
+				dataType:'json',
+				success:function(data){
+					abcde = data[0].total;
+					$('#totalcounts').html(data[0].total +" Diamonds");
+					$("#example tbody").empty();
+					//alert(data[0].total);
+					if(data[0].total == 0 || data[0].total < 20)
+					{
+							//alert('hey');
+							$('#viewmore').hide();
+							//$('#errormsg').text("Diamonds are Not Available");
+							
+					}
+					if(data[0].total == 0)
+					{
+							$('#errormsg').text("No Diamond Found");		
+					}
+					else
+					{
+							$('#errormsg').text("");
+					}
+					if(data[0].total != 0){
+						$.each(data, function(key, value){
+							console.log(value);
+									$("#example tbody").append("<tr>"+
+																"<td>"+value['price']+"</td>"+
+																"<td>"+value['shape']+"</td>"+
+																"<td>"+value['carats']+"</td>"+
+																"<td>"+value['color']+"</td>"+
+																"<td>"+value['clarity']+"</td>"+
+																"<td>"+value['cut']+"</td>"+
+																"<td>"+value['polish']+"</td>"+
+																"<td>"+value['symmetry']+"</td>"+
+																"<td><a href='"+value['certificate_link']+"' target='_blank'>"+value['certificate']+"</a></td>"+
+																"<td>"+value['fluorescence']+"</td>"+
+																"<td>"+value['table']+"</td>"+
+																"<td>"+value['depth']+"</td>"+
+																"<td>"+value['measurement']+"</td>"+
+																"<td>"+value['certificate_no']+"</td>"+
+																"<td>"+value['item_id']+"</td>"+
+																"<td><a href='"+value['url']+"' target='_blank'>view</a></td>"+
+																"</tr>");
+									});
+							if(data[0].total < 20)
+								{
+									$('#viewmore').hide();
+								}
+							else
+								{
+									$('#viewmore').show();
+								}
+							}
+					},
+					error: function ()
+						{
+							$('#errormsg').text("No more Diamonds Available");
+						}
+				});
+	//curpage++;
+}
+
+////////////////---------   priceslidernew End      -----------/////////////////////
+
+////////////////---------   viewmore Starts          -----------/////////////////////
+var curpage = 2;
+	$('#viewmore').click(function(){
+		minprice = document.getElementById('price1').value;
+		maxprice = document.getElementById('price2').value;
+		tablemin = document.getElementById('tablemin').value;
+		tablemax = document.getElementById('tablemax').value;
+		caretmin = document.getElementById('caretmin').value;
+		caretmax = document.getElementById('caretmax').value;
+		depthmin = document.getElementById('depthmin').value;
+		depthmax = document.getElementById('depthmax').value;
+		//alert(abcde);
+		$.ajax({ 
+			type: 'POST',
+			url : "<?php echo $this->getUrl('loosediamonds/index/getdata', ['_secure' => true]); ?>", 
+			data: {'page':curpage,'price1':minprice,'price2':maxprice,'tablemin':tablemin,
+					   'tablemax':tablemax,'caretmin':caretmin,'caretmax':caretmax,'depthmin':depthmin,'depthmax':depthmax,
+					   'fluro':fluro,'color':color,'cut':cut,'clarity':clarity,'symmetry':symmetry,
+					   'certifi':certifi,'polishmain':polishmain,'shape':shape},
+			dataType:'json',
+			success:function(data){
+				var abab = data[0].totalss;
+				//alert(abab);
+				if(abab >= abcde)
+				{
+					//alert('hey bob');
+					$('#viewmore').hide();
+				}
+				//alert(data[0].totalss);
+			 	$.each(data, function(key, value) {
+					//console.log(value);
+						$("#example tbody").append("<tr>"+
+													"<td>"+value['price']+"</td>"+
+													"<td>"+value['shape']+"</td>"+
+													"<td>"+value['carats']+"</td>"+
+													"<td>"+value['color']+"</td>"+
+													"<td>"+value['clarity']+"</td>"+
+													"<td>"+value['cut']+"</td>"+
+													"<td>"+value['polish']+"</td>"+
+													"<td>"+value['symmetry']+"</td>"+
+													"<td><a href='"+value['certificate_link']+"' target='_blank'>"+value['certificate']+"</a></td>"+
+													"<td>"+value['fluorescence']+"</td>"+
+													"<td>"+value['table']+"</td>"+
+													"<td>"+value['depth']+"</td>"+
+													"<td>"+value['measurement']+"</td>"+
+													"<td>"+value['certificate_no']+"</td>"+
+													"<td>"+value['item_id']+"</td>"+
+													"<td><a href='"+value['url']+"' target='_blank'>view</a></td>"+
+												    "</tr>");
+					});
+
+				},
+			error: function () {
+    		  	$('#errormsg').text("No more Diamonds Available");
+		 		}
+		});
+		curpage++;
+	});
+	////////////////---------   viewmore end          -----------/////////////////////
+	
+	
+});
+</script>

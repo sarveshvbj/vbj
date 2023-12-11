@@ -1,0 +1,16 @@
+<?php $productType = $block->getproductType()?>
+
+<script type="text/javascript">
+require(
+    [
+        'jquery'
+    ], function($){
+    $(document).ready(function(){
+        if ('<?php echo $productType; ?>' == 'giftcard') {
+            $("span:contains('Email To')").each(function(index){
+                $(this).parent().next('div').find('input').attr('data-validate',"{required:true, 'validate-email':true}");
+            });
+        }
+    });
+});
+</script>

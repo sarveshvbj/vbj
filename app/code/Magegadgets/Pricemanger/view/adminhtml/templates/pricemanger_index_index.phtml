@@ -1,0 +1,190 @@
+<div class="entry-edit form-inline price-manager-page">
+	<?php 
+	 $priceCollection = $block->getPriceCollection();
+	 
+	?>
+    <form id="edit_form" action="<?php echo $block->getFormAction(); ?>" method="post" >
+		<input type="hidden" name="form_key" value='<?php echo $this->getFormKey(); ?>' />
+		<div>
+			<!-- Gold rate calculation -->
+            <fieldset class="fieldset admin__fieldset " id="gold_fieldset">
+				 <legend class="admin__legend legend">
+					<span>1. Gold rate calculation</span>
+				 </legend>
+				 <br>
+				<div class="messages"></div>
+				 <div class="admin__field field field-24K  required _required " data-ui-id="mg-setup-export-form-fieldset-element-form-field-24K">
+						<label class="label admin__field-label" for="24K" data-ui-id="mg-setup-export-form-fieldset-element-text-24K-label">
+							<span>24K</span>
+						</label>
+						<div class="admin__field-control control">
+							<input id="24K" name="24K"  value="<?php echo $priceCollection['24K']; ?>" class="validate-number required-entry input-text admin__control-text" type="text">
+						</div>
+				  </div>
+				  <div class="admin__field field field-22K  required _required " data-ui-id="mg-setup-export-form-fieldset-element-form-field-22K">
+						<label class="label admin__field-label" for="22K" data-ui-id="mg-setup-export-form-fieldset-element-text-file-22K">
+							<span>22K</span>
+						</label>
+						<div class="admin__field-control control">
+							<input id="22K" name="22K"  value="<?php echo $priceCollection['22K']; ?>" class="validate-number required-entry input-text admin__control-text" type="text">
+						</div>
+				  </div>
+				  <div class="admin__field field field-18k  required _required " data-ui-id="mg-setup-export-form-fieldset-element-form-field-18k">
+						<label class="label admin__field-label" for="18k" data-ui-id="mg-setup-export-form-fieldset-element-text-18k-label">
+							<span>18K(22ct rate / 22 ) x18</span>
+						</label>
+						<div class="admin__field-control control">
+							<input id="18K" name="18K"  value="<?php echo $priceCollection['18K']; ?>" class="validate-number required-entry input-text admin__control-text" type="text">
+						</div>
+				  </div>
+				  <div class="admin__field field field-14k  required _required " data-ui-id="mg-setup-export-form-fieldset-element-form-field-14k">
+						<label class="label admin__field-label" for="14k" data-ui-id="mg-setup-export-form-fieldset-element-text-14k-label">
+							<span>14K(22ct rate / 22 ) x14</span>
+						</label>
+						<div class="admin__field-control control">
+							<input id="14K" name="14K"  value="<?php echo $priceCollection['14K']; ?>" class="validate-number required-entry input-text admin__control-text" type="text">
+						</div>
+				  </div>
+            </fieldset>
+			
+			<!-- Silver rate calculation -->
+			<fieldset class="fieldset admin__fieldset " id="silver_fieldset">
+				 <legend class="admin__legend legend">
+					<span>2. Silver rate calculation</span>
+				 </legend>
+				 <br>
+				<div class="messages"></div>
+				 <div class="admin__field field field-hundred  required _required " data-ui-id="mg-setup-export-form-fieldset-element-form-field-hundred">
+						<label class="label admin__field-label" for="hundred" data-ui-id="mg-setup-export-form-fieldset-element-text-hundred-label">
+							<span>100%</span>
+						</label>
+						<div class="admin__field-control control">
+							<input id="hundred" name="hundred"  value="<?php echo $priceCollection['hundred']; ?>" class="validate-number required-entry input-text admin__control-text" type="text">
+						</div>
+				  </div>
+				  <div class="admin__field field field-ninety-two  required _required " data-ui-id="mg-setup-export-form-fieldset-element-form-field-ninety-two">
+						<label class="label admin__field-label" for="ninety-two" data-ui-id="mg-setup-export-form-fieldset-element-text-file-ninety-two">
+							<span>92.5%</span>
+						</label>
+						<div class="admin__field-control control">
+							<input id="ninety-two" name="ninety-two"  value="<?php echo $priceCollection['ninety_two']; ?>" class="validate-number required-entry input-text admin__control-text" type="text">
+						</div>
+				  </div>
+				  <div class="admin__field field field-ninety-one  required _required " data-ui-id="mg-setup-export-form-fieldset-element-form-field-ninety-one">
+						<label class="label admin__field-label" for="ninety-one" data-ui-id="mg-setup-export-form-fieldset-element-text-ninety-one-label">
+							<span>91.6%</span>
+						</label>
+						<div class="admin__field-control control">
+							<input id="ninety-one" name="ninety-one"  value="<?php echo $priceCollection['ninety_one']; ?>" class="validate-number required-entry input-text admin__control-text" type="text">
+						</div>
+				  </div>
+            </fieldset>
+			
+			<!-- Platinum rate calculation -->
+			<fieldset class="fieldset admin__fieldset " id="platinum_fieldset">
+				 <legend class="admin__legend legend">
+					<span>3. Platinum rate calculation</span>
+				 </legend>
+				 <br>
+				<div class="messages"></div>
+				 <div class="admin__field field field-p-hundred  required _required " data-ui-id="mg-setup-export-form-fieldset-element-form-field-p-hundred">
+						<label class="label admin__field-label" for="p-hundred" data-ui-id="mg-setup-export-form-fieldset-element-text-p-hundred-label">
+							<span>100%</span>
+						</label>
+						<div class="admin__field-control control">
+							<input id="p-hundred" name="p-hundred"  value="<?php echo $priceCollection['p_hundred']; ?>" class="validate-number required-entry input-text admin__control-text" type="text">
+						</div>
+				  </div>
+				  <div class="admin__field field field-ninety-nine  required _required " data-ui-id="mg-setup-export-form-fieldset-element-form-field-ninety-nine">
+						<label class="label admin__field-label" for="ninety-nine" data-ui-id="mg-setup-export-form-fieldset-element-text-file-ninety-nine">
+							<span>99.9%</span>
+						</label>
+						<div class="admin__field-control control">
+							<input id="ninety-nine" name="ninety-nine"  value="<?php echo $priceCollection['ninety_nine']; ?>" class="validate-number required-entry input-text admin__control-text" type="text">
+						</div>
+				  </div>
+				  <div class="admin__field field field-ninety-five  required _required " data-ui-id="mg-setup-export-form-fieldset-element-form-field-ninety-five">
+						<label class="label admin__field-label" for="ninety-five" data-ui-id="mg-setup-export-form-fieldset-element-text-ninety-five-label">
+							<span>95.0%</span>
+						</label>
+						<div class="admin__field-control control">
+							<input id="ninety-five" name="ninety-five"  value="<?php echo $priceCollection['ninety_five']; ?>" class="validate-number required-entry input-text admin__control-text" type="text">
+						</div>
+				  </div>
+            </fieldset>
+			
+			<!-- Currency rates with respect to INR -->
+			<fieldset class="fieldset admin__fieldset " id="usd_fieldset">
+				 <legend class="admin__legend legend">
+					<span>4. Currency rates with respect to INR</span>
+				 </legend>
+				 <br>
+				<div class="messages"></div>
+				 <div class="admin__field field field-usd  required _required " data-ui-id="mg-setup-export-form-fieldset-element-form-field-usd">
+						<label class="label admin__field-label" for="usd" data-ui-id="mg-setup-export-form-fieldset-element-text-usd-label">
+							<span>USD</span>
+						</label>
+						<div class="admin__field-control control">
+							<input id="usd" name="usd"  value="<?php echo $priceCollection['usd']; ?>" class="validate-number required-entry input-text admin__control-text" type="text">
+						</div>
+				  </div>
+            </fieldset>
+			
+			<!-- Tax amount percentage -->
+			<fieldset class="fieldset admin__fieldset " id="tax_fieldset" style="display:none;">
+				 <legend class="admin__legend legend">
+					<span>5. Tax amount percentage</span>
+				 </legend>
+				 <br>
+				<div class="messages"></div>
+				 <div class="admin__field field field-tax-customer  required _required " data-ui-id="mg-setup-export-form-fieldset-element-form-field-tax-customer">
+						<label class="label admin__field-label" for="p-hundred" data-ui-id="mg-setup-export-form-fieldset-element-text-tax-customer-label">
+							<span>Tax Percentage(Customer)</span>
+						</label>
+						<div class="admin__field-control control">
+							<input id="tax-customer" name="tax-customer"  value="<?php echo $priceCollection['tax_customer']; ?>" class="validate-number required-entry input-text admin__control-text" type="text">
+						</div>
+				  </div>
+				  <div class="admin__field field field-tax-business  required _required " data-ui-id="mg-setup-export-form-fieldset-element-form-field-tax-business">
+						<label class="label admin__field-label" for="tax-business" data-ui-id="mg-setup-export-form-fieldset-element-text-file-tax-business">
+							<span>Tax Percentage(Business)</span>
+						</label>
+						<div class="admin__field-control control">
+							<input id="tax-business" name="tax-business"  value="<?php echo $priceCollection['tax_business']; ?>" class="validate-number required-entry input-text admin__control-text" type="text">
+						</div>
+				  </div>
+            </fieldset>
+			<div class="page-actions-buttons price-manager-button">
+				<button id="save" title="Save Config" type="submit" class="primary">
+					<span class="">
+					<span>Save and Update Product</span>
+					</span>
+				</button>
+   			 </div>
+		</div>
+	</form>
+</div>
+<script>
+require([
+    'jquery',
+    'mage/backend/form',
+    'mage/backend/validation'
+], function($){
+
+    $('#edit_form').form()
+        .validation({
+            validationUrl: '',
+            highlight: function(element) {
+                var detailsElement = $(element).closest('details');
+                if (detailsElement.length && detailsElement.is('.details')) {
+                    var summaryElement = detailsElement.find('summary');
+                    if (summaryElement.length && summaryElement.attr('aria-expanded') === "false") {
+                        summaryElement.trigger('click');
+                    }
+                }
+                $(element).trigger('highlight.validate');
+            }
+        });
+
+});
+</script>

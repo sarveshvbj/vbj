@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Old Gold Exchange</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"
+        integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+    .page-header {
+        overflow-y: hidden;
+    }
+
+    h5 {
+        overflow-y: hidden;
+    }
+
+    .images {
+        height: 126px;
+        text-align: center;
+    }
+
+    hr {
+        width: 70px;
+        border-color: #7f1989;
+        margin-left: 0px;
+        margin-top: 0px;
+        margin-bottom: 5px;
+    }
+
+    .mb-50 {
+        margin-bottom: 50px;
+    }
+
+    .btns {
+        background: linear-gradient(180deg, #7F1989 0%, #310236 100%);
+        display: inline-block;
+        height: 20px;
+        width: 70px;
+        color: #ffffff;
+        border-radius: 25px;
+        font-family: "Arial", Sans-serif;
+        font-size: 10px;
+        font-weight: 400;
+        text-transform: uppercase;
+        margin-bottom: -15px;
+        text-align: center;
+        margin-left: 65px;
+        transform: translate(0%, 10px);
+    }
+
+    .btns:hover {
+        color: #ffffff;
+    }
+
+    .img {
+        border-radius: 15px;
+        margin-bottom: 5px;
+    }
+
+    .nav-tabs {
+        background: #7F1989;
+        overflow-y: hidden;
+        border-radius: 35px;
+        width: 350px;
+        margin-left: 50%;
+        transform: translate(-50%, 0%);
+        display: flex;
+        justify-content: center;
+        border: 5px solid #7F1989;
+    }
+
+    .nav-tabs li a {
+        width: 168px;
+        text-align: center;
+        border-radius: 25px;
+        color: #ffffff;
+        font-family: "Arial", Sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding: 5px 15px;
+    }
+
+    .nav-tabs li a:hover {
+        background-color: #7F1989;
+        border: 1px solid #7F1989;
+    }
+
+
+
+    .tab-content {
+        margin-left: 50%;
+        transform: translate(-50%, 0%);
+        width: 350px;
+        margin-top: 10%;
+    }
+
+    .tab-pane {
+        height: 170px;
+    }
+
+    .form-control {
+        background-color: #7f19892e;
+        border: 1px solid #7f19893b;
+        border-radius: 5px;
+        height: 40px;
+    }
+
+    .table {
+        font-family: Arial;
+        border-radius: 15px;
+        width: 430px;
+    }
+
+    thead {
+        background-image: linear-gradient(180deg, #7F1989 0%, #310236 100%);
+        font-size: 16px;
+    }
+
+    tr>th {
+        color: #ffffff !important;
+        text-align: center;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px
+    }
+
+    .sub {
+        font-size: 12px;
+    }
+
+    .currency_code {
+        color: #7f1989;
+    }
+
+    tr>td:last-child {
+        text-align: right;
+    }
+
+    td {
+        padding: 0.5em 30px 1em 30px !important;
+    }
+
+
+    .purity-calcualte-button {
+        background: linear-gradient(180deg, #7F1989 0%, #310236 100%);
+        color: #ffffff !important;
+        line-height: 5px;
+        border-radius: 5px;
+        font-family: "Arial", Sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 1.7px;
+        position: relative;
+        z-index: 99999;
+        height: 40px;
+        width: 350px;
+    }
+
+    .purity-calcualte-button:hover {
+        background: linear-gradient(180deg, #7F1989 0%, #310236 100%);
+        color: #ffffff;
+    }
+
+    ol>li {
+        font-family: "Arial", Sans-serif;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 30px;
+        letter-spacing: 0.1px;
+        word-spacing: 1px;
+        display: list-item;
+        list-style-position: inside;
+    }
+
+
+
+    .modal-btn:hover {
+        text-decoration: none;
+    }
+
+    .pincode_background {
+        background-color: #ededed;
+    }
+
+    .pincode_background>div>div {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .pincode_background>div>div>input {
+        width: 250px;
+        margin-left: 50%;
+        transform: translate(-50%, 0%);
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .pincode_background>div>div>button {
+        width: 250px;
+    }
+
+    h3 {
+        font-weight: 700;
+    }
+
+    @media screen and (max-width: 992px) {
+        .table {
+            margin-top: 10%;
+            margin-left: 50%;
+            transform: translate(-50%, 0);
+        }
+
+        .images {
+            height: auto;
+        }
+
+        .btns {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0px;
+            margin-left: 50%;
+            transform: translate(-50%, 10px);
+        }
+    }
+
+    @media screen and (max-width: 765px) {
+        .btns {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0px;
+            margin-left: 50%;
+            transform: translate(-50%, 10px);
+        }
+    }
+
+    @media screen and (max-width: 540px) {
+        .col-md-6{
+            text-align: center;
+        }
+    }
+
+    @media screen and (max-width: 425px) {
+        .table {
+            margin-top: 10%;
+            margin-left: 50%;
+            transform: translate(-50%, 0);
+            width: 100%;
+        }
+
+        .col-sm-12 {
+            text-align: center;
+        }
+
+        hr {
+            margin-left: 50%;
+            transform: translate(-50%, 0);
+        }
+
+        .images {
+            height: auto;
+        }
+
+        .modal {
+            width: 360px;
+        }
+
+        .btns {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0px;
+            margin-left: 50%;
+            transform: translate(-50%, 10px);
+        }
+    }
+
+    @media screen and (max-width: 375px) {
+        .modal {
+            max-width: 360px;
+            max-height: 320px;
+        }
+
+        .btn-close {
+            transform: translate(10px, 0px) !important;
+        }
+
+        .modal-12 {
+            padding: 16px !important;
+        }
+
+        .btns {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0px;
+            margin-left: 50%;
+            transform: translate(-50%, 10px);
+        }
+    }
+
+    @media screen and (max-width: 320px) {
+        .nav-tabs {
+            width: 290px;
+        }
+
+        .nav>li>a {
+            width: 137px;
+        }
+
+        input[type=text] {
+            max-width: 290px;
+            margin-left: 50%;
+            transform: translate(-50%, 0);
+        }
+
+        .purity-calcualte-button {
+            width: 290px;
+            font-size: 14px;
+        }
+
+        .modal {
+            width: 360px;
+        }
+
+        .btns {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0px;
+            margin-left: 50%;
+            transform: translate(-50%, 10px);
+        }
+    }
+
+
+    @media screen and (max-width: 280px) {
+        .nav-tabs {
+            width: 260px;
+        }
+
+        .nav>li>a {
+            width: 125px;
+        }
+
+        input[type=text] {
+            min-width: 260px;
+            margin-left: 50%;
+            transform: translate(-50%, 0);
+        }
+
+        .purity-calcualte-button {
+            width: 260px;
+            font-size: 12px;
+        }
+
+        .btns {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0px;
+            margin-left: 50%;
+            transform: translate(-50%, 10px);
+        }
+    }
+
+
+    .modal {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.4rem;
+        width: 450px;
+        height: 404px;
+        position: absolute;
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 15px;
+        left: 50%;
+        transform: translate(-50%, 0%);
+        transition: all 5s ease-in-out;
+    }
+
+    .modal .flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .modal input {
+        padding: 0.7rem 1rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 0.9em;
+    }
+
+    .modal p {
+        font-size: 0.9rem;
+        color: #777;
+        margin: 0.4rem 0 0.2rem;
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+        transition: opacity 500ms;
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    button {
+        cursor: pointer;
+        border: none;
+        font-weight: 600;
+    }
+
+    .btn-close {
+        transform: translate(10px, -20px);
+        padding: 0.5rem 0.7rem;
+        background: #eee;
+        border-radius: 50%;
+        color: #000000;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .cms-page-view table td {
+        border-left: none !important;
+    }
+
+    tbody td {
+        text-align: left;
+    }
+
+    .cms-page-view tbody:before {
+        all: unset;
+    }
+
+    table {
+        border: 1px solid #939393c7 !important;
+        border-radius: 10px;
+        border-collapse: separate !important;
+    }
+
+    .cms-page-view .table tr {
+        border-bottom: 1px solid #dedede !important;
+    }
+
+    h5 {
+        color: #000000;
+        font-family: "Roboto", Sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    p {
+        color: #000000;
+        font-family: "Roboto", Sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+    h3 {
+        color: #000000;
+        font-family: "Roboto", Sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+    }
+
+    input[type=text] {
+        border: 1px solid #7f19893b;
+        background: #7f19892e;
+        width: 100%;
+        height: 40px;
+        border-radius: 5px;
+    }
+
+    td {
+        padding: 0.5em 25px 0.5em 25px !important;
+    }
+
+    .center {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nav-tabs>li.active>a {
+        color: #000000;
+    }
+
+    .modal-12 {
+        background-color: #7f1989;
+        padding: 40px;
+    }
+
+    .main {
+        padding: 0px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <img class="banner img-responsive" alt="">
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 mb-50 text-center">
+                <div class="col-lg-12 text-center">
+                    <h3>How it works ? And easily you can exchange your old jewellery</h3>
+                    <hr style="margin-left: 50%;transform: translate(-50%, 0%);">
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 mb-50">
+                <div class="row center">
+                    <div class="col-md-2 text-center">
+                        <img src="https://mage24stage-cdn-static.vaibhavjewellers.com/static/frontend/Vbj/Vaibhav_Jewellary/en_US/Magento_Cms/images/01.png"
+                            alt="">
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Get your used gold jewellers</h5>
+                        <hr>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec
+                            ullamcorper mattis, pulvinar dapibus leo.</p>
+                    </div>
+                    <div class="col-md-3">
+                        <span class="btns">step 1</span>
+                        <img src="https://mage24stage-cdn-static.vaibhavjewellers.com/static/frontend/Vbj/Vaibhav_Jewellary/en_US/Magento_Cms/images/IMG_8888 - Low.JPG"
+                            class="img img-responsive images" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 mb-50">
+                <div class="row center">
+                    <div class="col-md-2 text-center">
+                        <img src="https://mage24stage-cdn-static.vaibhavjewellers.com/static/frontend/Vbj/Vaibhav_Jewellary/en_US/Magento_Cms/images/02.png"
+                            alt="">
+                    </div>
+                    <div class="col-md-6">
+                        <h5>We help you determine the value of your old jewelry</h5>
+                        <hr>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec
+                            ullamcorper mattis, pulvinar dapibus leo.</p>
+                    </div>
+                    <div class="col-md-3">
+                        <span class="btns">step 2</span>
+                        <img src="https://mage24stage-cdn-static.vaibhavjewellers.com/static/frontend/Vbj/Vaibhav_Jewellary/en_US/Magento_Cms/images/IMG_9372-1024x683.jpg"
+                            class="img img-responsive images" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 mb-50">
+                <div class="row center">
+                    <div class="col-md-2 text-center">
+                        <img src="https://mage24stage-cdn-static.vaibhavjewellers.com/static/frontend/Vbj/Vaibhav_Jewellary/en_US/Magento_Cms/images/Img_030885.png"
+                            alt="">
+                    </div>
+                    <div class="col-md-6">
+                        <h5>We calculate the current value of your old Jewelelry</h5>
+                        <hr>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec
+                            ullamcorper mattis, pulvinar dapibus leo.</p>
+                    </div>
+                    <div class="col-md-3">
+                        <span class="btns">step 3</span>
+                        <img src="https://mage24stage-cdn-static.vaibhavjewellers.com/static/frontend/Vbj/Vaibhav_Jewellary/en_US/Magento_Cms/images/IMG_9376-1024x683.jpg"
+                            class="img img-responsive images" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 mb-50">
+                <div class="row center">
+                    <div class="col-md-2 text-center">
+                        <img src="https://mage24stage-cdn-static.vaibhavjewellers.com/static/frontend/Vbj/Vaibhav_Jewellary/en_US/Magento_Cms/images/04.png"
+                            alt="">
+                    </div>
+                    <div class="col-md-6">
+                        <h5>You can buy Your Favorite Jewellery</h5>
+                        <hr>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec
+                            ullamcorper mattis, pulvinar dapibus leo.</p>
+                    </div>
+                    <div class="col-md-3">
+                        <span class="btns">step 4</span>
+                        <img src="https://mage24stage-cdn-static.vaibhavjewellers.com/static/frontend/Vbj/Vaibhav_Jewellary/en_US/Magento_Cms/images/necklace.jpg"
+                            class="img img-responsive images" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-bottom: 20px;">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3>Calculate by Purity or Kit</h3>
+                <hr style="margin-left: 50%;transform: translate(-50%, 0%);">
+                <p style="margin: 10px 0px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus,
+                    luctus nec ullamcorper
+                    mattis, pulvinar dapibus leo.</p>
+            </div>
+            <div class="col-md-12">
+                <div class="row center">
+                    <div class="col-md-6 text-center">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#home">Purity</a></li>
+                            <li><a data-toggle="tab" href="#menu1">KT</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="home" class="tab-pane fade in active">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="purity_percentage"
+                                        placeholder="Enter Purity(99.9, 91.6)">
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="purity_gram" placeholder="Enter grams">
+                                </div>
+                                <button class="btn purity-calcualte-button btn-opens"
+                                    id="purity_calculate_Grams">CALCULATE EXCHANGE VALUE</button>
+                            </div>
+                            <div id="menu1" class="tab-pane fade">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="carate"
+                                        placeholder="Enter KT(24, 22, 18, 14)">
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="carate_gram" placeholder="Enter grams">
+                                </div>
+                                <button type="button" id="karate_calculate_Grams"
+                                    class="btn purity-calcualte-button btn-openss" data-toggle="modal"
+                                    data-target="#myModal">CALCULATE EXCHANGE VALUE</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <section class="modal hidden">
+                        <div>
+                            <div class="modal-content">
+                                <div class="modal-body" style="padding:0px ;">
+                                    <div class="col-md-12 modal-12">
+                                        <span class="btn-close" style="float: right; cursor: pointer;">X</span>
+
+                                        <p style="color:#ffffff; font-size: 24px;text-align: center;">Old gold Exchange
+                                            value is</p>
+                                        <p class="exchangevalue"
+                                            style="text-align: center; font-size: 18px; color: #ffffff;"></p>
+                                    </div>
+                                    <div class="col-md-12 modal-12"
+                                        style="background-color: #310236; text-align: center;">
+                                        <p style="color:#ffffff; font-size: 24px;">Need help in the exchange process</p>
+                                        <div class="row" style="overflow: hidden;justify-content: center;">
+                                            <a class="modal-btn" href="tel:+#"
+                                                style="padding: 8px; color: #000000; background-color: #ffffff; font-family: Arial; font-size: 12px; font-weight: 700;margin: 10px; "><i
+                                                    class="fas fa-phone-alt"></i>&ensp;Request a Call back</a>
+                                            <a class="modal-btn" href="#"
+                                                style="padding: 8px; color: #000000; background-color: #ffffff;font-family: Arial; font-size: 12px; font-weight: 700; margin: 10px;"><i
+                                                    class="fab fa-whatsapp" style="color: #25D366;"></i>&ensp;Chat on
+                                                WhatsApp</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+                    <div class="col-md-6">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">TODAY'S GOLD RATE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>14 Kt gold<br><span class="sub">(1gram)</span></td>
+                                    <td><span class="currency_code acf-view__gold_14k_price">3000</span></td>
+                                </tr>
+                                <tr>
+                                    <td>18 Kt gold<br><span class="sub">(1gram)</span></td>
+                                    <td><span class="currency_code acf-view__gold_18k_price">4500</span></td>
+                                </tr>
+                                <tr>
+                                    <td>22 Kt gold<br><span class="sub">(1gram)</span></td>
+                                    <td><span class="currency_code acf-view__gold_22k_price">5450</span></td>
+                                </tr>
+                                <tr>
+                                    <td>24 Kt gold<br><span class="sub">(1gram)</span></td>
+                                    <td><span class="currency_code acf-view__gold_24k_price">6021</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid text-center pincode_background">
+        <div class="row">
+            <div class="col-md-12 mb-50">
+                <h3>Our Stores Near You?</h3>
+                <p>Enter your PIN code to Find stores near you</p>
+                <input type="text" placeholder="Enter Pin code" class="form-control">
+                <button class="btn purity-calcualte-button">View stores</button>
+
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Terms & conditions</h3>
+                <ol>
+                    <li>All the Stones / Diamonds will be removed from the Jewellery before arriving the exchange value
+                        of the jewellery</li>
+                    <li>The jewellery that you exchange it for can be any jewellery item from purcahsed from vaibhav
+                        jewellers and items purcahsed from other places is also accepted except Diamond jewellery</li>
+                    <li>Jewellery Purchased from vaibhav jewellers can be exchanged for cash</li>
+                    <li>Once your exchange value is computed, you can buy any jewellery from vaibhav jewellers stores of
+                        similar or higher value by paying the excess in other Mode of payments</li>
+                    <li>A declaration form has to be signed by you stating the weight of gold being exchanged. This form
+                        states that you have willingly given the gold for cutting/ melting. It also mentions that the
+                        gold given by you will not be returned</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+
+            <div class="modal-content">
+                <div class="modal-body" style="padding:0px ;">
+                    <div class="col-md-12" style="background-color: #7f1989; padding: 40px;">
+                        <span data-dismiss="modal" style="float: right; cursor: pointer;color: #ffffff;">X</span>
+
+                        <p style="color:#ffffff; font-size: 24px;text-align: center;">Old gold Exchange value is</p>
+                        <p class="exchangevalue" style="text-align: center; font-size: 24px; color: #ffffff;"></p>
+                    </div>
+                    <div class="col-md-12" style="background-color: #310236;padding: 40px; text-align: center;">
+                        <p style="color:#ffffff; font-size: 24px;">Need help in the exchange process</p>
+                        <div class="row" style="overflow: hidden;">
+                            <a class="modal-btn" href="tel:+#"
+                                style="padding: 8px; color: #000000; background-color: #ffffff; font-family: Arial; font-size: 12px; font-weight: 700;margin-top: 10px;"><i
+                                    class="fas fa-phone-alt"></i>&ensp;Request a Call back</a>
+                            <a class="modal-btn" href="#"
+                                style="padding: 8px; color: #000000; background-color: #ffffff;font-family: Arial; font-size: 12px; font-weight: 700; margin-top: 10px;"><i
+                                    class="fab fa-whatsapp" style="color: #25D366;"></i>&ensp;Chat on WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+
+    <script>
+    // Inline popups
+    $('.purity-calcualte-button').click(function() {
+        $('.purity-calcualte-button').css('background', 'linear-gradient(180deg, #7F1989 0%, #310236 100%)');
+        $('.purity-calcualte-button').css('color', '#ffffff');
+    })
+    const modal = document.querySelector(".modal");
+    const overlay = document.querySelector(".overlay");
+    const openModalBtn = document.querySelector(".btn-opens");
+    const openModalBtns = document.querySelector(".btn-openss");
+    const closeModalBtn = document.querySelector(".btn-close");
+
+    // close modal function
+    const closeModal = function() {
+        modal.classList.add("hidden");
+        //overlay.classList.add("hidden");
+    };
+
+    // close the modal when the close button and overlay is clicked
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener("click", closeModal);
+    }
+    if (overlay) {
+        overlay.addEventListener("click", closeModal);
+    }
+
+    // close modal when the Esc key is pressed
+    document.addEventListener("keydown", function(e) {
+        if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+            closeModal();
+        }
+    });
+
+    // open modal function
+    const openModal = function() {
+        modal.classList.remove("hidden");
+        //overlay.classList.remove("hidden");
+    };
+    // open modal event
+    if (openModalBtn) {
+        openModalBtn.addEventListener("click", openModal);
+    }
+
+    if (openModalBtns) {
+        openModalBtns.addEventListener("click", openModal);
+    }
+
+
+    var width = $(window).width();
+    if (width > 375) {
+        $('.banner').attr('src',
+            'https://mage24stage-cdn-static.vaibhavjewellers.com/static/frontend/Vbj/Vaibhav_Jewellary/en_US/Magento_Cms/images/1366-X-328-Zero-Old-Gold-Banner.jpg'
+        );
+    } else {
+        $('.banner').attr('src',
+            'https://mage24stage-cdn-static.vaibhavjewellers.com/static/frontend/Vbj/Vaibhav_Jewellary/en_US/Magento_Cms/images/376-X-205-Zero-Mobile-Banner.jpg'
+        );
+    }
+
+    var USDollar = new Intl.NumberFormat('en-IN', {
+        style: 'currency',
+        currency: 'INR',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+    });
+
+    var Gold14KPrice = jQuery('.acf-view__gold_14k_price').text();
+    var Gold14KPriceValue = Number(Gold14KPrice);
+    jQuery('.acf-view__gold_14k_price').text(`${USDollar.format(Gold14KPriceValue)}`);
+
+    var Gold18KPrice = jQuery('.acf-view__gold_18k_price').text();
+    var Gold18KPriceValue = Number(Gold18KPrice);
+    jQuery('.acf-view__gold_18k_price').text(`${USDollar.format(Gold18KPriceValue)}`);
+
+    var Gold22KPrice = jQuery('.acf-view__gold_22k_price').text();
+    var Gold22KPriceValue = Number(Gold22KPrice);
+    jQuery('.acf-view__gold_22k_price').text(`${USDollar.format(Gold22KPriceValue)}`);
+
+    var Gold24KPrice = jQuery('.acf-view__gold_24k_price').text();
+    var Gold24KPriceValue = Number(Gold24KPrice);
+    jQuery('.acf-view__gold_24k_price').text(`${USDollar.format(Gold24KPriceValue)}`);
+
+
+
+
+    $('#karate_calculate_Grams').on('click', function() {
+        var carateValue = $('#carate').val();
+        var carateGramValue = $('#carate_gram').val();
+        if (carateGramValue >= 0) {
+            switch (carateValue) {
+                case '14':
+                    var result14 = Gold14KPrice * carateGramValue;
+                    jQuery('.exchangevalue').text(`${USDollar.format(result14)}`);
+                    break;
+                case '18':
+                    var result18 = Gold18KPrice * carateGramValue;
+                    jQuery('.exchangevalue').text(`${USDollar.format(result18)}`);
+                    break;
+                case '22':
+                    var result22 = Gold22KPrice * carateGramValue;
+                    jQuery('.exchangevalue').text(`${USDollar.format(result22)}`);
+                    break;
+                case '24':
+                    var result24 = Gold24KPrice * carateGramValue;
+                    jQuery('.exchangevalue').text(`${USDollar.format(result24)}`);
+                    break;
+                default:
+                    jQuery('.exchangevalue').text('Please Enter krate Rate 14, 18, 22, 24');
+            }
+        } else {
+            jQuery('.exchangevalue').text('Please Enter Gram Values');
+        }
+    });
+
+    jQuery('#purity_calculate_Grams').on('click', function() {
+        var purityValue = jQuery('#purity_percentage').val();
+        var purityGramValue = jQuery('#purity_gram').val();
+        if (purityGramValue >= 0) {
+            switch (purityValue) {
+                case '58.3':
+                    var result14 = Gold14KPrice * purityGramValue;
+                    jQuery('.exchangevalue').text(`${USDollar.format(result14)}`);
+                    break;
+                case '75.0':
+                    var result18 = Gold18KPrice * purityGramValue;
+                    jQuery('.exchangevalue').text(`${USDollar.format(result18)}`);
+                    break;
+                case '91.6':
+                    var result22 = Gold22KPrice * purityGramValue;
+                    jQuery('.exchangevalue').text(`${USDollar.format(result22)}`);
+                    break;
+                case '99.9':
+                    var result24 = Gold24KPrice * purityGramValue;
+                    jQuery('.exchangevalue').text(`${USDollar.format(result24)}`);
+                    break;
+                default:
+                    jQuery('.exchangevalue').text('Please Enter krate Rate 99.9, 91.6, 75.0, 58.3');
+            }
+        } else {
+            jQuery('.exchangevalue').text('Please Enter Gram Values');
+        }
+    });
+    </script>
+</body>
+
+</html>

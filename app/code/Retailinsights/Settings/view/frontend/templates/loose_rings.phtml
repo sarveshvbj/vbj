@@ -1,0 +1,72 @@
+<?php
+
+/**
+ * @var \Retailinsights\Settings\Block\Display $block
+ */
+$diamond_setting =  $_SESSION["diamond_settings_diamond"];
+
+$collection= $block->getProducts();
+$getDiamond= $block->getDiamond();
+
+// print_r($collection->getData());
+
+?>
+<div class="funnelContainer">
+    <div class="selected_diamond">
+        <div class="funnel_title">1
+                                Choose a
+                                DIAMOND</div>
+
+        <div class=""><?php echo $getDiamond['brands_name']; echo $getDiamond['price']; ?></div>
+    </div>
+    <div class="selected_diamond">
+        <div class="funnel_title">1
+                                Choose a
+                                SETTING</div>
+        <div class=""></div>
+    </div>
+    <div class="selected_diamond">
+        <div class="funnel_title">1
+                                Choose a
+                                RING</div>
+        <div class=""></div>
+    </div>
+</div>
+
+
+<?php foreach ($collection as $key => $value) { ?>
+    <div class="loose_items">
+        <div>
+            <img src="">
+        </div>
+        <div>
+            <p><?php echo $value->getSku(); ?></p>
+            <p><?php echo $value->getBrandsName(); ?></p>
+            <p><?php echo $value->getPrice(); ?></p>
+            <p><?php echo $value->getDescription(); ?></p>
+            
+        </div>
+    </div>    
+<?php } ?>
+
+
+
+<style type="text/css">
+    
+    .selected_diamond{
+          width: 200px;
+          border: 1px solid green;
+          height:50px;
+    }
+    .funnelContainer{
+        display: inline-flex;
+        border: 1px solid #d6d6d6;
+        border-right: none;
+        height: 76px;
+        width: calc(100% - 14px);
+        box-sizing: border-box;
+        position: relative;
+        z-index: 20;
+        border-radius: 4px 0 0 4px;
+    }
+</style>

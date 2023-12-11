@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+		<add id="Magegadgets_Videoform::videoform" title="Video Shopping Form" module="Magegadgets_Videoform" sortOrder="10" parent="Magegadgets_Pricemanger::magegadgets_additionalform" action="videoform/videoform" resource="Magegadgets_Videoform::videoform"/>
+		
+    </menu>
+</config>

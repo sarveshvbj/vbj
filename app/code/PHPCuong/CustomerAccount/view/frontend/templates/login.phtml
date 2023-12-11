@@ -1,0 +1,119 @@
+<?php
+$baseUrl = $block->getBaseUrl();
+/**
+ * GiaPhuGroup Co., Ltd.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the GiaPhuGroup.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.giaphugroup.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    PHPCuong
+ * @package     PHPCuong_CustomerAccount
+ * @copyright   Copyright (c) 2018-2019 GiaPhuGroup Co., Ltd. All rights reserved. (http://www.giaphugroup.com/)
+ * @license     https://www.giaphugroup.com/LICENSE.txt
+ */
+ /** @var \PHPCuong\CustomerAccount\Block\Form\Login $block */
+?>
+<?php if (!$block->customerIsAlreadyLoggedIn() && $block->isCurrentPage('catalog_product_view')): ?>
+    <style>
+        .customer-popup-login {
+            display: none;
+        }
+        .or-another-selection {
+            display: inline-block;
+            padding-right: 5px;
+        }
+        @media(max-width: 767px) {
+            .or-another-selection {
+                display: block;
+                text-align: center;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+    <div id="customer-popup-login" class="customer-popup-login">
+        <div class="block block-customer-login">
+            <div class="block-content" aria-labelledby="block-customer-popup-login-heading">
+                <form class="form form-login"
+                      action="<?php /* @escapeNotVerified */ echo $block->getPostActionUrl() ?>"
+                      method="post"
+                      id="customer-popup-login-form"
+                      data-mage-init='{"validation":{}}'>
+                    <?php echo $block->getBlockHtml('formkey'); ?>
+                    <input type="hidden" name="redirect_url" value="<?php echo $block->getUrl('checkout', ['_secure' => true]);?>" />
+                    <fieldset class="fieldset login" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+                        <div class="field note"><?php /* @escapeNotVerified */ echo __('If you have an account, sign in with your email address.') ?></div>
+                        <div class="messages"></div>
+                        <div class="field email required">
+                            <div class="control">
+                                <input name="username" value="" <?php if ($block->isAutocompleteDisabled()) :?> autocomplete="off"<?php endif; ?> id="email-login" placeholder="Enter email" type="email" class="input-text" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" data-validate="{required:true, 'validate-email':true}">
+                            </div>
+                        </div>
+                        <div class="field password required">
+                            <div class="control">
+                                <input name="password" placeholder="Enter password" type="password" <?php if ($block->isAutocompleteDisabled()) :?> autocomplete="off"<?php endif; ?> class="input-text" id="pass-login" title="<?php /* @escapeNotVerified */ echo __('Password') ?>" data-validate="{required:true}" >
+                            </div>
+                        </div>
+                        <?php 
+  /*  echo $block->getLayout()
+        ->createBlock('MSP\ReCaptcha\Block\Frontend\ReCaptcha',
+            'msp-recaptcha_login',
+            ['data' => 
+                [
+                    'jsLayout' => 
+                    [
+                        'components' => 
+                        [
+                            'msp-recaptcha' => 
+                            [
+                                'component' => 'MSP_ReCaptcha/js/reCaptcha',
+                                'zone' => 'login'
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        )
+        ->setTemplate('MSP_ReCaptcha::msp_recaptcha.phtml')
+        ->toHtml();*/
+    ?>
+                  <p class="sc-l" style="text-align: center;">or Login Using</p>
+                    <a href="<?=$baseUrl?>sociallogin/social/callback/?hauth_done=Facebook" class="btn-facebook" style="color: white;">
+                        <span class="fa fa-facebook"></span>
+                        Facebook
+                    </a>
+                    <a href="<?=$baseUrl?>sociallogin/social/callback/?hauth.done=Google" class="btn-google" style="color: white; margin-left: 20px;">
+                        <span class="fa fa-google"></span>
+                        Google 
+                    </a>
+                        <div class="actions-toolbar">
+                            <div class="primary"><button type="submit" class="action login primary" name="send" id="send2-login"><span><?php /* @escapeNotVerified */ echo __('Sign In') ?></span></button></div>
+                              <div class="login-section-bottom" style="display: flex;-webkit-box-pack: justify;justify-content: space-between; margin: 16px 0px; align-items: baseline;">
+            <div class="css-1mqj8xu"><a color="#de57e5" style="font-size: 0.7rem; color: #6e2083;" href="<?php echo $block->getUrl('customer/account/forgotpassword'); ?>" class="css-ld7inj epg3bs00">Forgot Password?</a></div>
+            <div class="css-1mqj8xu" style="font-size: 0.7rem;color:#000;display: flex;-webkit-box-pack: end;
+justify-content: flex-end;"><p style="margin-bottom: 0;">New to Vaibhav?&nbsp;</p><a style="color:#6e2083;" id="customer-popup-registration" href="#">Create an Account</a></div>
+        </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <script type="text/x-magento-init">
+            {
+                "#customer-popup-login": {
+                    "PHPCuong_CustomerAccount/js/action/customer-authentication-popup": {
+                        "popupTitle": "<?php /* @escapeNotVerified */ echo __('Sign In') ?>",
+                        "innerWidth": "400"
+                    }
+                }
+            }
+        </script>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,17 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd"> 
+<update handle="customer_account"/>
+<head>
+	<title>View Complaint</title>
+</head> 
+<body> 
+    <referenceBlock name="page.main.title"> 
+            <action method="setPageTitle"> 
+                <argument translate="true" name="title" xsi:type="string">My Complaints</argument> 
+            </action> 
+     </referenceBlock> 
+     <referenceContainer name="content"> 
+        <block class="\Iksula\Complaint\Block\View" name="complaint_view" template="Iksula_Complaint::complaint/view.phtml"> 
+        </block> 
+    </referenceContainer> 
+</body> 
+</page>

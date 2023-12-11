@@ -1,0 +1,87 @@
+<?php
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+$basemediaurl = $objectManager->get('Magento\Store\Model\StoreManagerInterface')
+
+                    ->getStore()
+
+                    ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+
+$imgix_url= $basemediaurl;//'https://mage23vaibhavjewellers.breezesites.io/pub/media/'; 
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$storeUrl = $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB);
+
+ ?> 
+ <?php 
+$_objectManager = \Magento\Framework\App\ObjectManager::getInstance(); //instance of\Magento\Framework\App\ObjectManager
+$storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+$currentStore = $storeManager->getStore();
+$baseUrl = $currentStore->getBaseUrl();
+$mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$linkUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_LINK);
+
+?>
+ <div class="desktop-section d-none d-sm-block">
+  <div id="slider">
+    <div id="demo" class="carousel slide d-none d-sm-block" data-ride="carousel">
+      <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+        <li data-target="#demo" data-slide-to="3"></li>
+      </ul>
+      <div class="carousel-inner">
+        <div class="carousel-item">
+          <a href="https://www.vaibhavjewellersjpo.com/">
+            <img width="1499" height="600" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/desktop/jpo_web.jpg" alt="vaibhavjewellers jpo">
+          </a>
+        </div>
+        <div class="carousel-item ">
+          <a href="<?php echo $linkUrl;?>gold-jewellery/women/harams.html?product_list_order=latest">
+            <img width="1499" height="600" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/desktop/7-advantages-web.jpg" alt="vaibhavjewellers_7_advantages_banner">
+          </a>
+        </div>
+        
+
+
+<!--
+<div class="carousel-item ">
+ <a href="<?php echo $linkUrl;?>diamond-jewellery.html?product_list_order=latest">
+ <img width="1499" height="600" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/desktop/sravanam_web.jpg" alt="sravanam Collection">
+ </a>
+ </div>
+-->  
+
+    
+
+ <div class="carousel-item ">
+          <a href="<?php echo $linkUrl;?>gold-jewellery/women/bangles.html?product_list_order=latest">
+           <img width="1499" height="600" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/desktop/bangle_mela_web.jpg" alt="bangle mela Collection">
+          </a>
+        </div>
+        <!-- <div class="carousel-item ">
+          <a href="<?php echo $linkUrl;?>gold-jewellery.html?product_list_order=latest">
+            <img width="1499" height="600" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/desktop/Adhika_Sravanam_web.jpg" alt="Adhika Sravanam collection">
+          </a>
+        </div>
+ -->       <div class="carousel-item active">
+          <a href="<?php echo $linkUrl;?>gold-jewellery.html">
+            <img width="1499" height="600" src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/desktop/uttamakshanam-web.jpg" alt="uttamakshanam collections Vaibhav Jewellers">
+          </a>
+        </div>
+        <!---->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev" style="margin-top: 300px;">
+          <span class="carousel-control-prev-icon">
+            <span class="arrow arrow-left"></span>
+          </span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next" style="
+    margin-top: 20%;">
+          <span class="carousel-control-next-icon" style="
+    margin-right: -5px;">
+            <span class="arrow arrow-right"></span>
+          </span>
+        </a>
+      </div>
+    </div>

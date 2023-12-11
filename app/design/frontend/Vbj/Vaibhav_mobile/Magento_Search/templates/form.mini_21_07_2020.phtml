@@ -1,0 +1,56 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+?>
+<?php
+/** @var $block \Magento\Framework\View\Element\Template */
+/** @var $helper \Magento\Search\Helper\Data */
+$helper = $this->helper(\Magento\Search\Helper\Data::class);
+?>
+<div id="main_header_search_container">
+<div id="search_content" class="mobile-search">
+  <div class="block block-search">
+      <div class="block block-title"><strong><?= /* @escapeNotVerified */ __('Search') ?></strong></div>
+      <div class="block block-content">
+          <form class="form minisearch" id="search_mini_form" action="<?= /* @escapeNotVerified */ $helper->getResultUrl() ?>" method="get">
+              <div class="field search">
+                  
+                  <div class="control">
+                      <input id="search"
+                             data-mage-init='{"quickSearch":{
+                                  "formSelector":"#search_mini_form",
+                                  "url":"<?= /* @escapeNotVerified */ $helper->getSuggestUrl()?>",
+                                  "destinationSelector":"#search_autocomplete"}
+                             }'
+                             type="text"
+                             name="<?= /* @escapeNotVerified */ $helper->getQueryParamName() ?>"
+                             value="<?= /* @escapeNotVerified */ $helper->getEscapedQueryText() ?>"
+                             placeholder="<?= /* @escapeNotVerified */ __('Search your choice of Jewellery') ?>"
+                             class="input-text"
+                             maxlength="<?= /* @escapeNotVerified */ $helper->getMaxQueryLength() ?>"
+                             role="combobox"
+                             aria-haspopup="false"
+                             aria-autocomplete="both"
+                             autocomplete="off"/>
+                             <button><i class="fas fa-search"></i></button>
+                      <div id="search_autocomplete" class="search-autocomplete"></div>
+                      <?= $block->getChildHtml() ?>
+                  </div>
+              </div>
+              <div class="actions">
+                  <button type="submit"
+                          title="<?= $block->escapeHtml(__('Search')) ?>"
+                          class="action search">
+                      <span><?= /* @escapeNotVerified */ __('Search') ?></span>
+                  </button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+</div>
+</div>

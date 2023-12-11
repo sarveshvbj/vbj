@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MageGadgets Extensions
+ * Stone Master Extension
+ * 
+ * @package    		Stonemanager_Megamenu
+ * @copyright  		Copyright (c) 2017 MageGadgets Extensions (http://www.magegadgets.com/)
+ * @contactEmail   	support@magegadgets.com
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="magegadgets" translate="label" sortOrder="10">
+            <label>Magegadgets</label>
+        </tab>
+        <section id="stoneimporter" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Stone Importer</label>
+            <tab>magegadgets</tab>
+            <resource>Magegadgets_Stonemanager::stoneimporter_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Stone Importer Configuration</label>
+                <field id="export" translate="label" type="Magegadgets\Stonemanager\Block\Adminhtml\Form\Field\Export" sortOrder="100" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Export</label>
+                </field>
+                <field id="import" translate="label" type="Magegadgets\Stonemanager\Block\Adminhtml\Form\Field\Import" sortOrder="110" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Import</label>
+                    <backend_model>Magegadgets\Stonemanager\Model\Config\Backend\Table</backend_model>
+					<comment><![CDATA[<span style="color: red;">All Old Stone information will be deleted in new import process</span>]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

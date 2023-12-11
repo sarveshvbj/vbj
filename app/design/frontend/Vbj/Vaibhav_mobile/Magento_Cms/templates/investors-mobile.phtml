@@ -1,0 +1,577 @@
+﻿<?php 
+   $_objectManager = \Magento\Framework\App\ObjectManager::getInstance(); //instance of\Magento\Framework\App\ObjectManager
+   $storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+   $currentStore = $storeManager->getStore();
+   $baseUrl = $currentStore->getBaseUrl();
+   $mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+   $linkUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_LINK);
+   
+   ?>
+<style>
+   .Montserrat{
+   font-family: Montserrat;
+   }
+   .heading-invest h1{
+   color: #774585;
+   text-decoration: underline;
+   text-align: center;
+   font-weight: 600;
+   font-family: Montserrat;
+   margin-top: 70px;
+   margin-bottom: 20px;
+   letter-spacing: -0.5px;
+   font-size: 28px;
+   text-transform: uppercase;
+   }
+   .ft-11{
+   font-size: 11px;
+   }
+   .w-70 img{
+   width: 70%;
+   }
+   .mt-120{
+   margin-top: 120px!important;
+   }
+   .img-width img {
+   vertical-align: middle;
+   border-style: none;
+   width: 100%;
+   }
+   /***************************************************************************************************************/
+   .wrapper-main {
+   padding: 0 1rem;
+   /*overflow-wrap: break-word;*/
+   }
+   /***************************************************************************************************************/
+   /********** tabs starts *************/
+   .tab-inside-menu {
+   width: 100%;
+   float: left;
+   }
+   .tabs {
+   /*padding-bottom: 40px;*/
+   }
+   .tabs input[type=radio] {
+   display: none; 
+   }
+   .tabs label {
+   transition: background 0.4s ease-in-out, height 0.2s linear;
+   display: inline-block;
+   cursor: pointer;
+   color: black;
+   width: 20%;
+   height: 3em;
+   border-top-left-radius: 3px;
+   border-top-right-radius: 3px;
+   background: #FCFCFC;
+   text-align: center;
+   line-height: 3em;
+   font-size: 14px!important;
+   }
+   .tabs label:last-of-type {
+   border-bottom: none; 
+   }
+   .tabs label:hover {
+   background: #e4e1fb;
+   color:black;
+   }
+   @media screen and (max-width: 1600px) {
+   .tabs label {
+   /*width: 17%;*/ } 
+   }
+   @media screen and (max-width: 900px) {
+   .tabs label {
+   width: 20%; 
+   } 
+   }
+   @media screen and (max-width: 600px) {
+   .tabs label {
+   width: 100%;
+   display: block;
+   border-bottom: 2px solid #C7C6C4;
+   border-radius: 0; 
+   } 
+   }
+   @media screen and (max-width: 600px) {
+   .tabs {
+   margin: 0; 
+   margin-bottom: 28px;
+   } 
+   .pru-btn button:hover, active, focus {
+   background-color: rgb(177 178 181)!important;
+   color: #212529!important;
+   border: none!important;
+   margin: 5px;
+   font-family: inherit;
+   display: inline-block;
+   outline: none;
+   border-radius: 3px;
+   font-size: 14px;
+   font-weight: 500;
+   line-height: 16px;
+   padding: 2px 16px;
+   height: 38px;
+   min-width: 96px;
+   min-height: 38px;
+   transition: background-color .17s ease,color .17s ease;
+   }
+   }
+   #tab1:checked + label, #tab2:checked + label, #tab3:checked + label, #tab4:checked + label,#tab5:checked + label,#tab6:checked + label {
+   background: #877cdc;
+   color: #FFFFFF;
+   font-weight: 500;
+   font-size: 14px; }
+   .tab-content {
+   position: absolute;
+   top: -9999px;
+   padding-top: 20px;
+   line-height: 26px;
+   font-size: 14px;
+   }
+   .investor-topic a{
+   color: red;
+   }
+   .investor-topic a:hover{
+   color: black;
+   }
+   .tab-content-wrapper{
+   background: #FCFCFC;
+   border-top: #877cdc 5px solid;
+   border-bottom-right-radius: 3px;
+   border-bottom-left-radius: 3px;
+   border-top-right-radius: 3px;
+   }
+   @media screen and (max-width: 600px) {
+   .tab-content-wrapper, .tab1-content-wrapper {
+   border: none;
+   border-radius: 0; 
+   } 
+   }
+   #tab1:checked ~ .tab-content-wrapper #tab-content-1, #tab2:checked ~ .tab-content-wrapper #tab-content-2, #tab3:checked ~ .tab-content-wrapper #tab-content-3, #tab4:checked ~ .tab-content-wrapper #tab-content-4,#tab5:checked ~ .tab-content-wrapper #tab-content-5,#tab6:checked ~ .tab-content-wrapper #tab-content-6{
+   position: relative;
+   top: 20px;
+   }
+   /*********************/
+   .tab-inside-menu {
+   /*width: 33%;*/
+   float: left;
+   }
+   .tab-inside-menu > ul {
+   font-weight: 500;
+   border-radius: 14px;
+   padding: 20px;
+   list-style: none;
+   cursor: pointer;
+   border: 1px solid #e5e1e1;
+   margin-left: 0px;
+   margin-bottom: 40px;
+   }
+   ul.accordion li {
+   margin: 0 0;
+   }
+   .inner li::marker {
+   content: "";
+   }
+   .tab-inside-menu > ul li a {
+   text-decoration: none;
+   font-size: 16px;
+   line-height: 2.4;
+   color: #333;
+   }
+   .tab-inside-menu > ul li a:hover {
+   text-decoration: underline;
+   color: #b012bf;
+   }
+   .tab-inside-menu ul>li {
+   margin-bottom: 0.2rem;
+   }
+   /*********************/
+   /************* tabs ends ********/
+   /********** Invest container stater **********/
+   .invest-container {
+   display: grid;
+   grid-gap: 10px;
+   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+   grid-template-rows: repeat(2, 40px);
+   }
+   .invest-container img {
+   object-fit: cover;
+   /*height: 100%;
+   width: 100%;*/
+   /*padding-top: 20px;*/
+   }
+   .invest-container a{
+   color: black;
+   }
+   .invest-container a:hover{
+   color: #877cdc;
+   text-decoration: underline;
+   }
+   .invest-container p{
+   padding-top: 10px;
+   margin-bottom: -0.5rem;
+   }
+   .pru-dropdown{
+   position: absolute !important;
+   background-color: #fff;
+   min-width: 140px;
+   box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 20%);
+   z-index: 1;
+   margin-left: 160px;
+   margin-top: -45px !important;
+   border-radius: 8px;
+   }
+   .pru-dropdown a:hover {
+   background-color: white;
+   }
+   .pru-dropdown a {
+   padding: 5px 0 0 0;
+   display: block;
+   }
+   .pru-tab-1 a{
+   padding: 20px;
+   }
+   .pru-tab a{
+   padding: 10px;
+   color: black;
+   }
+   .pru-btn button{
+   margin: 5px;
+   font-family: inherit;
+   display: inline-block;
+   outline: none;
+   border-radius: 3px;
+   font-size: 14px;
+   font-weight: 500;
+   line-height: 16px;
+   padding: 2px 16px;
+   height: 38px;
+   min-width: 96px;
+   min-height: 38px;
+   border: none;
+   color: #060606;
+   /*background-color: rgb(88, 101, 242);*/
+   transition: background-color .17s ease,color .17s ease;
+   }
+   .pru-btn button:hover,active,focus{
+   background-color: rgb(177 178 181);
+   color: white!important;
+   border: none!important;
+   }
+   p.investor-topic {
+   font-size: 15px;
+   /*line-height: 120px;*/
+   margin: 15px 0;
+   }
+   /********** Invest container ends **********/
+   /********************* Mobile CSS */
+   @media only screen and (max-width: 480px) {
+   .heading-invest h1{
+   margin-top: 40px;
+   }
+   .w-70 img{
+   width: 100%;
+   }
+   .dis-none{
+   display: none;
+   }
+   .mob-pad{
+   padding: 0 20px 0 40px;
+   }
+   .mob-5{
+   margin-top: -0.1rem!important
+   }
+   .mt-120{
+   margin-top: 50px!important;
+   }
+   .tab-inside-menu {
+   float: left;
+   width: 100%;
+   }
+   .pru-tab-1 a {
+   padding: 10px;
+   margin-top: 30px;
+   }
+   }
+   /********************* Mobile CSS ENDS */
+</style>
+<div class="page-wrapper img-width">
+   <!-- wrapper-main starts -->
+   <div class="wrapper-main">
+      <!-- heading block start For All Your Wedding -->
+      <div class="row ">
+         <div class="col-md-12 heading-invest">
+            <h1>Investors</h1>
+         </div>
+      </div>
+      <!-- heading block ends For All Your Wedding -->
+      <!-- container starts -->
+      <div class="container mt-5">
+         <!-- Nav tabs -->
+         <div class="tabs">
+            <input type="radio" name="tab" id="tab1" checked="checked"> 
+            <label for="tab1">ABOUT US</label> 
+            <input type="radio" name="tab" id="tab2" >
+            <label for="tab2">RESULTS &amp; REPORTS</label>
+            <input type="radio" name="tab" id="tab3"> 
+            <label for="tab3">CORPORATE GOVERNANCE</label> 
+            <input type="radio" name="tab" id="tab4">
+            <label for="tab4">GRIEVANCE</label>
+            <input type="radio" name="tab" id="tab5">
+            <label for="tab5">ANNOUCEMENTS</label>
+            <input type="radio" name="tab" id="tab6" >
+            <label for="tab6">MEETINGS</label>
+            <div class="tab-content-wrapper">
+               <div id="tab-content-1" class="tab-content">
+                  <div class="row">
+                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="tab-inside-menu">
+                           <div class="tabs pru-btn">
+                              <p class="investor-topic"> <a href="<?php echo $linkUrl;?>business-overview" target="_blank"><b>Business Overview</b></a> <br><br> 
+                                 <a href="<?php echo $linkUrl;?>key-awards" target="_blank"><b>Key Milestones</b></a><br><br> 
+                                 <a href="<?php echo $linkUrl;?>board-of-directors" target="_blank"><b>Board of Directors</b></a><br><br>
+                                 <a href="<?php echo $linkUrl;?>board-of-committees" target="_blank"><b>Board of Committees</b></a>
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div id="tab-content-2" class="tab-content">
+                  <div class="row">
+                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="tab-inside-menu">
+                           <div class="tabs pru-btn"> 
+                              <button class="tabslinks active" onclick="openContent(event, 'a')" id="">Five Years Annual Reports </button><br>
+                              <button class="tabslinks" onclick="openContent(event, 'b')">Group Company Results</button><br> 
+                              <button class="tabslinks" onclick="openContent(event, 'c')">Industry Report</button><br>
+                              <button class="tabslinks" onclick="openContent(event, 'h')">Offer Document</button><br>
+                              <button class="tabslinks" onclick="openContent(event, 'k')">All Materials Contract</button><br>
+                              <a href="/pub/media/financialrecent.pdf" target="_blank"><button class="tabslinks">Financial Results</button></a>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div id="a" class="tabscontent block-btns pru-tab" style="display: none;">
+                           <p class="investor-topic">
+                              <a href="/pub/media/Company Annual Report/Annual Report 2018-19.pdf" target="_blank"><b>18-19</b></a> | 
+                              <a href="/pub/media/Company Annual Report/Annual Report 2019-20.pdf" target="_blank"><b>19-20</b></a> | 
+                              <a href="/pub/media/Company Annual Report/Annual Report 2020-21.pdf" target="_blank"><b>20-21</b></a>|
+                              <a href="/pub/media/Company Annual Report/Annual Report 2021-22.pdf" target="_blank"><b>21-22</b></a>|
+                              <a href="/pub/media/Company Annual Report/Annual Report 2022-23.pdf" target="_blank"><b>22-23</b></a>|
+                           </p>
+                        </div>
+                        <div id="b" class="tabscontent block-btns pru-tab" style="display: none;">
+                           <p class="investor-topic"> 
+                              <button class="tabslinks" onclick="openContent(event, 'd')">Vaibhav Jewellers Pvt Ltd.</button><br><br> <button class="tabslinks" onclick="openContent(event, 'e')">Harshil Enterprises(INDIA) Pvt Ltd.</button><br><br> <button class="tabslinks" onclick="openContent(event, 'f')">Vaibhav Hotels &amp; Leaisures(Visakhapatnam) Pvt Ltd.</button><br><br> <button class="tabslinks" onclick="openContent(event, 'g')">Manoj Vaibhav Jewellers Pvt Ltd.</button>
+                           </p>
+                        </div>
+                        <div id="c" class="tabscontent block-btns pru-tab" style="display: none;">
+                           <p class="investor-topic"> <a href="/pub/media/Industry report.pdf" target="_blank"><b>Industry Report Jewellery Retail</b></a></p>
+                        </div>
+                        <div id="d" class="tabscontent block-btns pru-tab" style="display: none;">
+                           <p class="investor-topic"> <a href="/pub/media/Group Company financials/Financials VJPL 2018-19.pdf" target="_blank"><b>18-19</b></a> | <a href="/pub/media/Group Company financials/Financials VJPL 2019-20.pdf" target="_blank"><b>19-20</b></a> | <a href="/pub/media/Group Company financials/Financials VJPL 2020-21.pdf" target="_blank"><b>20-21</b></a></p>
+                        </div>
+                        <div id="e" class="tabscontent block-btns pru-tab" style="display: none;">
+                           <p class="investor-topic"> <a href="/pub/media/Group Company financials/Financials Harshil 2018-19.pdf" target="_blank"><b>18-19</b></a> | <a href="/pub/media/Group Company financials/Financials Harshil 2019-20.pdf" target="_blank"><b>19-20</b></a> | <a href="/pub/media/Group Company financials/Financials Harshil 2020-21.pdf" target="_blank"><b>20-21</b></a></p>
+                        </div>
+                        <div id="f" class="tabscontent block-btns pru-tab" style="display: none;">
+                           <p class="investor-topic"> <a href="/pub/media/Group Company financials/Financials 2018-19 VHLVPL.pdf" target="_blank"><b>18-19</b></a> | <a href="/pub/media/Group Company financials/Financials 2019-20 VHLVPL.pdf" target="_blank"><b>19-20</b></a> | <a href="/pub/media/Group Company financials/Financials 2020-21 VHLVPL.pdf" target="_blank"><b>20-21</b></a></p>
+                        </div>
+                        <div id="g" class="tabscontent block-btns pru-tab" style="display: none;">
+                           <p class="investor-topic"> <a href="/pub/media/Group Company financials/Financials MVJPL 2018-19.pdf" target="_blank"><b>18-19</b></a> | <a href="/pub/media/Group Company financials/Financials MVJPL 2019-20.pdf" target="_blank"><b>19-20</b></a> | <a href="/pub/media/Group Company financials/Financials MVJPL 2020-21.pdf" target="_blank"><b>20-21</b></a></p>
+                        </div>
+                        <div id="h" class="tabscontent block-btns pru-tab" style="display: none;">
+                           <p class="investor-topic"> <a href="/pub/media/Manoj Vaibhav DRHP.pdf" target="_blank"><b>Manoj Vaibhav DRHP</b></a></p>
+                           <p class="investor-topic"> <a href="/pub/media/RHP.pdf" target="_blank"><b>Manoj Vaibhav RHP</b></a></p>
+                           <p class="investor-topic"> <a href="/pub/media/prospectus.pdf" target="_blank"><b>Manoj Vaibhav Prospectus</b></a></p>
+                        </div>
+                        <div id="k" class="tabscontent block-btns pru-tab" style="display: none;">
+                           <p class="investor-topic"> <a href="/pub/media/all metarialcontracts.pdf" target="_blank"><b>All Materials Contract</b></a></p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div id="tab-content-3" class="tab-content">
+                  <div class="row">
+                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="tab-inside-menu">
+                           <div class="tabs pru-btn">
+                              <p class="investor-topic"></p>
+                              <div class="invest-container">
+                                 <a href="/pub/media/Policy on Preservation and Archival of Documents.pdf" target="_blank">
+                                    <p>1. Policy on Preservation and Archival of Documents</p>
+                                 </a>
+                                 <a href="/pub/media/Code of conduct for BOD and senior mangt.pdf" target="_blank">
+                                    <p>2. Code of conduct for BOD and senior mangt</p>
+                                 </a>
+                                 <a href="/pub/media/policy-on-materialit-of-rpt-and-dealing-with-rpt.pdf" target="_blank">
+                                    <p>3. Policy on materialit of RPT and dealing with RPT</p>
+                                 </a>
+                                 <a href="/pub/media/Familiarization to Independent directors.pdf" target="_blank">
+                                    <p>4. Familiarization to Independent directors</p>
+                                 </a>
+                                 <a href="/pub/media/Policy on Determination of Materiality.pdf" target="_blank">
+                                    <p>5. Policy on Determination of Materiality</p>
+                                 </a>
+                                 <a href="/pub/media/Dividend Distribution Policy.pdf" target="_blank">
+                                    <p>6. Dividend Distribution Policy</p>
+                                 </a>
+                                 <a href="/pub/media/Terms of Appointment of ID.pdf" target="_blank">
+                                    <p>7. Terms of Appointment of ID</p>
+                                 </a>
+                                 <a href="/pub/media/Risk Management Policy.pdf" target="_blank">
+                                    <p>8. Policy on Board diversity</p>
+                                 </a>
+                                 <a href="/pub/media/Prevention of Sexual Harrassement Policy.pdf" target="_blank">
+                                    <p>9. Prevention of Sexual Harrassement Policy</p>
+                                 </a>
+                                 <a href="/pub/media/Risk Management Policy.pdf" target="_blank">
+                                    <p>10. Risk Management Policy</p>
+                                 </a>
+                                 <a href="/pub/media/Nomination and Remuneration Policy.pdf" target="_blank">
+                                    <p>11. Nomination and Remuneration Policy</p>
+                                 </a>
+                                 <a href="/pub/media/CSR Policy.pdf" target="_blank">
+                                    <p>12. CSR Policy</p>
+                                 </a>
+                                 <a href="/pub/media/Whistle blower policy.pdf" target="_blank">
+                                    <p>13. Whistle blower policy</p>
+                                 </a>
+                                 <a href="/pub/media/policy-on-Identification-of-Groupco,Material-creditors-Material-Litigations.pdf" target="_blank">
+                                    <p>14. Policy on Identification of Groupco, Material creditors Material Litigations</p>
+                                 </a>
+                                 <a href="/pub/media/data-protection-and-cyber-security-policy.pdf" target="_blank">
+                                    <p>15. Data Protection and Cyber Security Policy</p>
+                                 </a>
+                                 <a href="/pub/media/no outsanding dues to creditors.pdf" target="_blank">
+                                    <p>16. No out standing dues to creditors.</p>
+                                 </a>
+                                  <a href="/pub/media/code_of_conduct_for_Insiders_18.pdf" target="_blank">
+                                    <p>17. Code of Conduct for Insiders.</p>
+                                 </a>
+                                 <a href="/pub/media/code_of_fair_disclosure_17.pdf" target="_blank">
+                                    <p>18. Code of fair Disclosure.</p>
+                                 </a>
+                              </div>
+                              <p></p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div id="tab-content-4" class="tab-content">
+                  <div class="row">
+                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="tab-inside-menu">
+                           <div class="tabs pru-btn">
+                              <p class="investor-topic"> <a href="#" target="_blank"><b>Contact Details</b></a></p>
+                              <table border="1" cellspacing="0" cellpadding="6" style="border: 1px solid #ccc!important;">
+                                 <tbody>
+                                    <tr>
+                                       <th style="padding: 11px 10px;width: 50%;">Company Secretary &amp; Compliance Officer</th>
+                                       <th style="padding: 11px 10px;width: 50%;">Registrar and Transfer Agent(RTA)</th>
+                                    </tr>
+                                    <tr>
+                                       <td style="line-height: 24px;font-size: 12px;padding: 10px;"><b>Mr. Bandari Shiva Krishna</b> <br> Company Secretary Manoj Vaibhav Gems 'N' Jewellers Limited. Registered Office: Door No. 47-15-8, V Square, Zone –A, Opp: TSR Complex, Dwarakanagar, Visakhapatnam, Andhra Pradesh, 530016.<br> Email: cs@vaibhavjewellers.com <br> Email address for grievance redressal: <br> investor@vaibhavjewellers.com <br> Contact: +91 891 6637777</td>
+                                       <td style="line-height: 24px;font-size: 12px;padding: 10px;">Address for investor correspondence for queries on shares <br> <b>Mr. Jibu John</b> <br> BigShare Services Private Limited<br> Office No S6-2, 6th floor Pinnacle Business Park,<br> Next to Ahura Centre, Mahakali Caves Road, <br> Andheri (East) Mumbai - 400093 <br> E-mail: ipo@bigshareonline.com <br> Contact: +91 22 6263 8200</td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                              <a href="#" target="_blank"> <br><br></a>
+                              <p></p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+                  <div id="tab-content-5" class="tab-content">
+                  <div class="row">
+                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="tab-inside-menu">
+                           <div class="tabs pru-btn">
+                              <p class="investor-topic"></p>
+                              <div class="invest-container">
+                                 <a href="/pub/media/statpaperad.pdf" target="_blank">
+                                    <p>1. Print advertisement 14.09.2023</p>
+                                 </a>
+                                 <a href="/pub/media/newspaper publication15092023.pdf" target="_blank">
+                                    <p>2. Print advertisement 15.09.2023</p>
+                                 </a>
+                                 <a href="/pub/media/Corrigendum Advertisement 20.09.2023..pdf" target="_blank">
+                                    <p>3. Print advertisement 20.09.2023</p>
+                                 </a>
+                                 <a href="/pub/media/CORRIGENDUM_6.pdf" target="_blank">
+                                    <p>4. Print Advertisement 06.10.2023</p>
+                                 </a>
+                                  <a href="/pub/media/CORRIGENDUM II AD-06.10.2023_compressed (3).pdf" target="_blank">
+                                    <p>5. Print Advertisement 06.10.2023</p>
+                                 </a>
+                                  <a href="/pub/media/CORRIGENDUM II AD-06.10.2023 (1).pdf" target="_blank">
+                                    <p>6. Print Advertisement 06.10.2023</p>
+                                 </a>
+                              </div>
+                              <p></p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div id="tab-content-6" class="tab-content">
+                  <div class="row">
+                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="tab-inside-menu">
+                           <div class="tabs pru-btn"> 
+                              <button class="tabslinks active" onclick="openContent(event, 'm')" id="">Board Meeting </button><br>
+                              <button class="tabslinks" onclick="openContent(event, 'n')">General Meeting</button><br> 
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <div id="m" class="tabscontent block-btns pru-tab" style="display: none;">
+                           <p class="investor-topic"> 
+                              <button class="tabslinks" onclick="openContent(event, 'o')">Intimations.</button><br><br> <button class="tabslinks" onclick="openContent(event, 'p')">Outcomes.</button><br><br>
+                           </p>
+                        </div>
+                        <div id="n" class="tabscontent block-btns pru-tab" style="display: none;">
+                           <p class="investor-topic"> 
+                              <button class="tabslinks" onclick="openContent(event, 'q')">Intimations.</button><br><br> <button class="tabslinks" onclick="openContent(event, 'r')">Outcomes.</button><br><br>
+                           </p>
+                        </div>
+                        <div id="o" class="tabscontent block-btns pru-tab" style="display: none;">
+                           <p class="investor-topic"> <a href="/pub/media/board_meeting_14_11_23.pdf" target="_blank"><b>Board Meeting Intimations 14.11.2023</b></a> | </p>
+                        </div>
+                        <div id="p" class="tabscontent block-btns pru-tab" style="display: none;">
+                           <p class="investor-topic"> </p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- tab ends -->
+      </div>
+      <!-- container ends -->
+   </div>
+   <!-- Wrapper END -->
+</div>
+<!-- page-wrapper img-width END -->
+<script>
+   function openContent(evt, cityName) {
+     var i, tabscontent, tabslinks,contenttabs;
+     tabscontent = document.getElementsByClassName("tabscontent");
+     for (i = 0; i < tabscontent.length; i++) {
+       tabscontent[i].style.display = "none";
+   
+     }
+     tabslinks = document.getElementsByClassName("tabslinks");
+     for (i = 0; i < tabslinks.length; i++) {
+       tabslinks[i].className = tabslinks[i].className.replace(" active", "");
+     }
+     document.getElementById(cityName).style.display = "block";
+     evt.currentTarget.className += " active";
+   }
+   
+   // Get the element with id="defaultOpen" and click on it
+   document.getElementById("defaultOpens").click();
+</script>

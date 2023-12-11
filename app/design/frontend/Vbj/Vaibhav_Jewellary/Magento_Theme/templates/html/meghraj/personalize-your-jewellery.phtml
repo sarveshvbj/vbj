@@ -1,0 +1,313 @@
+<div class="personalize-send-tabpanel">
+        <h2>How would you like to send us the Design?</h2>
+        <div class="tab">
+            <div class="owl-slider2 owl-carousel owl-theme" id="opendesign-slider">
+                <button style="height:50px; font-size:15px" class="senddesign owl-item active" onclick="openDesign(event, 'uplddes')">Upload any design</button> 
+                <button style="height:50px; font-size:15px"  class="senddesign owl-item" onclick="openDesign(event, 'custdes')">Customize existing design</button> 
+                <button style="height:50px; font-size:15px"  class="senddesign owl-item" onclick="openDesign(event, 'workdes')">Work with our designers</button>
+            </div>
+        </div>
+        <div id="uplddes" class="tabdesigncontent" style="display:block;">
+            
+            <form class="form revo" enctype="multipart/form-data" action="<?php echo $this->getUrl('personalizejewellery/index/postnew', ['_secure' => true]); ?>" id="meghraj_custdes_form1" method="POST"
+                data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+                <input name="type" value="1"  type="hidden" />
+                
+                <h3>Upload your design</h3>
+                <div class="form-4">
+                    <div class="left-sec">
+                        <div class="inputfile">
+                            <input type="file" name="image" id="imgupload_1" class="imgupload_123" onchange="loadFile(event)"/>
+                            <img id="blah" src="<?php echo $block->getViewFileUrl('images/upload-image.png'); ?>" />
+                            <input type="file" name="image" id="imgbtnupload_1" class="textcode required-entry in"/>
+                            <p>Upload Image</p>
+                        </div>
+                    </div>
+                    <div class="right-sec">
+                        <div class="inputbox">
+                        <div class="row" style="padding-bottom:10px">
+                        <div class="col-md-12"  style="padding-bottom:10px">
+                        <input name="fullname" type="text" class="input-text required-entry in" placeholder="Full Name *" autocomplete="off" /> 	
+                        </div>
+                        <div class="col-md-12">
+                        <input name="mobile" type="text" class="input-text required-entry in customized-mobile" placeholder="Mobile Number *" autocomplete="off" />
+                        <span class="customized-errmsg" style="color: red; text-align:center;"></span>
+                        </div>
+                        </div>
+                        
+                            <div class="row">
+                            <div class="col-md-12"  style="padding-bottom:10px">
+                            <input name="email" type="text" class="input-text required-entry validate-email in" placeholder="Email Address *" autocomplete="off" /> 
+                            </div>
+                            <div class="col-md-12">
+                            <input name="budget" type="number" class="input-text required-entry in" placeholder="Your Budgets (Ex. Rs 10,000)" /> 
+                            </div>
+                            </div>
+                        
+                        <textarea name="details" cols="60" class="input-text required-entry in upload-details" placeholder="Details of Jewellery *"></textarea>
+                        <div class="upload-spntxt" style="color: red; text-align:center;"></div>
+                        </div>
+                        <div class="inputbox">
+                            <input type="checkbox" class="checkterm"/><p>I have read and agree to the <a href="#">Terms and Conditions</a><span class="red">*</span></p>
+                        </div>
+                        <div class="submitbtn">
+                            <input type="submit" class="upload-sub" name="submit" value="submit" />
+                        </div>
+                    <!-- <div class="customized-spntxt" style="color: red; text-align:center;"></div>-->
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <div id="custdes" class="tabdesigncontent">
+           
+            <form class="form revo" enctype="multipart/form-data" action="<?php echo $this->getUrl('personalizejewellery/index/postnew', ['_secure' => true]); ?>" id="meghraj_custdes_form2" method="POST"
+                data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+                <input name="type" value="2"  type="hidden" />
+               
+                <h3>Our Designs</h3>
+                <div class="form-2">
+                    <div class="left-sec">
+                        <div class="inputfile">
+                            <input type="file" name="fileupload" id="imgupload_2" class="imgupload_123"/>
+                            <img id="req-product" src="<?php echo $block->getViewFileUrl('images/upload-image.png'); ?>" />	
+                            <div class="prodct-image">
+                                <div class="left-txtcode">
+                                    <input name="product_sku" id="productsku" type="text" class="input-text required-entry textcode" placeholder="Product Code" />
+                                </div>
+                                <div class="right-imgbtn">
+    <!----////////onClick="send_with_ajax()" --->
+                                    <input type="button" id="findimages" name="findimage" value="findimage" class="findimgbtn"/> 
+                                </div>
+                                <div id="Error-msg">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right-sec">
+                        <div class="row" style="padding-bottom:10px">
+                        <div class="col-md-12"  style="padding-bottom:10px">
+                        <input name="fullname" type="text" class="input-text required-entry in" autocomplete="off"placeholder="Full Name *" /> 	
+                        </div>
+                        <div class="col-md-12">
+                        <input name="mobile" type="text" class="input-text required-entry in customized-mobile" autocomplete="off" placeholder="Mobile Number *" />
+                        <span class="customized-errmsg" style="color: red; text-align:center;"></span>
+                        </div>
+                        </div>
+                        
+                            <div class="row">
+                            <div class="col-md-12"  style="padding-bottom:10px">
+                            <input name="email" type="text" class="input-text required-entry validate-email in" autocomplete="off" placeholder="Email Address *" /> 
+                            </div>
+                            <div class="col-md-12">
+                            <input name="budget" type="number" class="input-text required-entry in" placeholder="Your Budgets (Ex. Rs 10,000)" /> 
+                            </div>
+                            </div>
+                    
+                            
+                            <textarea name="details" class="input-text required-entry in design-details" placeholder="Details of Jewellery *"></textarea>
+                            <div class="design-spntxt" style="color: red; text-align:center;"></div>
+                        <div class="inputbox">
+                            <input type="checkbox"  class="checkterm"/><p>I have read and agree to the <a href="#">Terms and Conditions</a><span class="red">*</span></p>
+                        </div>
+                        <div class="submitbtn">
+                            <input type="submit" class="design-sub" name="submit" value="submit" />
+                        </div>
+                    <!--<div class="customized-spntxt" style="color: red; text-align:center;"></div>-->
+                    </div>	
+                </div>
+            </form>
+        </div>
+        
+        <div id="workdes" class="tabdesigncontent">
+            <h3>Your Personal details</h3>
+            <form class="form revo" enctype="multipart/form-data" action="<?php echo $this->getUrl('personalizejewellery/index/postnew', ['_secure' => true]); ?>" id="meghraj_custdes_form3" method="POST"
+                data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+				<input name="type" value="3"  type="hidden" /> 
+				
+                <div class="form-5">
+					
+                    <div class="inputbox"  style="width:30%">
+                        <input name="fullname" type="text" class="input-text required-entry in" autocomplete="off" placeholder="Full Name *" /> 
+                    </div>
+                    <div class="inputbox">
+                        <input name="email" type="text" class="input-text required-entry validate-email in" autocomplete="off" placeholder="Email Address *" /> 
+                    </div>
+                    <div class="inputbox">	
+                        <input name="mobile" type="text" class="input-text required-entry in customized-mobile" autocomplete="off" placeholder="Mobile Number *" />
+                        <span class="customized-errmsg" style="color: red; text-align:center;"></span>
+                    </div>
+                    <div class="textareainputbox">
+                        <textarea name="details" class="input-text required-entry in personal-details" placeholder="Details of Jewellery *"></textarea>
+                        <div class="personal-spntxt" style="color: red; text-align:center;"></div>
+                    </div>
+                    <div class="submitbtn">
+                        <input type="submit" class="personal-sub" name="submit" value="submit" />
+                    </div>
+                <!--<div class="customized-spntxt" style="color: red; text-align:center;"></div>-->
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script-->
+    <script type="text/javascript">
+        function openDesign(evt, designName) {
+            var i, tabdesigncontent, senddesign;
+            tabdesigncontent = document.getElementsByClassName("tabdesigncontent");
+            for (i = 0; i < tabdesigncontent.length; i++) {
+                tabdesigncontent[i].style.display = "none";
+            }
+            senddesign = document.getElementsByClassName("owl-item");
+            for (i = 0; i < senddesign.length; i++) {
+                senddesign[i].className = senddesign[i].className.replace(" active", "");
+            }
+            document.getElementById(designName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        require(['jquery', 'emslider', 'domReady!'], function($) {
+        var owl = $('#opendesign-slider');
+            owl.owlCarousel({
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                    },
+                    480: {
+                        items: 1,
+                    },
+                    768: {
+                        items: 3,
+                    },
+                    1024: {
+                        items: 3,
+                    }
+                },
+                nav: false,
+                dots: false,
+                lazyLoad: true,
+                rtl: (EM.SETTING.RTL == "1")?true:false,
+            });
+           
+           
+            
+        });
+    </script>
+    <script>
+      var loadFile = function(event) {
+        var output = document.getElementById('blah');
+        output.src = URL.createObjectURL(event.target.files[0]);
+      };
+    </script>
+  <script type="text/javascript">
+require([
+    'jquery',
+    'mage/mage'
+], function($){
+ $(document).ready(function(){
+     $("#findimages").click(function(){
+            // Get value from input element on the page
+            var value = $("#productsku").val();
+            console.log(value);
+            // Send the input data to the server using get
+                $.ajax({
+                type:"POST",
+                url:"<?php echo $this->getUrl('personalizejewellery/index/getimage', ['_secure' => true]); ?>",
+                data: {'productsku': value },
+                success:function(html){
+                    $("#req-product").attr("src",html);
+                     $('#Error-msg').text("");
+                    },
+         error: function () {
+                  $('#Error-msg').text("Requested product doesn't exist");
+                     $("#req-product").attr("src","<?php echo $block->getViewFileUrl('images/upload-image.png'); ?>");
+                     $("#productsku").val('');  
+                        }
+                });
+            });
+   $(".customized-mobile").keypress(function (e) {
+     //if the letter is not digit then display error and don't type anything
+     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        //display error message
+        $(".customized-errmsg").html("Digits Only").show().fadeOut("slow");
+          return false;
+    }
+   });
+/*    $(".customized-details").keypress(function (e){
+       var yourInput = $(this).val();
+		re = /[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi;
+		var isSplChar = re.test(yourInput);
+		if(isSplChar)
+		{
+		 $(".customized-spntxt").html("Special Characters are not allow").show().fadeOut("slow");
+         //return false;
+         var no_spl_char = yourInput.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+	    if(no_spl_char){
+			$(this).val(no_spl_char);
+			return true;
+		}
+		}
+   });*/
+   $(".upload-sub").click(function(){
+        /*details validation*/
+        var des = $(".upload-details").val();
+        var mobileNumber   = $(".customized-mobile").val();
+        var mobileNumberPattern = /^[0-9]{10}$/;
+		re = /[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi;
+		var isSplCharDes = re.test(des);
+        if (!mobileNumberPattern.test(mobileNumber)) {
+            $(".customized-errmsg").text("Please enter a 10 digit mobile number.");
+            return true;
+        }
+		if(isSplCharDes)
+		{
+		 $(".upload-spntxt").text("Special Characters are not allow in this form");
+         return false;
+		}else{
+		   $(".upload-spntxt").text("");
+           return true; 
+		}
+   });
+      $(".design-sub").click(function(){
+        /*details validation*/
+        var des = $(".design-details").val();
+        var mobileNumber   = $(".customized-mobile").val();
+        var mobileNumberPattern = /^[0-9]{10}$/;
+		re = /[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi;
+		var isSplCharDes = re.test(des);
+        if (!mobileNumberPattern.test(mobileNumber)) {
+            $(".customized-errmsg").text("Please enter a 10 digit mobile number.");
+            return true;
+        }
+		if(isSplCharDes)
+		{
+		 $(".design-spntxt").text("Special Characters are not allow in this form");
+         return false;
+		}else{
+		    $(".design-spntxt").text("");
+         return true;
+		}
+   });
+      $(".personal-sub").click(function(){
+        /*details validation*/
+        var des = $(".personal-details").val();
+        var mobileNumber   = $(".customized-mobile").val();
+        var mobileNumberPattern = /^[0-9]{10}$/;
+		re = /[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi;
+		var isSplCharDes = re.test(des);
+        if (!mobileNumberPattern.test(mobileNumber)) {
+            $(".customized-errmsg").text("Please enter a 10 digit mobile number.");
+            return true;
+        }
+		if(isSplCharDes)
+		{
+		 $(".personal-spntxt").text("Special Characters are not allow in this form");
+         return false;
+		}else{
+		   $(".personal-spntxt").text("");
+		    return true;
+		}
+   });
+ }); 
+}); 
+</script>

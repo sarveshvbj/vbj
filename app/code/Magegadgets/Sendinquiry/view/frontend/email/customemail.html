@@ -1,0 +1,43 @@
+<!--@subject Sending email from International Shipment Enquiry @-->
+ 
+{{template config_path="design/email/header_template"}}
+
+<table style="width:100%;">
+		<tr class="email-intro">
+			<td>
+			<b>Name:</b> {{var name}}
+			</td>
+		</tr>
+		<tr class="email-intro">
+			<td>
+			<b>Email:</b> {{var email}}
+			</td>
+		</tr>
+		<tr class="email-intro">
+			<td>
+			<b>Product Name:</b> {{var productname}}
+			</td>
+		</tr>
+		<tr class="email-intro">
+			<td>
+			<b>Product URL:</b> {{var producturl}}
+			</td>
+		</tr>
+			<tr class="email-intro">
+			<td>
+			<b>Product Code:</b> {{var productcode}}
+			</td>
+		</tr>
+			<tr class="email-intro">
+			<td>
+			<b>Contact:</b> {{var contact}}
+			</td>
+		</tr>
+			<tr class="email-intro">
+			<td>
+			<b>Area:</b> {{var area}}
+			</td>
+		</tr>
+ </table>
+ 
+{{template config_path="design/email/footer_template"}}

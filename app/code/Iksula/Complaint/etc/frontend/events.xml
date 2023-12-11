@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+   <event name="customer_register_success">
+        <observer name="customer_register" instance="Iksula\Complaint\Observer\CustomerRegisterSuccess" />
+    </event>
+    <event name="checkout_onepage_controller_success_action">
+    	<observer name="order_place_after" instance="Iksula\Complaint\Observer\OrderPlaceAfter" />
+    </event>
+     <event name="controller_action_postdispatch_customer_account_forgotpasswordpost">
+        <observer name="customer_forgot_password" instance="Iksula\Complaint\Observer\CustomerAccountForgotPassword" />
+    </event>
+   <!--  <event name="checkout_cart_product_add_after">
+        <observer name="customprice" instance="Iksula\Complaint\Observer\CustomPrice" />
+    </event> -->
+      <!-- <event name="sales_order_payment_save_before">
+        <observer name="save_palace_infos" instance="Iksula\Complaint\Observer\SavePlaceInfoToOrderObserver"/>
+    </event> -->
+</config>
+

@@ -1,0 +1,312 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+$product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');
+$sku = $product->getSku();
+/*$skuarray = array($sku);
+echo '<pre>';
+print_r($skuarray);
+echo '</pre>';*/
+$lengths = 35;
+$offer_percentage = $product->getResource()->getAttribute('offer_percentage')->getFrontend()->getValue($product);
+$productId = $product->getId();
+/*$blockObj= $block->getLayout()->createBlock('Mageplaza\AutoRelated\Block\Product\ProductList\ProductList');
+$items = $blockObj->getProductCollection();
+if (!empty($items)){
+    echo $ruleId = $this->getRuleId();
+}*/
+// If sku not in the table. the default product will go to try on
+$newarraynamas='201A744';
+    $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+    $connection = $resource->getConnection();
+    $tableName = $resource->getTableName('mageplaza_autorelated_actions_index');
+    $ruleIdsql = "SELECT rule_id FROM mageplaza_autorelated_actions_index WHERE product_id = '$productId'";
+    $ruleIdresults = $connection->fetchAll($ruleIdsql);
+    if($ruleIdresults){
+         $ruleId = $ruleIdresults[0]['rule_id'];
+
+           $productssql = "SELECT product_id FROM mageplaza_autorelated_actions_index WHERE rule_id = '$ruleId'";
+    $productsresults = $connection->fetchAll($productssql);
+    $sliced_arrays = array_slice($productsresults, 0, 4);
+    if (!empty($sliced_arrays)) {
+    $str1 = '';
+    foreach($sliced_arrays as $sliced_array){
+        $productsIds = $sliced_array['product_id'];
+        $_product = $objectManager->create('Magento\Catalog\Model\Product')->load($productsIds);
+        $skus = $_product->getSku();
+        $array[] = $skus;
+        $str1 = $str1.$skus. ',';
+        $newarraynama=rtrim($str1,", ");
+    }    
+       $newarraynamas = $sku.','.$newarraynama;
+}else{
+    $newarraynamas= $sku;
+}
+    }
+   
+  
+/*$products = $objectManager->create('Magento\Catalog\Model\Product')->load($productId);// YOUR PRODUCT ID
+$relatedProducts = $products->getRelatedProducts();
+if (!empty($relatedProducts)) {
+    //echo 'Related Products <br />';   
+    $str1 = '';
+    foreach ($relatedProducts as $relatedProduct) {
+        $_product = $objectManager->create('Magento\Catalog\Model\Product')->load($relatedProduct->getId());
+        $skus = $_product->getSku(); //get name
+        $array[] = $skus;
+        $str1 = $str1.$skus. ',';
+        $newarraynama=rtrim($str1,", ");
+    }
+    $newarraynamas = $sku.','.$newarraynama;
+}else{
+    $newarraynamas= $sku;
+}*/
+$categories = $product->getCategoryIds(); /*will return category ids array*/
+foreach($categories as $category){
+    $cat = $objectManager->create('Magento\Catalog\Model\Category')->load($category);
+    $ids = $cat->getId();
+    //$name = $cate->getName();
+    // echo '<pre>';
+    // print_r($ids);
+    // echo '</pre>';
+    }
+$catlast = end($categories);
+/*$productStock = $product->get($productId);
+echo $stockQty = $productStock->getQty();*/
+$StockState = $objectManager->get('\Magento\CatalogInventory\Api\StockStateInterface');
+$StockState = $StockState->getStockQty($productId);
+?>
+<!-- <div class="tryon" id="vt_on__">
+<div class="rcb" id="vt_on" title="Try On">
+    <a id="tryonButton" onclick="onTryonClick();" href="#">
+        <span class="rcb_btn">
+            <i class="fa fa-camera cmb" aria-hidden="true">
+            </i>
+        </span>Try On
+    </a>
+</div>
+</div> -->
+ <button type="button"
+                    title="Try On"
+                    class="p-3 try-on"
+                    id="tryon-buy" onclick="onTryonClick();"><img class="shop-img" src="<?php echo $this->getUrl('pub/media/');?>camera.svg" alt="">
+                <span>Try On</span>
+            </button>
+ <!-- <div class="vt_on" id="vt-btnShowPopup" onclick="onTryonClick();">
+<img width="35" height="35" class="vt_pulse" src="https://www.candere.com/skin/frontend/default/new_iphone/images/vt_ring.svg" data-pagespeed-url-hash="2978860112" data-pagespeed-onload="pagespeed.CriticalImages.checkImageForCriticality(this);" onload="var elem=this;if (this==window) elem=document.body;elem.setAttribute('data-pagespeed-loaded', 1)" data-pagespeed-loaded="1">
+<span>Try On</span>
+</div> -->
+<iframe id="iFrameID" src="about:blank"  allow="microphone; camera"></iframe>
+<div id="iFrameOutsideDiv" onclick="iFrameOutsideDivClick();"></div>
+  <!--   <a id="tryonButton" onclick="onTryonClick();" href="#">Try On</a> -->
+    <style>
+          #iFrameID {
+    opacity: 1;
+    background-color: transparent;
+    position: fixed;
+    width: 760px;
+    height: 480px;
+    top: 0px;
+    left: 0px;
+    margin-left: 20%;
+    margin-top: 2%;
+    z-index: 100;
+    display: none;
+    border: none;
+}
+#iFrameOutsideDiv {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 99;
+    opacity: 0.8;
+    background-color: black;
+}
+.rcb {
+    height: 50px;
+    line-height: 50px;
+    background-color: #ae53c5;
+    color: #fff;
+    text-align: center;
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid #ae53c5;
+}
+@media (min-width: 550px){
+.tryon {
+    width: 23.5%;
+}
+}
+#vt_on__ a {
+    color: #fff;
+}
+.rcb:hover .cmb {
+    margin-right: 10px;
+}
+.cmb {
+    display: inline-block;
+    margin-right: 8px;
+    font-size: 19px!important;
+    vertical-align: middle;
+    margin-top: -2px;
+    color: #fff!important;
+    transition: all .3s ease-in-out;
+}
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.fa-camera:before {
+    content: "\f030";
+}
+  @media(max-width:480px){
+#iFrameID{
+                opacity:1;
+                background-color: transparent;
+                position:fixed;
+                width:100%;                                                                                                                      
+                height:100%;                                                                                                                                     
+                top:0px;
+                left:0px;
+                margin-left: 0%;
+                margin-top: 0%;
+                z-index:1000;
+                border: none;
+                overflow:hidden;
+}
+  }
+  @media(max-width:480px){
+#iFrameID{
+                opacity:1;
+
+                background-color: transparent;
+
+                position:fixed;
+
+                width:100%;                                                                                                                      
+
+                height:100%;                                                                                                                                     
+
+                top:0px;
+
+                left:0px;
+
+                margin-left: 0%;
+
+                margin-top: 0%;
+
+                z-index:1000;
+
+                border: none;
+
+                overflow:hidden;
+
+}
+}
+</style>
+<script>
+
+function onTryonClick(argument) {
+var url = "https://www.vaibhavjewellers.com/camweara/index.php?skus=<?php echo $newarraynamas; ?>";
+if(screen.width > 480){
+window.open(url,'_blank');
+}else{
+window.location.href = url;
+}
+}
+function iFrameOutsideDivClick(){
+console.log("iFrameOutsideDivClick entered");
+document.getElementById("iFrameID").setAttribute("src", ""); 
+document.getElementById("iFrameID").style.display = "none";
+document.getElementById("iFrameOutsideDiv").style.display = "none";
+}
+
+window.addEventListener('message', function(event) { 
+
+   console.log("message event origin "+ event.origin);
+
+   if (~event.origin.indexOf('https://www.vaibhavjewellers.com')) { 
+       console.log("message: "+event.data);
+     if(event.data == "closeIframe"){
+               iFrameOutsideDivClick();
+     }
+     else if(event.data.includes("buynow")){
+       var field = event.data.split('=');
+       var skuSelected = field[1];
+                               //add sku to cart and redirect to checkout
+     }
+               
+   }else{ 
+       // The data hasn't been sent from your site! 
+       //  Do not use it. 
+       return; 
+   } 
+});  
+/* ----------------------------------------------*/
+window.addEventListener('message', function(event) {
+    // IMPORTANT: Check the origin of the data!
+    if (~event.origin.indexOf('https://modakatech.com')) {
+        console.log("message: "+event.data);
+      if(event.data == "closeIframe"){
+                iFrameOutsideDivClick();
+      }
+      else if(event.data.includes("buynow")){
+          console.log('sarveshtiwari'+event.data );
+
+        var field = event.data.split('=');
+
+        var skuSelected = field[1];
+
+        var addToCartUrl = "<?php
+    $productId = 1778; // <--- set correct product id (e.g. 1)
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $product = $objectManager->create('Magento\Catalog\Model\Product')->load($productId);
+    $addToCartUrl = $objectManager->get('Magento\Checkout\Helper\Cart')->getAddUrl($product);
+    echo $addToCartUrl.'form_key/'; ?>";
+
+    // add form key
+    var formKey = jQuery.cookie("form_key");
+    addToCartUrl += formKey;
+
+    // add options
+    var formData = new FormData();
+    formData.append("product", <?php echo $productId ?>);
+    formData.append("selected_configurable_option", "");
+    formData.append("related_product", "");
+    formData.append("form_key", formKey);
+    //formData.append("options[2]", "Some custom data, foo bar"); // <--- set correct optionId (e.g. 2)
+    formData.append("qty", cp.Menge);
+
+    // make POST call with the custom options as body element
+    var request = jQuery.ajax({
+        url: addToCartUrl,
+        method: "POST",
+        processData: false,
+        contentType: false,
+        data: formData
+    }).done(function( response ) { // redirect to cart if call was successful
+        window.location = "https://www.vaibhavjewellers.com/checkout/cart"; // <--- set correct redirect link
+    }).fail(function( jqXHR, textStatus ) {
+        console.log("Couldn't add product to cart. " + textStatus);
+    });
+
+      }
+    } else {
+
+        // The data hasn't been sent from your site!
+
+        //  Do not use it.
+
+        return;
+    }
+});  
+</script>

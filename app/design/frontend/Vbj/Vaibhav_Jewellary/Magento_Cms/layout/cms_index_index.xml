@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="page.main.title" remove="true" />
+    	<referenceBlock name="report.bugs" remove="true" />
+   <!--  	   <referenceBlock name="head.csspreload">
+            <arguments>
+                <argument name="assets" xsi:type="array">
+                     <item name="avenir" xsi:type="array">
+                        <item name="path" xsi:type="string">font/Avenir.otf</item>
+                        <item name="attributes" xsi:type="array">
+                            <item name="name" xsi:type="string">attribute</item>
+                            <item name="value" xsi:type="string">value</item>
+                        </item>
+                    </item>
+                     <item name="free-fonts-400" xsi:type="array">
+                        <item name="path" xsi:type="string">webfonts/free-fa-brands-400.woff2</item>
+                        <item name="attributes" xsi:type="array">
+                            <item name="name" xsi:type="string">attribute</item>
+                            <item name="value" xsi:type="string">value</item>
+                        </item>
+                    </item>
+                    <item name="free-fonts-900" xsi:type="array">
+                        <item name="path" xsi:type="string">webfonts/free-fa-solid-900.woff2</item>
+                        <item name="attributes" xsi:type="array">
+                            <item name="name" xsi:type="string">attribute</item>
+                            <item name="value" xsi:type="string">value</item>
+                        </item>
+                    </item>
+                </argument>
+                <argument name="link_template" xsi:type="string"><![CDATA[<link rel="preload" as="font" crossorigin href=":path:" :attributes: />]]></argument>
+            </arguments>
+            </referenceBlock> -->
+    	       	    <!-- <referenceBlock name="main.content" remove="true" /> -->
+    	<referenceContainer name="main">
+            <!-- <block class="Magento\Framework\View\Element\Template" name="custom_banner" template="Magento_Theme::html/custom_banner.phtml" > </block> -->
+            <block class="Magento\Cms\Block\Block" name="homepage-banner-desktop">
+            <arguments>
+                <argument name="block_id" xsi:type="string">homepage-banner-desktop</argument>
+            </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Template" name="custom_jewellary" template="Magento_Theme::html/alljewellary.phtml" >
+            </block>
+            <block class="Magento\Framework\View\Element\Template" name="share_design" template="Magento_Theme::html/share_design.phtml" >
+            </block>
+
+            <block class="Magento\Framework\View\Element\Template" name="wishlist_products" template="Magento_Theme::html/wishlist_products.phtml" >
+            <block class="Magento\Cms\Block\Block" name="vaibahv_you_love"> 
+            <arguments> 
+                <argument name="block_id" xsi:type="string">vaibahv_you_love</argument> 
+            </arguments> 
+        </block> 
+            </block>
+            <block class="Magento\Framework\View\Element\Template" name="video_education" template="Magento_Theme::html/video_education.phtml" >
+            </block>
+            <block class="Magento\Framework\View\Element\Template" name="testimonials" template="Magento_Theme::html/testimonials.phtml">
+            </block>
+             <!-- <block class="Magento\Newsletter\Block\Subscribe" name="subscribe"  template="Magento_Newsletter::subscribe.phtml"/>  -->
+            <!-- <block class="Magento\Framework\View\Element\Template" name="subscribe" template="Magento_Theme::html/signup_newsletter.phtml"> -->
+        </referenceContainer>
+    </body>
+</page>

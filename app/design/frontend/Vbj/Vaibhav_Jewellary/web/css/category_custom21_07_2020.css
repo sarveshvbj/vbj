@@ -1,0 +1,177 @@
+/* Category Page Styles */
+ .page-main {
+     max-width: 100% !important;
+     padding-left: 0px !important;
+     padding-right: 0px !important;
+}
+ .page-products .columns, .page-layout-1column.page-with-filter .column.main {
+     width:100% !important;
+}
+ .toolbar-products .pages {
+     display:block !important;
+}
+ .page-layout-1column .toolbar-products {
+     bottom: 0 !important;
+}
+ .category-page-footer .toolbar-sorter {
+     display: none !important;
+}
+ .category-page-header .pagination {
+     display: none;
+}
+ .toolbar-sorter li {
+     margin-bottom: 0px !important;
+}
+ .page-title {
+     font-size: 20px !important;
+     font-weight: 600 !important;
+     margin-bottom: 10px !important;
+}
+ .main .wrapper {
+     padding: 0rem 3.5rem;
+}
+ .page-layout-1column.page-with-filter .column.main {
+     padding-top: 15px !important 
+}
+ .filter-content a, .filter-content a:visited, .filter-content a:hover {
+     color: #000 !important;
+}
+.filter-content .price {
+     float: none;
+}
+ .product-reviews-summary .reviews-actions {
+     display: none;
+}
+ .catalog-category-view .ln_slider_container {
+     width: calc(90%);
+     margin: 10px auto;
+     padding: 0px 0px 0px;
+     position: relative;
+}
+ .catalog-category-view .ui-slider-horizontal {
+     background: #6d2081;
+     height: 8px;
+}
+ .catalog-category-view #ln_slider_text_price {
+     margin-top: 15px;
+     color:#6f2d91;
+}
+ .catalog-category-view #ln_slider_price .ui-slider-handle {
+     background: #fff;
+     border: 1px solid #ccc;
+     padding: 0;
+     border-radius: 30px;
+     width: 15px;
+     height: 15px;
+     top: -3px;
+     display: block;
+     position: absolute;
+}
+ .ui-slider-horizontal .ui-slider-handle {
+     margin-left:-5px 
+}
+ .ui-slider .ui-slider-handle {
+     position:absolute;
+     z-index:2;
+     cursor:default 
+}
+ .ui-slider-horizontal {
+     height:10px;
+     -webkit-border-radius:10px;
+     border-radius:10px;
+     border:none;
+     background:#dadada 
+}
+ .ui-slider-handle {
+     height:10px;
+     width:10px;
+     -webkit-border-radius:10px;
+     border-radius:10px;
+     background:#f98b25;
+     display:block;
+     position:absolute 
+}
+ .page-layout-1column .filter-content {
+     margin-top: 0px !important;
+}
+
+ .breadcrumbs .items > li {
+     font-size: 11px !important;
+}
+ .breadcrumbs .item:not(:last-child)::after {
+     vertical-align: middle;
+     line-height: 10px;
+     margin: 0 5px;
+}
+.breadcrumbs {
+    margin: 0 0 5px !important;
+}
+.bread-crumbs {
+    margin-bottom: 0px !important; 
+}
+ .catalog-category-view #maincontent .sidebar .mts-category-list-custom .filter-items > ul.o-list,
+ .catalogsearch-result-index #maincontent .sidebar .mts-category-list-custom .filter-items > ul.o-list {
+     height: auto;
+}
+ .catalog-category-view #maincontent .sidebar .mts-category-list-custom .filter-items > ul.o-list,
+ .catalogsearch-result-index #maincontent .sidebar .mts-category-list-custom .filter-items > ul.o-list {
+     display: block;
+     padding: 15px 15px 0px 15px;
+}
+ 
+ .catalog-category-view .sidebar .o-list li,
+ .catalogsearch-result-index .sidebar .o-list li {
+  list-style: none;
+border-bottom: none;
+padding-bottom: 0px;
+ }
+
+ .catalog-category-view .sidebar .expand i, .catalog-category-view .sidebar .expanded i,
+ .catalogsearch-result-index .sidebar .expand i, .catalog-category-view .sidebar .expanded i {
+  color:#6d2080;
+ }
+
+ .products:hover
+{
+    overflow: initial;
+    box-shadow: 0 8px 20px #dedede;
+}
+.product-name {
+     border-top: 1px solid #ccc;
+    font-size: 14px;
+    padding: 5px;
+    color: grey;
+}
+
+.text-left{
+     background-color: #eee;
+
+}
+
+.products .text-left {
+    height: 100px;
+}
+
+.rating-summary .rating-result{
+    display: block !important;
+}
+
+.product-reviews-summary .rating-summary{
+    float: left;
+}
+
+.sorting.toolbar-sorter {
+    font-size: 13px;
+}
+
+.vaibhav_product_list .flex {
+justify-content: initial!important;
+}
+.products {
+margin-left: 2%;
+}
+.products:nth-child(4n+1) {
+margin-left: 0;
+}
+
+

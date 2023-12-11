@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Vaibhav::top_level" title="Vaibhav Gold Rate" module="Vaibhav_GoldRate" sortOrder="9999" resource="Magento_Backend::content"/>
+		<add id="Vaibhav_GoldRate::vaibhav_goldrate_goldrate" title="Goldrate" module="Vaibhav_GoldRate" sortOrder="9999" resource="Magento_Backend::content" parent="Vaibhav::top_level" action="vaibhav_goldrate/goldrate/index"/>
+	</menu>
+</config>

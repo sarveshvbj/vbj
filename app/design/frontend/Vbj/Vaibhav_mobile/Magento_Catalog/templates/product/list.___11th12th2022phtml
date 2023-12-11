@@ -1,0 +1,227 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+use Magento\Framework\App\Action\Action;
+
+// @codingStandardsIgnoreFile
+
+?> <?php
+/**
+ * Product list template
+ *
+ * @var $block \Magento\Catalog\Block\Product\ListProduct
+ */
+?> <?php
+/**
+ * @var $block \DavidRobert\GetRatingSummary\Block\GetRatingSummary
+ */
+?> <?php
+   /* $_ratingSummary = $block->getAllRatingsSummary();
+    print_r($_ratingSummary->getData());*/
+?> <style>
+  .catalog-category-view .category-heading {
+    padding-left: 15px;
+    border-bottom: 2px solid #efe5d9;
+  }
+
+  .product-name {
+    font-size: 13px;
+    color: grey;
+    padding-top: 8px !important;
+  }
+
+  .price-container .price {
+    font-size: 13px;
+    color: #353535;
+    font-weight: 600;
+  }
+
+  .offer-price {
+    font-size: 13px;
+    font-weight: 600;
+    color: #84817f;
+    margin-left: 0px;
+    display: inline-block;
+    /* padding: 0px; */
+    margin-top: -5px;
+  }
+
+  .product-image-wrapper {
+    padding-bottom: 100% !important;
+  }
+
+  .products {
+    text-align: center;
+    position: relative;
+    border: 1px solid #eee;
+    background: #fff;
+    flex: 0 0 50%;
+    max-width: 49%;
+    border-radius: 6px;
+    height: 100% !important;
+    padding-bottom: 5px;
+    margin: 10px 1px 0 !important;
+  }
+
+  .block-static-block.widget,
+  .block-cms-link.widget {
+    margin: 20px;
+    font-size: 14px;
+    text-align: justify;
+  }
+
+  p.suggested {
+    display: none;
+  }
+</style> 
+<?php
+$_productCollection = $block->getLoadedProductCollection();
+/** @var \Magento\Catalog\Helper\Output $_helper */
+$_helper = $block->getData('outputHelper');
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+?> 
+<?php if (!$_productCollection->count()): ?> <div class="message info empty">
+  <div> <?= /* @escapeNotVerified */ __('We can\'t find products matching the selection.') ?> </div>
+</div> <?php else: ?> <?php
+    if ($block->getMode() == 'grid') {
+        $viewMode = 'grid';
+        $imageDisplayArea = 'category_page_grid';
+        $showDescription = false;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    } else {
+        $viewMode = 'list';
+        $imageDisplayArea = 'category_page_list';
+        $showDescription = true;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::FULL_VIEW;
+    }
+    /**
+     * Position for actions regarding image size changing in vde if needed
+     */
+    $pos = $block->getPositioned();
+    ?> <style>
+  .product-banner {
+    width: auto !important;
+    height: auto;
+    padding-left: 0 !important;
+  }
+
+  .breadcrumbs .item:not(:last-child):after {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 10px;
+    line-height: 18px;
+    font-family: FontAwesome !important;
+    content: '\f054' !important;
+    margin: 0 10px;
+    vertical-align: top;
+    display: inline-block;
+    font-weight: 400;
+    overflow: hidden;
+    speak: none;
+    text-align: center;
+  }
+</style>
+<div class="wrapper">
+  <div class="bread-crumbs"> <?= $this->getChildHtml('breadcrumbs');?> </div>
+  <div class="category-page-header" id="category.page.header">
+                <?php
+                 $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                 $retailHelper = $objectManager->get('Retailinsights\ConfigProducts\Helper\Data');
+                  $productTypeInstance = $objectManager->get('Magento\ConfigurableProduct\Model\Product\Type\Configurable');
+                 $category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');
+                $promo_banners=array();
+                $promo_count=0;
+                 $current_cateid='';
+    if($category){ 
+      $current_cateid=$category->getId();
+  }
+             ?>
+             <?php 
+             $objectManager2 = \Magento\Framework\App\ObjectManager::getInstance();
+             $request1 = $objectManager2->get('\Magento\Framework\App\Request\Http');
+if ($request1->getFullActionName() == 'catalog_category_view') {?>
+              <script type="text/javascript">
+    //      dataLayer.push({'event':'category_view',
+    //     'id':' echo $category->getId();  ?>',
+    //     'name':' echo $category->getData('name');  ?>',
+    //     'path':' echo $category->getData('url_path');  ?>',
+    //     'url':' echo $category->getData('url');  ?>'
+       
+    // });
+      </script>
+      <?php }?>
+            <?php 
+            $promo_alt=array();
+            if($category) {
+                if($category->getData('promo_banner')) {
+                    array_push($promo_banners, $category->getData('promo_banner'));
+                    array_push($promo_alt, $category->getData('promobanner_alttext'));
+                }
+                if($category->getData('promo_banner_1')) {
+                    array_push($promo_banners, $category->getData('promo_banner_1'));
+                    array_push($promo_alt, $category->getData('promobanner_alttext2'));
+                }
+                if($category->getData('promo_banner_2')) {
+                    array_push($promo_banners, $category->getData('promo_banner_2'));
+                    array_push($promo_alt, $category->getData('promobanner_alttext3'));
+                }
+                if($category->getData('promo_banner_3')) {
+                    array_push($promo_banners, $category->getData('promo_banner_3'));
+                    array_push($promo_alt, $category->getData('promobanner_alttext4'));
+                }
+             if(!empty($promo_banners)) {
+                $promo_count=count($promo_banners);
+             }
+              if(!empty($promo_alt)) {
+                $promobanner_count=count($promo_alt);
+             }
+        } ?>
+  </div>
+  <div class="vaibhav_product_list">
+    <div class="flex"> <?php /** @var $_product \Magento\Catalog\Model\Product */ ?> <?php foreach ($_productCollection as $_product):?> <?php $productcoll = $objectManager->create('Magento\Catalog\Model\Product')->load($_product['entity_id']); ?> <div class="products">
+        <a href="
+                        
+          <?php echo $this->getUrl('wishlist'); ?>" data-post='
+                        
+          <?php echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($productcoll) ?>' class="action towishlist" data-action="add-to-wishlist">
+          <img class="favourites" src="
+                          
+            <?php echo $this->getUrl('pub/media/');?>fav.svg" alt="favourite-icon">
+        </a> <?php
+                    $productImage = $block->getImage($productcoll, $imageDisplayArea);
+                    if ($pos != null) {
+                        $position = ' style="left:' . $productImage->getWidth() . 'px;'
+                            . 'top:' . $productImage->getHeight() . 'px;"';
+                    }
+                    ?> <?php  $imageUrl = $productcoll->getMediaConfig()->getMediaUrl($productcoll->getImage()); ?> 
+          <div class="image_container-custom-<?php echo $_product['entity_id']; ?>">                         
+          <a href="
+                            
+              <?= /* @escapeNotVerified */ $productcoll->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1"> <?= $productImage->toHtml() ?> </a>
+
+        </div>
+        <div class="text-left">
+          <div class="rating"> <?= $block->getReviewsSummaryHtml($productcoll, $templateType) ?> </div>
+          <a href="
+                            
+              <?= /* @escapeNotVerified */ $productcoll->getProductUrl() ?>">
+            <div class="product-name"> <?php 
+                    
+                    $product_name=$productcoll->getName();
+                    $replacevalues=str_replace("Vaibhav Jewellers","",$product_name);
+                    echo $replacevalues;
+                    ?> </div>
+          </a>
+         
+        </div>
+      </div> 
+      <?php endforeach; ?> 
+    </div>
+  </div>
+</div>
+<div class="category-page-footer ft" id="category.page.footer"> 
+  <?= $block->getToolbarHtml() ?> 
+</div> 
+<?php endif; ?>

@@ -1,0 +1,102 @@
+<!-- 
+    <h6 class="fz-big desc-head">Video Shopping? <span class="fz-medium">We'd love to help <span class="font-weight-bold">+91 91774 03000</span></span></h6>
+    <form action="">
+        <input class="faq-text" type="text" placeholder="Name">
+        <input class="faq-text" type="text" placeholder="Email">
+        <input class="faq-text" type="text" placeholder="Contact number">
+        <input class="faq-text" type="text" placeholder="Question">
+        <button class="faq-submit" type="submit">Submit</button>
+    </form>
+</div> --> 
+ <?php date_default_timezone_set('Asia/Kolkata');
+
+$currentTime = date('h:i:A');
+$currenDate= date('d.m.Y');
+$str= explode(":",$currentTime);
+
+list($hr, $min, $timestamp) = $str; 
+$_product = $block->getProduct();
+$sku = $_product->getSku();
+$curTime=date('Y-m-d H:i:s', time());
+$datetime = new DateTime($curTime);
+$currenDateTime = $datetime->format(DateTime::ATOM);
+$product_url= $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
+
+?>
+                    <div class="info-tab description">
+                    <h6 class="fz-big desc-head">Explore Live Video Shopping<span class="fz-medium">Schedule an Appointment <!-- <span class="font-weight-bold">+91 91774 03000</span> --></span></h6>
+                   <form  enctype="multipart/form-data" action="<?php echo $block->getUrl('videoform/index/postnew')?>" id="custom-form" method="POST"
+      data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+                        <input name="type" value="product"  type="hidden" />
+                         <input name="hrs" value="<?php echo $hr; ?>"  type="hidden" />
+                         <input name="min" value="<?php echo $min; ?>"  type="hidden" />
+                         <input name="meri" value="<?php echo $timestamp; ?>"  type="hidden" />
+                          <input name="language" value="any"  type="hidden" />
+                         <input name="product" value="<?php echo $product_url; ?>"  type="hidden" />
+                         <input name="takedate" value="<?php echo $currenDateTime; ?>"  type="hidden" />
+
+                        <input name="fullname" class="faq-text required-entry in" type="text" placeholder="Name*">
+                          <input name="mobile" type="text" placeholder="Contact number*" id="mobile" class="faq-text required-entry in" minlength="10" maxlength="12"/>
+                          <span id="errmsg" style="color: red;text-align:center;"></span>
+                         <input name="email" type="email" placeholder="Email*" class="faq-text required-entry validate-email in"  />
+                        
+                        <input class="faq-text" type="text" name="remarks" placeholder="Question">
+                        <button class="faq-submit" id="submit" type="submit">Submit</button>
+                    </form>
+                </div>
+              
+
+              <script>
+/*require([
+  'jquery',
+  'mage/mage',
+], function($){
+   $( "#submit" ).click(function() { 
+   alert("hjhjkjl");       
+       $('input[name="mobile"]').validation();
+       if(!$('input[name="mobile"]').validation('isValid')){
+           return false;
+       }
+   });
+});*/
+require([
+    'jquery',
+    'mage/mage'
+], function($){
+    jQuery(document).ready(function () {
+
+     function setInputFilter(textbox, inputFilter) {
+  ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+    textbox.addEventListener(event, function() {
+      if (inputFilter(this.value)) {
+        this.oldValue = this.value;
+        this.oldSelectionStart = this.selectionStart;
+        this.oldSelectionEnd = this.selectionEnd;
+      } else if (this.hasOwnProperty("oldValue")) {
+        this.value = this.oldValue;
+        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+      } else {
+        this.value = "";
+      }
+    });
+  });
+}
+setInputFilter(document.getElementById("mobile"), function(value) {
+  return /^-?\d*$/.test(value); });
+    });
+   var dataForm = $('#custom-form');
+   dataForm.mage('validation', {});
+
+   // $("#mobile").keypress(function (e) {
+   //   //if the letter is not digit then display error and don't type anything
+   //   if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+   //      //display error message
+   //      $("#errmsg").html("Digits Only").show().fadeOut("slow");
+   //             return false;
+   //  }
+   // });
+ 
+});
+
+
+</script>

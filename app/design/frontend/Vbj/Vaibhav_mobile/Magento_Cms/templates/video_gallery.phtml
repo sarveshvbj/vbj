@@ -1,0 +1,31 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$basemediaurl = $objectManager->get('Magento\Store\Model\StoreManagerInterface')
+                    ->getStore()
+                    ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$imgix_url=$basemediaurl//'https://mage23vaibhavjewellers.breezesites.io/pub/media/'; 
+ ?>
+<?php 
+$_objectManager = \Magento\Framework\App\ObjectManager::getInstance(); //instance of\Magento\Framework\App\ObjectManager
+$storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+$currentStore = $storeManager->getStore();
+$baseUrl = $currentStore->getBaseUrl();
+$mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$linkUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_LINK);
+?>
+<div class="container-fluid section-7 mt-4">
+    <div class="d-flex flex-wrap">
+        <div class="p-1 img-container">
+            <a href="<?php echo $linkUrl;?>gifts/gift-cards.html">         
+                     <img src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/pr_gift_cards_vaibhav.jpg" class="w-100" alt="Vaibhav-Mobile-Gift-Cards" width="160" height="160">
+            </a>
+        </div>
+        <div class="p-1 img-container">
+            <a href="<?php echo $linkUrl;?>gold-coins.html">        
+                <img src="<?php echo $mediaUrl;?>wysiwyg/homepage_images/mobile/pr_gold_coins_bars_vaibhav.jpg" class="w-100" alt="Vaibhav Gold Coins" width="160" height="160">
+            </a>
+        </div>
+      
+    </div>
+</div>
+

@@ -1,0 +1,154 @@
+<?php
+$objectManager =   \Magento\Framework\App\ObjectManager::getInstance();
+    $connection = $objectManager->get('Magento\Framework\App\ResourceConnection')->getConnection('\Magento\Framework\App\ResourceConnection::DEFAULT_CONNECTION'); 
+    $result = $connection->fetchAll("SELECT * FROM vaibhav_goldrate_goldrate");
+
+/*echo "<pre>";print_r($result1);
+die();*/
+  /** Apply filters here */
+foreach ($result as $value) {
+  $twentyTwo =  $value['twentytwo_rate'];
+  $twentyFour = $value['twentyfour_rate'];
+  $date = $value['updated_at'];
+  $updatedAt =  date('d-m-Y',strtotime($date));
+  $place = $value['city'];
+}
+
+if ($result) {
+?>
+<?php
+        //foreach ($collection as $item): ?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 style="text-align: center; padding: 50px 0 0 0;">Today Gold Price in <span class="place"></span></h3>
+            <p style="text-align: center; font-size: 12px;">Latest Update on at <span class="currentDate"></span></p>
+            <div class="card today-gold-price">
+                <div class="card-body" style="width: -webkit-fill-available;">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-4 price">
+                                <div class="form-group">
+                                    <span class="selecting_spans">Place</span><br>
+                                    <div>
+                                        <select class="selectPlace" id="selectCity" name="cityname">
+                                            <?php 
+                                    foreach ($result as $option) {
+                                    ?>
+                                            <option value="<?php echo $option['city'];?>"><?php echo $option['city']; ?>
+                                            </option>
+                                            <?php 
+                                      }
+                                    ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 price">
+                                <span class="selecting_spans">Date</span><br>
+                                <span class="currentDate"></span>
+                            </div>
+                            <div class="col-md-4 price">
+                                <span class="selecting_spans">22k Rate per GM</span><br>
+                                <span class="todayGoldPrice"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php //endforeach; ?>
+<?php
+	}
+?>
+<script type="text/javascript">
+require(['jquery', 'jquery/ui'], function($) {
+    $(document).ready(function($) {
+        /*var selectCity = $('#selectCity').find(":selected").val();
+         $.cookie('selectCity', selectCity);*/
+        $('#selectCity').on('change', function() {
+            var selectCity = $('#selectCity').find(":selected").val();
+            $('.place').text(selectCity);
+            console.log('selectCity' + selectCity);
+            localStorage.setItem("selectCity", selectCity);
+            $.cookie('selectCity', selectCity);
+            var json = null;
+            var url =
+                "<?php echo 'https://www.vaibhavjewellers.com/'.'vaibhav_goldrate/index/result/' ?>";
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: {
+                    selectCity: selectCity
+                },
+                showLoader: true,
+                cache: false,
+                success: function(data) {
+                    console.log('success return from controller');
+                    console.log(data);
+                    // Converting JSON object to JS object
+                    var obj = JSON.stringify(data);
+                    console.log('stringify Data' + obj);
+                    let parsed = JSON.parse(obj);
+
+                    for (let i = 0; i < parsed.data.length; i++) {
+                        console.log(parsed.data[i].twentytwo_rate);
+                        var twentytwoRate = parsed.data[i].twentytwo_rate;
+                        var twentyfourRate = parsed.data[i].twentyfour_rate;
+                        var updatedAt = parsed.data[i].updated_at;
+                        var place = parsed.data[i].city;
+                    }
+                    // Converting JSON object to JS object
+                    var d = JSON.stringify(data);
+                    console.log('stringify Data'+data);
+                    const object = JSON.parse(d);
+                    console.log('parse Data'+object);
+                    console.log('city - ' +object.data[0].city);
+                    $('.currentDate').text(updatedAt);
+                    $('.todayGoldPrice').text(twentytwoRate);
+                },
+                error: function(data) {
+                    console.log('error return from controller');
+                    console.log("Error ", data);
+                }
+            });
+            return false;
+        });
+    });
+});
+//});
+</script>
+<script type="text/javascript">
+ require([ 'jquery', 'jquery/ui'], function($){ 
+  /*var updatedAt = '<?php echo $updatedAt;?>';
+  var place = '<?php echo $place;?>';
+
+  var twentyTwo = <?php echo  $twentyTwo ;?>;
+  
+  var twentyFour = <?php echo $twentyFour;?>;
+
+  var twentyTwo8 = <?php echo $twentyTwo * 8;?>;
+  var twentyTwo10 = <?php echo $twentyTwo * 10;?>;
+  var twentyTwo100 = <?php echo $twentyTwo *100;?>;
+
+  var twentyFour8 = <?php echo $twentyFour * 8;?>;
+  var twentyFour10 = <?php echo $twentyFour * 10;?>;
+  var twentyFour100 = <?php echo $twentyFour * 100;?>;
+
+  $('.oneGramPrice24k').text('₹'+ twentyFour);
+  $('.eightGramPrice24K').text('₹'+twentyFour8);
+  $('.tenGramPrice24K').text('₹'+twentyFour10);
+  $('.hundreedGramPrice24K').text('₹'+twentyFour100);
+
+  $('.oneGramPrice22k').text('₹'+twentyTwo);
+  $('.eightGramPrice22K').text('₹'+twentyTwo8);
+  $('.tenGramPrice22K').text('₹'+twentyTwo10);
+  $('.hundreedGramPrice22K').text('₹'+twentyTwo100);
+
+  $('.place').text(place);
+  $('.currentDate').text(updatedAt);
+  $('.todayGoldPrice').text('₹'+twentyTwo);
+  });*/
+</script>

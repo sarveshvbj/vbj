@@ -1,0 +1,111 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$basemediaurl = $objectManager->get('Magento\Store\Model\StoreManagerInterface')
+                    ->getStore()
+                    ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$imgix_url= $basemediaurl;//'https://cdn-media.vaibhavjewellers.com/pub/media/';
+ ?>
+<div class="container-fluid" style="margin-top: -120px;">
+<div class="inner-block d-flex mt-5">
+<div class="w-50">
+<a href="https://www.vaibhavjewellers.com/gold-jewellery.html?product_category_type=229">                   
+<picture><source type="image/webp"   data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/uttamakshnam-bridal-collection.jpg?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/uttamakshnam-bridal-collection.jpg?auto=compress">
+<img loading="lazy" style="padding-right: 4px;" class="w-100 hrDesk" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/uttamakshnam-bridal-collection.jpg?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/uttamakshnam-bridal-collection.jpg?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/uttamakshnam-bridal-collection.jpg?auto=compress" alt="Vaibhav-Uttamakshnam" width=""
+height=""></picture></a><a href="https://www.vaibhavjewellers.com/diamond-jewellery/women/pendants.html">                    
+<picture><source type="image/webp" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/trinity-collection.gif" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/trinity-collection.gif">
+<img loading="lazy" style="padding-right: 4px;"  class="w-100 hrDesk" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/trinity-collection.gif" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/trinity-collection.gif" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/trinity-collection.gif" alt="Vaibhav-Uttamakshnam-1" width=""
+height=""></picture></a></div>
+<div class="w-75">
+<div class="w-100 d-flex ring-row">
+<div class="ring-col"><a href="https://www.vaibhavjewellers.com/silvigo-collections.html">                               
+<picture><source type="image/webp"   data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/silvigo-collection.jpg?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/silvigo-collection.jpg?auto=compress">
+<img loading="lazy" style="padding-right: 4px;"  class="w-100 home-ring-img hrDesk" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/silvigo-collection.jpg?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/silvigo-collection.jpg?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/silvigo-collection.jpg?auto=compress" alt="silvigo-section" width=""
+height=""></picture></a></div>
+<div class="ring-col">
+<a href="https://www.vaibhavjewellers.com/butterfly-collection.html">                            
+<picture><source type="image/webp" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/butterfly-collection.jpg?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/butterfly-collection.jpg?auto=compress">
+<img loading="lazy" style="padding-right: 4px;" class="w-100 home-ring-img hrDesk" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/butterfly-collection.jpg?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/butterfly-collection.jpg?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/butterfly-collection.jpg?auto=compress" alt="butterfly-collection" width=""
+height=""></picture></a></div>
+<div class="ring-col"><a href="https://www.vaibhavjewellers.com/trinity-collection.html">
+<picture><source type="image/webp"   data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/tanmay-collection.jpg?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/tanmay-collection.jpg?auto=compress">
+<img loading="lazy"style="padding-right: 4px;"  class="w-100 home-ring-img hrDesk" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/tanmay-collection.jpg?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/tanmay-collection.jpg?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/tanmay-collection.jpg?auto=compress" alt="tanmay-collection" width=""
+height=""></picture></a></div></div>
+<div class="w-100 d-flex ring-row">
+<div class="ring-col">
+<a href="https://www.vaibhavjewellers.com/tara-collection.html">
+<picture><source type="image/webp"   data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/tara-collection.jpg?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/tara-collection.jpg?auto=compress">
+<img loading="lazy" style="padding-right: 4px;" class="w-100 home-ring-img hrDesk" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/tara-collection.jpg?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/tara-collection.jpg?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/tara-collection.jpg?auto=compress" alt="tara-collection" width=""
+ height=""></picture></a></div>
+<div class="ring-col"><a href="https://www.vaibhavjewellers.com/floral-collection.html">
+<picture><source type="image/webp"   data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/floral-collection.jpg?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/floral-collection.jpg?auto=compress">
+<img loading="lazy" style="padding-right: 4px;" class="w-100 home-ring-img hrDesk" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/floral-collection.jpg?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/floral-collection.jpg?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/floral-collection.jpg?auto=compress" alt="Floral-Collection" width=""
+height=""></picture></a></div>
+<div class="ring-col"><a href="https://www.vaibhavjewellers.com/glam-glitz.html">
+<picture><source type="image/webp"   data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/glam-glitz-collection.jpg?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/glam-glitz-collection.jpg?auto=compress">
+<img loading="lazy" style="padding-right: 4px;" class="w-100 home-ring-img hrDesk" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/glam-glitz-collection.jpg?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/glam-glitz-collection.jpg?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/glam-glitz-collection.jpg?auto=compress" alt="Glam-Collection" width=""
+height=""></picture></a></div></div></div></div>
+<div class="inner-block-video mt-5 row">
+<div class="col-md-6">
+<h5 style="text-align:center;text-decoration: underline;margin-right: 155px;">Education</h5>
+<div><picture><source type="image/webp"   data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/Home_Page_(41).webp" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/Home_Page_(41).webp">
+<img loading="lazy" class="col-md-3" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/Home_Page_(41).webp" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/Home_Page_(41).webp" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/Home_Page_(41).webp"  width=""
+height=""></picture><a href="https://www.vaibhavjewellers.com/diamond-anatomy"><span style="color:black;font-size: 16px;letter-spacing: 0;" class="col-md-7 offset-1">Know your Diamond</span></a>
+<p class="flt" style="font-size: 13px;margin-left: 198px;">Diamond to the princess cut, we'll help you choose the shape that complements your style.</p>
+</div><div class="pt-2"><picture><source type="image/webp"   data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/Home_Page_(56).webp" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/Home_Page_(56).webp">
+<img loading="lazy" class="col-md-3" data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/Home_Page_(56).webp" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/Home_Page_(56).webp" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/Home_Page_(56).webp"  width=""
+ height=""></picture><a href="https://www.vaibhavjewellers.com/gold-color"><span style="color:black"  class="col-md-7 offset-1">Know your Metal</span></a>
+<p class="flt" style="font-size: 13px;margin-left: 198px;">GOLD Won't tarnish, rust, or corrode, and though it's very strong, it is also the most malleable of all metals.</p>
+</div></div>
+<div class="col-md-6">
+<h5 style="text-align: center;text-decoration: underline;">Testimonials</h5>
+                    <!-- <div class="d-flex mt-4">
+                        <div class="w-75">
+                            <iframe class="border-0 mr-2 w-100" width="354" height="200" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
+                        </div>
+                        <div class="w-50">
+                            <iframe class="border-0 mr-2 w-100" width="177" height="95" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
+                            <iframe width="177" class="border-0 mt-2 w-100" height="95" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe>
+                        </div>
+                    </div> -->
+                    <div id="slider" class="m-auto">
+        <div id="deo" class="carousel slide" data-ride="carousel">
+    
+            <!-- Indicators -->
+            <ul class="carousel-indicators">
+                <li data-target="#deo" data-slide-to="0" class="active"></li>
+                <li data-target="#deo" data-slide-to="1"></li>
+                <li data-target="#deo" data-slide-to="2"></li>
+            </ul>
+    
+            <!-- The slideshow -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">                    
+                        <picture>
+                         <source type="image/webp"   data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/vaibhav-customer-testimonial-4.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/vaibhav-customer-testimonial-4.webp?auto=compress">
+                    <img loading="lazy"  data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/vaibhav-customer-testimonial-4.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/vaibhav-customer-testimonial-4.webp?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/vaibhav-customer-testimonial-4.webp?auto=compress" alt="Vaibhav-Testimony-Desktop-1" width=""
+                    height="">
+                    </picture>
+                </div>
+                <div class="carousel-item">                   
+                        <picture>
+                         <source type="image/webp"  data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/vaibhav-customer-testimonial-3.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/vaibhav-customer-testimonial-3.webp?auto=compress">
+                    <img loading="lazy"  data-srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/vaibhav-customer-testimonial-3.webp?auto=compress" srcset="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/vaibhav-customer-testimonial-3.webp?auto=compress" data-src="<?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/vaibhav-customer-testimonial-3.webp?auto=compress" alt="Vaibhav-Testimony-Desktop-2" width=""
+                    height="">
+                     </picture> 
+                </div>
+                
+            </div>
+    
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#deo" data-slide="prev">
+                <span class="carousel-control-prev-icon"><span class="arrow arrow-left"></span></span>
+            </a>
+            <a class="carousel-control-next" href="#deo" data-slide="next">
+                <span class="carousel-control-next-icon"><span class="arrow arrow-right"></span></span>
+            </a>
+        </div>
+    </div>    
+                </div>
+            </div>
+        </div>
+    

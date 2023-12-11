@@ -1,0 +1,36 @@
+<?php $helper = $this->helper("Prince\Buynow\Helper\Data"); ?>
+<?php $addtocartId = $helper->getConfig('buynow/general/addtocartid'); ?>
+<?php $buttonTitle = $helper->getConfig('buynow/general/buttontitle'); ?>
+<?php $formId = $addtocartId ? $addtocartId : "product_addtocart_form"; ?>
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');
+$smart_percentage = $product->getResource()->getAttribute('smart_percentage')->getFrontend()->getValue($product);
+$productId = $product->getId(); // YOUR PRODUCT ID
+/*$productStock = $product->get($productId);
+echo $stockQty = $productStock->getQty();*/
+$StockState = $objectManager->get('\Magento\CatalogInventory\Api\StockStateInterface');
+$StockState = $StockState->getStockQty($productId);
+?>
+ <?php if ($smart_percentage !="0" && isset($smart_percentage)):?>
+    <button type="submit" title="<?php /* @escapeNotVerified */ echo __($buttonTitle) ?>" id="buy-now-offer" class="action primary buynow" disabled data-mage-init='
+    {
+        "Prince_Buynow/js/buy-now": {
+            "form": "#<?php echo $formId; ?>"
+        }
+    }
+    '>
+        <span><?php /* @escapeNotVerified */ echo __($buttonTitle) ?></span>
+    </button>
+<?php else : ?>
+  <button type="submit" title="<?php /* @escapeNotVerified */ echo __($buttonTitle) ?>" id="buy-now" class="action primary buynow"  data-mage-init='
+    {
+        "Prince_Buynow/js/buy-now": {
+            "form": "#<?php echo $formId; ?>"
+        }
+    }
+    '>
+        <span><?php /* @escapeNotVerified */ echo __($buttonTitle) ?></span>
+    </button>
+<?php endif; ?>
+

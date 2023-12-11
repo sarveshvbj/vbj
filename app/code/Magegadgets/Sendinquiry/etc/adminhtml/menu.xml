@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+
+		<add id="Magegadgets_Sendinquiry::sendinquiry" title="Send Enquiry Form" module="Magegadgets_Sendinquiry" sortOrder="20" parent="Magegadgets_Pricemanger::magegadgets_additionalform" action="sendinquiry/sendinquiry" resource="Magegadgets_Sendinquiry::sendinquiry"/>
+
+    </menu>
+</config>

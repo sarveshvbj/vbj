@@ -1,0 +1,315 @@
+<style>
+.filter-list:hover {
+    background-color: #99188E;
+}
+.filter-item-list {
+   border-bottom: 1px solid #eee;
+}
+.filter-list{
+    z-index:100;
+}
+    .modal-backdrop.fade.show {
+    display: none;
+}
+.page-layout-1column.page-with-filter .column.main{
+        padding-top: 0px !important;
+}
+.filter-item-list{
+    padding:8px;
+}
+
+    .catalogsearch-result-index .column.main {
+    width: 100%;
+}
+.catalogsearch-result-index .wrapper{
+        padding: 0 3.25rem;
+    margin-left: 27px;
+}
+.catalogsearch-result-index .text-left{
+  background-color: #f4f4f4;
+    padding: 10px;
+}
+.catalogsearch-result-index .text-left a {
+    color: grey;
+    font-size: 14px;
+}
+.catalogsearch-result-index .filter-list a {
+    color: grey;
+}
+
+  .page-layout-1column .filter-content {
+    margin-top: 0px !important;
+}
+.filter-current{
+  display: inline;
+  /*Added by prudhvi 27/06/2022-- starts */
+  margin-left: 64px;
+  font-size: 12px;
+  text-transform: uppercase;
+  /* ends */
+}
+
+.filter-current ol.items li{
+   display: inline;
+   margin-left: 10px;
+   line-height: 50px;
+}
+.items{
+   display: inline;
+   
+}
+.block-actions.filter-actions{
+  display: inline;
+}
+strong.block-subtitle.filter-current-subtitle {
+    font-weight: normal;
+}
+span.filter-label{
+  font-weight: bold;
+}
+.block-actions.filter-actions span {
+    /*padding-left: 30px;*/
+    /*Added by prudhvi 27/06/2022-- starts */
+    font-size: 13px;
+    background-color: #f1c8c4;
+    padding: 6px 14px;
+    border-radius: 4px;
+    margin-left: 10px;
+    font-weight: 600;
+    border: 1px solid #c5a3a1;
+    /* ends */
+}
+.fa-times:before {
+    content: "\f00d";
+    color: darkgrey;
+    /*font-size: 11px;*/
+    /*padding: 0 15px;*/
+    
+    /*Added by prudhvi 27/06/2022-- starts */
+    font-size: 12px;
+    padding: 0 20px 0 0;
+    /* ends */
+}
+</style>
+<?php if ($block->canShowBlock()): ?>
+<?php
+    $filters = $block->getFilters();
+    //$layerConfig = $this->helper('Mageplaza\LayeredNavigation\Helper\Data')->getLayerConfiguration($filters);
+    $filtered = count($block->getLayer()->getState()->getFilters());
+?>
+<div class="block filter" id="layered-filter-block-1">
+    
+    <div id="ln_overlay" class="ln_overlay">
+        <div class="loader">
+            <img src="<?php echo $block->getViewFileUrl('images/loader-1.gif'); ?>" alt="Loading...">
+        </div>
+    </div>
+    
+    <div class="block-title filter-title" data-count="<?php /* @escapeNotVerified */ echo $filtered; ?>">
+        <strong data-role="title"><?php /* @escapeNotVerified */ echo __('') ?></strong>
+    </div>
+    
+    <div class="block-content filter-content">
+        <?php echo $block->getChildHtml('state') ?>
+
+        <?php if ($block->getLayer()->getState()->getFilters()): ?>
+            <div class="block-actions filter-actions">
+                <a href="<?php /* @escapeNotVerified */ echo $block->getClearUrl() ?>" class="action clear filter-clear"><span><?php /* @escapeNotVerified */ echo __('Clear All') ?></span></a>
+            </div>
+        <?php endif; ?>
+        <?php //echo "Hello" ; ?>
+        <!--block class="Sebwite\Sidebar\Block\Sidebar" name="category-sidebar" template="Sebwite_Sidebar::sidebar.phtml"/-->
+        
+        
+        <?php $wrapOptions = false; ?>
+        <?php $display_count = 0; ?>
+        <?php foreach ($filters as $key => $filter): ?>
+        
+        <?php
+        //echo "<pre>";
+        //print_r($filter->getRequestVar());
+        //exit;
+        ?>
+          
+            <?php if ($filter->getItemsCount()): ?>
+                 <?php if ($display_count < 6): ?>
+               <?php $display_count++; ?>
+                <?php if (!$wrapOptions): ?>
+                    <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle"><?php echo __('') ?></strong>
+                    <div class="filters" id="filters" data-role="content">
+                <?php  $wrapOptions = true; endif; ?>
+              <!-- For adding category list with expand instead of filter -->
+                <?php if($filter->getRequestVar()=='cat'): ?>
+                   
+                <?php else: ?>
+
+                     <?php if($filter->getRequestVar() != 'price'): ?>
+
+                <div  class="filter-list" attribute="<?php echo $filter->getRequestVar() ?>">
+                   <!--  <div data-role="ln_title" class="filter-options-title"></div> -->
+                    <span><?php /* @escapeNotVerified */ echo __($filter->getName()) ?></span>
+                    <?php /* @escapeNotVerified */  echo $block->getChildBlock('renderer')->setFilter($filter)->render($filter); ?>
+                </div>
+                <?php endif; ?>
+            <?php endif; ?>
+            <?php endif; ?>
+            <?php endif; ?>
+
+        <?php endforeach; ?>
+        <div class="filter-list" data-toggle="modal" href="#more_filters">
+            <span>see more filters</span>
+        </div>
+        <?php if ($wrapOptions): ?>
+            </div>
+        <?php else: ?>
+            <script>
+                require([
+                    'jquery'
+                ], function ($) {
+                    $('#layered-filter-block').addClass('filter-no-options');
+                });
+            </script>
+        <?php endif; ?>
+
+        <?php echo $block->getChildHtml('layer_additional_info') ?>
+    </div>
+</div>
+<div class="block filter" id="layered-filter-block">
+     <div class="block-content filter-content">
+    <div class="modal fade" id="more_filters">
+        <div class="modal-dialog" style="margin-top: 176px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Filters</h4>
+                    <button type="button" class="close" id="filter-close-modal" data-dismiss="modal" aria-hidden="true"><span>&times;</span></button>
+                </div>
+                <div class="modal-body total_filters">
+                  <div class="morefilter_popup" id ="start_row">
+                    <div class ="row m-0">
+
+                     
+            <?php            
+                       
+        //$category = 3;
+
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+$request = $objectManager->get('Magento\Framework\App\Action\Context')->getRequest();
+
+if ($request->getFullActionName() == 'catalog_category_view') {
+
+$currentCategory = $objectManager->get('Magento\Framework\Registry')->registry('current_category');//get current category 
+
+$category = $currentCategory->getId();
+
+
+
+        $filterableAttributes = $objectManager->getInstance()->get(\Magento\Catalog\Model\Layer\Category\FilterableAttributeList::class);
+
+        $appState = $objectManager->getInstance()->get(\Magento\Framework\App\State::class);
+        $layerResolver = $objectManager->getInstance()->get(\Magento\Catalog\Model\Layer\Resolver::class);
+        $filterList = $objectManager->getInstance()->create(
+            \Magento\Catalog\Model\Layer\FilterList::class,
+                [
+                    'filterableAttributes' => $filterableAttributes
+                ]
+            );      
+
+            $layer = $layerResolver->get();
+            $layer->setCurrentCategory($category);
+            $filters = $filterList->getFilters($layer);
+            $maxPrice = $layer->getProductCollection()->getMaxPrice();
+            $minPrice = $layer->getProductCollection()->getMinPrice();  
+
+}
+        $i = 0;
+        
+       foreach($filters as $filter)
+       {
+           //$availablefilter = $filter->getRequestVar(); //Gives the request param name such as 'cat' for Category, 'price' for Price
+           $availablefilter = (string)$filter->getName(); //Gives Display Name of the filter such as Category,Price etc.
+           $items = $filter->getItems(); //Gives all available filter options in that particular filter
+           $filterValues = array();
+          
+           $j = 0;
+           foreach($items as $item)
+           {
+
+
+               $filterValues[$j]['display'] = strip_tags($item->getLabel());
+               $filterValues[$j]['value']   = $item->getValue();
+               $filterValues[$j]['count']   = $item->getCount(); //Gives no. of products in each filter options
+                $filterValues[$j]['url']   = $item->getUrl(); //Gives no. of products in each filter options
+               $j++;
+           }
+           if(!empty($filterValues) && count($filterValues)>0)
+           {
+               $filterArray['availablefilter'][$availablefilter] =  $filterValues;
+           }
+           $i++;
+       }  
+
+       foreach($filterArray['availablefilter'] as $getitem =>$values)
+           {
+
+
+?>
+
+<div  class="col col-md-3" attribute="<?php echo $getitem; ?>">
+                   <!--  <div data-role="ln_title" class="filter-options-title"></div> -->
+  <h3 class ="fliter_head_name"><?php /* @escapeNotVerified */  echo $getitem; ?></h3>
+  
+    
+                      <div class="filter-content">
+
+                     <?php  foreach($values as $getfinal){?>  
+                        <div class="select_tick">
+<a href="<?php echo $getfinal['url']; ?>">
+                     <label class="tick_mark"><?php echo $getfinal['display']; ?>
+                   
+                        <input type="checkbox" class="filter-check"/>
+                    
+                   <span class="checkmark"></span>
+                        
+                  </label>
+                  <span class="count_num"><?php echo $getfinal['count']; ?><span class="filter-count-label"><?php echo ($getfinal['count'] == 1) ? '' : ''; ?></span></span>
+                </a>
+                </div>
+            <?php }?>
+
+</div>
+</div>
+
+<?php }
+
+
+    ?>
+
+                
+                  
+
+         </div>
+
+                  </div>
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<?php endif; ?>
+<script>
+require(['jquery', 'jquery/ui'], function($){
+   
+        
+
+            if ($("#more_filters").hasClass("show")) {
+              $("#more_filters .close").trigger('click');
+     }
+    
+
+        
+    });
+
+</script>

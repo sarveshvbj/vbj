@@ -1,0 +1,182 @@
+<?php 
+$product = $block->getProduct();
+$groupCollection = $block->getAttributeLabels();
+ $_helper = $this->helper('Retailinsights\ConfigProducts\Helper\Data');
+$html = '';
+$arraySection = array("Basic Information", "Diamond Information", "Metal Information", "Certificaion Details", "Product Dimension", "Other Information", "Product Findings");
+$count=0;
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');
+$categories = $product->getCategoryIds(); /*will return category ids array*/
+/*print_r($categories);*/
+foreach($categories as $category){
+    $cat = $objectManager->create('Magento\Catalog\Model\Category')->load($category);
+    $categoryName[] = $cat->getName();
+    }
+$cateName = reset($categoryName);
+?>
+
+	<?php
+	// foreach ($groupCollection as $group) {
+	// 	$attributes = $product->getAttributes($group->getId(), true);
+	// 	$count++;
+	// 	if(in_array($group->getData('attribute_group_name'),$arraySection)){
+	// 		$new_html = "";
+	// 		    $attr = str_replace(' ', '_', $group->getData('attribute_group_name'));
+	// 		    $show="";
+	// 				if($attr=="Basic_Information" || $attr=="Certificaion_Details" || $attr=="Metal_Information") {
+	// 					$show="show";
+	// 				} else {
+	// 					$show="";
+	// 				}
+	// 			$new_html .= '<div id="'.$attr.'" class="collapse '.$show.'">';
+
+	// 			foreach ($attributes as $key => $attribute) {
+	// 				if($attribute->getIsVisibleOnFront() && $attribute->getFrontend()->getValue($product) !="" && $attribute->getFrontend()->getValue($product) !="Non" && $attribute->getFrontend()->getValue($product) !="No" && $attribute->getFrontend()->getValue($product) !="0"){
+	// 					$classText = $_helper->getStrReplaceWithHyphen(trim(substr($attribute->getFrontend()->getLabel(), 0, strpos($attribute->getFrontend()->getLabel(), "("))));
+	// 					if(!$classText)
+	// 						$classText = $_helper->getStrReplaceWithHyphen($attribute->getFrontend()->getLabel());
+	// 					$new_html .= '<div class="clearfix detail-list">' . $attribute->getFrontend()->getLabel(). '
+	// 								  <span class="float-right vbj_'.$classText.'">' . $attribute->getFrontend()->getValue($product) . '</span></div>';
+	// 				}
+	// 			}
+	// 			$new_html .= '</div>';
+	// 			if($new_html!=''){
+	// 				$html .= '<div>' ;
+	// 				$attr_code=str_replace(' ', '_', $group->getData('attribute_group_name'));
+	// 				$collapsed="";
+
+	// 				$html .= '<a href="javascript:void(0);" class="detail-collapse mt-1 '.$collapsed.'" data-toggle="collapse" data-target="#'.$attr_code.'">' . $group->getData('attribute_group_name').'</a>';
+	// 				$html .= $new_html;
+	// 				$html .= '</div>' ;
+	// 				echo $group->getData('attribute_group_name');
+	// 			}
+	// 	} 
+		
+	// }
+	// echo $html;
+$row_count = 1;
+	?>
+<div class="accordion" id="accordionExample">
+  
+	<?php
+	foreach ($groupCollection as $group) {
+		$attributes = $product->getAttributes($group->getId(), true);
+		$count++;
+		if(in_array($group->getData('attribute_group_name'),$arraySection)){
+			$new_html = ""; ?>
+
+			<div class="card">
+		    <div class="card-header" id="headingOne<?php echo $row_count; ?>">
+		      <h2 class="mb-0">
+		        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne<?php echo $row_count; ?>" aria-expanded="true" aria-controls="collapseOne "><?php
+			    $attr = str_replace(' ', '_', $group->getData('attribute_group_name'));
+			    echo $group->getData('attribute_group_name'); ?>
+
+			       </button>
+			      </h2>
+			    </div>
+				<div id="collapseOne<?php echo $row_count; ?>" class="show" aria-labelledby="headingOne" data-parent="#accordionExample<?php echo $row_count; ?>">
+			    <?php
+			    $show="";
+					if($attr=="Basic_Information" || $attr=="Certificaion_Details" || $attr=="Metal_Information") {
+						$show="show";
+					} else {
+						$show="";
+					}
+				$new_html .= '<div id="'.$attr.'" class="collapse '.$show.'">';
+
+				foreach ($attributes as $key => $attribute) {
+					if($attribute->getIsVisibleOnFront() && $attribute->getFrontend()->getValue($product) !="" && $attribute->getFrontend()->getValue($product) !="Non" && $attribute->getFrontend()->getValue($product) !="No" && $attribute->getFrontend()->getValue($product) !="0"){
+						$classText = $_helper->getStrReplaceWithHyphen(trim(substr($attribute->getFrontend()->getLabel(), 0, strpos($attribute->getFrontend()->getLabel(), "("))));
+						if(!$classText)
+							$classText = $_helper->getStrReplaceWithHyphen($attribute->getFrontend()->getLabel());
+						$new_html .= '<div class="clearfix detail-list">' . $attribute->getFrontend()->getLabel(). '
+									  <span class="float-right vbj_'.$classText.'">' . $attribute->getFrontend()->getValue($product) . '</span></div>';
+
+						?>
+						
+					    <div class="card-body <?=$cateName.'_'.$attribute->getFrontend()->getLabel();?>">
+						   	<span class="detail-info "><?php echo $attribute->getFrontend()->getLabel(); ?></span>
+						    <span class="detail-qty"><?php echo $attribute->getFrontend()->getValue($product); ?></span>
+					   </div>
+                       
+					<?php }
+				}
+					   ?> </div> <?php
+				$new_html .= '</div>';
+				if($new_html!=''){
+					$html .= '<div>' ;
+					$attr_code=str_replace(' ', '_', $group->getData('attribute_group_name'));
+					$collapsed="";
+
+					if($attr_code=="Basic_Information" || $attr_code=="Certificaion_Details" || $attr_code=="Metal_Information") {
+						$collapsed="";
+					} else {
+						$collapsed="collapsed";
+					}
+					$html .= '<a href="javascript:void(0);" class="detail-collapse mt-1 '.$collapsed.'" data-toggle="collapse" data-target="#'.$attr_code.'">' . $group->getData('attribute_group_name').'</a>';
+					$html .= $new_html;
+					$html .= '</div>' ;
+				}
+
+					  ?></div><?php
+		} 
+		$row_count  ++;
+	}
+
+	?>
+
+</div>
+
+<style type="text/css">
+	.detail-qty{
+		float:  right;
+	}
+
+	.card-header{
+		border: 0;
+	    display: block;
+	    cursor: pointer;
+	    font-weight: 600;
+	    padding: 0.5rem 0;
+	    position: relative;
+	    background-color: #FFF;
+	    color: #6F2D91 !important;
+	    text-decoration: none !important;
+	    border-bottom: 2px solid #bcbcbc;
+	}
+	.card-body{
+		color: #81AA6E;
+	    font-weight: 600;
+	    padding: 0.5rem 5px;
+	    font-size: 1.1rem;
+	    text-decoration: none !important;
+	    border-bottom: 1px solid #bcbcbc;
+	}
+	.detail-info{
+		color: black !important;
+	} 
+	.detail-qty{
+		color: black !important;
+	}
+	.btn-link{
+		color: black !important;
+	}
+	.Silver_Purity{
+		display: none;
+	}
+</style>
+<script type="text/javascript">
+/*require(['jquery', 'jquery/ui'], function($){
+
+$('.detail-info').each(function() {
+  if ($.trim($(this).text()) == 'purity') {
+  	console.log('Purity ');
+    $(this).next('.detail-info').css('display', 'none');
+  }
+});
+
+});*/
+
+</script>

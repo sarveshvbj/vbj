@@ -1,0 +1,63 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Review\Block\Product\ReviewRenderer $block */
+
+$url = $block->getReviewsUrl() . '#reviews';
+$urlForm = $block->getReviewsUrl() . '#review-form';
+$urlLvideoForm = $block->getReviewsUrl() . '#custom-form';
+?>
+<?php 
+$_product = $block->getProduct();
+
+$_product->getSku();
+?>
+<div class="p-sku">
+ <div class="fz-small text-violet text-uppercase">sku:-<?= $_product->getSku() ?></div>
+ <div class="fz-small text-violet">Free shipping in India</div>
+  </div>
+ 
+<?php 
+return;
+?>
+<?php if ($block->getReviewsCount()): ?>
+<?php $rating = $block->getRatingSummary(); ?>
+<div class="product-reviews-summary<?= !$rating ? ' no-rating' : '' ?>" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+    <?php if ($rating):?>
+    <div class="rating-summary">
+         <span class="label"><span><?= $block->escapeHtml(__('Rating')) ?>:</span></span>
+         <div class="rating-result" title="<?= $block->escapeHtmlAttr($rating); ?>%">
+             <span style="width:<?= $block->escapeHtmlAttr($rating); ?>%">
+                 <span>
+                     <span itemprop="ratingValue"><?= $block->escapeHtml($rating); ?></span>% of <span itemprop="bestRating">100</span>
+                 </span>
+             </span>
+         </div>
+     </div>
+    <?php endif;?>
+    <div class="reviews-actions">
+        <a class="action view bd-right"
+           href="<?= $block->escapeUrl($url) ?>">
+            <span itemprop="reviewCount"><?= $block->escapeHtml($block->getReviewsCount()) ?></span>&nbsp;
+            <span><?= ($block->getReviewsCount() == 1) ? $block->escapeHtml(__('Review')) : $block->escapeHtml(__('Reviews')) ?></span>
+        </a>
+        <a class="action add bd-right" href="<?= $block->escapeUrl($urlForm) ?>" onclick="document.getElementById('askquestion').scrollIntoView();"><?= $block->escapeHtml(__('Add Your Review')) ?></a>
+        <a class="action add" href="<?= $block->escapeUrl($urlForm) ?>" onclick="document.getElementById('custom-form').scrollIntoView();"><?= $block->escapeHtml(__('Live Video Shopping')) ?></a>
+    </div>
+</div>
+<?php elseif ($block->getDisplayIfEmpty()): ?>
+<div class="product-reviews-summary empty">
+    <div class="reviews-actions">
+        <a class="action add bd-right" href="<?= $block->escapeUrl($urlForm) ?>" onclick="document.getElementById('askquestion').scrollIntoView();">
+            <?= $block->escapeHtml(__('Add Your Review')) ?> <!-- Be the first to review this product -->
+        </a>
+        <a class="action add" href="<?= $block->escapeUrl($urlForm) ?>" onclick="document.getElementById('custom-form').scrollIntoView();"><?= $block->escapeHtml(__('Live Video Shopping')) ?></a>
+    </div>
+</div>
+<?php endif; ?>
+

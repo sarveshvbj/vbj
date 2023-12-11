@@ -1,0 +1,167 @@
+.page-main > .page-title-wrapper .page-title{
+	margin-top: 25px;
+    font-weight: 600;
+    margin-left: 450px;
+    color: #6e2083;
+}
+.page-bottom {
+	width:100% !important;
+}
+main#maincontent{
+	border: 1px solid #ccc;
+width: 90%;
+margin-top: 5%;
+padding-bottom: 20px !important;
+margin-bottom: 5%;
+padding-left: 20px !important;
+padding-right: 20px !important;
+}
+
+.mark, mark {
+	background-color: transparent !important; 
+}
+
+.cart{
+	background-color: #fff;
+	    color: #000 !important;
+}
+.price{
+	float: none;
+}
+
+.paypal-review .table-paypal-review-items .col.price .price-including-tax, .paypal-review .table-paypal-review-items .col.price .price-excluding-tax, .paypal-review .table-paypal-review-items .col.subtotal .price-including-tax, .paypal-review .table-paypal-review-items .col.subtotal .price-excluding-tax, .cart.table-wrapper .col.price .price-including-tax, .cart.table-wrapper .col.price .price-excluding-tax, .cart.table-wrapper .col.subtotal .price-including-tax, .cart.table-wrapper .col.subtotal .price-excluding-tax, .cart.table-wrapper .col.msrp .price-including-tax, .cart.table-wrapper .col.msrp .price-excluding-tax, .order-details-items .col.price .price-including-tax, .order-details-items .col.price .price-excluding-tax, .order-details-items .col.subtotal .price-including-tax, .order-details-items .col.subtotal .price-excluding-tax{
+	font-size: 1.3rem;
+}
+
+.cart.table-wrapper .actions-toolbar {
+	min-height: 30px;
+}
+
+tr.totals-tax {
+    display: none;
+}
+.cart-totals tbody .amount, .cart-totals tfoot .amount, 
+.opc-block-summary .table-totals tbody .amount, 
+.opc-block-summary .table-totals tfoot .amount,
+.cart-totals tbody .mark, .cart-totals tfoot .mark{
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+.cart-totals .grand .mark, .opc-block-summary .table-totals .grand .mark,
+.cart-totals .grand .amount, .opc-block-summary .table-totals .grand .amount{
+	font-size: 1.3rem;
+}
+
+.cart-summary .checkout-methods-items .action.primary.checkout{
+	line-height: 1.2rem;
+	padding: 15px 17px;
+	font-size: 1.2rem;
+}
+
+.block-cart-failed .actions.main .continue, .block-cart-failed .actions.main .clear,
+.cart-container .form-cart .actions.main .continue, 
+.cart-container .form-cart .actions.main .clear {
+	display: initial;
+}
+
+.cart-summary > .title {
+	text-align: center;
+	font-size: 1.9rem;
+}
+.gift-item-block .title, .gift-item-block .title::after {
+	font-size: 1rem;
+	margin:0 0 0 5px;
+	text-align: center;
+}
+
+.cart.table-wrapper .product-item-name {
+	text-align: center;
+	font-size: 0.9rem;
+}
+
+/*buttons */
+
+.action.clear, .action.continue {
+	margin-right: 10px;
+}
+
+.action.clear, .action.update,.action.action-cancel,.action.action-cancel:hover,
+.action.secondary.action-update,
+.action.secondary.action-update:hover, 
+.action.clear:hover, .action.update:hover,
+.action.clear:focus, .action.update:focus,
+.action.clear:active, .action.update:active,
+.action.action-cancel:active, .action.secondary.action-update:active,
+.action.action-cancel:focus, .action.secondary.action-update:focus {
+	background: #fff;
+color: #6e2083;
+outline:none;
+border: 2px solid #6e2083;
+border-radius: 3px;
+}
+
+.gift-options .actions-toolbar .secondary .action-cancel {
+	background: #fff;
+color: #6e2083;
+outline:none;
+border: 2px solid #6e2083;
+border-radius: 3px;
+margin-top: 0px;
+padding: 7px 15px;
+}
+.action.primary,.action.primary:hover,.action.primary:focus, .action.primary:active, .cart-discount .actions-toolbar .action.primary, .cart-discount .actions-toolbar .action.cancel,.cart-discount .actions-toolbar .action.primary:hover  {
+	background: #fcba66;
+border: 1px solid #fcba66;
+font-weight: bold;
+box-shadow: none !important;
+color: #fff;
+}
+
+.action.continue, .action.continue:hover {
+	padding: 10px 15px;
+background: #6e2083;
+border: 2px solid #6e2083;
+color: #fff;
+border-radius: 3px;
+}
+/* button end */
+
+/* input boxes */
+input[type="text"], input[type="password"], input[type="url"], input[type="tel"], input[type="search"], input[type="number"], input[type="datetime"], input[type="email"] {
+	height: 45px;
+	border-radius: 3px;
+
+}
+._keyfocus :focus, input:not([disabled]):focus, textarea:not([disabled]):focus, select:not([disabled]):focus{
+	box-shadow: none;
+}
+
+/* input boxes end */
+
+/*coupon */
+
+#coupon_code {
+	padding: 15px 15px;
+	border-radius: 2px;
+	height: auto !important;
+}
+
+.abs-discount-block-desktop .block > .title strong, 
+.paypal-review-discount .block > .title strong, 
+.cart-discount .block > .title strong {
+	font-size: 1.2rem;
+	color:#000;
+}
+
+.cart-discount .block > .title{
+text-align: center;
+}
+.cart-discount .block > .title::after {
+	display: none;
+}
+
+/*coupon end */
+
+
+

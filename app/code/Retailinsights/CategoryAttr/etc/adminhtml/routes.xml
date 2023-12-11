@@ -1,0 +1,19 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="proma_banner_1" frontName="categoryimageupload">
+            <module name="Retailinsights_CategoryAttr" before="Magento_Backend" />
+        </route>
+        <route id="proma_banner_2" frontName="categoryimageupload1">
+            <module name="Retailinsights_CategoryAttr" before="Magento_Backend" />
+        </route>
+        <route id="proma_banner_3" frontName="categoryimageupload2">
+            <module name="Retailinsights_CategoryAttr" before="Magento_Backend" />
+        </route>
+        <route id="proma_banner_4" frontName="categoryimageupload3">
+            <module name="Retailinsights_CategoryAttr" before="Magento_Backend" />
+        </route>
+        <route id="mobile_banner" frontName="categoryimageupload4">
+            <module name="Retailinsights_CategoryAttr" before="Magento_Backend" />
+        </route>
+    </router>
+</config>

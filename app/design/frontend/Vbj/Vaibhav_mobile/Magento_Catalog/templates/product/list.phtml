@@ -1,0 +1,907 @@
+<link rel="stylesheet" type="text/css" href="<?php echo $block->getViewFileUrl('css/category_listing_custom.css')?>"> 
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+use Magento\Framework\App\Action\Action;
+
+// @codingStandardsIgnoreFile
+
+?>
+
+
+<?php
+/**
+ * Product list template
+ *
+ * @var $block \Magento\Catalog\Block\Product\ListProduct
+ */
+?>
+
+<?php
+/**
+ * @var $block \DavidRobert\GetRatingSummary\Block\GetRatingSummary
+ */
+?>
+
+<?php 
+$_objectManager = \Magento\Framework\App\ObjectManager::getInstance(); //instance of\Magento\Framework\App\ObjectManager
+$storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+$currentStore = $storeManager->getStore();
+$baseUrl = $currentStore->getBaseUrl();
+$mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$linkUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_LINK);
+
+?>
+<?php
+$_productCollection = $block->getLoadedProductCollection();
+$mainListingCollection = $_productCollection->getData();
+$_helper = $block->getData('outputHelper');//$this->helper('Magento\Catalog\Helper\Output');
+?>
+<?php if (!$_productCollection->count()): ?>
+    <div class="message info empty"><div><?= /* @escapeNotVerified */ __('We can\'t find products matching the selection.') ?></div></div>
+<?php else: ?> 
+    <?php
+    if ($block->getMode() == 'grid') {
+        $viewMode = 'grid';
+        $imageDisplayArea = 'category_page_grid';
+        $showDescription = false;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    } else {
+        $viewMode = 'list';
+        $imageDisplayArea = 'category_page_list';
+        $showDescription = true;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::FULL_VIEW;
+    }
+    /**
+     * Position for actions regarding image size changing in vde if needed
+     */
+    $pos = $block->getPositioned();
+    ?>
+
+    <div class="wrapper">
+        <div class="bread-crumbs">
+             <?= $this->getChildHtml('breadcrumbs');?>
+        </div>
+        <div class="category-page-header" id="category.page.header">
+            <?php
+                 $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                 $retailHelper = $objectManager->get('Retailinsights\ConfigProducts\Helper\Data');
+                  $productTypeInstance = $objectManager->get('Magento\ConfigurableProduct\Model\Product\Type\Configurable');
+                 $category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');
+                $promo_banners=array();
+                $promo_count=0;
+                 $current_cateid='';
+    if($category){ 
+      $current_cateid=$category->getId();
+  }
+             ?>
+             <?php 
+             $objectManager2 = \Magento\Framework\App\ObjectManager::getInstance();
+             $request1 = $objectManager2->get('\Magento\Framework\App\Request\Http');
+if ($request1->getFullActionName() == 'catalog_category_view') {?>
+              <script type="text/javascript">
+    //      dataLayer.push({'event':'category_view',
+    //     'id':' echo $category->getId();  ?>',
+    //     'name':' echo $category->getData('name');  ?>',
+    //     'path':' echo $category->getData('url_path');  ?>',
+    //     'url':' echo $category->getData('url');  ?>'
+       
+    // });
+      </script>
+      <?php }?>
+             <?= $this->getChildHtml('page.main.title');?>
+            <?= $block->getAdditionalHtml() ?>
+            <?php 
+            $promo_alt=array();
+            if($category) {
+                if($category->getData('promo_banner')) {
+                    array_push($promo_banners, $category->getData('promo_banner'));
+                    array_push($promo_alt, $category->getData('promobanner_alttext'));
+                }
+                if($category->getData('promo_banner_1')) {
+                    array_push($promo_banners, $category->getData('promo_banner_1'));
+                    array_push($promo_alt, $category->getData('promobanner_alttext2'));
+                }
+                if($category->getData('promo_banner_2')) {
+                    array_push($promo_banners, $category->getData('promo_banner_2'));
+                    array_push($promo_alt, $category->getData('promobanner_alttext3'));
+                }
+                if($category->getData('promo_banner_3')) {
+                    array_push($promo_banners, $category->getData('promo_banner_3'));
+                    array_push($promo_alt, $category->getData('promobanner_alttext4'));
+                }
+             if(!empty($promo_banners)) {
+                $promo_count=count($promo_banners);
+             }
+              if(!empty($promo_alt)) {
+                $promobanner_count=count($promo_alt);
+             }
+        } ?>
+            </div>
+        <div class="vaibhav_product_list">
+        <div class="flex">
+            <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
+            <?php // $adbanners=array("products-banner.png","products-banner1.png"); ?>
+            <?php // $count=1; $adbannercount=1; ?>
+            <?php   //$objectManager = \Magento\Framework\App\ObjectManager::getInstance(); ?>
+
+
+            <?php $adbanners=array("products-banner.png","products-banner1.png","products-banner1.png"); ?>
+   <?php if(isset($_GET['p'])) {
+                    $adbannercount=3;
+                } else {
+                   $adbannercount=1;
+                } ?>
+
+            <?php $count=1; 
+            
+//             $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+// $productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory');
+
+// $collection = $productCollection->create()
+//             ->addAttributeToSelect('*')
+//             ->setOrder('created_at','desc')
+//             ->setPageSize(10)
+//             ->load();
+             //print_r($collection->getData());
+              ?>
+            
+           <?php foreach ($_productCollection as $_product):?>
+          <?php /*added code for try on*/
+            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+            /*$product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');*/
+            $sku = $_product->getSku();
+            $lengths = 35;
+            $productId = $_product->getId();
+            $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+            $connection = $resource->getConnection();
+            $tableName = $resource->getTableName('mageplaza_autorelated_actions_index');
+            $ruleIdsql = "SELECT rule_id FROM mageplaza_autorelated_actions_index WHERE product_id = '$productId'";
+            $ruleIdresults = $connection->fetchAll($ruleIdsql);
+            if(count($ruleIdresults)>0){
+            $ruleId = $ruleIdresults[0]['rule_id'];
+            $productssql = "SELECT product_id FROM mageplaza_autorelated_actions_index WHERE rule_id = '$ruleId'";
+            $productsresults = $connection->fetchAll($productssql);
+            $sliced_arrays = array_slice($productsresults, 0, 8);
+            if (!empty($sliced_arrays)) {
+            $str1 = '';
+            foreach($sliced_arrays as $sliced_array){
+            $productsIds = $sliced_array['product_id'];
+            $_Product = $objectManager->create('Magento\Catalog\Model\Product')->load($productsIds);
+            $skus = $_Product->getSku();
+            $array[] = $skus;
+            $str1 = $str1.$skus. ',';
+            $newarraynama=rtrim($str1,", ");
+          }    
+            $newarraynamas = $sku.','.$newarraynama;
+          }else{
+            $newarraynamas= $sku;
+          }
+          }else {
+            $newarraynamas= $sku;
+          } 
+          ?>
+
+          <?php $productcoll = $objectManager->create('Magento\Catalog\Model\Product')->load($_product['entity_id']); ?>
+           
+            <div class="products">
+
+                
+
+                     <?php 
+                //$noofdays = $_product->getData('no_of_days'); //$_product->getResource()->getAttribute('no_of_days')->getFrontend()->getValue($_product);  
+               $smart_percentage = $productcoll->getResource()->getAttribute('smart_percentage')->getFrontend()->getValue($productcoll);
+                $metal_discount_in = $productcoll->getResource()->getAttribute('metal_discount_in')->getFrontend()->getValue($productcoll);
+              $product_discount = $productcoll->getResource()->getAttribute('product_discount')->getFrontend()->getValue($productcoll);
+                $discount_diamond_in = $productcoll->getResource()->getAttribute('discount_diamond_in')->getFrontend()->getValue($productcoll); //$productcoll->getData('discount_diamond_in');
+                $discount_making_charge_in = $productcoll->getResource()->getAttribute('discount_making_charge_in')->getFrontend()->getValue($productcoll);//$productcoll->getData('discount_making_charge_in');
+                $noofdays = $productcoll->getResource()->getAttribute('no_of_days')->getFrontend()->getValue($productcoll);// $productcoll->getData('no_of_days');       
+               $gst = (int)($productcoll->getResource()->getAttribute('tax_amount')->getFrontend()->getValue($productcoll));
+               
+               
+               // $discount_making_charge_in = $productcoll->getResource()->getAttribute('making_charge')->getFrontend()->getValue($productcoll); //$productcoll->getData('making_charge');
+                
+                $offer_label =  $productcoll->getResource()->getAttribute('offer_percentage')->getFrontend()->getValue($productcoll);
+                 $offer_percentage =  $productcoll->getResource()->getAttribute('discount_wastage')->getFrontend()->getValue($productcoll);
+                   switch (true) {
+                    case (isset($smart_percentage) && isset($offer_label) && isset($noofdays)):  ?>
+                    <div class="sticker"><img class="bs-image" width="150" height="150" src="<?php echo $this->getUrl('media/');?>bt-star.svg" alt="best-seller-image">
+                  <span class="bs-text"><?php echo __('NEW'); ?></span>
+                   <span class="bs-text"><?php echo __('OFFER'); ?></span>
+                    </div>
+                    <?php break;
+                   case (isset($smart_percentage) && isset($offer_label)): ?>
+                     <div class="sticker"><img class="bs-image" width="150" height="150" src="<?php echo $this->getUrl('media/');?>bt-star.svg" alt="best-seller-image">
+                <span class="bs-text"><?php echo __('SmartBuy'); ?></span>
+                  <span class="bs-text"><?php echo __('OFFER'); ?></span>
+              </div>
+                    <?php break;
+                   case (isset($smart_percentage) && isset($noofdays)): ?>
+                     <div class="sticker"><img class="bs-image" width="150" height="150" src="<?php echo $this->getUrl('media/');?>bt-star.svg" alt="best-seller-image">
+                  <span class="bs-text"><?php echo __('SmartBuy'); ?></span>
+                   <span class="bs-text"><?php echo __('NEW'); ?></span>
+              </div>
+                    <?php break;
+                     case (isset($offer_label) && isset($noofdays)): ?>
+                     <div class="sticker"><img class="bs-image" width="150" height="150" src="<?php echo $this->getUrl('media/');?>bt-star.svg" alt="best-seller-image">
+                  <span class="bs-text"><?php echo __('OFFER'); ?></span>
+                   <span class="bs-text"><?php echo __('NEW'); ?></span>
+              </div>
+                    <?php break;
+                     case (isset($offer_label)): ?>
+                     <div class="sticker"><img class="bs-image" width="150" height="150" src="<?php echo $this->getUrl('media/');?>bt-star.svg" alt="best-seller-image">
+                  <span class="bs-text"><?php echo __('OFFER'); ?></span>
+              </div>
+                    <?php break;
+                    case (isset($noofdays)): ?>
+                     <div class="sticker"><img class="bs-image" width="150" height="150" src="<?php echo $this->getUrl('media/');?>bt-star.svg" alt="best-seller-image">
+                    <span class="bs-text"><?php echo __('NEW'); ?></span>
+               </div>
+                    <?php break;
+                      case (isset($smart_percentage)): ?>
+                     <div class="sticker"><img class="bs-image" width="150" height="150" src="<?php echo $this->getUrl('media/');?>bt-star.svg" alt="best-seller-image">
+                  <span class="bs-text"><?php echo __('SmartBuy'); ?></span>
+              </div>
+                    <?php break;
+                }
+                    ?>
+                
+                <a href="<?php echo $this->getUrl('wishlist'); ?>" data-post='<?php echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($productcoll) ?>' class="action towishlist" data-action="add-to-wishlist"><img class="favourites" src="<?php echo $this->getUrl('media/');?>fav.svg" alt="favourite-icon"></a>
+                 <?php
+                    $productImage = $block->getImage($productcoll, $imageDisplayArea);
+                    if ($pos != null) {
+                        $position = ' style="left:' . $productImage->getWidth() . 'px;'
+                            . 'top:' . $productImage->getHeight() . 'px;"';
+                    }
+                    ?>
+               <?php  $imageUrl = $productcoll->getMediaConfig()->getMediaUrl($productcoll->getImage()); ?>
+                <div class="image_container-custom-<?php echo $_product['entity_id']; ?>">
+                <a href="<?= /* @escapeNotVerified */ $productcoll->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
+                 <?= $productImage->toHtml() ?>
+             </a>
+              <div class="product_other_icons" style="display: flex;position: absolute;bottom: 105px;right: 8px;z-index: 3;align-items: center;">
+<!--             <a class="similar_icon_" href="javascript:void(0)" title="Similar Products" onclick="showSimilarProducts('<?php //echo $_product['entity_id']; ?>','<?php //echo $current_cateid; ?>');">-->
+<!--<svg version="1.1" id="similar_product" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 200 200" enable-background="new 0 0 200 200" xml:space="preserve">-->
+<!--<g id="Shape_19_copy_7">-->
+<!--<g>-->
+<!--<path fill="#9A9A9A" d="M196.609,73.713l-48.231-31.853c-0.896-0.593-1.909-0.875-2.903-0.875c-1.639,0-3.237,0.769-4.266,2.18-->
+<!--                        v-1.09c0-2.453-1.979-4.438-4.418-4.438H62.666c-2.442,0-4.42,1.985-4.42,4.438v0.229c-0.996-0.936-2.299-1.438-3.623-1.438-->
+<!--                        c-0.997,0-2.009,0.281-2.912,0.874L3.391,73.659c-2.447,1.613-3.128,4.918-1.518,7.378l50.413,76.979-->
+<!--                        c1.021,1.551,2.711,2.396,4.434,2.396c0.689,0,1.383-0.139,2.041-0.412c0.741,1.4,2.211,2.361,3.906,2.361h74.125-->
+<!--                        c1.83,0,3.4-1.123,4.073-2.709c0.79,0.432,1.66,0.635,2.518,0.635c1.719,0,3.409-0.836,4.425-2.389l50.322-76.826-->
+<!--                        C199.736,78.625,199.055,75.327,196.609,73.713z M58.246,154.611l-1.286,0.846c-0.077,0.051-0.153,0.072-0.241,0.072-->
+<!--                        c-0.072,0-0.254-0.021-0.373-0.197L5.934,78.355c-0.133-0.205-0.077-0.477,0.129-0.616l48.32-31.917-->
+<!--                        c0.076-0.047,0.156-0.077,0.24-0.077c0.076,0,0.258,0.022,0.377,0.205l3.246,4.959V154.611z M136.346,157.48H63.106V42.517h73.239-->
+<!--                        V157.48z M194.063,78.396l-50.317,76.817c-0.11,0.176-0.276,0.195-0.363,0.195c-0.086,0-0.165-0.02-0.238-0.076l-1.935-1.271-->
+<!--                        V52.02l3.899-5.954c0.11-0.168,0.274-0.201,0.366-0.201c0.082,0,0.158,0.033,0.232,0.077l48.23,31.852-->
+<!--                        c0.103,0.069,0.165,0.162,0.189,0.273C194.149,78.188,194.127,78.297,194.063,78.396z"></path>-->
+<!--</g>-->
+<!--</g>-->
+<!--</svg>-->
+<!--</a>-->
+<?php if($productcoll->getTypeId() == \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE && $retailHelper->isColorAttr($_product['entity_id'])) {
+
+$productAttributeOptions = $productTypeInstance->getConfigurableAttributesAsArray($productcoll);
+$_children = $productcoll->getTypeInstance()->getUsedProducts($productcoll);
+$child_count = count($_children);
+$col_arr=array();
+$col_rs_arr=array("Rose Gold","Silver Gold");
+$col_ry_arr=array("Rose Gold","Yellow Gold");
+$col_ys_arr=array("Silver Gold","Yellow Gold");
+$main_child_arr=array();
+if($child_count <= 3) {
+foreach ($_children as $value) {
+  $arr = $retailHelper->getProductColorImages($value->getID());
+  $col_arr[$arr[0]]=$arr[1];
+  array_push($main_child_arr, $arr[0]);
+} 
+krsort($col_arr);
+}
+?>
+
+<div class="multi_color_options">
+    <div class="list_icon">
+             <?php if(count($col_arr) == 3) { ?>
+              <div class="multi_color_all" style="display:inline-block;">
+          <svg width="23px" height="23px" viewBox="0 0 198 198" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 99C0 117.404 5.111 134.575 13.86 149.336L98.83 99.199L98.818 0.012001C44.225 0.105001 0 44.389 0 99Z" fill="#FFDD7D"></path>
+            <path d="M182.566 151.922C182.877 151.436 183.144 150.921 183.443 150.43C183.144 150.921 182.836 151.408 182.525 151.899L182.566 151.922Z" fill="#F4BD9E"></path>
+            <path d="M98.83 99.199L184.449 148.722C192.994 134.102 198 117.159 198 99C198 44.324 153.676 0 99 0C98.936 0 98.877 0.012 98.818 0.012L98.83 85.959L98.807 99.199L98.819 99.193L98.83 99.199Z" fill="#F4BD9E"></path>
+            <path d="M184.449 148.723L98.83 99.2L98.818 99.194L98.806 99.2L13.175 148.209C30.259 177.936 62.255 198 99 198C134.189 198 164.975 179.561 182.525 151.898C182.836 151.406 183.144 150.919 183.443 150.429C183.789 149.867 184.162 149.324 184.496 148.749L184.449 148.723Z" fill="#D6D6D6"></path>
+          </svg>
+        </div>
+      <?php } elseif(count($col_arr) == 2) {
+
+                if($main_child_arr == $col_ys_arr) {
+        ?>
+<div class="two_color_yw_" style="display:inline-block;">
+            <svg width="23px" height="23px" viewBox="0 0 198 198" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M0 99C0 153.676 44.324 198 99 198V1.69205e-08C44.324 -0.000999983 0 44.323 0 99Z" fill="#FFDD7D"></path>
+              <path d="M198 99C198 153.676 153.677 198 99 198V1.69205e-08C153.677 -0.000999983 198 44.323 198 99Z" fill="#D6D6D6"></path>
+            </svg>
+        </div>
+     <?php } elseif($main_child_arr == $col_ry_arr ) { ?>
+
+<div class="two_color_yr_" style="display:inline-block;">
+          <svg width="23px" height="23px" viewBox="0 0 198 198" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 99C0 153.676 44.324 198 99 198V1.69205e-08C44.324 -0.000999983 0 44.323 0 99Z" fill="#FFDD7D"></path>
+            <path d="M198 99C198 153.676 153.677 198 99 198V1.69205e-08C153.677 -0.000999983 198 44.323 198 99Z" fill="#F4BD9E"></path>
+          </svg>
+        </div>
+   <?php   } elseif($main_child_arr == $col_rs_arr ) { ?>
+      <div class="two_color_rs_" style="display:inline-block;">
+          <svg width="23px" height="23px" viewBox="0 0 198 198" fill="none" xmlns="http://www.w3.org/2000/svg">
+             <path d="M0 99C0 153.676 44.324 198 99 198V1.69205e-08C44.324 -0.000999983 0 44.323 0 99Z" fill="#F4BD9E"></path>
+            <path d="M198 99C198 153.676 153.677 198 99 198V1.69205e-08C153.677 -0.000999983 198 44.323 198 99Z" fill="#D6D6D6"></path>
+          </svg>
+        </div>
+  <?php }
+
+   } ?>
+                            </div>
+                             <div class="colorBlock">
+<?php  foreach ($col_arr as $key => $value) {
+?>    
+        <?php if(strtolower($key) == 'yellow gold') { ?>
+              <a href='javascript:void(0)' onclick='ajaxChangeColor("<?php echo($value); ?>","<?php echo($_product['entity_id']); ?>");'>
+          <span class="colorShade yellow_gold_ colorBox" data-image="yellow_gold_"></span>
+        </a>
+      <?php } ?>
+       <?php if(strtolower($key) == 'silver gold') { ?>
+              <a href='javascript:void(0)' onclick='ajaxChangeColor("<?php echo($value); ?>","<?php echo($_product['entity_id']); ?>");'>
+          <span class="colorShade white_gold colorBox" data-image="white_gold"></span>
+        </a>
+      <?php } ?>
+      <?php if(strtolower($key) == 'rose gold') { ?>
+              <a href='javascript:void(0)' onclick='ajaxChangeColor("<?php echo($value); ?>","<?php echo($_product['entity_id']); ?>");'>
+          <span class="colorShade rose_gold_ colorBox" data-image="rose_gold_"></span>
+        </a>
+      <?php } ?>
+          <?php } ?> 
+ </div>  
+  </div>
+<?php } ?>
+</div>
+</div>
+                <div class="text-left">
+                     <!-- <div class="rating">
+                            <?= $block->getReviewsSummaryHtml($productcoll, $templateType) ?>
+                        </div> -->
+                    <!-- <a href="<?= /* @escapeNotVerified */ $productcoll->getProductUrl() ?>"> -->
+                    <div class="product-name">
+                        <?php 
+                    
+                    $product_name=$productcoll->getName();
+                    $replacevalues=str_replace("Vaibhav Jewellers","",$product_name);
+                    echo $replacevalues;
+                    ?>
+                        </div>
+                        <!-- </a> -->
+                    <div class="price-rating clearfix">
+                        <div class="price <?php if($offer_percentage || $discount_making_charge_in || $metal_discount_in || $discount_diamond_in || $product_discount ){ echo 'dis_make_charge_old'; } ?>"><?= /* @escapeNotVerified */ $block->getProductPrice($productcoll) ?></div>
+                    </div>
+                         <?php if($discount_making_charge_in || $metal_discount_in || $discount_diamond_in || $offer_percentage || $product_discount){
+
+    // $discount_making_charge_in = $_product->getData('discount_making_charge_in');
+    // $metal_discount_in= $_product->getData('metal_discount_in');
+    // $discount_diamond_in = $_product->getData('discount_diamond_in');
+
+    ?>
+    <?php 
+   $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                    $product = $objectManager->create('Magento\Catalog\Model\Product')->load($_product['entity_id']);
+                    $StockState = $objectManager->get('\Magento\CatalogInventory\Api\StockStateInterface');
+                    $stockQuantity = $StockState->getStockQty($product->getId(), $product->getStore()->getWebsiteId());
+                    $conf = $objectManager->create('MageArray\CheckDelivery\Helper\Data')->getStoreConfig('checkDelivery/config/success_message');
+                    $shippingCode = $product->getResource()->getAttribute('expected_delivery_date')->getFrontend()->getValue($product);
+                    $storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface'); 
+                    $currencyCode = $storeManager->getStore()->getCurrentCurrencyCode(); 
+                    $currency = $objectManager->create('\Magento\Directory\Model\CurrencyFactory')->create()->load($currencyCode); 
+                    $currencySymbol = $currency->getCurrencySymbol(); 
+    $inr='₹';
+    $usd='$';
+    $price_with_tax= round($productcoll->getSpecialPrice()+$gst);
+    $inr_price= number_format($price_with_tax); 
+    /*code updated on 14th Oct*/
+                    $wastage = $product->getResource()->getAttribute('wastage')->getFrontend()->getValue($product);
+                    $metal = $product->getResource()->getAttribute('metal')->getFrontend()->getValue($product);
+                    $purity = $product->getResource()->getAttribute('purity')->getFrontend()->getValue($product);
+                    $weight = $product->getResource()->getAttribute('net_weight')->getFrontend()->getValue($product);
+                    $makingCharges = $product->getResource()->getAttribute('making_charge')->getFrontend()->getValue($product);
+                    $discount_wastage = $product->getResource()->getAttribute('discount_wastage')->getFrontend()->getValue($product);
+                    $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+                    $connection = $resource->getConnection();
+                    $tableName = $resource->getTableName('pricemanager');
+                    //$sql = "SELECT * FROM" . $tableName;
+                    $sql = "Select * FROM pricemanager";
+                    $results = $connection->fetchAll($sql);
+                    foreach($results as $key=> $result){
+                      $k14 = $result['14K'];
+                      $k18 = $result['18K'];
+                      $k22 = $result['22K'];
+                      $k24 = $result['24K'];
+                      $silver = $result['hundred'];
+                    }
+                    $va = 0;
+                    $metalrate = 0;
+                    $metalprice = 0;
+                        if($metal =='Gold' && $purity =='24K'){
+                            $metalprice =  round($k24 * $weight);
+                            $va = round(($metalprice * $wastage) / 100);
+                            
+                        }elseif($metal =='Gold' && $purity =='22K'){
+                            $metalprice =  round($k22 * $weight);
+                            $va = round(($metalprice * $wastage) / 100);
+                            
+                        }
+                        elseif($metal =='Gold' && $purity =='18K'){
+                            $metalprice =  round($k18 * $weight);
+                            $va = round(($metalprice * $wastage) / 100);
+                            
+                        }
+                        elseif($metal =='Gold' && $purity =='14K'){
+                            $metalprice =  round($k14 * $weight);
+                            $va = round(($metalprice * $wastage) / 100);
+                            
+                        }
+                        elseif($metal =='Silver'){
+                            $metalprice = round($silver * $weight);
+                            $va = round(($metalprice * $wastage) / 100);
+                        }
+
+                    $makingPrice = round($makingCharges * $weight) + $va;
+                    $productPrice = $metalprice + $makingPrice + $gst;
+                    $mainPrices =  (int)(($makingPrice * $discount_wastage) / 100);
+                    //$vPrice = str_replace('₹', '',$block->getProductPrice($productcoll));
+                    //echo $vPrices = $vPrice;
+                    $mainOfferPrice = $productPrice - $mainPrices;
+
+
+
+
+
+    ?>
+    <?php $usd_price= number_format(round($price_with_tax * 0.014)); ?>
+<?php if($currencyCode =='INR' && $currencySymbol =='₹'){?>
+
+  <?php if(isset($discount_making_charge_in)) { ?>
+     <div class="offer-price">Offer: <span class="text-orange"><span class="fw-bold dis_make_charge_actual"><?= /* @escapeNotVerified */ $block->getProductPrice($productcoll) ?></span> <?php if($discount_making_charge_in != 0){?><span class="fh">(<?php echo $discount_making_charge_in; ?>% Making off) </span><?php } ?></span></div>
+<?php }  elseif(isset($metal_discount_in)) { ?>
+     <div class="offer-price">Offer: <span class="text-orange"><span class="fw-bold dis_make_charge_actual"><?= /* @escapeNotVerified */ $block->getProductPrice($productcoll) ?></span> <?php if($metal_discount_in != 0)?></span></div>
+<?php } elseif(isset($discount_diamond_in)) { ?>
+     <div class="offer-price">Offer: <span class="text-orange"><span class="fw-bold dis_make_charge_actual"><?= /* @escapeNotVerified */ $block->getProductPrice($productcoll) ?></span> <?php if($discount_diamond_in != 0){?>(<?php echo $discount_diamond_in;?>% savings on diamond cost) <?php } ?></span></div>
+<?php } elseif(isset($offer_percentage)) { ?>
+     <div class="offer-price">Offer: <span class="text-orange"><span class="fw-bold dis_make_charge_actual"><?= /* @escapeNotVerified */ $mainOfferPrice ?></span> <?php if($offer_percentage != 0){?>(<?php echo $offer_percentage;?>% off on VA) <?php } ?></span></div>
+<?php }
+elseif(isset($product_discount)) { ?>
+     <div class="offer-price">Offer: <span class="text-orange"><span class="fw-bold dis_make_charge_actual"><?= /* @escapeNotVerified */ $block->getProductPrice($productcoll) ?></span> <?php if($product_discount != 0){?>(<?php echo $product_discount;?>% off on Product) <?php } ?></span></div>
+<?php } ?>
+
+    <?php
+  } else { ?>
+      <?php if(isset($discount_making_charge_in)) { ?>
+     <div class="offer-price">Offer: <span class="text-orange"><span class="fw-bold dis_make_charge_actual"><?= /* @escapeNotVerified */ $block->getProductPrice($productcoll) ?></span> <?php if($discount_making_charge_in != 0){?>(<?php echo $discount_making_charge_in;?>% Making off) <?php } ?></span></div>
+     <?php }  elseif(isset($metal_discount_in)) { ?>
+     <div class="offer-price">Offer: <span class="text-orange"><span class="fw-bold dis_make_charge_actual"><?= /* @escapeNotVerified */ $block->getProductPrice($productcoll) ?></span> <?php if($metal_discount_in != 0){?>(<?php echo $metal_discount_in;?>% savings on metal charges) <?php } ?></span></div>
+<?php } elseif(isset($discount_diamond_in)) { ?>
+     <div class="offer-price">Offer: <span class="text-orange"><span class="fw-bold dis_make_charge_actual"><?= /* @escapeNotVerified */ $block->getProductPrice($productcoll) ?></span> <?php if($discount_diamond_in != 0){?>(<?php echo $discount_diamond_in;?>% savings on diamond cost) <?php } ?></span></div>
+<?php } elseif(isset($offer_percentage)) { ?>
+     <div class="offer-price">Offer: <span class="text-orange"><span class="fw-bold dis_make_charge_actual"><?= /* @escapeNotVerified */ $mainOfferPrice ?></span> <?php if($offer_percentage != 0){?>(<?php echo $offer_percentage;?>% off on VA) <?php } ?></span></div>
+<?php }
+elseif(isset($product_discount)) { ?>
+     <div class="offer-price">Offer: <span class="text-orange"><span class="fw-bold dis_make_charge_actual"><?= /* @escapeNotVerified */ $block->getProductPrice($productcoll) ?></span> <?php if($product_discount != 0){?>(<?php echo $product_discount;?>% off on Product) <?php } ?></span></div>
+<?php } else { ?>
+<div class="offer-price"></div>
+<?php } ?>
+<?php  }
+}?>
+              <?php 
+
+                $tryonBtnId = "pid-".$_product->getId(); 
+
+                ?>
+                <div class="" id='<?php echo $tryonBtnId;?>'>
+                   <!--  <span class="tryon-icon">Try On</span> -->
+                </div>
+
+                  <!-- camweara Code starts -->
+                  <script type="text/javascript">
+                    require([
+                        'jquery',
+                        'mage/mage'
+                    ], function($){
+                     $(document).ready(function(){
+
+                      window.setupTryOnButton = function(b) {
+                          var d = document.createElement('script');
+                          d.onload = () => { return loadTryOnButton(b); };
+                          d.src = 'https://cdn.camweara.com/integrations/camweara_api.js';
+                          document.head.appendChild(d);
+                        };
+
+                        setupTryOnButton({
+                          psku:'<?php echo $_product->getSku(); ?>',
+                          page:'listing',company:'vaibhavjewellers',
+                          prependButton:{id:'<?php echo $tryonBtnId;?>'},
+                          styles:{tryonbutton:{width: '100px',height: '30px', zIndex: '11', backgroundColor: 'white', position:'absolute', borderRadius: '5px',padding: '3px 3px',color: '#6c1e81',display: 'block',textAlign: 'center',fontWeight: 'normal', margin: '7px 0px',display: 'none',textDecoration: 'none',border: '1px solid #6c1e81 !important',fontSize: '12px',left:'60%'},
+                          MBtryonbutton:{width:'90px', height:'25px', left:'50%', margin: '0px 0px'},
+                          tryonbuttonHover:{}},
+                          tryonButtonData:{text:'TRY ON',faIcon:'fa fa-camera'},
+                        })
+
+                     });
+                     });
+                    
+                </script>
+            <!-- camweara Code ends -->
+      <div class="video-shopping">
+        <span class="videoshopping-icon"><img loading="lazy" src="<?php echo $mediaUrl;?>video_icon.png" width="35" height="31" alt="videoshopping-icon" data-pagespeed-no-transform /></span>
+      </div>
+      <!--- Added By SKT --->
+      <!-- <div id="popover-content" class="popover-content close" style="bottom: 50px;">
+      <button type="button" class="btn btn-default btnclose">x</button>
+      <picture>
+          <source type="image/webp" data-srcset="https://www.vaibhavjewellers.com/pub/media/live-shop--360x500mobile.jpg?q=80&auto=compress" srcset="https://www.vaibhavjewellers.com/pub/media/live-shop--360x500mobile.jpg?q=80&auto=compress">
+          <img loading="lazy" src="https://www.vaibhavjewellers.com/pub/media/live-shop--360x500mobile.jpg?q=80&auto=compress" data-srcset="https://www.vaibhavjewellers.com/pub/media/live-shop--360x500mobile.jpg?q=80&auto=compress" srcset="https://www.vaibhavjewellers.com/pub/media/live-shop--360x500mobile.jpg?q=80&auto=compress" class="w-100" data-src="https://www.vaibhavjewellers.com/pub/media/live-shop--360x500mobile.jpg?q=80&auto=compress" width="330" height="157" alt="live-shop" data-pagespeed-no-transform>
+      </picture>
+      <div class="live-form-content" style="display: block; bottom: 0;">
+      <form class="form-horizontal" enctype="multipart/form-data"  id="live-form" method="POST"
+      data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+        <input name="type" value="product" type="hidden">
+        <input name="hrs" value="01" type="hidden">
+        <input name="min" value="00" type="hidden">
+        <input name="meri" value="AM" type="hidden">
+        <input name="language" value="any" type="hidden">
+        <input name="fullname" value="Guest" type="hidden">
+        <input name="email" value="dummyguest@gmail.com" type="hidden">
+        <input name="product" value="https://mage24vaibhavjewellers.breezesites.io/gold-jewellery.html" type="hidden">
+        <input name="remarks" value="Dummy" type="hidden">
+        <input name="takedate" value="2023-01-20T01:00:06+05:30" type="hidden">
+        <input name="form_key" type="hidden" value="sTX1NlwioxjEqaef">                 
+<fieldset>
+<div class="form-group loader-block" style="display: none;margin-bottom: 0px;">
+   <div class="row success-block" style="flex-direction: column;justify-content: center;align-items: center;">
+  <div class="col-12" style="color:#8bd8bd">
+   <div class="loader-icon">Loading...</div>
+  </div>
+  </div>
+  </div>
+  
+<div class="form-group success-block" style="margin-bottom: 5rem;display: none;">
+  <div class="row success-block" style="flex-direction: column;justify-content: center;align-items: center;">
+  <div class="col-12" style="color:#8bd8bd">
+    <h3 style="text-align: center;">Your details has been submitted successfully</h3>
+    <h5 style="text-align: center;">Our team will contact very soon</h5>
+  </div>
+  </div>
+</div>
+<div class="form-group form-block">
+  <div class="row" style="flex-direction: column;justify-content: center;align-items: center;">
+    <div class="col-8">
+  <input  id="live_mobile" style="border-radius: 10px;" name="mobile" type="tel" placeholder="*Mobile No" class="form-control input-md required-entry in">
+    <span id="errmsg" style="color: red;text-align:center;"></span>
+  </div>
+  <div class="col-4">
+ <div style="text-align: center;">
+<button type="submit" id="live_submit" style="color: #fff !important;" class="btn btn-primary live-video-btn">Submit</button>
+</div>
+  </div>
+  </div>
+</div>
+</fieldset>
+</form>
+</div>
+    </div> -->
+    <!--  added by SKT   -->
+            </div>
+            </div>
+            <?php if($count%10==0): ?>
+
+                <?php if(isset($_GET['p'])) {
+                    $currentpage = $_GET['p'];
+                } else {
+                    $currentpage=1;
+                } ?>
+                <?php if($promo_count > 0) { ?>
+               <?php if($currentpage == 1) { ?>
+            <?php if(is_array($promo_banners) && $promo_count >= $adbannercount): ?>  
+<img loading="lazy" alt="<?php echo $promo_alt[$adbannercount-1];?>" class="product-banner d-md-block" src="<?php echo $promo_banners[$adbannercount-1];?>" style="width:360px;height:246px" data-pagespeed-no-transform>
+            <?php $adbannercount++; ?>
+            <?php endif; ?>
+             <?php } else if($currentpage == 2) { ?>
+                <?php //$adbannercount=3; ?>
+             <?php if(is_array($promo_banners) && $promo_count >= $adbannercount): ?>
+            <img alt="<?php echo $promo_alt[$adbannercount-1];?>" class="product-banner d-md-block" src="<?php echo $promo_banners[$adbannercount-1];?>" style="width:360px;height:246px"  data-pagespeed-no-transform>
+            <?php $adbannercount++; ?>
+            <?php endif; ?>
+
+           <?php  } ?>   
+            <?php } ?>   
+
+        <?php endif; ?>
+            <?php $count++; ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    </div>
+     <div class="category-page-footer ft" id="category.page.footer">
+    <?= $block->getToolbarHtml() ?>
+</div>
+<div class="similar_product_list" id="similar_product_list">
+    <div class="viewed_">
+        <span class="similar_product_title">Similar Products</span>
+        <div class="similar_popup_close_btn" onclick="hideSimilarPopup()">X</div>
+        <div class="loader_section">
+          <div class="loadingio-spinner-dual-ball-qh0gwzg30jb"><div class="ldio-bdvd362dqmv">
+<div></div><div></div><div></div>
+</div></div>
+       </div>
+        <div class="rel_product_silder">
+  </div>
+        </div>
+</div>
+    <?php if (!$block->isRedirectToCartEnabled()) : ?>
+        <script type="text/x-magento-init">
+        {
+            "[data-role=tocart-form], .form.map.checkout": {
+                "catalogAddToCart": {
+                    "product_sku": "<?= /* @NoEscape */ $productcoll->getSku() ?>"
+                }
+            }
+        }
+        </script>
+    <?php endif; ?>
+<?php endif; ?>
+<script type="text/javascript">
+        function showSimilarProducts(productId,categid) {
+
+            if(productId!='') { 
+                              console.log(categid);
+                               var baseUrl = 'https://www.vaibhavjewellers.com/';
+                                baseUrl = baseUrl.trim();
+                                var controllerUrl = 'videoform/index/related';
+                                var ajxUrl = baseUrl.concat(controllerUrl);
+                                var frm_data = "product_id="+productId;
+                                jQuery("#similar_product_list").css('display', 'block');
+                                jQuery(".loader_section").css('display', 'flex');
+                                jQuery(".page-main").css('z-index', '999');
+                                var form_data = frm_data + "&" + "categoryid="+categid;
+                                jQuery.ajax({
+                                url: ajxUrl, // Upload Script
+                                        dataType: 'html',
+                                        data: form_data, // Setting the data attribute of ajax with file_data
+                                        type: 'post',
+                                        success: function(data) {
+                                      jQuery(".loader_section").css('display', 'none');
+                                      jQuery(".rel_product_silder").html(data);
+                                      sliderInit();
+                                      jQuery('.tcb-product-slider').get(0).slick.setPosition();
+                                    }
+                                });
+                            }else{
+                                jQuery(".rel_product_silder").html('Product id is empty');
+
+                            }
+    }
+    function hideSimilarPopup() {
+        jQuery(".similar_product_list").css("display","none");
+        jQuery(".tcb-product-slider").remove();
+        jQuery(".page-main").css('z-index', '0');
+    }
+    
+     function ajaxChangeColor(imageurl, pid) {
+    var dataImg = imageurl;
+    var dataId = pid;
+    //var baseurl = 'https://www.candere.com/media/catalog/product/cache/1';    
+    jQuery(".image_container-custom-"+dataId+" .product-image-photo").attr('src', dataImg);
+  } 
+
+     function sliderInit(){
+     jQuery('.tcb-product-slider').slick({
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    dots: false,
+     prevArrow:'<img class="e-left" src="https://cfcdn19.candere.com/skin/frontend/default/new_design_candere/images/empty-cart/left.svg?v=1565340642"/>',
+     nextArrow:'<img class="e-right" src="https://cfcdn19.candere.com/skin/frontend/default/new_design_candere/images/empty-cart/right.svg?v=1565340642"/>'
+});
+}
+</script>
+<script type="text/javascript">
+  require([
+        "jquery","slick"
+    ],
+    function($)
+    {
+
+   jQuery(document).on("click", ".catalog-category-view .similar_product_list", function(e){
+    if (e.target == similar_product_list ) {
+      jQuery(this).css('display', 'none');
+       jQuery(".tcb-product-slider").remove();
+       jQuery(".page-main").css('z-index', '0');
+    }
+  });
+
+    }
+);
+</script>
+ <script type="text/javascript">
+require([
+    'jquery',
+    'mage/mage'
+], function($){
+ $(document).ready(function(){
+  /*var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+  $("html, body").css({"width":w,"height":h});*/
+  $('.videoshopping-icon').click(function() {
+  $('.popover-content').toggleClass('close');
+});
+  $(document).on('focus', 'input', function() {
+    document.querySelector('input').scrollIntoView();
+});
+
+var dataForm = $('#live-form');
+   dataForm.mage('validation', {});
+
+   jQuery("#live-form").submit(function(e){
+    e.preventDefault();
+
+var status = dataForm.validation('isValid'); //validates form and returns boolean
+if(status){
+  $(".form-block").hide();
+  $(".loader-block").show();
+   setTimeout(function(){
+             $(".loader-block").hide();
+             $(".success-block").show();
+}, 3000);
+  var fd = new FormData($('form#live-form')[0]);
+ $.ajax({
+    type: "POST",
+    url: "<?php echo $block->getUrl('videoform/index/livevideoshop'); ?>",
+    data : $(this).serialize(),
+    success: function (data) {
+        if (data == "success") {
+            $('#live-form')[0].reset();
+            setTimeout(function(){
+            $(".success-block").hide();
+            $(".form-block").show();
+}, 5000); 
+            
+        } else {
+          $(".success-block").hide();
+            $(".form-block").show();
+           alert(data);
+        }
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+                   // error handling
+    }
+});
+}else{
+return false;
+
+}
+
+   });
+
+}); 
+
+   function setInputFilter(textbox, inputFilter) {
+  ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+    textbox.addEventListener(event, function() {
+      if (inputFilter(this.value)) {
+        this.oldValue = this.value;
+        this.oldSelectionStart = this.selectionStart;
+        this.oldSelectionEnd = this.selectionEnd;
+      } else if (this.hasOwnProperty("oldValue")) {
+        this.value = this.oldValue;
+        this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+      } else {
+        this.value = "";
+      }
+    });
+  });
+}
+setInputFilter(document.getElementById("live_mobile"), function(value) {
+  return /^-?\d*$/.test(value); });
+}); 
+</script>
+<script>
+/*function onTryonClick(argument) {
+var url = "https://vaibhavjewellers.com/camweara/index.php?skus=<?php echo $newarraynamas; ?>";
+if(screen.width > 480){
+window.open(url,'_blank');
+}else{
+window.location.href = url;
+}
+}*/
+function iFrameOutsideDivClick(){
+console.log("iFrameOutsideDivClick entered");
+document.getElementById("iFrameID").setAttribute("src", ""); 
+document.getElementById("iFrameID").style.display = "none";
+document.getElementById("iFrameOutsideDiv").style.display = "none";
+}
+
+window.addEventListener('message', function(event) { 
+
+   //console.log("message event origin "+ event.origin);
+
+   if (~event.origin.indexOf('https://www.vaibhavjewellers.com/')) { 
+       console.log("message: "+event.data);
+     if(event.data == "closeIframe"){
+               iFrameOutsideDivClick();
+     }
+     else if(event.data.includes("buynow")){
+       var field = event.data.split('=');
+       var skuSelected = field[1];
+                               //add sku to cart and redirect to checkout
+     }
+               
+   }else{ 
+       // The data hasn't been sent from your site! 
+       //  Do not use it. 
+       return; 
+   } 
+});  
+/* ----------------------------------------------*/
+window.addEventListener('message', function(event) {
+    // IMPORTANT: Check the origin of the data!
+    if (~event.origin.indexOf('https://modakatech.com')) {
+        //console.log("message: "+event.data);
+      if(event.data == "closeIframe"){
+                iFrameOutsideDivClick();
+      }
+      else if(event.data.includes("buynow")){
+          console.log('sarveshtiwari'+event.data );
+
+        var field = event.data.split('=');
+
+        var skuSelected = field[1];
+
+        var addToCartUrl = "<?php
+    $productId = 1778; // <--- set correct product id (e.g. 1)
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $product = $objectManager->create('Magento\Catalog\Model\Product')->load($productId);
+    $addToCartUrl = $objectManager->get('Magento\Checkout\Helper\Cart')->getAddUrl($product);
+    echo $addToCartUrl.'form_key/'; ?>";
+
+    // add form key
+    var formKey = jQuery.cookie("form_key");
+    addToCartUrl += formKey;
+
+    // add options
+    var formData = new FormData();
+    formData.append("product", <?php echo $productId ?>);
+    formData.append("selected_configurable_option", "");
+    formData.append("related_product", "");
+    formData.append("form_key", formKey);
+    //formData.append("options[2]", "Some custom data, foo bar"); // <--- set correct optionId (e.g. 2)
+    formData.append("qty", cp.Menge);
+
+    // make POST call with the custom options as body element
+    var request = jQuery.ajax({
+        url: addToCartUrl,
+        method: "POST",
+        processData: false,
+        contentType: false,
+        data: formData
+    }).done(function( response ) { // redirect to cart if call was successful
+        window.location = "https://www.vaibhavjewellers.com/checkout/cart"; // <--- set correct redirect link
+    }).fail(function( jqXHR, textStatus ) {
+        console.log("Couldn't add product to cart. " + textStatus);
+    });
+
+      }
+    } else {
+
+        // The data hasn't been sent from your site!
+
+        //  Do not use it.
+
+        return;
+    }
+});  
+</script>

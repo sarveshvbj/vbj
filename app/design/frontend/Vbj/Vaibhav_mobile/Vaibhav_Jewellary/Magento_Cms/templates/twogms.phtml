@@ -1,0 +1,49 @@
+<?php 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$attributeCode = 'weight_ragens';
+$entityType = 'catalog_product';
+$attributeInfo = $objectManager->get(\Magento\Eav\Model\Entity\Attribute::class)
+                               ->loadByCode($entityType, $attributeCode);
+$attributeId = $attributeInfo->getAttributeId();
+$attributeOptionAll = $objectManager->get(\Magento\Eav\Model\ResourceModel\Entity\Attribute\Option\Collection::class)
+                                    ->setPositionOrder('asc')
+                                    ->setAttributeFilter($attributeId) 
+                                    ->setStoreFilter()
+                                    ->load();
+$options = $attributeOptionAll->getData();
+
+/*echo '<pre>';
+print_r($options);
+echo '</pre>';*/
+$arr = [];
+?>
+<div class="weight-revenge">
+<?php 
+foreach ($options as $option) {
+  if($option['value']>0){
+    $value = $option['value'];
+    if($value == '>90 gms'){
+      $url = '90-gms.html';
+    }else{
+      $url = str_replace(' ', '-', $value).'.html';
+    }
+    echo '<a href='. $url. '>';
+    echo '<div class="child">'. $value . '</div>';
+    echo '</a>';
+  }
+}
+?>
+</div>
+<style>
+.weight-revenge {
+  display: flex;
+}
+.child {
+  margin: 10px;
+  padding: 10px;
+  width: 130px;
+  height: 45px;
+  background: #6e2083;
+  color: #fff;
+}
+</style>

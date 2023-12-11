@@ -1,0 +1,45 @@
+
+<!-- partial:index.partial.html -->
+<div class="container">
+  <div class="top"></div>
+  <div class="bottom"></div>
+  <div class="center">
+      <div id="gettheproductdiv"></div>
+      
+    <h2>Gamooga</h2>
+       <button type="button" name="vabivubmit" id="vabivubmit"/>GetCSV Export</button>
+    
+  </div>
+</div>
+<!-- partial -->
+
+
+  
+
+  <script type="text/javascript">
+ require([
+    'jquery'
+    
+    ],function($){
+        $(document).ready(function() {
+            $("#vabivubmit").on('click',function(event){
+             
+              var data = $(this).serialize();
+        
+        $.ajax({
+            url: "https://stage2.vaibhavjewellers.com/productgamooga/index/ProductGamooga",
+            type: "POST",
+            data: data,
+            success: function (result) {
+               
+             alert(result);
+            },
+        });
+
+            });
+          });
+      });
+</script>
+</body>
+</html>
+

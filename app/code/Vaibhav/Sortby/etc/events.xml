@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * KTPL
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the krishtechnolabs.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.krishtechnolabs.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to any file if you wish to upgrade this extension
+ * version in the future.
+ *
+ * @category    KTPL
+ * @package     Ktpl_StoreLocatorExtended
+ * @copyright   Copyright (c) KTPL (https://www.krishtechnolabs.com/)
+ * @license     https://www.krishtechnolabs.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="checkout_cart_product_add_after">
+        <observer name="ktpl_add_to_cart_delivery_store" instance="Ktpl\StoreLocatorExtended\Observer\AddToCart"/>
+    </event>
+  
+</config>

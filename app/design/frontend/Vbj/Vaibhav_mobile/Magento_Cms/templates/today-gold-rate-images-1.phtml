@@ -1,0 +1,96 @@
+<?php
+
+/**
+ * @var \Mageplaza\HelloWorld\Block\Display $block
+ */
+
+$current_category= $block->getCurrentCategory();
+
+$objectManager =\Magento\Framework\App\ObjectManager::getInstance();
+
+$abstractProductBlock = $block->getLayout()->createBlock('\Magento\Catalog\Block\Product\AbstractProduct');
+
+$storeManager = $objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+$currentStore = $storeManager->getStore();
+$baseUrl = $currentStore->getBaseUrl();
+$mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$linkUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_LINK);
+
+$cateid = '4';
+$productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory');
+
+$collection = $productCollection->create();
+$collection->addAttributeToSelect('*');
+$collection->addCategoriesFilter(['in' => $cateid]);
+$collection->addAttributeToFilter('visibility', \Magento\Catalog\Model\Product\Visibility::VISIBILITY_BOTH);
+$collection->addAttributeToFilter('status',\Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED);
+$collection->addAttributeToSort('created_at', 'DESC');
+$collection->setPageSize(10); // fetching only 9 products
+foreach ($collection as  $value) {
+    $productUrl = $value->getProductUrl();
+    $productName =  $value->getName();
+    $productImage = $abstractProductBlock->getImage($value, 'product_small_image')->getImageUrl();
+    $productPrice =  $abstractProductBlock->getProductPrice($value);
+}
+
+
+?>
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 style="text-align: center;"><strong>Exquisite Diamond</strong></h4>
+            <section class="customer_sliders">
+                <div class="scroll-arrow" id="scroll-lefts">
+                    <i class="fa fa-chevron-circle-left"></i>
+                </div>
+                <div id="imgLists" class="imgList">
+                    <?php foreach ($collection as $value) {  ?>
+                    <div class="product_main">
+                        <div class="product_container">
+                            <a href="<?php echo $value->getProductUrl(); ?>">
+                                <div class="product_img"><img
+                                        src=" <?php echo $abstractProductBlock->getImage($value, 'product_base_image')->getImageUrl(); ?>">
+                                </div>
+                                <div class="product_details_slider">
+                                    <div class="product_name_slider"><?php echo $value->getName(); ?></div>
+                                    <span
+                                        class="price_slider"><?php echo $abstractProductBlock->getProductPrice($value); ?></span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <? } ?>
+                </div>
+                <div class="scroll-arrow" id="scroll-rights">
+                    <i class="fa fa-chevron-circle-right"></i>
+                </div>
+
+            </section>
+            <p></p>
+            <br />
+            <button class="btn btn-primary submit align_explore"
+                onclick="window.location.href='<?php echo $linkUrl;?>diamond-jewellery.html'">Explore</button>
+            <p></p>
+            <br />
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+var imgLists = document.getElementById('imgLists');
+var scrollRights = document.getElementById('scroll-rights');
+var scrollLefts = document.getElementById('scroll-lefts');
+
+// When a user clicks on the right arrow, the ul will scroll 750px to the right
+scrollRights.addEventListener('click', (event) => {
+    imgLists.scrollBy(750, 0);
+});
+
+// When a user clicks on the left arrow, the ul will scroll 750px to the left
+scrollLefts.addEventListener('click', (event) => {
+    imgLists.scrollBy(-750, 0);
+});
+</script>

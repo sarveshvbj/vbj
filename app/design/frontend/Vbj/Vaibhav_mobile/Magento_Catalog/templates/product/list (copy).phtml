@@ -1,0 +1,152 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+use Magento\Framework\App\Action\Action;
+
+// @codingStandardsIgnoreFile
+
+?> 
+<?php
+/**
+ * Product list template
+ *
+ * @var $block \Magento\Catalog\Block\Product\ListProduct
+ */
+?>
+<?php
+/**
+ * @var $block \DavidRobert\GetRatingSummary\Block\GetRatingSummary
+ */
+?>
+
+<?php
+   /* $_ratingSummary = $block->getAllRatingsSummary();
+    print_r($_ratingSummary->getData());*/
+?>
+
+<?php
+$_productCollection = $block->getLoadedProductCollection();
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+?>
+<?php if (!$_productCollection->count()): ?>
+    <div class="message info empty"><div><?= /* @escapeNotVerified */ __('We can\'t find products matching the selection.') ?></div></div>
+<?php else: ?> 
+    <?php
+    if ($block->getMode() == 'grid') {
+        $viewMode = 'grid';
+        $imageDisplayArea = 'category_page_grid';
+        $showDescription = false;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    } else {
+        $viewMode = 'list';
+        $imageDisplayArea = 'category_page_list';
+        $showDescription = true;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::FULL_VIEW;
+    }
+    /**
+     * Position for actions regarding image size changing in vde if needed
+     */
+    $pos = $block->getPositioned();
+    ?>
+
+
+    <div class="wrapper">
+        <div class="bread-crumbs">
+             <?= $this->getChildHtml('breadcrumbs');?>
+        </div>
+        <div class="category-page-header" id="category.page.header">
+             <?= $this->getChildHtml('page.main.title');?>
+            <?= $block->getAdditionalHtml() ?>
+            </div>
+        <div class="flex">
+            <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
+            <?php $adbanners=array("products-banner.png","products-banner1.png"); ?>
+            <?php $count=1; $adbannercount=1; ?>
+            <?php foreach ($_productCollection as $_product):?>
+           
+            <div class="products">
+
+                
+
+                     <?php 
+                
+                //Not there in admin panel
+                // $smart_percentage = $_product->getAttribute('makeing_charge');
+                // $metal_discount_in = $_product->getData('metal_discount_in');
+                // $discount_diamond_in = $_product->getData('discount_diamond_in');
+                $noofdays = $_product->getData('no_of_days');     
+                $discount_making_charge_in = $_product->getData('making_charge');
+                $offer_label = $_product->getData('offer_percentage');
+                   switch (true) {
+                    case (isset($offer_label) && isset($noofdays)): ?>
+                    <div class="sticker"><img class="bs-image" src="<?php echo $this->getUrl('pub/media/');?>bt-star.svg" alt="best-seller-image">
+                  <span class="bs-text"><?php echo __('NEW'); ?></span>
+                   <span class="bs-text"><?php echo __('BEST OFFER'); ?></span>
+                    </div>
+                    <?php break;
+                    case (isset($offer_label)): ?>
+                     <div class="sticker"><img class="bs-image" src="<?php echo $this->getUrl('pub/media/');?>bt-star.svg" alt="best-seller-image">
+                  <span class="bs-text"><?php echo __('BEST OFFER'); ?></span>
+              </div>
+                    <?php break;
+                    case (isset($noofdays)): ?>
+                     <div class="sticker"><img class="bs-image" src="<?php echo $this->getUrl('pub/media/');?>bt-star.svg" alt="best-seller-image">
+                    <span class="bs-text"><?php echo __('NEW'); ?></span>
+               </div>
+                    <?php break;
+                }
+                    ?>
+
+                
+                <a href="<?php echo $this->getUrl('wishlist'); ?>" data-post='<?php echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product) ?>' class="action towishlist" data-action="add-to-wishlist"><img class="favourites" src="<?php echo $this->getUrl('pub/media/');?>fav.svg" alt="favourite-icon"></a>
+                 <?php
+                    $productImage = $block->getImage($_product, $imageDisplayArea);
+                    if ($pos != null) {
+                        $position = ' style="left:' . $productImage->getWidth() . 'px;'
+                            . 'top:' . $productImage->getHeight() . 'px;"';
+                    }
+                    ?>
+               <?php  $imageUrl = $_product->getMediaConfig()->getMediaUrl($_product->getImage()); ?>
+                <a href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
+                 <?= $productImage->toHtml() ?>
+             </a>
+                <div class="text-left">
+                    <a href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>">
+                    <div class="product-name">  <?= /* @escapeNotVerified */ $_helper->productAttribute($_product, $_product->getName(), 'name') ?></div></a>
+                    <div class="price-rating clearfix">
+                        <div class="price"><?= /* @escapeNotVerified */ $block->getProductPrice($_product) ?></div>
+                        
+                        <div class="rating">
+                           <?= $block->getReviewsSummaryHtml($_product, $templateType) ?>
+                        </div>
+                    </div>
+                    <div class="offer-price">Offer Price: <span class="text-orange"><span class="fw-bold">RS. <?= /* @escapeNotVerified */ round($_product->getFinalPrice()); ?></span> <?php if($_product->getDiscountMakingChargeIn() != 0){?> (<?= /* @escapeNotVerified */ $_product->getDiscountMakingChargeIn(); ?>% Making off) <?php }  ?> </span></div>
+                </div>
+            </div>
+             <?php if($count%10==0): ?>
+            <?php if(is_array($adbanners) && count($adbanners) >= $adbannercount): ?>
+            <img class="product-banner d-md-block d-none" src="<?php echo $this->getUrl('pub/media/').$adbanners[$adbannercount-1];?>" alt="product-banner">
+            <?php $adbannercount++; ?>
+            <?php endif; ?>     
+        <?php endif; ?>
+            <?php $count++; ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+     <div class="category-page-footer ft" id="category.page.footer">
+    <?= $block->getToolbarHtml() ?>
+</div>
+    <?php if (!$block->isRedirectToCartEnabled()) : ?>
+        <script type="text/x-magento-init">
+        {
+            "[data-role=tocart-form], .form.map.checkout": {
+                "catalogAddToCart": {
+                    "product_sku": "<?= /* @NoEscape */ $_product->getSku() ?>"
+                }
+            }
+        }
+        </script>
+    <?php endif; ?>
+<?php endif; ?>

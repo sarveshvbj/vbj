@@ -1,0 +1,146 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$basemediaurl = $objectManager->get('Magento\Store\Model\StoreManagerInterface')
+                    ->getStore()
+                    ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$imgix_url = $basemediaurl;//'https://mage23vaibhavjewellers.breezesites.io/pub/media/'; 
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+$storeUrl = $storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB);
+ ?> 
+ <?php 
+$_objectManager = \Magento\Framework\App\ObjectManager::getInstance(); //instance of\Magento\Framework\App\ObjectManager
+$storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+$currentStore = $storeManager->getStore();
+$baseUrl = $currentStore->getBaseUrl();
+$mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$linkUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_LINK);
+
+?>
+ <div class="desktop-section d-none d-sm-block">
+  <div id="slider">
+    <div id="demo" class="carousel slide d-none d-sm-block" data-ride="carousel">
+      <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+        <li data-target="#demo" data-slide-to="3"></li>
+      </ul>
+      <div class="carousel-inner">
+        <div class="carousel-item ">
+          <a href="https://www.vaibhavjewellersjpo.com/" target="_blank">
+            <picture>
+              <source type="image/webp" data-srcset="
+
+                <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/jpo_web.webp" srcset="
+ 
+                <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/jpo_web.webp">
+              <img loading="lazy" data-srcset="
+ 
+                  <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/jpo_web.webp" srcset="
+ 
+                  <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/jpo_web.webp" data-src="
+                  <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/jpo_web.webp" alt="jpo" width="" height="">
+            </picture>
+          </a>
+        </div>
+        <!--
+<div class="carousel-item "><a href="
+            <?php echo $storeUrl;?>gold-jewellery/women/vaddanam.html?product_list_order=latest"><picture><source type="image/webp" data-srcset="
+                                
+            <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/vaddanam_mela_web.webp" srcset="
+                                
+            <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/vaddanam_mela_web.webp"><img loading="lazy" data-srcset="
+                                    
+            <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/vaddanam_mela_web.webp" srcset="
+                                    
+            <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/vaddanam_mela_web.webp" data-src="
+                                    
+            <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/vaddanam_mela_web.webp" alt="vaddanam_mela collection vaibhav jewellers web banner" width="" height=""></picture></a></div>
+ -->
+        <!-- PR -->
+        <div class="carousel-item ">
+          <a href="
+                <?php echo $storeUrl;?>gold-jewellery/women/harams.html">
+            <picture>
+              <source type="image/webp" data-srcset="
+                                                
+                    <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/uttamakshanam-web.webp" srcset="
+                                                
+                    <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/uttamakshanam-web.webp">
+              <img loading="lazy" data-srcset="
+                                                
+                      <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/uttamakshanam-web.webp" srcset="
+                                                
+                      <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/uttamakshanam-web.webp" data-src="
+                                                
+                      <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/uttamakshanam-web.webp" alt="vaibhav jewellers hdfc offer" width="" height="">
+            </picture>
+          </a>
+        </div>
+        <!-- edit from PrudhviRaj Radi 12/10/2021 -->
+        <div class="carousel-item ">
+          <a href="
+                    <?php echo $storeUrl;?>gold-jewellery/women/bangles.html?product_list_order=latest">
+            <picture>
+              <source type="image/webp" data-srcset="
+                                                        
+                        <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/bangle_mela_web.webp" srcset="
+                                                        
+                        <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/bangle_mela_web.webp">
+              <img loading="lazy" data-srcset="
+                                                            
+                          <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/bangle_mela_web.webp" srcset="
+                                                            
+                          <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/bangle_mela_web.webp" data-src="
+                                                            
+                          <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/bangle_mela_web.webp" alt="Bangle Mela Collection" width="" height="">
+            </picture>
+          </a>
+     </div>
+  <div class="carousel-item active">
+          <a href="
+                        <?php echo $storeUrl;?>gold-jewellery/women/necklace.html?product_list_order=latest">
+            <picture>
+              <source type="image/webp" data-srcset="
+                                                                
+                            <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/ashadam_web.jpg" srcset="
+                                                                
+                            <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/ashadam_web.jpg">
+              <img loading="lazy" data-srcset="
+                                                                    
+                              <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/ashadam_web.jpg" srcset="
+                                                                    
+                              <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/ashadam_web.jpg" data-src="
+                                                                    
+                              <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/ashadam_web.jpg" alt="Ashadam Collection" width="" height="">
+            </picture>
+          </a>
+        </div>
+        <!--
+<div class="carousel-item "><a href="
+                        <?php echo $storeUrl;?>gold-jewellery.html"><picture><source type="image/webp" data-srcset="
+
+                        <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/subh_vivah_web.webp" 
+srcset="
+ 
+                        <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/subh_vivah_web.webp"><img loading="lazy" data-srcset="
+ 
+                        <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/subh_vivah_web.webp"srcset="
+ 
+                        <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/subh_vivah_web.webp" data-src="
+                        <?php echo $imgix_url;?>wysiwyg/homepage_images/desktop/subh_vivah_web.webp" alt="subh vivah collection" width="" height=""></picture></a></div>
+  
+-->
+        <!---->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+          <span class="carousel-control-prev-icon">
+            <span class="arrow arrow-left"></span>
+          </span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+          <span class="carousel-control-next-icon">
+            <span class="arrow arrow-right"></span>
+          </span>
+        </a>
+      </div>
+    </div>

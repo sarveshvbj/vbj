@@ -1,0 +1,105 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+/** @var \Magento\Contact\Block\ContactForm $block */
+?>
+<style>
+    span.base{
+        text-decoration:underline;
+        text-underline-position: under;
+    }
+    .contactCustService ul li, .corporateOff ul li {
+    font-size: 13px;
+}
+</style>
+<div class='topBanner' >
+    <img src="https://cdn-media.vaibhavjewellers.com/pub/media/wysiwyg/Video_shopping_banner_vaibhav.jpg" alt="">
+</div>
+<div class="row parentRow">
+    <div class="col-12 col-md-6" style="padding-left: 130px;">
+        <div class="row w-100 m-0">
+            <div class="contactCustService">
+                <h2 style="text-decoration:underline;text-underline-position: under;">Contact Customer Service</h2>
+                <ul class="con-ul">
+                    <li class="ph-no"><img src="https://www.vaibhavjewellers.com/pub/media/wysiwyg/phn.png" alt="vaibhav-phone">0891- 6634568</li>
+                    <li class="wapp-no"><img src="https://www.vaibhavjewellers.com/pub/media/wysiwyg/wapp.png" alt="vaibhav-whatsapp">+91 9177403000</li>
+                    <li class="mail"><img src="https://www.vaibhavjewellers.com/pub/media/wysiwyg/mail.png" alt="vaibhav-email">info@vaibhavjewellers.in</li>
+                    <li class="time"><img src="https://www.vaibhavjewellers.com/pub/media/wysiwyg/clock.png" alt="vaibhav-time">10:00 AM to 10:00 PM IST,<br>
+                    <span>7 days a week</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row w-100 m-0">
+            <div class="corporateOff">
+            <h2 style="text-decoration:underline;text-underline-position: under;">Corporate Office</h2>
+            <ul class="con-add-ul">
+                <li>Manoj Vaibhav gems N Jewellers Ltd</li>
+                <li>CIN: U55101AP1989PLC009734</li>
+                <li>Reg. Office: 7A-9-21, Main Bazar, Eluru, 534001, Andhra Pradesh, India</li>
+                <li>Corp. Office: Door No. 47-10-19, 2nd Lane, Dwarakanagar, Visakhapatnam<br>530016, Andhra Pradesh, India</li>
+                
+            </ul>
+            <ul>
+                <h2 style="text-decoration:underline;text-underline-position: under;">Details of Grievance Officer for Consumer <br>Grievances:</h2>
+                <li>Name: Mr.K.V.R Mohana Dora</li>
+
+<li>Designation: Asst. Manager-Legal</li>
+
+<li>Email: mohanadora.kvr@vaibhavjewellers.in</li>
+<li>Contact Number: +891-6634568 -Extn:508</li>
+            </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 formSection">
+        <form class="form contact"
+            action="<?= $block->escapeUrl($block->getFormAction()) ?>"
+            id="contact-form"
+            method="post"
+            data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+            data-mage-init='{"validation":{}}'>
+            <fieldset class="fieldset">
+                <legend class="legend"><span><?= $block->escapeHtml(__('Have a Question?')) ?></span></legend><br />
+                <div class="field note no-label"><?= $block->escapeHtml(__('Jot us a note and we’ll get back to you as quickly as possible.')) ?></div>
+                <div class="field name required">
+                    <label class="label" for="name"><span><?= $block->escapeHtml(__('Name')) ?></span></label>
+                    <div class="control">
+                        <input name="name" id="name" title="<?= $block->escapeHtmlAttr(__('Name')) ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('name') ?: $this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>" class="input-text" type="text" data-validate="{required:true}"/>
+                    </div>
+                </div>
+                <div class="field email required">
+                    <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+                    <div class="control">
+                        <input name="email" id="email" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('email') ?: $this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+                    </div>
+                </div>
+                <div class="field telephone">
+                    <label class="label" for="telephone"><span><?= $block->escapeHtml(__('Phone Number')) ?></span></label>
+                    <div class="control">
+                        <input name="telephone" id="telephone" title="<?= $block->escapeHtmlAttr(__('Phone Number')) ?>" value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('telephone')) ?>" class="input-text" type="text" />
+                    </div>
+                </div>
+                <div class="field comment required">
+                    <label class="label" for="comment"><span><?= $block->escapeHtml(__('What’s on your mind?')) ?></span></label>
+                    <div class="control">
+                        <textarea name="comment" id="comment" title="<?= $block->escapeHtmlAttr(__('What’s on your mind?')) ?>" class="input-text" cols="5" rows="3" data-validate="{required:true}"><?= $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getPostValue('comment')) ?></textarea>
+                    </div>
+                </div>
+                <?= $block->getChildHtml('form.additional.info') ?>
+            </fieldset>
+            <div class="actions-toolbar">
+                <div class="primary" style="text-align: left;">
+                    <input type="hidden" name="hideit" id="hideit" value="" />
+                    <!-- style="background-color: #6e2083;text-align: left;border-radius: 5px;text-transform: uppercase;font-weight: normal;" -->
+                    <button  type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="contact-sub-btn action submit primary">
+                        <span><?= $block->escapeHtml(__('Submit')) ?></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<?php 
+
+$_helper = $this->helper(Magento\Catalog\Helper\Output::class);
+$_product = $block->getProduct();
+
+?>
+
+<script type="text/javascript" onload="loadTryOnButton({
+    psku:'<?php echo $_product->getSku(); ?>',
+    page:'product',
+    company:'vaibhavjewellers',
+    appendButton:{id:'delivery-form'},
+    MBappendButton:{class:'col-6 media mobile_slider'},
+    nonTryOnProductsReport:'true',
+    styles:{
+    tryonbutton:{backgroundColor:'transparent',color:'#6c1e81',border:'2px solid #6c1e81', borderRadius:'5px', marginLeft:'0px',zIndex:'111'},
+    tryonbuttonHover:{backgroundColor:'white',color:'#ed2d25',borderRadius:'0px'},
+    MBtryonbutton:{left:'100px', marginTop:'45px', marginBottom:'-40px', position:'relative'}
+    },
+    tryonButtonData:{text:'Virtual Try On',faIcon:'fa fa-camera'}
+    });"
+    src="https://cdn.camweara.com/integrations/camweara_api.js">
+</script>

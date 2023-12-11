@@ -1,0 +1,274 @@
+<style>
+.customer_sliders {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.section {
+    text-align: center;
+    margin-top: 2.5%;
+}
+
+.scroll-arrow {
+    width: 2%;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    opacity: 0.5;
+    font-size: 34px;
+    transition: 0.2s;
+}
+
+.scroll-arrow:hover {
+    transition: 0.2s;
+    opacity: 1;
+}
+
+.imgList {
+    width: 75%;
+    scroll-behavior: smooth;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    text-align: center;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+
+.imgList::-webkit-scrollbar {
+    display: none;
+}
+
+.product_main:hover {
+    transition: 0.2s;
+}
+
+/*My style*/
+.product_main {
+    /*li*/
+    list-style: none;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    width: 20%;
+    margin-left: 1.5%;
+    margin-right: 1.5%;
+    transition: 0.2s;
+    width: 300px;
+    /*li*/
+    width: fit-content;
+    margin-left: 45px;
+    border: #6c757d1f !important;
+    border-style: groove !important;
+    border-width: 1px !important;
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
+    height: fit-content;
+}
+
+.product_container {
+    width: 225px !important;
+}
+
+.product_img {}
+
+.product_details_slider {
+    background-color: #d3d3d35e;
+    height: 70px;
+}
+
+.product_name_slider {
+    overflow: hidden;
+    color: gray;
+    font-size: .9em;
+    margin: 0 10px 0 10px;
+    padding: 10px 0 3px 0;
+    text-overflow: ellipsis;
+}
+
+.price_slider {
+    font-size: 15px !important;
+    color: #1c1821;
+    font-weight: 800 !important;
+    display: flex;
+    justify-content: center;
+}
+
+.page-title-wrapper {
+    text-align: center;
+}
+
+@media screen and (max-width: 450px) {
+    .scroll-arrow {
+        width: auto;
+    }
+}
+</style>
+
+<?php
+
+/**
+ * @var \Mageplaza\HelloWorld\Block\Display $block
+ */
+
+$current_category= $block->getCurrentCategory();
+
+$objectManager =\Magento\Framework\App\ObjectManager::getInstance();
+
+$abstractProductBlock = $block->getLayout()->createBlock('\Magento\Catalog\Block\Product\AbstractProduct');
+
+$storeManager = $objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+$currentStore = $storeManager->getStore();
+$baseUrl = $currentStore->getBaseUrl();
+$mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+$linkUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_LINK);
+
+$cateid = '140';
+$productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory');
+
+$collection = $productCollection->create();
+$collection->addAttributeToSelect('*');
+$collection->addCategoriesFilter(['in' => $cateid]);
+$collection->addAttributeToFilter('visibility', \Magento\Catalog\Model\Product\Visibility::VISIBILITY_BOTH);
+$collection->addAttributeToFilter('status',\Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED);
+$collection->addAttributeToSort('created_at', 'DESC');
+$collection->setPageSize(10); // fetching only 9 products
+foreach ($collection as  $value) {
+    $productUrl = $value->getProductUrl();
+    $productName =  $value->getName();
+    /*$productImage = $abstractProductBlock->getImage($value, 'product_small_image')->getImageUrl();
+    $productPrice =  $abstractProductBlock->getProductPrice($value);*/
+    //echo 'Image URL - '. $value->getId(). ' - '. $value->getImage();
+}
+
+
+?>
+<br><br>
+<h4 style="text-align: center;"><strong>Invest in gold coins</strong></h4>
+<section class="customer_sliders">
+    <div class="scroll-arrow" id="scroll-left1">
+        <i class="fa fa-chevron-circle-left"></i>
+    </div>
+    <div id="imgList1" class="imgList">
+        <?php foreach ($collection as $value) {  ?>
+        <div class="product_main">
+            <div class="product_container">
+                <a href="<?php echo $value->getProductUrl(); ?>">
+                    <div class="product_img"><img
+                            src=" <?php echo $abstractProductBlock->getImage($value, 'product_base_image')->getImageUrl(); ?>"
+                            class="img img-responsive">
+                    </div>
+                    <div class="product_details_slider">
+                        <div class="product_name_slider"><?php echo $value->getName(); ?></div>
+                        <span class="price_slider"><?php echo $abstractProductBlock->getProductPrice($value); ?></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <? } ?>
+    </div>
+    <div class="scroll-arrow" id="scroll-right1">
+        <i class="fa fa-chevron-circle-right"></i>
+    </div>
+</section>
+<p></p>
+<br />
+<button class="btn btn-primary submit align_explore"
+    onclick="window.location.href='<?php echo $linkUrl;?>gold-coins.html'">Explore</button>
+<p></p>
+<br />
+
+<!-- <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
+     <div class="row">
+         <div class="col-md-12">
+             <h4 style="text-align: center;">Invest in gold coins</h4>
+             <div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel" data-interval="1000">
+                 <div class="MultiCarousel-inner">
+                    <div class="item">
+                         <div class="pad15">
+                             <img src="https://mage24stage-cdn-static.vaibhavjewellers.com/static/frontend/Vbj/Vaibhav_Jewellary/en_US/Magento_Cms/images/coins/1-gram-24-kt-gold-coin-999-purity-vjgc0001.jpg"
+                                 class="img-reponsive img-fluid" alt="">
+                             <p>1g 24k Gold Bar</p>
+                         </div>
+                     </div>
+                     <div class="item">
+                         <div class="pad15">
+                             <img src="https://mage24stage-cdn-static.vaibhavjewellers.com/static/frontend/Vbj/Vaibhav_Jewellary/en_US/Magento_Cms/images/coins/vaibhav-jewellers-5-gm-24kt-999-yellow-gold-coin-vbjgm05.jpg"
+                                 class="img-reponsive img-fluid" alt="">
+                             <p>5g 24k Gold Bar</p>
+                         </div>
+                     </div>
+
+                     <div class="item">
+                         <div class="pad15">
+                             <img src="https://mage24stage-cdn-static.vaibhavjewellers.com/static/frontend/Vbj/Vaibhav_Jewellary/en_US/Magento_Cms/images/coins/vaibhav-jewellers-10-gm-24kt-999-yellow-gold-coin-vj10gm.jpg"
+                                 class="img-reponsive img-fluid" alt="">
+                             <p>10g 24k Gold Bar</p>
+                         </div>
+                     </div>
+
+                     <div class="item">
+                         <div class="pad15">
+                             <img src="https://mage24stage-cdn-static.vaibhavjewellers.com/static/frontend/Vbj/Vaibhav_Jewellary/en_US/Magento_Cms/images/coins/VJGC0020.jpg"
+                                 class="img-reponsive img-fluid" alt="">
+                             <p>20g 24k Gold Bar</p>
+                         </div>
+                     </div>
+
+                     <div class="item">
+                         <div class="pad15">
+                             <img src="https://mage24stage-cdn-static.vaibhavjewellers.com/static/frontend/Vbj/Vaibhav_Jewellary/en_US/Magento_Cms/images/coins/VJGM1070.Main.jpg"
+                                 class="img-reponsive img-fluid" alt="">
+                             <p>1g 24k gold bar</p>
+                         </div>
+                     </div>
+
+                     <div class="item">
+                         <div class="pad15">
+                             <img src="https://mage24stage-cdn-static.vaibhavjewellers.com/static/frontend/Vbj/Vaibhav_Jewellary/en_US/Magento_Cms/images/coins/VJGM1070.PT01.jpg"
+                                 class="img-reponsive img-fluid" alt="">
+                             <p>Gold Bar</p>
+                         </div>
+                     </div>
+
+                 </div>
+                 <button class="btn btn-primary leftLst"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                         fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+                         <path fill-rule="evenodd"
+                             d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z" />
+                     </svg></button>
+                 <button class="btn btn-primary rightLst"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                         fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                         <path fill-rule="evenodd"
+                             d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                     </svg></button>
+             </div>
+             <button class="btn btn-primary submit align_explore">Explore</button>
+         </div>
+     </div>
+ </div> -->
+
+
+
+
+<script type="text/javascript">
+var imgListi = document.getElementById('imgList1');
+var scrollRightr = document.getElementById('scroll-right1');
+var scrollLeftr = document.getElementById('scroll-left1');
+
+// When a user clicks on the right arrow, the ul will scroll 750px to the right
+scrollRightr.addEventListener('click', (event) => {
+    imgListi.scrollBy(750, 0);
+});
+
+// When a user clicks on the left arrow, the ul will scroll 750px to the left
+scrollLeftr.addEventListener('click', (event) => {
+    imgListi.scrollBy(-750, 0);
+});
+</script>

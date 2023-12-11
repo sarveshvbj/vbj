@@ -1,0 +1,494 @@
+﻿<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+use Magento\Framework\App\Action\Action;
+
+// @codingStandardsIgnoreFile
+
+?> 
+<?php
+/**
+ * Product list template
+ *
+ * @var $block \Magento\Catalog\Block\Product\ListProduct
+ */
+?>
+<style>
+    .text-left{
+        background-color: #f1f0f3;
+        padding-bottom: 4px;
+    }
+    .modal-slide, .video-custom-class{
+        z-index: 900;
+        width: 425px;
+        height: 565px;
+        margin-left: 450px;
+    }
+    .offer-price {
+        padding: 0 0 0 20px !important;
+    }
+    .price-rating {
+        padding: 0 10px 5px 10px;
+    }
+    .block-static-block.widget, .block-cms-link.widget{
+        margin: 45px;
+        font-size: 14px;
+        text-align: justify;
+        padding-bottom: 20px;
+    } 
+    .vaibhavstaticsec {
+        margin-left: 15px;
+        margin-right: 15px;
+        width: 100%;
+        font-size: 14px;
+        line-height: 1.5rem;
+        letter-spacing: 0.3px;
+    }
+    .widget h2, h3, h4 {
+        font-size: 18px !important;
+        font-weight: 600;
+        padding-bottom: 10px;
+    }
+    .widget h2 {
+        text-align: center;
+    }
+    .vaibhavstaticsec h2, h3, h4 {
+        font-size: 16px !important;
+        font-weight: 600;
+        padding-bottom: 10px;
+    }
+    .vaibhavstaticsec ul>li, ol>li {
+        margin-top: 0;
+        margin-bottom: 6px;
+    }
+    .vaibhavstaticmain {
+        background-color: white !important;
+        margin: 45px;
+        text-align: justify;
+        width: unset;
+    }
+    .product-image-container {
+       /* display: inline-block;
+        width: 100%;
+        height: 100%;*/
+        display: contents !important;
+    }
+    .product-name {
+      padding: 10px 10px 0px 15px!important;
+    }
+    .bread-crumbs {
+        margin: 16px 0;
+        padding-left: 3.5rem;
+    }
+    .sort-items.active {
+        color: #ee853c;
+    }
+    .sorting {
+        padding: 10px 0;
+
+        margin: 10px 0 0;
+        border: 1px solid #e7e7e7;
+        border-width: 1px 0;
+    }
+    .product-image-photo {
+        /*height: 100% !important;*/
+        width: 100% !important;
+        /*top: -36px;*/
+        position: absolute;
+        right: 0;
+        display: block;
+        height: auto;
+        left: 0;
+        margin: auto;
+        bottom:  auto;
+        max-width: unset;
+    }
+
+    .products {
+        margin-left: 2% !important;
+        height: 100% !important;
+    }
+    .product-image-wrapper {
+        display: block !important;
+        /*height: 0 !important;*/
+        height: 288px;
+        overflow: hidden !important;
+        position: relative !important;
+        z-index: 1 !important;
+        /*padding-bottom: 120% !important;*/
+        text-align: center;
+    }
+    .product_other_icons{
+        display: flex !important;
+        position: absolute !important;
+        /*bottom: 120px !important;*/
+        z-index: 3 !important;
+        align-items: center !important;
+        top: 250px !important;
+        right: 10px !important;
+    }
+
+    p.suggested {
+        display: none;
+    }
+    .product-banner{
+      width:50% !important; 
+      height: 381px;
+    }
+    .vaibhav_product_list {
+    margin-left: -2%;
+}
+    .breadcrumbs .item:not(:last-child):after {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 9px;
+    line-height: 16px;
+       font-family: FontAwesome !important;
+    content: '\f054' !important;
+    margin: 0 10px;
+    vertical-align: top;
+    display: inline-block;
+    font-weight: 400;
+    overflow: hidden;
+    speak: none;
+    text-align: center;
+}
+</style>
+<?php
+//print_r($block->getLoadedProductCollectionThis());
+$_productCollection = $block->getLoadedProductCollection();
+$mainListingCollection = $_productCollection->getData();
+
+// $_productCollection=$_productCollection->addAttributeToSelect('*');
+$_helper = $block->getData('outputHelper');//$this->helper('Magento\Catalog\Helper\Output');
+?>
+<?php if (!$_productCollection->count()): ?>
+    <div class="message info empty"><div><?= /* @escapeNotVerified */ __('We can\'t find products matching the selection.') ?></div></div>
+<?php else: ?> 
+    <div class="bread-crumbs">
+   <?= $this->getChildHtml('breadcrumbs');?>
+</div>
+    <?php
+    if ($block->getMode() == 'grid') {
+        $viewMode = 'grid';
+        $imageDisplayArea = 'category_page_grid';
+        $showDescription = false;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    } else {
+        $viewMode = 'list';
+        $imageDisplayArea = 'category_page_list';
+        $showDescription = true;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::FULL_VIEW;
+    }
+    /**
+     * Position for actions regarding image size changing in vde if needed
+     */
+    $pos = $block->getPositioned();
+    ?>
+<!-- <style>
+    .t-product-img {
+        background-size:cover !important;
+    }
+</style> -->
+    <div class="wrapper">
+
+        <div class="category-page-header" id="category.page.header">  
+    <?php 
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $retailHelper = $objectManager->get('Retailinsights\ConfigProducts\Helper\Data');
+    $productTypeInstance = $objectManager->get('Magento\ConfigurableProduct\Model\Product\Type\Configurable');
+    $category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');//get current category
+    $promo_banners=array();
+    $promo_count=0;
+    $current_cateid='';
+    if($category){ 
+    $current_cateid=$category->getId();
+    ?>
+    <div class="page-title-wrapper">
+    <h1 class="page-title" id="page-title-heading" aria-labelledby="page-title-heading toolbar-amount">
+        <span class="base" data-ui-id="page-title-wrapper"><?= $category->getData('title_h1') ?></span>    </h1>
+    </div> 
+    
+  <?php  }
+?>
+        <?= $block->getToolbarHtml() ?>
+        <?= $block->getAdditionalHtml() ?>
+         <?php 
+         $promo_alt=array();
+         if($category) {
+                if($category->getData('promo_banner')) {
+                    array_push($promo_banners, $category->getData('promo_banner'));
+                    array_push($promo_alt, $category->getData('promobanner_alttext'));
+                }
+                if($category->getData('promo_banner_1')) {
+                    array_push($promo_banners, $category->getData('promo_banner_1'));
+                    array_push($promo_alt, $category->getData('promobanner_alttext2'));
+                }
+                if($category->getData('promo_banner_2')) {
+                    array_push($promo_banners, $category->getData('promo_banner_2'));
+                    array_push($promo_alt, $category->getData('promobanner_alttext3'));
+                }
+                if($category->getData('promo_banner_3')) {
+                    array_push($promo_banners, $category->getData('promo_banner_3'));
+                    array_push($promo_alt, $category->getData('promobanner_alttext4'));
+                }
+             if(!empty($promo_banners)) {
+                $promo_count=count($promo_banners);
+             }
+             if(!empty($promo_alt)) {
+                $promobanner_count=count($promo_alt);
+             }
+        } ?>
+        </div>
+         <div class="vaibhav_product_list">
+        <div class="flex">
+            <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
+
+            <?php $adbanners=array("products-banner.png","products-banner1.png","products-banner1.png"); ?>
+            <?php if(isset($_GET['p'])) {
+                    $adbannercount=3;
+                } else {
+                   $adbannercount=1;
+                } ?>
+
+            <?php $count=1; 
+            $entId = array(); 
+            ?>
+
+        <?php foreach ($_productCollection as $_product):?>
+           
+        <?php $productcoll = $objectManager->create('Magento\Catalog\Model\Product')->load($_product['entity_id']); ?>
+          
+          
+        <div class="products">
+        <?php 
+                
+            //$noofdays = $_product->getData('no_of_days'); //$_product->getResource()->getAttribute('no_of_days')->getFrontend()->getValue($_product);  
+            $smart_percentage = $productcoll->getResource()->getAttribute('smart_percentage')->getFrontend()->getValue($productcoll);
+            $metal_discount_in = $productcoll->getResource()->getAttribute('metal_discount_in')->getFrontend()->getValue($productcoll);
+            $product_discount = $productcoll->getResource()->getAttribute('product_discount')->getFrontend()->getValue($productcoll);
+            $discount_diamond_in = $productcoll->getResource()->getAttribute('discount_diamond_in')->getFrontend()->getValue($productcoll); //$productcoll->getData('discount_diamond_in');
+            $discount_making_charge_in = $productcoll->getResource()->getAttribute('discount_making_charge_in')->getFrontend()->getValue($productcoll);//$productcoll->getData('discount_making_charge_in');
+            $noofdays = $productcoll->getResource()->getAttribute('no_of_days')->getFrontend()->getValue($productcoll);// $productcoll->getData('no_of_days');
+            $taxAmount = $productcoll->getResource()->getAttribute('tax_amount')->getFrontend()->getValue($productcoll);
+            if(isset($taxAmount)){
+                  $gst = number_format($taxAmount);
+            } else{
+                  $gst = '0.00';
+            }   
+               
+            //$discount_making_charge_in = $productcoll->getResource()->getAttribute('making_charge')->getFrontend()->getValue($productcoll); //$productcoll->getData('making_charge');
+                
+            $offer_label =  $productcoll->getResource()->getAttribute('offer_percentage')->getFrontend()->getValue($productcoll);
+            $offer_percentage =  $productcoll->getResource()->getAttribute('discount_wastage')->getFrontend()->getValue($productcoll);
+            switch (true) {
+                    case (isset($smart_percentage) && isset($offer_label) && isset($noofdays)):  ?>
+                    <div class="sticker"><img class="bs-image" src="<?php echo $this->getUrl('pub/media/');?>bt-star.svg" alt="best-seller-image">
+                  <span class="bs-text"><?php echo __('NEW'); ?></span>
+                   <span class="bs-text"><?php echo __('OFFER'); ?></span>
+                    </div>
+                    <?php break;
+                   case (isset($smart_percentage) && isset($offer_label)): ?>
+                     <div class="sticker"><img class="bs-image" src="<?php echo $this->getUrl('pub/media/');?>bt-star.svg" alt="best-seller-image">
+                <span class="bs-text"><?php echo __('SmartBuy'); ?></span>
+                  <span class="bs-text"><?php echo __('OFFER'); ?></span>
+              </div>
+                    <?php break;
+                   case (isset($smart_percentage) && isset($noofdays)): ?>
+                     <div class="sticker"><img class="bs-image" src="<?php echo $this->getUrl('pub/media/');?>bt-star.svg" alt="best-seller-image">
+                  <span class="bs-text"><?php echo __('SmartBuy'); ?></span>
+                   <span class="bs-text"><?php echo __('NEW'); ?></span>
+              </div>
+                    <?php break;
+                     case (isset($offer_label) && isset($noofdays)): ?>
+                     <div class="sticker"><img class="bs-image" src="<?php echo $this->getUrl('pub/media/');?>bt-star.svg" alt="best-seller-image">
+                  <span class="bs-text"><?php echo __('OFFER'); ?></span>
+                   <span class="bs-text"><?php echo __('NEW'); ?></span>
+              </div>
+                    <?php break;
+                     case (isset($offer_label)): ?>
+                     <div class="sticker"><img class="bs-image" src="<?php echo $this->getUrl('pub/media/');?>bt-star.svg" alt="best-seller-image">
+                  <span class="bs-text"><?php echo __('OFFER'); ?></span>
+              </div>
+                    <?php break;
+                    case (isset($noofdays)): ?>
+                     <div class="sticker"><img class="bs-image" src="<?php echo $this->getUrl('pub/media/');?>bt-star.svg" alt="best-seller-image">
+                    <span class="bs-text"><?php echo __('NEW'); ?></span>
+               </div>
+                    <?php break;
+                      case (isset($smart_percentage)): ?>
+                     <div class="sticker"><img class="bs-image" src="<?php echo $this->getUrl('pub/media/');?>bt-star.svg" alt="best-seller-image">
+                  <span class="bs-text"><?php echo __('SmartBuy'); ?></span>
+              </div>
+                    <?php break;
+                }
+                    ?>
+
+                
+                <a href="<?php echo $this->getUrl('wishlist'); ?>" data-post='<?php echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($productcoll) ?>' class="action towishlist" data-action="add-to-wishlist"><img class="favourites" src="<?php echo $this->getUrl('media/');?>fav.svg" alt="favourite-icon"></a>
+                 <?php
+                    $productImage = $block->getImage($productcoll, $imageDisplayArea);
+                    if ($pos != null) {
+                        $position = ' style="left:' . $productImage->getWidth() . 'px;'
+                            . 'top:' . $productImage->getHeight() . 'px;"';
+                    }
+                    ?>
+               <?php  $imageUrl = $productcoll->getMediaConfig()->getMediaUrl($productcoll->getImage()); ?>
+             
+               <div class="image_container-custom-<?php echo $_product['entity_id']; ?> t-product-img" style="background-position: center;background-repeat: cover;">
+                <a href="<?= /* @escapeNotVerified */ $productcoll->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
+                <?= $productImage->toHtml() ?>
+             </a>
+             </div>
+                <div class="text-left">
+                    <a href="<?= /* @escapeNotVerified */ $productcoll->getProductUrl() ?>">
+                    <div class="product-name">  
+                   <?php  
+                    $product_name=$productcoll->getName();
+                    $replacevalues=str_replace("Vaibhav Jewellers","",$product_name);
+                    echo $replacevalues;
+                    ?>
+                    </div>
+                    </a>
+                    <div class="price-rating clearfix">
+                        <div class="price <?php if($offer_percentage || $discount_making_charge_in || $metal_discount_in || $discount_diamond_in || $product_discount){ echo 'dis_make_charge_old'; } ?>"><?= /* @escapeNotVerified */ $block->getProductPrice($productcoll) ?></div>
+                        <div class="rating">
+                            <?= $block->getReviewsSummaryHtml($productcoll, $templateType) ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="trys-on">
+                    <span class="tryon-icon">Try On</span>
+                </div>
+                <div class="video-shopping video-shopping_<?php echo $_product['entity_id']; ?>" 
+                    data-mage-init='{"Magento_Catalog/js/product/list/item/quickview": { } }'
+                    data-id="<?php echo $_product['entity_id'] ?>"
+                    >
+                    <span class="videoshopping-icon"><img loading="lazy" src="<?php echo $this->getUrl('media/');?>video_icon.png" width="35" alt="videoshopping-icon" height="31" data-pagespeed-no-transform /></span>
+                </div>
+                 <!--- Added By SKT --->
+                <?php 
+                date_default_timezone_set('Asia/Kolkata');
+                $currentTime = date('h:i:A');
+                $currenDate= date('d.m.Y');
+                $str= explode(":",$currentTime);
+                list($hr, $min, $timestamp) = $str; 
+                $curTime=date('Y-m-d H:i:s', time());
+                $datetime = new DateTime($curTime);
+                $currenDateTime = $datetime->format(DateTime::ATOM);
+                ?>
+                   <!-- <div id="popover-content" class="popover-content close" style="bottom: 50px;"> -->
+                <div class="popover-content close popover-content_<?php echo $_product['entity_id']; ?>" style="display:none;">
+                  <button type="button" class="btn btn-default btnclose" id="btnclose">x</button>
+                  <picture>
+                    <source type="image/webp" data-srcset="<?php echo $this->getUrl('media/');?>live-shop--360x500mobile.jpg?q=80&auto=compress" srcset="<?php echo $this->getUrl('media/');?>live-shop--360x500mobile.jpg?q=80&auto=compress">
+                    <img loading="lazy" src="<?php echo $this->getUrl('media/');?>live-shop--360x500mobile.jpg?q=80&auto=compress" data-srcset="<?php echo $this->getUrl('media/');?>live-shop--360x500mobile.jpg?q=80&auto=compress" srcset="<?php echo $this->getUrl('media/');?>live-shop--360x500mobile.jpg?q=80&auto=compress" class="w-100" data-src="<?php echo $this->getUrl('media/');?>live-shop--360x500mobile.jpg?q=80&auto=compress" width="330" height="157" alt="" data-pagespeed-no-transform>
+                    </picture>
+                  <div class="live-form-content" style="display: block; bottom: 0;">
+                 <!-- <div class="video-intro-text" style="text-align: center;">
+                  <h3>Get Your Appointment</h3><br>
+                  <h4>Fill the details</h4>
+                </div> -->
+                  <form class="form-horizontal" enctype="multipart/form-data"  class="live-form" method="POST"
+                  data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>" data-mage-init='{"validation":{}}'>
+                     <input name="type" value="product"  type="hidden" />
+                                     <input name="hrs" value="<?php echo $hr; ?>"  type="hidden" />
+                                     <input name="min" value="<?php echo $min; ?>"  type="hidden" />
+                                     <input name="meri" value="<?php echo $timestamp; ?>"  type="hidden" />
+                                     <input name="language" value="any"  type="hidden" />
+                                     <input name="fullname" value="Guest"  type="hidden" />
+                                     <input name="email" value="dummyguest@gmail.com"  type="hidden" />
+                                     <input name="product" value="<?= /* @escapeNotVerified */ $productcoll->getProductUrl() ?>" type="hidden" />
+                                     <input name="remarks" value="Dummy"  type="hidden" />
+                                     <input name="takedate" value="<?php echo $currenDateTime; ?>"  type="hidden" />
+                                     <?php echo $block->getBlockHtml('formkey')?>
+            <fieldset>
+            <!-- <div class="form-group"> 
+              <div class="col-md-8">
+              <input  name="fullname" type="text" placeholder="Enter Name" class="form-control input-md required-entry in"> 
+              </div>
+            </div> -->
+            <div class="form-group loader-block" style="display: none;margin-bottom: 0px;">
+               <div class="row success-block" style="flex-direction: column;justify-content: center;align-items: center;">
+              <div class="col-12" style="color:#8bd8bd">
+               <div class="loader-icon">Loading...</div>
+              </div>
+              </div>
+              </div>
+              
+            <div class="form-group success-block" style="margin-bottom: 5rem;display: none;">
+              <div class="row success-block" style="flex-direction: column;justify-content: center;align-items: center;">
+              <div class="col-12" style="color:#8bd8bd">
+                <h3 style="text-align: center;">Your details has been submitted successfully</h3>
+                <h5 style="text-align: center;">Our team will contact very soon</h5>
+              </div>
+              </div>
+            </div>
+            <div class="form-group form-block">
+              <div class="row" style="flex-direction: column;justify-content: center;align-items: center;margin-top: -130px;">
+                <div class="col-8">
+              <input  class="live_mobile" style="border-radius: 10px;" name="mobile" type="tel" placeholder="*Mobile No" class="form-control input-md required-entry in">
+                <span id="errmsg" style="color: red;text-align:center;"></span>
+              </div>
+              <div class="col-4">
+             <div style="text-align: center;">
+            <button type="submit" class="live_submit" style="color: #fff !important;" class="btn btn-primary live-video-btn">Submit</button>
+            </div>
+              </div>
+              </div>
+            </div>
+            </fieldset>
+            </form>
+            </div>
+                </div>
+            <!-- added by SKT -->     
+            </div>
+             <?php if($count%10==0): ?>
+
+                <?php if(isset($_GET['p'])) {
+                    $currentpage = $_GET['p'];
+                } else {
+                    $currentpage=1;
+                } ?>
+                <?php if($promo_count > 0) { ?>
+               <?php if($currentpage == 1) { ?>
+            <?php if(is_array($promo_banners) && $promo_count >= $adbannercount): ?>
+                <img alt="<?php echo $promo_alt[$adbannercount-1];?>" class="product-banner d-md-block d-none" src="<?php echo $promo_banners[$adbannercount-1]; ?>" data-pagespeed-no-transform />
+            <?php $adbannercount++; ?>
+        <?php endif; ?>
+             <?php } else if($currentpage == 2) { ?>
+                <?php //$adbannercount=3; ?>
+             <?php if(is_array($promo_banners) && $promo_count >= $adbannercount): ?>
+            <img alt="<?php echo $promo_alt[$adbannercount-1];?>" class="product-banner d-md-block d-none" src="<?php echo $promo_banners[$adbannercount-1];?>" data-pagespeed-no-transform />
+            <?php $adbannercount++; ?>
+            <?php endif; ?>
+
+           <?php  } ?>   
+            <?php } ?>   
+
+        <?php endif; ?>
+            <?php $count++; ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    </div>
+     <div class="category-page-footer" id="category.page.footer">
+    <?= $block->getToolbarHtml() ?>
+</div>
+<?php endif; ?>
+
+<script>
+    function videoShopping(productId) {
+    var productId = productId;    
+    /*jQuery(".image_container-custom-"+dataId+" .product-image-photo").attr('src', dataImg);*/
+    var className = 'video-shopping_'+productId;
+    var properContent = 'popover-content_'+productId;
+   jQuery('.'+properContent).slideToggle();
+   jQuery('.'+properContent).toggleClass('sktclose');
+    /*jQuery('.'+properContent).slideUp();*/
+    /*jQuery('.products').toggleClass(properContent);*/
+  }
+</script>
+ 

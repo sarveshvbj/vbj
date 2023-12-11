@@ -1,0 +1,69 @@
+<div class="p-2 color-voilet position-relative nav-search d-none d-sm-block">
+            <button type="button" id="cust_search" class="btn search-button color-voilet p-0" aria-label="search">
+                <i class="fas fa-search"></i>
+            </button>
+            <div class="position-absolute search-dropdown">
+                <input type="text" placeholder="Search entire store here...">
+                <button>SEARCH</button>
+                <div id="search-suggestion" class="search-suggestion p-3 position-relative">
+                    <i class="fas fa-times position-absolute"></i>
+                    <ul>
+                        <li>
+                            <i class="fas fa-arrow-right"></i>
+                            <a href="">
+                                <span>Chain</span>
+                            </a>
+                        </li>
+                        <li>
+                            <i class="fas fa-arrow-right"></i>
+                            <a href="">
+                                <span>Diamond</span>
+                            </a>
+                        </li>
+                        <li>
+                            <i class="fas fa-arrow-right"></i>
+                            <a href="">
+                                <span>Only Diamond</span>
+                            </a>
+                        </li>
+                        <li>
+                            <i class="fas fa-arrow-right"></i>
+                            <a href="">
+                                <span>Earrings</span>
+                            </a>
+                        </li>
+                        <li>
+                            <i class="fas fa-arrow-right"></i>
+                            <a href="">
+                                <span>Mangalsutra</span>
+                            </a>
+                        </li>
+                        <li>
+                            <i class="fas fa-arrow-right"></i>
+                            <a href="">
+                                <span>Nose Pins</span>
+                            </a>
+                        </li>
+                   </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+        window.addEventListener('load', function () {
+        var btn = document.getElementById("cust_search");  
+        btn.onclick = function() {
+  var x = document.getElementById("search-suggestion");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }     
+        }    
+
+    }, false);
+            
+</script>
